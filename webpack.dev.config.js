@@ -19,13 +19,15 @@ module.exports = {
       {
         test: /\.es6$/,
         loaders: ['react-hot', 'babel'],
-        include: path.join(__dirname, 'app')
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules\//
       },
       {
         test: /\.jsx$/,
         loaders:['react-hot', 'babel'],
-        exclude: /node_modules/
-      },
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules\//
+      }
     ]
   }
 };

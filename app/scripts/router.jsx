@@ -1,18 +1,14 @@
 'use strict';
 
 // circular import handling: indirection via getter function that is called later
-module.exports = {
-  get: function() {
-    return router;  // gets hoisted, see last line of this file
-  }
-};
+export default () => router;  // gets hoisted, see last line of this file
 
-var React = require('react');
-var Router = require('react-router');
-var {Route, DefaultRoute} = require('react-router');
+import React from 'react';
+import Router from 'react-router';
+import {Route, DefaultRoute} from 'react-router';
 
 
-var Root = require('./components/root.jsx');
+import Root from './components/root.jsx';
 
 
 var routes = (

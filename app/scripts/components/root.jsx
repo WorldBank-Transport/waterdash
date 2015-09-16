@@ -1,13 +1,10 @@
 'use strict';
 
-var React = require('react');
-var {RouteHandler} = require('react-router');
+import React from 'react';
+import {RouteHandler} from 'react-router';
 
-var Root = React.createClass({
+export default class Root extends React.Component {
   render() {
     return <h1>Hello world</h1>
   }
-});
-
-
-module.exports = Root;
+}
