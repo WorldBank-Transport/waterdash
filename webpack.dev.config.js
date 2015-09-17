@@ -1,5 +1,6 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
+
 
 module.exports = {
   entry: [
@@ -27,7 +28,18 @@ module.exports = {
         loaders:['react-hot', 'babel'],
         include: path.join(__dirname, 'app'),
         exclude: /node_modules\//
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass',
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules\//
       }
     ]
+  },
+  resolve: {
+    alias: {
+      stylesheets: path.resolve(__dirname, 'app', 'stylesheets')
+    }
   }
 };
