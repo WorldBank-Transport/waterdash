@@ -4,7 +4,6 @@ import React from 'react';
 import Router, {Route, IndexRoute} from 'react-router';
 
 import Root from './components/root.jsx';
-import Main from './components/dashboard/main.jsx';
 import WaterPoints from './components/dashboard/waterpoints.jsx';
 import WaterPoint from './components/dashboard/waterpoint.jsx';
 import Polygons from './components/dashboard/polygons.jsx';

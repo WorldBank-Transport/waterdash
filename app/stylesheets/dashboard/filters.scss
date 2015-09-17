@@ -1,0 +1,11 @@
+@import "../config/colours";
+
+.filters {
+  color: white;
+  background: $theme-blue;
+
+  h2 {
+    margin: 0;
+    font: inherit;
+  }
+}

@@ -10,7 +10,7 @@ export default class Polygons extends Component {
   render() {
     let {polytype} = this.props.params;
     return (
-      <div className="polygons">
+      <div className="main polygons">
         <h1>
           <T k={`dash.${polytype}`} />
         </h1>

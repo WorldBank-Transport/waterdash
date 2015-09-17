@@ -1,0 +1,9 @@
+@import "../utils/list";
+
+.view-mode {
+  @include list-unstyle;
+  @include list-inline;
+  li {
+    padding: 0 1em;
+  }
+}

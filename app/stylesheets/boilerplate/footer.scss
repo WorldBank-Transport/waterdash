@@ -1,0 +1,20 @@
+@import "../config/colours";
+
+.footer {
+  color: #fff;
+  background: $theme-blue;
+  a {
+    color: #fff;
+  }
+  .footer-nav {
+    float: left;
+  }
+  .copy {
+    display: inline-block;
+    float: right;
+    margin: 0;
+    width: 66%;
+    font-size: 0.8em;
+    text-align: right;
+  }
+}

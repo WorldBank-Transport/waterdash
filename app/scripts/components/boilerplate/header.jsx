@@ -5,6 +5,7 @@ import T from '../utils/t.jsx';
 import OpenDataNav from './open-data-nav.jsx';
 import LanguageSelector from './language-selector.jsx';
 
+require('stylesheets/boilerplate/header.scss');
 
 export default class Header extends Component {
   render() {
@@ -13,8 +14,10 @@ export default class Header extends Component {
         <div className="logo">
           <h1><T k="site-name" /></h1>
         </div>
-        <OpenDataNav />
-        <LanguageSelector />
+        <div className="header-nav">
+          <OpenDataNav />
+          <LanguageSelector />
+        </div>
       </div>
     );
   }

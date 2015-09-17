@@ -7,6 +7,8 @@ import Header from './boilerplate/header.jsx';
 import Filters from './dashboard/filters.jsx';
 import Footer from './boilerplate/footer.jsx';
 
+require('stylesheets/layout.scss');
+
 export default class Root extends Component {
   render() {
     return (

@@ -1,0 +1,47 @@
+@import "config/dimensions";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+}
+
+.filters {
+  position: absolute;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  height: $filters-closed-height;
+}
+
+.main {
+  position: absolute;
+  top: $header-height + $filters-closed-height;
+  left: 0;
+  right: 0;
+  bottom: $footer-height;
+
+  .charts-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $charts-closed-height;
+  }
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: $footer-height;
+}

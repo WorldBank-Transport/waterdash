@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import T from '../utils/t.jsx';
 import ViewMode from '../boilerplate/view-mode.jsx';
 
+require('stylesheets/dashboard/charts-container.scss');
 
 export default class ChartsContainer extends Component {
   render() {

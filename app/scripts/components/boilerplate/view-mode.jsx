@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import T from '../utils/t.jsx';
 
+require('stylesheets/boilerplate/view-mode.scss');
+
 export default class ViewMode extends Component {
   render() {
     return (

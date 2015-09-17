@@ -12,7 +12,7 @@ require('stylesheets/dashboard/waterpoints.scss');
 export default class WaterPoints extends Component {
   render() {
     return (
-      <div className="waterpoints">
+      <div className="main waterpoints">
         <h1><T k="dash.waterpoints" /></h1>
         <Link to="/waterpoints/some-waterpoint-id">Some waterpoint</Link>
         <Map

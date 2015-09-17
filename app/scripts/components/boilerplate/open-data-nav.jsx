@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import T from '../utils/t.jsx';
 
+require('stylesheets/boilerplate/open-data-nav.scss');
+
 export default class OpenDataNav extends Component {
   render() {
     return (
