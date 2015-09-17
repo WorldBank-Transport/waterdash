@@ -18,11 +18,11 @@ React.render((
     <Route path="/" component={Root}>
       <IndexRoute component={WaterPoints} />
       <Route path="waterpoints/:id" component={WaterPoint} />
+      <Route path="data/" component={Data} />
+      <Route path="speak-out/" component={SpeakOut} />
       <Route path=":polytype/" component={Polygons}>
         <Route path=":id" component={Polygon} />
       </Route>
-      <Route path="data/" component={Data} />
-      <Route path="speak-out/" component={SpeakOut} />
       <Route path="*" component={NotFound} />
     </Route>
   </Router>

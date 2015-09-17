@@ -5,7 +5,9 @@ import React, {Component} from 'react';
 export default class SpeakOut extends Component {
   render() {
     return (
-      <h1>Speak Out Page</h1>
+      <div className="main">
+        <h1>Speak Out Page</h1>
+      </div>
     );
   }
 }
