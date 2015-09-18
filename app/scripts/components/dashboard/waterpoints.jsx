@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
 import {Map, TileLayer} from 'react-leaflet';
 import T from '../utils/t.jsx';
@@ -9,7 +9,7 @@ import ChartsContainer from './charts-container.jsx';
 require('stylesheets/dashboard/waterpoints.scss');
 
 
-export default class WaterPoints extends Component {
+const WaterPoints = React.createClass({
   render() {
     return (
       <div className="main waterpoints">
@@ -28,4 +28,6 @@ export default class WaterPoints extends Component {
       </div>
     );
   }
-}
+});
+
+export default WaterPoints;

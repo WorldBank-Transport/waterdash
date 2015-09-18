@@ -1,13 +1,13 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import T from '../utils/t.jsx';
 import OpenDataNav from './open-data-nav.jsx';
 
 require('stylesheets/boilerplate/footer.scss');
 
 
-export default class Footer extends Component {
+const Footer = React.createClass({
   render() {
     return (
       <div className="footer">
@@ -18,4 +18,6 @@ export default class Footer extends Component {
       </div>
     );
   }
-}
+});
+
+export default Footer;

@@ -1,8 +1,8 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Data extends Component {
+const Data = React.createClass({
   render() {
     return (
       <div className="main">
@@ -10,4 +10,6 @@ export default class Data extends Component {
       </div>
     );
   }
-}
+});
+
+export default Data;

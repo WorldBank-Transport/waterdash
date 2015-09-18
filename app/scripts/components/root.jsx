@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import {RouteHandler} from 'react-router';
 
 import Header from './boilerplate/header.jsx';
@@ -9,7 +9,7 @@ import Footer from './boilerplate/footer.jsx';
 
 require('stylesheets/layout.scss');
 
-export default class Root extends Component {
+const Root = React.createClass({
   render() {
     return (
       <div>
@@ -20,4 +20,6 @@ export default class Root extends Component {
       </div>
     );
   }
-}
+});
+
+export default Root;

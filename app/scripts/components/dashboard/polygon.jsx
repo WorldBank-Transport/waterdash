@@ -1,8 +1,8 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class Polygon extends Component {
+const Polygon = React.createClass({
   render() {
     return (
       <h1>
@@ -12,4 +12,6 @@ export default class Polygon extends Component {
       </h1>
     );
   }
-}
+});
+
+export default Polygon;

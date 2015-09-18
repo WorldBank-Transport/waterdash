@@ -1,11 +1,11 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import T from '../utils/t.jsx';
 
 require('stylesheets/dashboard/filters.scss');
 
-export default class Filters extends Component {
+const Filters = React.createClass({
   render() {
     return (
       <div className="filters">
@@ -13,4 +13,6 @@ export default class Filters extends Component {
       </div>
     );
   }
-}
+});
+
+export default Filters;

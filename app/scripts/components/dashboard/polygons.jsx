@@ -1,12 +1,12 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
 import T from '../utils/t.jsx';
 import ChartsContainer from './charts-container.jsx';
 
 
-export default class Polygons extends Component {
+const Polygons = React.createClass({
   render() {
     let {polytype} = this.props.params;
     return (
@@ -22,4 +22,6 @@ export default class Polygons extends Component {
       </div>
     );
   }
-}
+});
+
+export default Polygons;

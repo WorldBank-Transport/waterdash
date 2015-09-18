@@ -1,12 +1,12 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import T from '../utils/t.jsx';
 import ViewMode from '../boilerplate/view-mode.jsx';
 
 require('stylesheets/dashboard/charts-container.scss');
 
-export default class ChartsContainer extends Component {
+const ChartsContainer = React.createClass({
   render() {
     return (
       <div className="charts-container">
@@ -18,4 +18,6 @@ export default class ChartsContainer extends Component {
       </div>
     );
   }
-}
+});
+
+export default ChartsContainer;

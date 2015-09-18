@@ -1,13 +1,13 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import T from '../utils/t.jsx';
 import OpenDataNav from './open-data-nav.jsx';
 import LanguageSelector from './language-selector.jsx';
 
 require('stylesheets/boilerplate/header.scss');
 
-export default class Header extends Component {
+const Header = React.createClass({
   render() {
     return (
       <div className="header">
@@ -21,4 +21,6 @@ export default class Header extends Component {
       </div>
     );
   }
-}
+});
+
+export default Header;

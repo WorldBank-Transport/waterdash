@@ -1,12 +1,12 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
 import T from '../utils/t.jsx';
 
 require('stylesheets/boilerplate/view-mode.scss');
 
-export default class ViewMode extends Component {
+const ViewMode = React.createClass({
   render() {
     return (
       <ul className="view-mode">
@@ -33,4 +33,6 @@ export default class ViewMode extends Component {
       </ul>
     );
   }
-}
+});
+
+export default ViewMode;

@@ -1,11 +1,11 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import T from '../utils/t.jsx';
 
 require('stylesheets/boilerplate/language-selector.scss');
 
-export default class LanguageSelector extends Component {
+const LanguageSelector = React.createClass({
   render() {
     return (
       <ul className="language-selector">
@@ -14,4 +14,6 @@ export default class LanguageSelector extends Component {
       </ul>
     );
   }
-}
+});
+
+export default LanguageSelector;

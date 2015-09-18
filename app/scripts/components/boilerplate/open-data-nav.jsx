@@ -1,12 +1,12 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router';
 import T from '../utils/t.jsx';
 
 require('stylesheets/boilerplate/open-data-nav.scss');
 
-export default class OpenDataNav extends Component {
+const OpenDataNav = React.createClass({
   render() {
     return (
       <ul className="open-data-nav">
@@ -28,4 +28,6 @@ export default class OpenDataNav extends Component {
       </ul>
     );
   }
-}
+});
+
+export default OpenDataNav;

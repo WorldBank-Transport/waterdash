@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 
 
 let strings_en = {
@@ -32,20 +32,23 @@ let strings_en = {
 };
 
 
-export default class T extends Component {
+const T = React.createClass({
   propTypes: {
     k: React.PropTypes.string.isRequired,
-  }
-  constructor(props) {
-    super(props);
-    this.state = {strings: strings_en};
-  }
+  },
+  getInitialState() {
+    return {strings: strings_en};
+  },
   render() {
     let translated = this.state.strings[this.props.k];
     if (typeof translated === 'undefined') {
       console.warn('missing translation for key', this.props.k);
       translated = this.props.k;
     }
-    return <span>{translated}</span>;
+    return (
+      <span className="t">{translated}</span>
+    );
   }
-}
+});
+
+export default T;
