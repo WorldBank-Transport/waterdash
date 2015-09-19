@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
