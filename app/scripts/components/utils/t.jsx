@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import warn from '../../utils/warn.es6';
 
 
 let strings_en = {
@@ -42,7 +43,7 @@ const T = React.createClass({
   render() {
     let translated = this.state.strings[this.props.k];
     if (typeof translated === 'undefined') {
-      console.warn('missing translation for key', this.props.k);
+      warn('missing translation for key', this.props.k);
       translated = this.props.k;
     }
     return (
