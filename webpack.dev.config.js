@@ -25,7 +25,8 @@ module.exports = {
         include: [
           path.join(__dirname, 'app', 'scripts'),
           path.join(__dirname, 'node_modules', 'react-leaflet')
-        ]
+        ],
+        exclude: /node_modules\/(?!react-leaflet)/
       },
       {
         test: /\.scss$/,
