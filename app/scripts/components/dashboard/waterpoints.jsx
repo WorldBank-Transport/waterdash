@@ -14,14 +14,12 @@ const WaterPoints = React.createClass({
   render() {
     return (
       <div className="main waterpoints">
-        <h1><T k="dash.waterpoints" /></h1>
-        <Link to="/waterpoints/some-waterpoint-id">Some waterpoint</Link>
         <BoundsMap
             className="map"
             bounds={[[-.8, 29.3], [-11.8, 40.8]]}>
           <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+          {this.props.children}
         </BoundsMap>
-        {this.props.children}
         <ChartsContainer>
           charts for waterpoints...
         </ChartsContainer>

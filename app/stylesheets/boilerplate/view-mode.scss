@@ -3,6 +3,7 @@
 .view-mode {
   @include list-unstyle;
   @include list-inline;
+  background: white;
   li {
     padding: 0 1em;
   }
