@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 const SpeakOut = React.createClass({
@@ -9,7 +7,7 @@ const SpeakOut = React.createClass({
         <h1>Speak Out Page</h1>
       </div>
     );
-  }
+  },
 });
 
 export default SpeakOut;

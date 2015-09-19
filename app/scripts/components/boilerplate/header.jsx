@@ -1,11 +1,9 @@
-'use strict';
-
 import React from 'react';
-import T from '../utils/t.jsx';
-import OpenDataNav from './open-data-nav.jsx';
-import LanguageSelector from './language-selector.jsx';
+import T from '../utils/t';
+import OpenDataNav from './open-data-nav';
+import LanguageSelector from './language-selector';
 
-require('stylesheets/boilerplate/header.scss');
+require('stylesheets/boilerplate/header');
 
 const Header = React.createClass({
   render() {
@@ -20,7 +18,7 @@ const Header = React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });
 
 export default Header;

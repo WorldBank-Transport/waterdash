@@ -1,9 +1,7 @@
-'use strict';
-
 import React from 'react';
-import T from '../utils/t.jsx';
+import T from '../utils/t';
 
-require('stylesheets/boilerplate/language-selector.scss');
+require('stylesheets/boilerplate/language-selector');
 
 const LanguageSelector = React.createClass({
   render() {
@@ -13,7 +11,7 @@ const LanguageSelector = React.createClass({
         <li><T k="lang.sw-tz" /></li>
       </ul>
     );
-  }
+  },
 });
 
 export default LanguageSelector;

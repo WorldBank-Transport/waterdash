@@ -1,14 +1,18 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {Link} from 'react-router';
-import T from '../utils/t.jsx';
-import ChartsContainer from './charts-container.jsx';
+import T from '../utils/t';
+import ChartsContainer from './charts-container';
 
 
 const Polygons = React.createClass({
+  propTypes: {
+    children: PropTypes.node,
+    params: PropTypes.shape({
+      polytype: PropTypes.string.isRequired,
+    }).isRequired,
+  },
   render() {
-    let {polytype} = this.props.params;
+    const {polytype} = this.props.params;
     return (
       <div className="main polygons">
         <h1>
@@ -21,7 +25,7 @@ const Polygons = React.createClass({
         </ChartsContainer>
       </div>
     );
-  }
+  },
 });
 
 export default Polygons;

@@ -1,38 +1,36 @@
-'use strict';
-
 import React from 'react';
 import {Link} from 'react-router';
-import T from '../utils/t.jsx';
+import T from '../utils/t';
 
-require('stylesheets/boilerplate/view-mode.scss');
+require('stylesheets/boilerplate/view-mode');
 
 const ViewMode = React.createClass({
   render() {
     return (
       <ul className="view-mode">
         <li>
-          <Link to="/" activeClassName="active">
+          <Link activeClassName="active" to="/">
             <T k="view-mode.points" />
           </Link>
         </li>
         <li>
-          <Link to="/region/" activeClassName="active">
+          <Link activeClassName="active" to="/region/">
             <T k="view-mode.region" />
           </Link>
         </li>
         <li>
-          <Link to="/district/" activeClassName="active">
+          <Link activeClassName="active" to="/district/">
             <T k="view-mode.district" />
           </Link>
         </li>
         <li>
-          <Link to="/ward/" activeClassName="active">
+          <Link activeClassName="active" to="/ward/">
             <T k="view-mode.ward" />
           </Link>
         </li>
       </ul>
     );
-  }
+  },
 });
 
 export default ViewMode;

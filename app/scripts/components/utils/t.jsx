@@ -1,10 +1,8 @@
-'use strict';
-
 import React from 'react';
-import warn from '../../utils/warn.es6';
+import warn from '../../utils/warn';
 
 
-let strings_en = {
+const stringsEn = {
   'site-name': 'Water Dashboard',
 
   'nav.home': 'Home',
@@ -38,7 +36,7 @@ const T = React.createClass({
     k: React.PropTypes.string.isRequired,
   },
   getInitialState() {
-    return {strings: strings_en};
+    return {strings: stringsEn};
   },
   render() {
     let translated = this.state.strings[this.props.k];
@@ -49,7 +47,7 @@ const T = React.createClass({
     return (
       <span className="t">{translated}</span>
     );
-  }
+  },
 });
 
 export default T;

@@ -1,11 +1,10 @@
+/* eslint react/no-set-state: 0 */  // needed for wrapping leaflet
 import assign from 'object-assign';
-import React, { PropTypes } from 'react';
 import Leaflet from 'leaflet';
 import boundsType from 'react-leaflet/types/bounds';
-import latlngType from 'react-leaflet/types/latlng';
 import LeafletMap from 'react-leaflet/Map';
 
-var boundsPropTypes = assign({}, LeafletMap.propTypes);
+const boundsPropTypes = assign({}, LeafletMap.propTypes);
 boundsPropTypes.bounds = boundsType;
 delete boundsPropTypes.center;
 delete boundsPropTypes.zoom;
@@ -30,9 +29,11 @@ export default class BoundsMap extends LeafletMap {
   }
 
   shouldUpdateBounds(next, prev) {
-    if (!prev) return true;
-    next = Leaflet.latLngBounds(next);
-    prev = Leaflet.latLngBounds(prev);
-    return !next.equals(prev);
+    if (!prev) {
+      return true;
+    }
+    const nextLLB = Leaflet.latLngBounds(next);
+    const prevLLB = Leaflet.latLngBounds(prev);
+    return !nextLLB.equals(prevLLB);
   }
 }

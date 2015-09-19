@@ -1,10 +1,13 @@
-'use strict';
-
-import React from 'react';
-import T from '../utils/t.jsx';
-import WaterPoints from './waterpoints.jsx';
+import React,  { PropTypes } from 'react';
+import T from '../utils/t';
+import WaterPoints from './waterpoints';
 
 const WaterPoint = React.createClass({
+  propTypes: {
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  },
   render() {
     return (
       <WaterPoints>
@@ -15,7 +18,7 @@ const WaterPoint = React.createClass({
         </h1>
       </WaterPoints>
     );
-  }
+  },
 });
 
 export default WaterPoint;

@@ -1,9 +1,7 @@
-'use strict';
-
 import React from 'react';
-import T from '../utils/t.jsx';
+import T from '../utils/t';
 
-require('stylesheets/dashboard/filters.scss');
+require('stylesheets/dashboard/filters');
 
 const Filters = React.createClass({
   render() {
@@ -12,7 +10,7 @@ const Filters = React.createClass({
         <h2><T k="filters.title" /></h2>
       </div>
     );
-  }
+  },
 });
 
 export default Filters;

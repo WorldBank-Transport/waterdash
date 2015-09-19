@@ -1,10 +1,8 @@
-'use strict';
-
 import React from 'react';
-import T from '../utils/t.jsx';
-import OpenDataNav from './open-data-nav.jsx';
+import T from '../utils/t';
+import OpenDataNav from './open-data-nav';
 
-require('stylesheets/boilerplate/footer.scss');
+require('stylesheets/boilerplate/footer');
 
 
 const Footer = React.createClass({
@@ -17,7 +15,7 @@ const Footer = React.createClass({
         <p className="copy"><T k="footer.copy" /></p>
       </div>
     );
-  }
+  },
 });
 
 export default Footer;

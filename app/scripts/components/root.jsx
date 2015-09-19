@@ -1,7 +1,4 @@
-'use strict';
-
-import React from 'react';
-import {RouteHandler} from 'react-router';
+import React, { PropTypes } from 'react';
 
 import Header from './boilerplate/header.jsx';
 import Filters from './dashboard/filters.jsx';
@@ -10,6 +7,9 @@ import Footer from './boilerplate/footer.jsx';
 require('stylesheets/layout.scss');
 
 const Root = React.createClass({
+  propTypes: {
+    children: PropTypes.node.isRequired,
+  },
   render() {
     return (
       <div>
@@ -19,7 +19,7 @@ const Root = React.createClass({
         <Footer />
       </div>
     );
-  }
+  },
 });
 
 export default Root;

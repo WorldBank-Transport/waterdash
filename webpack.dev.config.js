@@ -43,6 +43,7 @@ module.exports = {
     alias: {
       stylesheets: path.resolve(__dirname, 'app', 'stylesheets'),
       'react-leaflet': path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src')
-    }
+    },
+    extensions: ["", ".es6", ".js", ".jsx", ".scss"]
   }
 };

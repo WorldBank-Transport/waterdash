@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 const Data = React.createClass({
@@ -9,7 +7,7 @@ const Data = React.createClass({
         <h1>Data page</h1>
       </div>
     );
-  }
+  },
 });
 
 export default Data;
