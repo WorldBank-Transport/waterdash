@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "build": "npm run clean && webpack && npm run _copy-stuff",
-    "clean": "rm -r dist",
+    "clean": "rm -fr dist",
     "_copy-stuff": "cp -r app/{index.html,favicon.ico,images} dist/",
     "lint": "eslint 'app/**/*.{es6,js,jsx}'",
     "start": "node server.js",
