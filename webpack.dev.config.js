@@ -12,7 +12,7 @@ module.exports = {
     path: __dirname,
     filename: "bundle.js"
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('style.css')
@@ -23,7 +23,7 @@ module.exports = {
         test: /\.(js|jsx|es6)$/,
         loaders: ['react-hot', 'babel'],
         include: [
-          path.join(__dirname, 'app'),
+          path.join(__dirname, 'app', 'scripts'),
           path.join(__dirname, 'node_modules', 'react-leaflet')
         ]
       },
@@ -34,8 +34,7 @@ module.exports = {
           'css?sourceMap!' +
           'sass?sourceMap'
         ),
-        include: path.join(__dirname, 'app'),
-        exclude: /node_modules\//
+        include: path.join(__dirname, 'app', 'stylesheets'),
       }
     ]
   },
