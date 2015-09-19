@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run clean && webpack && npm run _copy-stuff",
     "clean": "rm -fr dist",
-    "_copy-stuff": "cp -r app/{index.html,favicon.ico,images} dist/",
+    "_copy-stuff": "cd app && cp -r index.html favicon.ico images ../dist/",
     "lint": "eslint 'app/**/*.{es6,js,jsx}'",
     "start": "node server.js",
     "test": "npm run lint && npm run test-only",
