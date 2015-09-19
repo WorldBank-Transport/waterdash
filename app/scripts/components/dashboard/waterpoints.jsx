@@ -2,7 +2,8 @@
 
 import React from 'react';
 import {Link} from 'react-router';
-import {Map, TileLayer} from 'react-leaflet';
+import {TileLayer} from 'react-leaflet';
+import BoundsMap from '../leaflet/bounds-map.jsx';
 import T from '../utils/t.jsx';
 import ChartsContainer from './charts-container.jsx';
 
@@ -15,12 +16,11 @@ const WaterPoints = React.createClass({
       <div className="main waterpoints">
         <h1><T k="dash.waterpoints" /></h1>
         <Link to="/waterpoints/some-waterpoint-id">Some waterpoint</Link>
-        <Map
+        <BoundsMap
             className="map"
-            center={[-6.3, 35]}
-            zoom={5}>
+            bounds={[[-.8, 29.3], [-11.8, 40.8]]}>
           <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        </Map>
+        </BoundsMap>
         {this.props.children}
         <ChartsContainer>
           charts for waterpoints...

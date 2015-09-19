@@ -20,16 +20,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.es6$/,
+        test: /\.(js|jsx|es6)$/,
         loaders: ['react-hot', 'babel'],
-        include: path.join(__dirname, 'app'),
-        exclude: /node_modules\//
-      },
-      {
-        test: /\.jsx$/,
-        loaders:['react-hot', 'babel'],
-        include: path.join(__dirname, 'app'),
-        exclude: /node_modules\//
+        include: [
+          path.join(__dirname, 'app'),
+          path.join(__dirname, 'node_modules', 'react-leaflet')
+        ]
       },
       {
         test: /\.scss$/,
@@ -45,7 +41,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      stylesheets: path.resolve(__dirname, 'app', 'stylesheets')
+      stylesheets: path.resolve(__dirname, 'app', 'stylesheets'),
+      'react-leaflet': path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src')
     }
   }
 };
