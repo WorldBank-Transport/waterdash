@@ -12,7 +12,7 @@ module.exports = {
     path: __dirname,
     filename: "bundle.js"
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin('style.css')
