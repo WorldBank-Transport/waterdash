@@ -3,7 +3,7 @@ describe('Translator component', () => {
   let React, T;
   beforeEach(() => {
     React = require('react/addons');
-    T = require.requireActual('../t.jsx');
+    T = require.requireActual('../t.jsx').default;
   });
 
   it('should render the key if no translation is found', () => {

@@ -69,4 +69,5 @@ const T = React.createClass({
   },
 });
 
+export { stringsEn };
 export default T;
