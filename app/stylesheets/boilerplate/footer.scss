@@ -1,20 +1,24 @@
-@import "../config/colours";
+@import '../config/colours';
+@import '../config/type';
 
 .footer {
-  color: #fff;
   background: $theme-blue;
+  color: $white;
+
   a {
-    color: #fff;
+    color: $white;
   }
+
   .footer-nav {
     float: left;
   }
+
   .copy {
+    @include no-margin();
     display: inline-block;
     float: right;
-    margin: 0;
-    width: 66%;
     font-size: 0.8em;
     text-align: right;
+    width: 66%;
   }
 }

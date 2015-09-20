@@ -1,47 +1,48 @@
-@import "config/dimensions";
+@import 'config/dimensions';
 
-html, body {
+html,
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   height: $header-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .filters {
-  position: absolute;
-  top: $header-height;
-  left: 0;
-  right: 0;
   height: $filters-closed-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: $header-height;
 }
 
 .main {
-  position: absolute;
-  top: $header-height + $filters-closed-height;
-  left: 0;
-  right: 0;
   bottom: $footer-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: $header-height + $filters-closed-height;
 
   .charts-container {
-    position: absolute;
-    left: 0;
-    right: 0;
     bottom: 0;
     height: $charts-closed-height;
+    left: 0;
+    position: absolute;
+    right: 0;
   }
 }
 
 .footer {
-  position: absolute;
-  left: 0;
-  right: 0;
   bottom: 0;
   height: $footer-height;
+  left: 0;
+  position: absolute;
+  right: 0;
 }

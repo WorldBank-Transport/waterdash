@@ -8,7 +8,9 @@
     "build": "npm run clean && webpack && npm run _copy-stuff",
     "clean": "rm -fr dist",
     "_copy-stuff": "cd app && cp -r index.html favicon.ico images ../dist/",
-    "lint": "eslint 'app/**/*.{es6,js,jsx}'",
+    "lint": "npm run lint-scripts && npm run lint-styles",
+    "lint-scripts": "eslint 'app/**/*.{es6,js,jsx}'",
+    "lint-styles": "sass-lint",
     "start": "node server.js",
     "test": "npm run lint && npm run test-only",
     "test-only": "jest"
@@ -57,6 +59,7 @@
     "jest-cli": "0.5.7",
     "node-sass": "3.3.2",
     "react-hot-loader": "1.3.0",
+    "sass-lint": "1.2.0",
     "sass-loader": "2.0.1",
     "style-loader": "0.12.4",
     "webpack": "1.12.1",

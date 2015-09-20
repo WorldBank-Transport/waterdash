@@ -1,8 +1,9 @@
-@import "../utils/list";
+@import '../config/list';
 
 .language-selector {
-  @include list-unstyle;
-  @include list-inline;
+  @include list-inline();
+  @include list-unstyle();
+
   li {
     padding: 0 1em;
   }

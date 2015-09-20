@@ -1,11 +1,12 @@
-@import "../config/colours";
+@import '../config/colours';
+@import '../config/type';
 
 .filters {
-  color: white;
   background: $theme-blue;
+  color: $white;
 
   h2 {
-    margin: 0;
+    @include no-margin();
     font: inherit;
   }
 }

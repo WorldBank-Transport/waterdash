@@ -1,9 +1,11 @@
-@import "../utils/list";
+@import '../config/colours';
+@import '../config/list';
 
 .view-mode {
-  @include list-unstyle;
-  @include list-inline;
-  background: white;
+  @include list-inline();
+  @include list-unstyle();
+  background: $white;
+
   li {
     padding: 0 1em;
   }
