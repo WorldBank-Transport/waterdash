@@ -2,7 +2,30 @@
  * Follow store conventions: https://gist.github.com/uniphil/d8bf9b2691cab4c8551f
  */
 
+const POISON = {};
+
 const SaneStore = {
+  initialData: POISON,
+  /**
+   * Initialize the store
+   *
+   * May be called by:
+   *  * external code: no.
+   *  * store method code: no.
+   * (it is automatically called by reflux)
+   *
+   * This method must initialize `this.data`.
+   * The store may set up listeners to actions and other
+   * here.
+   *
+   * @returns {void}
+   */
+  init: function() {
+    if (this.initialData === POISON) {
+      throw new Error('Sane stores must specifi an initialData static property');
+    }
+    this.data = this.initialData;
+  },
   /**
    * Update the value of the store
    *
