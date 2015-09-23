@@ -3,7 +3,7 @@
 #########################
 options:
   merge-default-rules: true
-  formatter: tap
+  formatter: stylish
 files:
   include: 'app/**/*.scss'
 rules:
