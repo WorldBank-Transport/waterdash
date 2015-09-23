@@ -1,0 +1,18 @@
+@import '../../config/colours';
+
+.icon {
+  margin: 0;
+
+  &.green {
+    background-color: $rank-good;
+  }
+
+  &.yellow {
+    background-color: $rank-medium;
+  }
+
+  &.red {
+    background-color: $rank-poor; 
+
+  }
+};
