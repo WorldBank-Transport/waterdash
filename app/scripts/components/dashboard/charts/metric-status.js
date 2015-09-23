@@ -6,9 +6,9 @@ require('stylesheets/dashboard/charts/metric-status');
 
 const MetricStatus = React.createClass({
   propTypes: {
-    metric: React.PropTypes.number,
-    title: React.PropTypes.string,
-    total: React.PropTypes.number,
+    metric: React.PropTypes.number.isRequired,
+    title: React.PropTypes.string.isRequired,
+    total: React.PropTypes.number.isRequired,
   },
 
   render() {
