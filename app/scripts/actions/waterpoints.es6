@@ -1,5 +1,5 @@
 import { createActions } from 'reflux';
-import { waterpoints } from '../api';
+import { getWaterpoints } from '../api';
 
 const waterpointActions = createActions({
   load: {},
@@ -9,7 +9,7 @@ const waterpointActions = createActions({
 
 // SIDE-EFFECT: xhr request is triggered on waterpointActions.load()
 waterpointActions.load.listen(() => {
-  waterpoints()
+  getWaterpoints()
     .then(waterpointActions.loadCompleted)
     .catch(waterpointActions.loadFailed);
 });

@@ -11,7 +11,6 @@ const WaterPointsStore = createStore({
   },
   loadData(data) {
     this.setData(data);
-    console.log('data!', data);
   },
 });
 
