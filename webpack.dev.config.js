@@ -41,8 +41,13 @@ module.exports = {
   },
   resolve: {
     alias: {
+      actions: path.resolve(__dirname, 'app', 'scripts', 'actions'),
+      components: path.resolve(__dirname, 'app', 'scripts', 'components'),
+      scripts: path.resolve(__dirname, 'app', 'scripts'),
+      stores: path.resolve(__dirname, 'app', 'scripts', 'stores'),
       stylesheets: path.resolve(__dirname, 'app', 'stylesheets'),
       'react-leaflet': path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src'),
+      utils: path.resolve(__dirname, 'app', 'scripts', 'utils'),
     },
     extensions: ['', '.es6', '.js', '.jsx', '.scss'],
   },

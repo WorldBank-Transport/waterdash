@@ -1,5 +1,5 @@
 import React from 'react';
-import T from '../utils/t';
+import T from 'components/utils/t';
 
 require('stylesheets/boilerplate/language-selector');
 

@@ -1,5 +1,5 @@
 import { createActions } from 'reflux';
-import { getBoreholes } from '../api';
+import { getBoreholes } from 'scripts/api';
 
 const boreholesActions = createActions({
   load: {},

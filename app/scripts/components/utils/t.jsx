@@ -1,5 +1,5 @@
 import React from 'react';
-import warn from '../../utils/warn';
+import warn from 'utils/warn';
 
 
 const stringsEn = {

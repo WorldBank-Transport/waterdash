@@ -1,4 +1,4 @@
-import ckan from './utils/ckan';
+import ckan from 'utils/ckan';
 
 
 const API_ROOT = '//data.takwimu.org/api';
@@ -14,4 +14,3 @@ export const getBoreholes = () =>
 
 export const getDams = () =>
   ckan.get(resourceUrl('d6dcc9f8-c480-4bd0-b748-2d0b12d92396'));
-

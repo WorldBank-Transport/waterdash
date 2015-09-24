@@ -1,5 +1,5 @@
 import React,  { PropTypes } from 'react';
-import T from '../utils/t';
+import T from 'components/utils/t';
 import WaterPoints from './waterpoints';
 
 const WaterPoint = React.createClass({

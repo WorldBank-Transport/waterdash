@@ -1,5 +1,5 @@
 import { createActions } from 'reflux';
-import { getWaterpoints } from '../api';
+import { getWaterpoints } from 'scripts/api';
 
 const waterpointActions = createActions({
   load: {},

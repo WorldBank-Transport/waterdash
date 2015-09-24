@@ -1,7 +1,7 @@
 import assign from 'object-assign';
 import { createStore } from 'reflux';
-import SaneStore from '../utils/sane-store-mixin';
-import { setSomeFilter } from '../actions/filters';
+import SaneStore from 'utils/sane-store-mixin';
+import { setSomeFilter } from 'actions/filters';
 
 
 const FilterStore = createStore({
