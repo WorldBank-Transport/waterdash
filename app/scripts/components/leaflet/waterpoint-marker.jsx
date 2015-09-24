@@ -13,15 +13,13 @@ const WaterpointMarker = React.createClass({
   },
   render() {
     const { children, map, LATITUDE, LONGITUDE } = this.props;
-    const clonedChildren = React.Children.map(children, child =>
-      child ? React.cloneElement(child, { map }) : null);
     return (
-      <Marker map={this.props.map} position={[LATITUDE, LONGITUDE]}>
-        <Popup map={this.props.map}>
+      <Marker map={map} position={[LATITUDE, LONGITUDE]}>
+        <Popup map={map}>
           <div>
             <h2>hello my name is {this.props.WATER_POINT_NAME}</h2>
             <p>I am a waterpoint</p>
-            {clonedChildren}
+            {children}
           </div>
         </Popup>
       </Marker>
