@@ -9,7 +9,7 @@ const LanguageSelector = React.createClass({
     return {lang: 'en', langList: ['en', 'sw-tz']};
   },
 
-  handleClick(lang) {
+  handleClick() {
     // TODO to be implemented
   },
 
