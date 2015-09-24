@@ -1,18 +1,22 @@
 @import '../../config/colours';
 
-.icon {
+.metric-status {
   margin: 0;
 
-  &.green {
-    background-color: $rank-good;
-  }
+  .icon {
+    margin: 0;
 
-  &.yellow {
-    background-color: $rank-medium;
-  }
+    &.green {
+      background-color: $rank-good;
+    }
 
-  &.red {
-    background-color: $rank-poor; 
+    &.yellow {
+      background-color: $rank-medium;
+    }
 
+    &.red {
+      background-color: $rank-poor; 
+
+    }
   }
 };
