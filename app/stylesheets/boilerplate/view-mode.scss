@@ -1,12 +1,38 @@
 @import '../config/colours';
 @import '../config/list';
+@import '../config/dimensions';
+@import '../config/type';
 
-.view-mode {
-  @include list-inline();
+.view-mode-wrapper {
+  display: table-cell;
+  vertical-align: top;
+  width: 100%;
+}
+
+ul.view-mode {
   @include list-unstyle();
   background: $bg-color;
+  display: table;
+  float: right;
+  table-layout: fixed;
+  width: 100%;
 
   li {
-    padding: 0 1em;
-  }
+    border-left: 1px solid $tab-expand-bg;
+    display: table-cell;
+
+    a {
+      @include tab-text();
+      @include transitionAll();
+      color: $theme-blue;
+      display: block;
+      padding: $base-unit $base-unit*4;
+
+      &:hover,
+      &.active {
+        background: $theme-blue;
+        color: $bg-color;
+        }
+      }
+    }
 }

@@ -12,7 +12,7 @@ const ChartsContainer = React.createClass({
     return (
       <div className="charts-container">
         <div className="charts-container-header">
-          <T k="charts.toggle.activate" />
+          <span className="tab-label"><T k="charts.toggle.activate" /></span>
           <ViewMode />
         </div>
         {this.props.children}

@@ -1,5 +1,16 @@
 @import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
 
 .charts-container {
   background: $grey-light;
+}
+
+.tab-label {
+  @include tab-text();
+  background: $grey-light;
+  color: $text-color;
+  display: table-cell;
+  min-width: 200px;
+  padding: $base-unit $base-unit*3;
 }

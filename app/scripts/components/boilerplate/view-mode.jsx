@@ -7,6 +7,7 @@ require('stylesheets/boilerplate/view-mode');
 const ViewMode = React.createClass({
   render() {
     return (
+      <div className="view-mode-wrapper">
       <ul className="view-mode">
         <li>
           <Link activeClassName="active" to="/">
@@ -29,6 +30,7 @@ const ViewMode = React.createClass({
           </Link>
         </li>
       </ul>
+      </div>
     );
   },
 });
