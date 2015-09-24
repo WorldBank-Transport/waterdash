@@ -63,6 +63,23 @@ describe('Functional utilities', () => {
     });
   });
 
+  describe('Result.mapObj', () => {
+    it('should pass through an empty object', () => {
+      expect(func.Result.mapObj(null, {}).unwrap()).toEqual([]);
+    });
+    it('should mapObj over all ok results', () => {
+      const { Ok } = require.requireActual('results');
+      const fn = ([k, v]) => {
+        return Ok(`${k}${v}`);
+      };
+      expect(func.Result.mapObj(fn, {a: 1}).unwrap()).toEqual(['a1']);
+      const fn2 = ([k, v]) => {
+        return Ok(`${k}${v * 2}`);
+      };
+      expect(func.Result.mapObj(fn2, {a: 1, b: 2}).unwrap()).toEqual(['a2', 'b4']);
+    });
+  });
+
   describe('Result.merge', () => {
     it('should merge all ok results', () => {
       expect(func.Result.merge(
