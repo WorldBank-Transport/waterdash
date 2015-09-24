@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
-import {TileLayer} from 'react-leaflet';
+import { connect } from 'reflux';
+import { load } from '../../actions/waterpoints';
+import WaterPointsStore from '../../stores/waterpoints';
+import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import ChartsContainer from './charts-container';
 
@@ -9,6 +12,12 @@ require('stylesheets/dashboard/waterpoints');
 const WaterPoints = React.createClass({
   propTypes: {
     children: PropTypes.node,
+  },
+  mixins: [
+    connect(WaterPointsStore, 'waterpoints'),
+  ],
+  componentDidMount() {
+    load();
   },
   render() {
     return (
@@ -20,7 +29,7 @@ const WaterPoints = React.createClass({
           {this.props.children}
         </BoundsMap>
         <ChartsContainer>
-          charts for waterpoints...
+          There are {this.state.waterpoints.length} waterpoints loaded
         </ChartsContainer>
       </div>
     );
