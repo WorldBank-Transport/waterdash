@@ -1,27 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300,600);
+
+$tab-text: 12px;
+
 @mixin no-margin() {
   margin: 0;
 }
 
-// basic text style in top and bottom tabs
-@mixin tab-text() {
-  font-size: 12px;
-  font-weight: bold;
-  text-align: center;
-}
-
-@mixin transitionAll() {
-  -moz-transition: all 250ms ease;
-  -o-transition: all 250ms ease;
-  -webkit-transition: all 250ms ease;
-  transition: all 250ms ease;
-}
-
-body,
-html {
-  font-family: 'Open Sans', sans-serif;
-}
-
-a {
-  text-decoration: none;
+@mixin transition($duration, $easing) {
+  transition: $duration, $easing;
 }

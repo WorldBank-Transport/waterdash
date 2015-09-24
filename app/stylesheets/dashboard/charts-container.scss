@@ -6,11 +6,13 @@
   background: $grey-light;
 
   .tab-label {
-    @include tab-text();
     background: $grey-light;
     color: $text-color;
     display: table-cell;
-    min-width: 200px;
+    font-size: $tab-text;
+    font-weight: bold;
+    min-width: $tab-label-width;
     padding: $base-unit $base-unit*3;
+    text-align: center;
   }
 }

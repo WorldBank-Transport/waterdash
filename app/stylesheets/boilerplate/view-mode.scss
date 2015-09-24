@@ -17,16 +17,17 @@ ul.view-mode {
   table-layout: fixed;
   width: 100%;
 
-  li {
+  & > li {
     border-left: 1px solid $tab-expand-bg;
     display: table-cell;
 
     a {
-      @include tab-text();
-      @include transitionAll();
       color: $theme-blue;
       display: block;
+      font-size: $tab-text;
+      font-weight: bold;
       padding: $base-unit $base-unit*4;
+      text-align: center;
 
       &:hover,
       &.active {
