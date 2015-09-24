@@ -13,7 +13,7 @@ const converters = {
  * @param {object} ckanObj The object returned by CKAN
  * @returns {Promise<object>} resolves the object, or rejects if it's an error
  */
-function rejectIfNotSuccess(ckanObj) {
+export function rejectIfNotSuccess(ckanObj) {
   return new Promise((resolve, reject) =>
     ckanObj.success ? resolve(ckanObj) : reject(ckanObj));
 }
@@ -23,7 +23,7 @@ function rejectIfNotSuccess(ckanObj) {
  * @param {string} type The field type, must match something in converters
  * @returns {Result} an (id, converter) pair for converting a record key to its type
  */
-function convertField({id, type}) {
+export function convertField({id, type}) {
   if (!isUndefined(converters[type])) {
     return Ok({[id]: converters[type]});
   } else {
@@ -36,7 +36,7 @@ function convertField({id, type}) {
  * @param {object} record The key:rawValue record to be converted
  * @returns {object} the record but with converted values
  */
-function convertRecord(fieldConverters, record) {
+export function convertRecord(fieldConverters, record) {
   return func.Result.mapObj(([id, converter]) => {
     if (!isUndefined(record[id])) {
       return Ok({[id]: converter(record[id])});
@@ -53,7 +53,7 @@ function convertRecord(fieldConverters, record) {
  * @param {array} result.result.records The raw data records as strings
  * @returns {Promise<array>} The converted data
  */
-function convertCkanResp(result) {
+export function convertCkanResp(result) {
   const {result: {fields, records}} = result;
   const processed = func.Result
     .map(convertField, fields)
