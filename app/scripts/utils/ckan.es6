@@ -3,7 +3,6 @@ import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
 
 
-// TODO: add all types from http://docs.ckan.org/en/latest/maintaining/datastore.html#valid-types
 const converters = {
   text: t => t,
   numeric: n => parseFloat(n),
