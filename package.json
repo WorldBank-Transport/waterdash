@@ -74,7 +74,7 @@
     "react-leaflet": "https://github.com/PaulLeCam/react-leaflet/archive/v0.7.0.tar.gz",
     "react-router": "1.0.0-rc1",
     "reflux": "0.2.12",
-    "results": "^0.5.0",
+    "results": "^0.5.1",
     "whatwg-fetch": "^0.9.0"
   }
 }
