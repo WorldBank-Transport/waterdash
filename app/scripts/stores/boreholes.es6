@@ -1,6 +1,6 @@
 import { createStore } from 'reflux';
-import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted } from '../actions/boreholes';
+import SaneStore from 'utils/sane-store-mixin';
+import { loadCompleted } from 'actions/boreholes';
 
 
 const BoreholesStore = createStore({

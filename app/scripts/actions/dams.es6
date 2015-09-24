@@ -1,5 +1,5 @@
 import { createActions } from 'reflux';
-import { getDams } from '../api';
+import { getDams } from 'scripts/api';
 
 const damsActions = createActions({
   load: {},

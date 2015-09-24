@@ -1,6 +1,6 @@
 import { createStore } from 'reflux';
-import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted } from '../actions/waterpoints';
+import SaneStore from 'utils/sane-store-mixin';
+import { loadCompleted } from 'actions/waterpoints';
 
 
 const WaterPointsStore = createStore({
