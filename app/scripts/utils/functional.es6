@@ -66,7 +66,15 @@ Result.map = (fn, data) => reduceResult(fn, (a, b) => a.concat(b), [], data);
  * @param {object} obj The data to process with {func}
  * @returns {Result<object>} The processed data in a Result.Ok or a Result.Err
  */
-Result.mapObj = (fn, obj) => reduceResult(fn, mergeTwo, {}, asArray(obj));
+Result.mapMergeObj = (fn, obj) => reduceResult(fn, mergeTwo, {}, asArray(obj));
+
+/**
+ * @param {func} fn A function to process a single key/value pair (passed as [k, v]),
+ *    and return a Result.Ok wrapping a {k: v} result, or Result.Err with a reason why.
+ * @param {object} obj The data to process with {func}
+ * @returns {Result<array>} The processed data in a Result.Ok or a Result.Err
+ */
+Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray(obj));
 
 /**
  * @param {array<object>} data Some objects to be merged and wrapped in Result.Ok

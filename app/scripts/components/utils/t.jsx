@@ -28,11 +28,19 @@ const stringsEn = {
   'view-mode.ward': 'Ward',
 
   'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
+
+  'error.api.http': 'A network error occurred while trying to fetch data',
+  'error.api.http.not-ok': 'A server error occurred while trying to fetch data',
+  'error.api.ckan': 'The CKAN data server encountered an error while trying to fetch data',
+  'error.api.ckan.unknown-field-type': i => `The CKAN data server returned data of an unknown type '${i[0]}' for field '${i[1]}'`,
+  'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
+
 };
 
 
 const T = React.createClass({
   propTypes: {
+    i: React.PropTypes.array,
     k: React.PropTypes.string.isRequired,
   },
   getInitialState() {
@@ -43,6 +51,13 @@ const T = React.createClass({
     if (typeof translated === 'undefined') {
       warn('missing translation for key', this.props.k);
       translated = this.props.k;
+    } else if (typeof translated === 'function') {
+      if (!(this.propTypes.i instanceof Array)) {
+        warn('missing expected array for interpolating', this.props.k, 'got:', this.propTypes.i);
+        translated = translated();
+      } else {
+        translated = translated(...this.props.i);
+      }
     }
     return (
       <span className="t">{translated}</span>

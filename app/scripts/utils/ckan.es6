@@ -1,6 +1,7 @@
 import * as func from './functional';
 import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
+import warn from './warn';
 
 
 const converters = {
@@ -9,13 +10,47 @@ const converters = {
   int4: n => parseInt(n, 10),
 };
 
+
+/**
+ * @param {object} err The HTTP error
+ * @returns {Promise<object>} re-rejects the err with the error code key
+ */
+export function makeHTTPErrorNice(err) {
+  return new Promise((resolve, reject) => {
+    warn(err);
+    reject(['error.api.http']);
+  });
+}
+
+
+/**
+ * @param {object} response The raw fetch response
+ * @returns {Promise<object>} resolves to the raw response again or rejects
+ */
+export function rejectIfNotHTTPOk(response) {
+  return new Promise((resolve, reject) => {
+    if (!(response.status >= 200 && response.status < 300)) {
+      warn(response);
+      reject(['error.api.http.not-ok', response.status, response.statusText]);
+    } else {
+      resolve(response);
+    }
+  });
+}
+
 /**
  * @param {object} ckanObj The object returned by CKAN
  * @returns {Promise<object>} resolves the object, or rejects if it's an error
  */
 export function rejectIfNotSuccess(ckanObj) {
-  return new Promise((resolve, reject) =>
-    ckanObj.success ? resolve(ckanObj) : reject(ckanObj));
+  return new Promise((resolve, reject) => {
+    if (!ckanObj.success) {
+      warn(ckanObj);
+      reject(['error.api.ckan']);
+    } else {
+      resolve(ckanObj);
+    }
+  });
 }
 
 /**
@@ -27,7 +62,8 @@ export function convertField({id, type} = {}) {
   if (!isUndefined(converters[type])) {
     return Ok({[id]: converters[type]});
   } else {
-    return Err(`Unknown data type for conversion: '${type}', specified for field ${id}`);
+    warn(`Unknown data type for conversion: '${type}', specified for field ${id}`);
+    return Err(['error.api.ckan.unknown-field-type', type, id]);
   }
 }
 
@@ -37,11 +73,12 @@ export function convertField({id, type} = {}) {
  * @returns {object} the record but with converted values
  */
 export function convertRecord(fieldConverters, record) {
-  return func.Result.mapObj(([id, converter]) => {
+  return func.Result.mapMergeObj(([id, converter]) => {
     if (!isUndefined(record[id])) {
       return Ok({[id]: converter(record[id])});
     } else {
-      return Err(`Record is missing key '${id}': ${JSON.stringify(record)}`);
+      warn(`Record is missing field '${id}': ${JSON.stringify(record)}`);
+      return Err(['error.api.ckan.record-missing-field', id]);
     }
   }, fieldConverters);
 }
@@ -68,6 +105,8 @@ export function convertCkanResp(result) {
  */
 function get(url) {
   return fetch(url)
+    .catch(makeHTTPErrorNice)
+    .then(rejectIfNotHTTPOk)
     .then(resp => resp.json())
     .then(rejectIfNotSuccess)
     .then(data => func.promiseResult(convertCkanResp(data)));
