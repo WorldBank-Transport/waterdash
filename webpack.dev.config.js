@@ -6,16 +6,16 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './app/scripts/app.jsx'
+    './app/scripts/app.jsx',
   ],
   output: {
     path: __dirname,
-    filename: "bundle.js"
+    filename: 'bundle.js',
   },
   devtool: '#cheap-module-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('style.css'),
   ],
   module: {
     loaders: [
@@ -24,9 +24,9 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
         include: [
           path.join(__dirname, 'app', 'scripts'),
-          path.join(__dirname, 'node_modules', 'react-leaflet')
+          path.join(__dirname, 'node_modules', 'react-leaflet'),
         ],
-        exclude: /node_modules\/(?!react-leaflet)/
+        exclude: /node_modules\/(?!react-leaflet)/,
       },
       {
         test: /\.scss$/,
@@ -36,14 +36,14 @@ module.exports = {
           'sass?sourceMap'
         ),
         include: path.join(__dirname, 'app', 'stylesheets'),
-      }
-    ]
+      },
+    ],
   },
   resolve: {
     alias: {
       stylesheets: path.resolve(__dirname, 'app', 'stylesheets'),
-      'react-leaflet': path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src')
+      'react-leaflet': path.resolve(__dirname, 'node_modules', 'react-leaflet', 'src'),
     },
-    extensions: ["", ".es6", ".js", ".jsx", ".scss"]
-  }
+    extensions: ['', '.es6', '.js', '.jsx', '.scss'],
+  },
 };
