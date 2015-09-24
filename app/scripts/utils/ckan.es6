@@ -23,7 +23,7 @@ export function rejectIfNotSuccess(ckanObj) {
  * @param {string} type The field type, must match something in converters
  * @returns {Result} an (id, converter) pair for converting a record key to its type
  */
-export function convertField({id, type}) {
+export function convertField({id, type} = {}) {
   if (!isUndefined(converters[type])) {
     return Ok({[id]: converters[type]});
   } else {
@@ -51,16 +51,15 @@ export function convertRecord(fieldConverters, record) {
  * @param {object} result.result The actual CKAN data
  * @param {array} result.result.fields The data type descriptions
  * @param {array} result.result.records The raw data records as strings
- * @returns {Promise<array>} The converted data
+ * @returns {Result<array>} The converted data
  */
 export function convertCkanResp(result) {
   const {result: {fields, records}} = result;
-  const processed = func.Result
+  return func.Result
     .map(convertField, fields)
     .andThen(func.Result.merge)
     .andThen(fieldConverters =>
       func.Result.map(rec => convertRecord(fieldConverters, rec), records));
-  return func.promiseResult(processed);
 }
 
 /**
@@ -71,7 +70,7 @@ function get(url) {
   return fetch(url)
     .then(resp => resp.json())
     .then(rejectIfNotSuccess)
-    .then(convertCkanResp);
+    .then(data => func.promiseResult(convertCkanResp(data)));
 }
 
 export default { get };

@@ -47,6 +47,9 @@ describe('Functional utilities', () => {
   });
 
   describe('Result.mapObj', () => {
+    it('should pass through an empty object', () => {
+      expect(func.Result.mapObj(null, {}).unwrap()).toEqual({});
+    });
     it('should mapObj over all ok results', () => {
       const { Ok } = require.requireActual('results');
       const fn = ([k, v]) => {
