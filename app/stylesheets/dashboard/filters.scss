@@ -3,7 +3,7 @@
 
 .filters {
   background: $theme-blue;
-  color: $white;
+  color: $bg-color;
 
   h2 {
     @include no-margin();
