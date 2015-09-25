@@ -6,6 +6,6 @@ $tab-text: 12px;
   margin: 0;
 }
 
-@mixin transition($duration, $easing) {
-  transition: $duration, $easing;
+@mixin link-transition($link-duration, $link-easing) {
+  transition: $link-duration, $link-easing;
 }
