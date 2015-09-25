@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
+import { toggleCharts } from '../../actions/layout';
+import LayoutStore from '../../stores/layout';
 import WaterpointsStore from '../../stores/waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
@@ -20,6 +22,7 @@ const WaterPoints = React.createClass({
   mixins: [
     connect(WaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
+    connect(LayoutStore, 'layout'),
   ],
   componentDidMount() {
     load();
@@ -40,13 +43,12 @@ const WaterPoints = React.createClass({
               retry={load}
               state={this.state.waterpointsState} />
         </div>
-        <ChartsContainer>
-          charts for waterpoints...
+        <ChartsContainer
+            onToggle={toggleCharts}
+            state={this.state.layout.charts}>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
-          There are {this.state.waterpoints.length} waterpoints loaded
-          <br/>
         </ChartsContainer>
       </div>
     );
