@@ -6,15 +6,15 @@
   .icon {
     margin: 0;
 
-    &.green {
+    &.good {
       background-color: $rank-good;
     }
 
-    &.yellow {
+    &.medium {
       background-color: $rank-medium;
     }
 
-    &.red {
+    &.poor {
       background-color: $rank-poor; 
 
     }

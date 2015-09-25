@@ -14,12 +14,12 @@ const MetricStatus = React.createClass({
   render() {
     const classes = classNames({
       'icon': true,
-      'green': false, // some conditions
-      'yellow': false,
-      'red': false,
+      'good': false, // some conditions
+      'medium': false,
+      'poor': false,
     });
     return (
-      <div>
+      <div className="metric-chart">
         <div className="row">
           <div className={classes}>icon</div>
           <div className="big-number-metric">{this.props.metric} %</div>

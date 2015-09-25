@@ -9,19 +9,15 @@ const LanguageSelector = React.createClass({
     return {lang: 'en', langList: ['en', 'sw-tz']};
   },
 
-  handleClick() {
-    // TODO to be implemented
-  },
-
   render() {
     return (
       <ul className="language-selector">
-        {this.state.langList.map(function(item, index) {
+        {this.state.langList.map((item, index) => {
           const classes = classNames({
             'language-selector': true,
             'active': this.state.lang === item,
           });
-          return <li className={classes}  key={index} onClick={this.handleClick.bind(this, item)}><T k={`lang.${item}`} /></li>;
+          return <li className={classes}  key={index}><T k={`lang.${item}`} /></li>;
         }, this)}
       </ul>
     );
