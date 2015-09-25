@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
-import T from '../utils/t';
+import T from '../misc/t';
 
 require('stylesheets/boilerplate/view-mode');
 

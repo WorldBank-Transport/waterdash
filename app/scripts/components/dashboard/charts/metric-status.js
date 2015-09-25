@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import T from '../../utils/t';
+import T from '../../misc/t';
 
 require('stylesheets/dashboard/charts/metric-status');
 
