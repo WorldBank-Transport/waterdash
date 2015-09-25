@@ -1,11 +1,20 @@
+@import '../config/colours';
 @import '../config/dimensions';
 
 .waterpoints {
-  .map {
+  .map-container {
     bottom: $charts-closed-height;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
+
+    & > .leaflet-map {
+      height: 100%;
+
+      &.leaflet-container {
+        background: $map-bg;  // override leaflet's setting
+      }
+    }
   }
 }

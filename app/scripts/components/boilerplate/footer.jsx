@@ -1,5 +1,5 @@
 import React from 'react';
-import T from '../utils/t';
+import T from '../misc/t';
 import OpenDataNav from './open-data-nav';
 
 require('stylesheets/boilerplate/footer');
