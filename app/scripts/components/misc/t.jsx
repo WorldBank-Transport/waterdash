@@ -29,6 +29,9 @@ const stringsEn = {
 
   'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
+  'error': 'We\'re sorry',
+  'error.retry': 'Retry',
+  'error.api.pre-request': 'An error occurred when the application was preparing to fetch data',
   'error.api.http': 'A network error occurred while trying to fetch data',
   'error.api.http.not-ok': 'A server error occurred while trying to fetch data',
   'error.api.ckan': 'The CKAN data server encountered an error while trying to fetch data',

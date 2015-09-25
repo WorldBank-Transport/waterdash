@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'reflux';
 import { setSomeFilter } from '../../actions/filters';
 import FilterStore from '../../stores/filters';
-import T from '../utils/t';
+import T from '../misc/t';
 
 require('stylesheets/dashboard/filters');
 
