@@ -2,12 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
 import WaterPointsStore from '../../stores/waterpoints';
-import PolygonsStore from '../../stores/polygon';
-import { TileLayer, Polygon } from 'react-leaflet';
+import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
-import { loadRegions, loadDistricts } from '../../actions/polygon'
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -18,12 +16,9 @@ const WaterPoints = React.createClass({
   },
   mixins: [
     connect(WaterPointsStore, 'waterpoints'),
-    connect(PolygonsStore, 'polygons'),
   ],
   componentDidMount() {
     load();
-    loadRegions();
-    //loadDistricts();
   },
   render() {
     return (
