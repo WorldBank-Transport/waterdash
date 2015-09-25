@@ -1,0 +1,44 @@
+@import '../config/buttons';
+@import '../config/colours';
+
+.spinner-modal {
+  background: $background-overlay;
+  bottom: 0;
+  color: $text-inverse;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 10000;
+
+  &.failed {
+    background: $background-overlay-err;
+  }
+
+  & > .fail-message {
+    $w: 21em;
+    background: $grey-light;
+    border-radius: 0.5em;
+    box-shadow: 0 0.5em 1em $background-overlay-err;
+    left: 50%;
+    margin-left: -$w/2;
+    padding: 1em;
+    position: absolute;
+    top: 10%;
+    width: $w;
+
+    h1 {
+      text-align: center;
+    }
+
+    .retry {
+      margin-top: 2em;
+      text-align: center;
+
+      button {
+        @include button();
+      }
+    }
+  }
+}

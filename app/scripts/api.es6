@@ -23,7 +23,7 @@ const get = url =>
 
 export const getWaterpoints = () =>
   resourceUrl('a94b3653-55f4-4455-9bed-42b92d5c4370', {
-    limit: 100,
+    limit: 500,
     fields: [
       'LATITUDE',
       'LONGITUDE',

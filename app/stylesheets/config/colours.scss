@@ -1,14 +1,20 @@
 $theme-blue: #1da3da;
 $theme-blue-light: #8cd1ed;
 
+$status-good: #82c675;
+$status-medium: #fbc030;
+$status-poor: #f05e55;
+
 $grey-medium: #7d7d7d;
 $grey-light: #c0c0c0;
 
 $tab-expand-bg: #e8e7e9;
 
 $text-color: #555555;
-$bg-color: #ffffff;
+$text-inverse: #ffffff;
 
-$status-good: #82c675;
-$status-medium: #fbc030;
-$status-poor: #f05e55;
+$bg-color: #ffffff;
+$background-overlay: hsla(0, 0%, 33%, 0.5);
+$background-overlay-err: hsla(0, 0%, 0%, 0.6);
+
+$map-bg: #b5d0d0;
