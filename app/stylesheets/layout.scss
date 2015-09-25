@@ -41,11 +41,11 @@ body {
     left: 0;
     position: absolute;
     right: 0;
+    transition: height 200ms ease;
     z-index: 2;
 
     &.open {
-      height: auto;
-      top: 0;
+      height: 100%;
     }
   }
 }
