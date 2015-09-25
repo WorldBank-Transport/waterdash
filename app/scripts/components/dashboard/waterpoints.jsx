@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
-import WaterPointsStore from '../../stores/waterpoints';
+import WaterpointsStore from '../../stores/waterpoints';
+import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
+import SpinnerModal from '../misc/spinner-modal';
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -15,7 +17,8 @@ const WaterPoints = React.createClass({
     children: PropTypes.node,
   },
   mixins: [
-    connect(WaterPointsStore, 'waterpoints'),
+    connect(WaterpointsStore, 'waterpoints'),
+    connect(WaterpointsStateStore, 'waterpointsState'),
   ],
   componentDidMount() {
     load();
@@ -23,14 +26,19 @@ const WaterPoints = React.createClass({
   render() {
     return (
       <div className="main waterpoints">
-        <BoundsMap
-            bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
-            className="map">
-          <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {this.state.waterpoints.map(waterpoint =>
-            <WaterpointMarker key={waterpoint.WATER_POINT_CODE} {...waterpoint} />
-          )}
-        </BoundsMap>
+        <div className="map-container">
+          <BoundsMap
+              bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
+              className="leaflet-map">
+            <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {this.state.waterpoints.map(waterpoint =>
+              <WaterpointMarker key={waterpoint.WATER_POINT_CODE} {...waterpoint} />
+            )}
+          </BoundsMap>
+          <SpinnerModal
+              retry={load}
+              state={this.state.waterpointsState} />
+        </div>
         <ChartsContainer>
           There are {this.state.waterpoints.length} waterpoints loaded
         </ChartsContainer>
