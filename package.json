@@ -16,7 +16,7 @@
     "test-only": "jest"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
     ],
