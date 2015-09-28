@@ -3,25 +3,24 @@
 @import '../config/dimensions';
 @import '../config/type';
 
-.view-mode-wrapper {
+.view-mode {
   display: table-cell;
   vertical-align: top;
   width: 100%;
-}
 
-ul.view-mode {
-  @include list-unstyle();
-  background: $bg-color;
-  display: table;
-  float: right;
-  table-layout: fixed;
-  width: 100%;
+  & > ul {
+    @include list-unstyle();
+    background: $bg-color;
+    display: table;
+    float: right;
+    table-layout: fixed;
+    width: 100%;
 
-  & > li {
-    border-left: 1px solid $tab-expand-bg;
-    display: table-cell;
+    & > li {
+      border-left: 1px solid $tab-expand-bg;
+      display: table-cell;
 
-    a {
+      a {
       color: $theme-blue;
       display: block;
       font-size: $tab-text;
@@ -35,5 +34,7 @@ ul.view-mode {
         color: $bg-color;
         }
       }
-    }
+  }
+
+  }
 }
