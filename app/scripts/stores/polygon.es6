@@ -3,7 +3,7 @@ import SaneStore from '../utils/sane-store-mixin';
 import { loadRegionsCompleted, loadDistrictsCompleted } from '../actions/polygon';
 
 const PolygonsStore = createStore({
-  initialData: [],
+  initialData: {},
   mixins: [SaneStore],
   init() {
     this.listenTo(loadRegionsCompleted, 'loadRegions');
