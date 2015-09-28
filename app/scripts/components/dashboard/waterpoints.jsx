@@ -38,6 +38,7 @@ const WaterPoints = React.createClass({
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           There are {this.state.waterpoints.length} waterpoints loaded
+          <br/>
         </ChartsContainer>
       </div>
     );
