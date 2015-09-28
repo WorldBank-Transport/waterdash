@@ -32,7 +32,7 @@ rules:
   nesting-depth:
     - 1
     -
-      max-depth: 3
+      max-depth: 4
   no-color-keywords: 0
   no-color-literals: 2
   no-duplicate-properties: 2
