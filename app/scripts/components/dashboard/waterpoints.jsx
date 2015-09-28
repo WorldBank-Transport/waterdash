@@ -6,6 +6,7 @@ import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
+import MetricStatus from './charts/metric-status';
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -32,6 +33,10 @@ const WaterPoints = React.createClass({
           )}
         </BoundsMap>
         <ChartsContainer>
+          charts for waterpoints...
+          <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
+          <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
+          <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           There are {this.state.waterpoints.length} waterpoints loaded
         </ChartsContainer>
       </div>

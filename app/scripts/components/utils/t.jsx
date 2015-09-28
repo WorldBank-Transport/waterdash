@@ -21,6 +21,7 @@ const stringsEn = {
   'dash.ward': 'Wards',
 
   'charts.toggle.activate': 'View Charts',
+  'chart.title.functional': 'Functional',
 
   'view-mode.points': 'All Water Points',
   'view-mode.region': 'Region',
