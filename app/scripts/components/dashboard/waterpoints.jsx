@@ -36,7 +36,7 @@ const WaterPoints = React.createClass({
               className="leaflet-map">
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {this.state.waterpoints.map(waterpoint =>
-              <WaterpointMarker key={waterpoint.WATER_POINT_CODE} {...waterpoint} />
+              <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
             )}
           </BoundsMap>
           <SpinnerModal
