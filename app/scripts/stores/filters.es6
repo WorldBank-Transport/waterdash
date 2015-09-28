@@ -5,9 +5,9 @@ import { setSomeFilter } from '../actions/filters';
 
 
 const FilterStore = createStore({
-  initialData: {},
   mixins: [SaneStore],
   init() {
+    this.setData({});
     this.listenTo(setSomeFilter, 'setSomeFilter');
   },
   updateData(update) {
