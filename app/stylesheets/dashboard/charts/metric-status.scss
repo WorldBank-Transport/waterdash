@@ -7,15 +7,15 @@
     margin: 0;
 
     &.good {
-      background-color: $rank-good;
+      background-color: $status-good;
     }
 
     &.medium {
-      background-color: $rank-medium;
+      background-color: $status-medium;
     }
 
     &.poor {
-      background-color: $rank-poor; 
+      background-color: $status-poor;
 
     }
   }

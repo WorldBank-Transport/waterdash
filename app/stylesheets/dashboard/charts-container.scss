@@ -1,5 +1,25 @@
 @import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
 
 .charts-container {
   background: $grey-light;
+
+  .tab-label {
+    background: $grey-light url('/images/icon-chart.png') no-repeat;
+    background-position: $footer-height $tab-icon-size/2;
+    background-size: $tab-icon-size;
+    color: $text-color;
+    display: table-cell;
+    font-size: $tab-text;
+    font-weight: bold;
+    min-width: $tab-label-width;
+    padding: $base-unit $base-unit*3;
+    text-align: center;
+
+    img {
+      margin-right: $base-unit/2;
+      margin-top: -$base-unit/2;
+    }
+  }
 }
