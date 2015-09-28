@@ -1,3 +1,4 @@
+import contains from 'lodash/collection/contains';
 import { Ok, Err } from 'results';
 import { Result } from './functional';
 import warn from './warn';
@@ -10,7 +11,7 @@ import warn from './warn';
  */
 function queryVal(thing, recursed = false) {
   if (typeof thing === 'string') {
-    if (/,/.test(thing)) {
+    if (contains(thing, ',')) {
       return Err(`Cannot querystringify a string with commas: ${thing}`);
     } else {
       return Ok(thing);
