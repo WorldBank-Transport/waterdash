@@ -16,9 +16,15 @@
     background: $background-overlay-err;
   }
 
+  & > .spinner {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+  }
+
   & > .fail-message {
     $w: 21em;
-    background: $grey-light;
+    background: $bg-color;
     border-radius: 0.5em;
     box-shadow: 0 0.5em 1em $background-overlay-err;
     left: 50%;
