@@ -6,9 +6,9 @@
   background: $grey-light;
 
   .tab-label {
-    background: $grey-light url("/images/icon-chart.png") no-repeat;
-    background-position: $tab-icon-size/2;
-    background-size:$tab-icon-size;
+    background: $grey-light url('/images/icon-chart.png') no-repeat;
+    background-position: $footer-height $tab-icon-size/2;
+    background-size: $tab-icon-size;
     color: $text-color;
     display: table-cell;
     font-size: $tab-text;
@@ -19,7 +19,7 @@
 
     img {
       margin-right: $base-unit/2;
-      margin-top:-$base-unit/2;
+      margin-top: -$base-unit/2;
     }
   }
 }
