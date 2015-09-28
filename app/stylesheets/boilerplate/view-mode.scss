@@ -21,17 +21,17 @@
       display: table-cell;
 
       a {
-      color: $theme-blue;
-      display: block;
-      font-size: $tab-text;
-      font-weight: bold;
-      padding: $base-unit $base-unit*4;
-      text-align: center;
+        color: $theme-blue;
+        display: block;
+        font-size: $tab-text;
+        font-weight: bold;
+        padding: $base-unit $base-unit*4;
+        text-align: center;
 
-      &:hover,
-      &.active {
-        background: $theme-blue;
-        color: $bg-color;
+        &:hover,
+        &.active {
+          background: $theme-blue;
+          color: $bg-color;
         }
       }
   }
