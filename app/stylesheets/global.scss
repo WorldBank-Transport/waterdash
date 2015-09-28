@@ -7,6 +7,6 @@ body {
 }
 
 a {
-  @include link-transition( 600ms, ease);
+  @include link-transition();
   text-decoration: none;
 }

@@ -6,6 +6,6 @@ $tab-text: 12px;
   margin: 0;
 }
 
-@mixin link-transition($link-duration, $link-easing) {
-  transition: $link-duration, $link-easing;
+@mixin link-transition() {
+  transition: all 250ms ease;
 }
