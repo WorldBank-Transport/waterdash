@@ -7,7 +7,8 @@ require('stylesheets/boilerplate/view-mode');
 const ViewMode = React.createClass({
   render() {
     return (
-      <ul className="view-mode">
+      <div className="view-mode">
+      <ul>
         <li>
           <Link activeClassName="active" to="/">
             <T k="view-mode.points" />
@@ -29,6 +30,7 @@ const ViewMode = React.createClass({
           </Link>
         </li>
       </ul>
+      </div>
     );
   },
 });

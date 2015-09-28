@@ -1,0 +1,11 @@
+@import 'config/type';
+
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  @include link-transition();
+  text-decoration: none;
+}
