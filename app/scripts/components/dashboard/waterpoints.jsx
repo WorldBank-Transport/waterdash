@@ -3,7 +3,7 @@ import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
 import { toggleCharts } from '../../actions/layout';
 import LayoutStore from '../../stores/layout';
-import WaterpointsStore from '../../stores/waterpoints';
+import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
@@ -20,7 +20,7 @@ const WaterPoints = React.createClass({
     children: PropTypes.node,
   },
   mixins: [
-    connect(WaterpointsStore, 'waterpoints'),
+    connect(FilteredWaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
     connect(LayoutStore, 'layout'),
   ],
