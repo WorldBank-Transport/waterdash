@@ -7,7 +7,9 @@
   "scripts": {
     "build": "npm run clean && webpack && npm run _copy-stuff",
     "clean": "rm -fr dist",
-    "_copy-stuff": "cd app && cp -r index.html favicon.ico images ../dist/",
+    "_copy-index": "gulp copy:index",
+    "_copy-static": "cd app && cp -r favicon.ico images ../dist/",
+    "_copy-stuff": "npm run _copy-index && npm run _copy-static",
     "lint": "npm run lint-scripts && npm run lint-styles",
     "lint-scripts": "eslint 'app/**/*.{es6,js,jsx}'",
     "lint-styles": "gulp lint-styles",
@@ -59,6 +61,7 @@
     "eslint-plugin-react": "3.4.2",
     "extract-text-webpack-plugin": "0.8.2",
     "gulp": "3.9.0",
+    "gulp-inject": "3.0.0",
     "gulp-sass-lint": "1.0.1",
     "jest-cli": "0.5.7",
     "node-sass": "3.3.2",
