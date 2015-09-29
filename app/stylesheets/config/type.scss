@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300,600);
 
+$big-number: 28px;
 $tab-text: 12px;
+$small-text: 10px;
 
 @mixin no-margin() {
   margin: 0;

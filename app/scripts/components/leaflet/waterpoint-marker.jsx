@@ -23,6 +23,14 @@ export default class WaterpointMarker extends PopupContainer {
     this.leafletElement = marker([LATITUDE, LONGITUDE], markerProps);
   }
 
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.icon !== this.props.icon ||
+      nextProps.opacity !== this.props.opacity ||
+      nextProps.zIndexOffset !== this.props.zIndexOffset
+    );
+  }
+
   componentDidUpdate(prevProps) {
     const { LATITUDE, LONGITUDE } = this.props;
     if (LATITUDE !== prevProps.LATITUDE ||
