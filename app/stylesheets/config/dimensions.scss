@@ -1,7 +1,14 @@
 $base-unit: 1em;
-$header-height: 80px;
+
+// header
+$header-height: 120px;
+$header-margin: 18px;
+$header-footer-padding: 35px;
+$logo-width: 80px;
+
+// tabs and filters
 $filters-closed-height: 33px;
-$charts-closed-height: 120px;
+$charts-closed-height: 125px;
 $footer-height: 60px;
 $tab-label-width: 200px;
 $tab-icon-size: 20px;

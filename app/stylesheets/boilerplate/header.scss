@@ -1,7 +1,32 @@
+@import '../config/dimensions';
+@import '../config/type';
+@import '../config/colours';
+
 .header {
+  padding-left: $filters-closed-height;
+  padding-right: $filters-closed-height;
 
   .logo {
     float: left;
+
+    img {
+      float: left;
+      margin-right: $tab-icon-size;
+      margin-top: $header-margin;
+      width: $header-height;
+    }
+  }
+
+  h1 {
+    color: $theme-blue-alt;
+    display: inline-block;
+    float: left;
+    font-size: $dash-title;
+    font-weight: $title-weight;
+    line-height: $dash-title + 2;
+    margin-top: $filters-closed-height;
+    text-transform: uppercase;
+    width: $tab-label-width;
   }
 
   .header-nav {
