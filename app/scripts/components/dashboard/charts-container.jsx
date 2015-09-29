@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import T from '../misc/t';
 import ViewMode from '../boilerplate/view-mode';
+import MetricStatus from './charts/metric-status';
 
 require('stylesheets/dashboard/charts-container');
 
@@ -26,6 +27,11 @@ const ChartsContainer = React.createClass({
               <T k="charts.toggle.activate" />
             </span>
             <ViewMode />
+          </div>
+          <div className="charts-container-summary">
+            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
+            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
+            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
           </div>
         </div>
         <div className="below">
