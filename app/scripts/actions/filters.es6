@@ -1,3 +1,7 @@
-import { createAction } from 'reflux';
+import { createActions } from 'reflux';
 
-export const setSomeFilter = createAction();
+const filtersActions = createActions({
+  setPopulationServed: {},
+});
+
+export default filtersActions;
