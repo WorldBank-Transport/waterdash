@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const sassLint = require('gulp-sass-lint');
 const inject = require('gulp-inject');
-const rename = require('gulp-rename');
 
 gulp.task('lint-styles', function() {
   gulp.src('app/stylesheets/**/*.scss')
