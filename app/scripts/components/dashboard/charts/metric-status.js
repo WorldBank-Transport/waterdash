@@ -14,7 +14,7 @@ const MetricStatus = React.createClass({
   render() {
     const classes = classNames({
       'icon': true,
-      'good': false, // some conditions
+      'good': true, // some conditions
       'medium': false,
       'poor': false,
     });
