@@ -1,18 +1,19 @@
 @import '../config/dimensions';
 @import '../config/type';
 @import '../config/colours';
+@import '../config/list';
 
 .header {
-  padding-left: $filters-closed-height;
-  padding-right: $filters-closed-height;
+  padding-left: $header-common-margin;
+  padding-right: $header-common-margin;
 
   .logo {
     float: left;
 
     img {
       float: left;
-      margin-right: $tab-icon-size;
-      margin-top: $header-margin;
+      margin-right: $header-common-margin;
+      margin-top: $logo-top-position;
       width: $header-height;
     }
   }
@@ -24,10 +25,12 @@
     font-size: $dash-title;
     font-weight: $title-weight;
     line-height: $dash-title + 2;
-    margin-top: $filters-closed-height;
+    margin-top: $header-common-margin;
     text-transform: uppercase;
     width: $tab-label-width;
   }
+
+  // main nav
 
   .header-nav {
     float: right;
@@ -35,16 +38,15 @@
 
     & > ul {
 
-
       & > li {
         border-right: 1px solid $grey-light;
-        height: $tab-icon-size;
+        height: $nav-item-height;
         line-height: $filter-text;
-        padding-left: $filters-closed-height;
-        padding-right: $filters-closed-height;
+        padding-left: $header-common-margin;
+        padding-right: $header-common-margin;
 
         &:last-child {
-          border-right:none;
+          border-right: none;
         }
 
         a {
@@ -58,4 +60,23 @@
         }
       }
     }
+
+  ul.language-selector {
+    @include border-radius(3px);
+    background: $tab-expand-bg;
+    padding-bottom: $nav-padding;
+    padding-top: $nav-padding;
+
+    & > li {
+      background: $tab-expand-bg;
+      border-right: 1px solid $theme-blue;
+      height: $nav-item-height;
+
+      &:hover {
+        color: $theme-blue;
+      }
+
+    }
+  }
+
 }
