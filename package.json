@@ -16,9 +16,11 @@
     "test-only": "jest"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react"
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/lodash",
+      "<rootDir>/node_modules/results"
     ],
     "testFileExtensions": [
       "es6",

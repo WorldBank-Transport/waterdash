@@ -15,9 +15,9 @@ describe('CKAN', () => {
         expect(v.data).toEqual('blah'));
     });
     pit('should reject if not success', () => {
-      const ckanSuccessResp = {success: false, why: 'z'};
-      return ckan.rejectIfNotSuccess(ckanSuccessResp).catch(v =>
-        expect(v.why).toEqual('z'));
+      const ckanSuccessResp = {success: false};
+      return ckan.rejectIfNotSuccess(ckanSuccessResp).catch(([v]) =>
+        expect(v).toEqual('error.api.ckan'));
     });
   });
 

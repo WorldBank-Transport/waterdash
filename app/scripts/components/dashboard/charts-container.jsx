@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import T from '../utils/t';
+import T from '../misc/t';
 import ViewMode from '../boilerplate/view-mode';
 
 require('stylesheets/dashboard/charts-container');
