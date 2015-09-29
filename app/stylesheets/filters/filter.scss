@@ -1,0 +1,40 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+.filter {
+  position: relative;
+
+  & > a.filter-title {
+    color: $text-inverse;
+    display: block;
+
+    & > h3 {
+      font-size: $tab-text;
+      font-weight: bold;
+      height: $filters-closed-height;
+      line-height: $filters-closed-height;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  & > a.filter-title:hover,
+  &.open > a.filter-title {
+    background: $bg-color;
+    color: $theme-blue;
+  }
+
+  & > .filter-body {
+    background: $bg-color;
+    box-shadow: $shadow;
+    max-height: 300px;
+    padding: 1em;
+    position: absolute;
+    top: $filters-closed-height;
+  }
+
+  &.closed > .filter-body {
+    left: -9999em;
+  }
+}

@@ -27,6 +27,7 @@ export const getWaterpoints = () =>
     fields: [
       'LATITUDE',
       'LONGITUDE',
+      'POPULATION SERVED',
       'WATER_POINT_CODE',
       'WATER_POINT_NAME',
     ],

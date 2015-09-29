@@ -1,0 +1,38 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/list';
+@import '../config/type';
+
+.filters {
+  background: $theme-blue;
+  box-shadow: $shadow-inset;
+
+  .filters-title {
+    color: $bg-color;
+    display: inline-block;
+    height: $filters-closed-height;
+    line-height: $filters-closed-height;
+    width: $filters-title-width;
+
+    h2 {
+      @include no-margin();
+      font-size: $tab-text;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  & > .filters-row {
+    @include list-unstyle();
+
+    &,
+    & > li {
+      display: inline-block;
+      height: $filters-closed-height;
+    }
+
+    & > li {
+      width: $filters-item-width;
+    }
+  }
+}

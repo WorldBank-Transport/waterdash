@@ -1,0 +1,61 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/pseudo';
+
+.range {
+  $track-height: 10px;
+  $track-width: 200px;
+  $handle-height: 24px;
+  $handle-width: 21px;
+  $handle-radius: 2px;
+  $grabby-height: 11px;
+  $grabby-width: 1px;
+  $grabby-center-off: 2px;
+
+  .number {
+    display: inline-block;
+    width: 50px;
+  }
+
+  .slider {
+    background: $grey-light;
+    display: inline-block;
+    height: $track-height;
+    width: $track-width;
+
+    .bar-1 {
+      background: $theme-blue-light;
+      height: $track-height;
+    }
+
+    .handle {
+      background: $theme-blue;
+      border-radius: $handle-radius;
+      cursor: pointer;
+      height: $handle-height;
+      margin-top: -($handle-height - $track-height) / 2;
+      position: relative;
+      width: $handle-width;
+
+      &:before,
+      &:after {
+        @include pseudo-position();
+        background: $theme-blue-light;
+        height: $grabby-height;
+        margin-top: -$grabby-height / 2;
+        top: 50%;
+        width: $grabby-width;
+      }
+
+      &:before {
+        margin-left: -$grabby-center-off;
+        right: 50%;
+      }
+
+      &:after {
+        left: 50%;
+        margin-left: $grabby-center-off;
+      }
+    }
+  }
+}
