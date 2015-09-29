@@ -22,6 +22,7 @@ body {
   position: absolute;
   right: 0;
   top: $header-height;
+  z-index: 3;
 }
 
 .main {
@@ -31,12 +32,22 @@ body {
   right: 0;
   top: $header-height + $filters-closed-height;
 
+  .map-container {
+    z-index: 1;
+  }
+
   .charts-container {
     bottom: 0;
     height: $charts-closed-height;
     left: 0;
     position: absolute;
     right: 0;
+    transition: height 200ms ease;
+    z-index: 2;
+
+    &.open {
+      height: 100%;
+    }
   }
 }
 

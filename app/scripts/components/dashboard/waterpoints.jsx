@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
-import WaterpointsStore from '../../stores/waterpoints';
+import { toggleCharts } from '../../actions/layout';
+import LayoutStore from '../../stores/layout';
+import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
@@ -18,8 +20,9 @@ const WaterPoints = React.createClass({
     children: PropTypes.node,
   },
   mixins: [
-    connect(WaterpointsStore, 'waterpoints'),
+    connect(FilteredWaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
+    connect(LayoutStore, 'layout'),
   ],
   componentDidMount() {
     load();
@@ -33,20 +36,19 @@ const WaterPoints = React.createClass({
               className="leaflet-map">
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {this.state.waterpoints.map(waterpoint =>
-              <WaterpointMarker key={waterpoint.WATER_POINT_CODE} {...waterpoint} />
+              <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
             )}
           </BoundsMap>
           <SpinnerModal
               retry={load}
               state={this.state.waterpointsState} />
         </div>
-        <ChartsContainer>
-          charts for waterpoints...
+        <ChartsContainer
+            onToggle={toggleCharts}
+            state={this.state.layout.charts}>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
           <MetricStatus metric="54.65" title="chart.title.functional" total="123456"/>
-          There are {this.state.waterpoints.length} waterpoints loaded
-          <br/>
         </ChartsContainer>
       </div>
     );
