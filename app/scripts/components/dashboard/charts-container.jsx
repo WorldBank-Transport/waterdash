@@ -18,7 +18,7 @@ const ChartsContainer = React.createClass({
     return (
       <div className={`charts-container ${stateClass}`}>
         <div className="above">
-          <div className="charts-container-header">
+          <div className="charts-container-nav">
             <span
                 className="tab-label"
                 onClick={this.props.onToggle}
