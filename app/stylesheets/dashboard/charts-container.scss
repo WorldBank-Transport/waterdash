@@ -26,4 +26,13 @@
       background: darken($grey-light, 10%);
     }
   }
+
+  .charts-container-summary {
+    box-sizing: border-box;
+    display: table;
+    height: $charts-summary-height;
+    padding: $base-unit 0;
+    table-layout: fixed;
+    width: 100%;
+  }
 }
