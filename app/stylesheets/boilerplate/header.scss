@@ -31,5 +31,31 @@
 
   .header-nav {
     float: right;
-  }
+    margin-top: $nav-top-position;
+
+    & > ul {
+
+
+      & > li {
+        border-right: 1px solid $grey-light;
+        height: $tab-icon-size;
+        line-height: $filter-text;
+        padding-left: $filters-closed-height;
+        padding-right: $filters-closed-height;
+
+        &:last-child {
+          border-right:none;
+        }
+
+        a {
+          color: $text-color;
+
+          &:hover {
+            color: $theme-blue;
+            }
+
+          }
+        }
+      }
+    }
 }
