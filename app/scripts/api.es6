@@ -29,6 +29,8 @@ export const getWaterpoints = () =>
       'LONGITUDE',
       'WATER_POINT_CODE',
       'WATER_POINT_NAME',
+      'STATUS',
+      'REGION',
     ],
   }).then(ckan.get);
 

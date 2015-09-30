@@ -1,4 +1,4 @@
-import { Ok } from 'results';
+import { Ok, Err } from 'results';
 
 /**
  * @param {func} process A transformation to apply to each element of data
@@ -36,6 +36,33 @@ function asArray(obj) {
     .map(k => [k, obj[k]]);
 }
 
+const checkData = (data) => {
+  return data ? Ok(data) : Err('There is not data');
+};
+
+/**
+ * this function shall be use to aggregate into add the current item base on aggProp
+ * @param {object} agg The initial accumulator value
+ * @param {object} item The data to process
+ * @param {string} aggProp the property name to aggregate
+ * @param {string} countProp the property name to count
+ * @returns {any} The accumulated value
+ */
+function sumAggregate(agg, item, aggProp, countProp) {
+  const aggPropVal = item[aggProp];
+  const sumPropVal = item[countProp];
+  if (!agg[aggPropVal]) {
+    agg.keys.aggProps.push(aggPropVal);
+    agg[aggPropVal] = {};
+  }
+  if (agg[aggPropVal][sumPropVal]) {
+    agg[aggPropVal][sumPropVal]++;
+  } else {
+    agg.keys.sumProps.push(sumPropVal);
+    agg[aggPropVal][sumPropVal] = 1;
+  }
+  return agg;
+}
 
 /**
  * @param {Result<T>} result An Ok() or Err() from `results`
@@ -81,3 +108,11 @@ Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray
  * @returns {Result<object>} The merged object in a Result.Ok
  */
 Result.merge = (data) => reduceResult((v) => Ok(v), mergeTwo, {}, data);
+
+/**
+ * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok
+ * @param {string} aggProp the property name to aggregate
+ * @param {string} countProp the property name to count
+ * @returns {Result<object>} The object in a Result.Ok
+ */
+Result.aggregate = (data, aggProp, countProp) => reduceResult(checkData, (agg, item) => sumAggregate(agg, item, aggProp, countProp), {keys: {aggProps: [], sumProps: []}}, data);
