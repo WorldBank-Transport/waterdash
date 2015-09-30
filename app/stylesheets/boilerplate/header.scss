@@ -37,6 +37,8 @@
     margin-top: $nav-top-position;
 
     & > ul {
+      padding-bottom: $nav-padding;
+      padding-top: $nav-padding;
 
       & > li {
         border-right: 1px solid $grey-light;
@@ -60,27 +62,5 @@
         }
       }
     }
-
-  ul.language-selector {
-    @include border-radius(3px);
-    background: $tab-expand-bg;
-    padding-bottom: $nav-padding;
-    padding-top: $nav-padding;
-
-    & > li {
-      background: $tab-expand-bg;
-      border-right: 1px solid $theme-blue;
-      height: $nav-item-height;
-
-      &:hover {
-        color: $theme-blue;
-      }
-
-      &.active {
-        color: $theme-blue;
-      }
-
-    }
-  }
 
 }

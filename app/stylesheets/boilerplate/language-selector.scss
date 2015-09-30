@@ -1,10 +1,28 @@
+@import '../config/dimensions';
+@import '../config/colours';
 @import '../config/list';
+@import '../config/box';
 
-.language-selector {
+ul.language-selector {
   @include list-inline();
   @include list-unstyle();
+  @include border-radius(3px);
+  background: $tab-expand-bg;
+  padding-bottom: $nav-padding;
+  padding-top: 20px;
 
   li {
-    padding: 0 1em;
+    background: $tab-expand-bg;
+    border-right: 1px solid $theme-blue;
+    height: $nav-item-height;
+
+    &:hover {
+      color: $theme-blue;
+    }
+
+    &.active {
+      color: $theme-blue;
+    }
+
   }
 }

@@ -15,9 +15,3 @@
     display: inline-block;
   }
 }
-
-// probably should move this to it's own file?
-@mixin border-radius($radius) {
-  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
-  border-radius: $radius;
-}
