@@ -44,7 +44,7 @@ const WaterPoints = React.createClass({
               retry={load}
               state={this.state.waterpointsState} />
         </div>
-        <ChartsContainer 
+        <ChartsContainer
             onToggle={toggleCharts}
             state={this.state.layout.charts}>
           charts for waterpoints...

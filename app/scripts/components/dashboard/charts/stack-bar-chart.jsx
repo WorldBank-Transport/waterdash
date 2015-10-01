@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3';
 import * as func from '../../../utils/functional';
 
+require('stylesheets/dashboard/charts/stack-bar-chart');
+
 const StackBarChart = React.createClass({
   propTypes: {
     data: PropTypes.object,
@@ -23,14 +25,16 @@ const StackBarChart = React.createClass({
               }),
             };
           });
-        return (<BarChart
-            data={barData}
-            fill={'#3182bd'}
-            height={200}
-            legend={true}
-            stackOffset={'wigget'}
-            title="Bar Chart"
-            width={500} />
+        return (<div className="stack-bar-chart">
+                  <BarChart
+                      data={barData}
+                      fill={'#3182bd'}
+                      height={200}
+                      legend={true}
+                      stackOffset={'wigget'}
+                      title="Bar Chart"
+                      width={500} />
+                </div>
         );
       } else {
         return <div>no chart</div>;
