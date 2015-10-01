@@ -28,3 +28,27 @@ ul.open-data-nav {
         }
       }
   }
+
+// the same nav in footer
+.footer-nav {
+  margin-top: $nav-top-position;
+
+  ul.open-data-nav {
+    li {
+      border-right: 1px solid $bg-color;
+
+      a {
+        color: $text-inverse;
+
+        &:hover {
+          color: $text-color;
+        }
+
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
