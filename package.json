@@ -77,7 +77,7 @@
     "react": "0.13.3",
     "react-d3": "0.4.0",
     "react-font-awesome": "https://github.com/janmyler/react-font-awesome/tarball/261c1719581e9125a544f8b5b9efc2e27073d970",
-    "react-leaflet": "https://github.com/PaulLeCam/react-leaflet/archive/v0.7.0.tar.gz",
+    "react-leaflet": "0.7.0",
     "react-router": "1.0.0-rc1",
     "reflux": "0.2.12",
     "results": "0.5.1",

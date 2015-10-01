@@ -1,7 +1,7 @@
 import pick from 'lodash/object/pick';
 import React, { PropTypes } from 'react';
 import { Popup } from 'react-leaflet';
-import PopupContainer from 'react-leaflet/PopupContainer';
+import PopupContainer from 'react-leaflet/lib/PopupContainer';
 import { Map, Icon, marker } from 'leaflet';
 
 export default class WaterpointMarker extends PopupContainer {
@@ -21,6 +21,14 @@ export default class WaterpointMarker extends PopupContainer {
     const { LATITUDE, LONGITUDE } = this.props;
     const markerProps = pick(this.props, ['icon', 'opacity', 'zIndexOffset']);
     this.leafletElement = marker([LATITUDE, LONGITUDE], markerProps);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return (
+      nextProps.icon !== this.props.icon ||
+      nextProps.opacity !== this.props.opacity ||
+      nextProps.zIndexOffset !== this.props.zIndexOffset
+    );
   }
 
   componentDidUpdate(prevProps) {
