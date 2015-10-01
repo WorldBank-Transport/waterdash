@@ -10,8 +10,9 @@ const Header = React.createClass({
     return (
       <div className="header">
         <div className="logo">
-          <h1><T k="site-name" /></h1>
+          <img src="images/tz-flag.png"/>
         </div>
+        <h1><T k="site-name" /></h1>
         <div className="header-nav">
           <OpenDataNav />
           <LanguageSelector />
