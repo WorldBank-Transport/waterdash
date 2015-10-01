@@ -1,8 +1,8 @@
 /* eslint react/no-set-state: 0 */  // needed for wrapping leaflet
 import assign from 'object-assign';
 import Leaflet from 'leaflet';
-import boundsType from 'react-leaflet/types/bounds';
-import LeafletMap from 'react-leaflet/Map';
+import boundsType from 'react-leaflet/lib/types/bounds';
+import LeafletMap from 'react-leaflet/lib/Map';
 
 const boundsPropTypes = assign({}, LeafletMap.propTypes);
 boundsPropTypes.bounds = boundsType;

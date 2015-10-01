@@ -1,7 +1,7 @@
 import pick from 'lodash/object/pick';
 import React, { PropTypes } from 'react';
 import { Popup } from 'react-leaflet';
-import PopupContainer from 'react-leaflet/PopupContainer';
+import PopupContainer from 'react-leaflet/lib/PopupContainer';
 import { Map, Icon, marker } from 'leaflet';
 
 export default class WaterpointMarker extends PopupContainer {
