@@ -1,66 +1,15 @@
 @import '../config/dimensions';
 @import '../config/type';
-@import '../config/colours';
-@import '../config/list';
+@import '../boilerplate/logo';
+
 
 .header {
   padding-left: $header-common-margin;
   padding-right: $header-common-margin;
-
   .logo {
-    float: left;
-
-    img {
-      float: left;
-      margin-right: $header-common-margin;
-      margin-top: $logo-top-position;
-      width: $header-height;
-    }
-  }
-
-  h1 {
-    color: $theme-blue-alt;
-    display: inline-block;
-    float: left;
-    font-size: $dash-title;
-    font-weight: $title-weight;
-    line-height: $dash-title + 2;
-    margin-top: $header-common-margin;
-    text-transform: uppercase;
-    width: $tab-label-width;
-  }
-
-  // main nav
-
+    float: left;}
   .header-nav {
     float: right;
     margin-top: $nav-top-position;
-
-    & > ul {
-      padding-bottom: $nav-padding;
-      padding-top: $nav-padding;
-
-      & > li {
-        border-right: 1px solid $grey-light;
-        height: $nav-item-height;
-        line-height: $filter-text;
-        padding-left: $header-common-margin;
-        padding-right: $header-common-margin;
-
-        &:last-child {
-          border-right: none;
-        }
-
-        a {
-          color: $text-color;
-
-          &:hover {
-            color: $theme-blue;
-            }
-
-          }
-        }
-      }
-    }
-
+  }
 }

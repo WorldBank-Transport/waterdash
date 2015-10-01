@@ -2,6 +2,7 @@
 @import '../config/colours';
 @import '../config/list';
 @import '../config/box';
+@import '../config/type';
 
 ul.language-selector {
   @include list-inline();
@@ -9,20 +10,20 @@ ul.language-selector {
   @include border-radius(3px);
   background: $tab-expand-bg;
   padding-bottom: $nav-padding;
-  padding-top: 20px;
+  padding-top: $nav-padding;
 
-  li {
+  & > li {
     background: $tab-expand-bg;
     border-right: 1px solid $theme-blue;
     height: $nav-item-height;
+    padding-left: $header-common-margin;
+    padding-right: $header-common-margin;
 
+    &:last-child {
+      border: 0;
+    }
     &:hover {
       color: $theme-blue;
     }
-
-    &.active {
-      color: $theme-blue;
-    }
-
   }
 }
