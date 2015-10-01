@@ -6,9 +6,9 @@ require('stylesheets/dashboard/charts/metric-status');
 
 const MetricStatus = React.createClass({
   propTypes: {
-    metric: React.PropTypes.number.isRequired,
+    metric: React.PropTypes.string.isRequired,
+    sumProps: React.PropTypes.object.isRequired,
     title: React.PropTypes.string.isRequired,
-    total: React.PropTypes.number.isRequired,
   },
 
   render() {
@@ -18,17 +18,22 @@ const MetricStatus = React.createClass({
       'medium': false,
       'poor': false,
     });
-    return (
-      <div className="metric-chart">
-        <div className="row">
-          <div className={classes}>icon</div>
-          <div className="big-number-metric">{this.props.metric} %</div>
+    if (this.props.sumProps.total > 0) {
+      const percent = (this.props.sumProps[this.props.metric] / this.props.sumProps.total * 100).toFixed(2);
+      return (
+        <div className="metric-chart">
+          <div className="row">
+            <div className={classes}>icon</div>
+            <div className="big-number-metric">{percent} %</div>
+          </div>
+          <div className="row">
+            <span><T k={this.props.title} /> - {this.props.sumProps[this.props.metric]}</span>
+          </div>
         </div>
-        <div className="row">
-          <span><T k={this.props.title} /> - {this.props.total}</span>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return false;
+    }
   },
 });
 

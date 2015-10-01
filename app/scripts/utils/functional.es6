@@ -65,6 +65,24 @@ function sumAggregate(agg, item, aggProp, countProp) {
 }
 
 /**
+ * this function shall be use to count base on the count prop
+ * @param {object} agg The initial accumulator value
+ * @param {object} item The data to process
+ * @param {string} countProp the property name to aggregate
+ * @returns {any} The accumulated value and the total
+ */
+function sum(agg, item, countProp) {
+  const countPropVal = item[countProp];
+  if (agg[countPropVal]) {
+    agg[countPropVal]++;
+  } else {
+    agg[countPropVal] = 1;
+  }
+  agg.total++;
+  return agg;
+}
+
+/**
  * @param {Result<T>} result An Ok() or Err() from `results`
  * @returns {Promise<T>} A promise that resolves Ok or rejects Err.
  */
@@ -116,3 +134,10 @@ Result.merge = (data) => reduceResult((v) => Ok(v), mergeTwo, {}, data);
  * @returns {Result<object>} The object in a Result.Ok
  */
 Result.aggregate = (data, aggProp, countProp) => reduceResult(checkData, (agg, item) => sumAggregate(agg, item, aggProp, countProp), {keys: {aggProps: [], sumProps: []}}, data);
+
+/**
+ * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok
+ * @param {string} countProp the property name to count
+ * @returns {Result<object>} The object in a Result.Ok
+ */
+Result.sumByProp = (data, countProp) => reduceResult(checkData, (agg, item) => sum(agg, item, countProp), {total: 0}, data);

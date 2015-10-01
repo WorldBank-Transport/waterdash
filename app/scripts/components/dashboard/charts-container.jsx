@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import T from '../misc/t';
 import ViewMode from '../boilerplate/view-mode';
 import MetricStatus from './charts/metric-status';
+import * as func from '../../utils/functional';
 
 require('stylesheets/dashboard/charts-container');
 
@@ -10,6 +11,7 @@ const ChartsContainer = React.createClass({
     children: PropTypes.node.isRequired,
     onToggle: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
+    waterpoints: PropTypes.object.isRequired,
   },
   render() {
     const [ stateClass, below ] = this.props.state.match({
@@ -29,9 +31,13 @@ const ChartsContainer = React.createClass({
             <ViewMode />
           </div>
           <div className="charts-container-summary">
-            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
-            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
-            <MetricStatus metric={54.65} title="chart.title.functional" total={123456} />
+            {func.Result.sumByProp(this.props.waterpoints, 'STATUS').andThen(data =>
+              <div>
+                <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
+                <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
+                <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
+              </div>
+            )}
           </div>
         </div>
         <div className="below">
