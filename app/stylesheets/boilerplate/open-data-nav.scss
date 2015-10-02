@@ -1,10 +1,30 @@
+@import '../config/dimensions';
+@import '../config/colours';
 @import '../config/list';
+@import '../config/box';
+@import '../config/type';
 
-.open-data-nav {
+ul.open-data-nav {
   @include list-inline();
   @include list-unstyle();
 
   li {
-    padding: 0 1em;
+    border-right: 1px solid $grey-light;
+    height: $nav-item-height;
+    line-height: $filter-text;
+    padding-left: $header-common-margin;
+    padding-right: $header-common-margin;
+
+    &:last-child {
+      border-right: 0;
+      }
+
+    a {
+      color: $text-color;
+
+      &:hover {
+        color: $theme-blue;
+          }
+        }
+      }
   }
-}

@@ -1,10 +1,14 @@
-.header {
+@import '../config/dimensions';
+@import '../config/type';
+@import '../boilerplate/logo';
 
-  .logo {
-    float: left;
-  }
+
+.header {
+  padding-left: $header-common-margin;
+  padding-right: $header-common-margin;
 
   .header-nav {
     float: right;
+    margin-top: $nav-top-position;
   }
 }
