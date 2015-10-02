@@ -11,6 +11,10 @@ const ChartsContainer = React.createClass({
     onToggle: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
   },
+  toggle(e) {
+    e.preventDefault();
+    this.props.onToggle();
+  },
   render() {
     const [ stateClass, below ] = this.props.state.match({
       Open: () => [ 'open', this.props.children ],
@@ -20,12 +24,13 @@ const ChartsContainer = React.createClass({
       <div className={`charts-container ${stateClass}`}>
         <div className="above">
           <div className="charts-container-nav">
-            <span
+            <a
                 className="tab-label"
-                onClick={this.props.onToggle}
+                href="#"
+                onClick={this.toggle}
                 role="button">
               <T k="charts.toggle.activate" />
-            </span>
+            </a>
             <ViewMode />
           </div>
           <div className="charts-container-summary">

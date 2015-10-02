@@ -11,12 +11,14 @@ $filters-closed-height: 48px;
 $filters-title-width: 220px;
 $filters-item-width: 180px;
 
-$charts-closed-height: 125px;
-
-$footer-height: 60px;
+$charts-nav-height: 41px;
+$charts-summary-height: 78px;
+$charts-above-height: $charts-nav-height + $charts-summary-height;
 
 $tab-label-width: 200px;
 $tab-icon-size: 20px;
+
+$footer-height: 100px;
 
 // margins and padding
 $logo-top-position: 18px;
@@ -24,3 +26,4 @@ $header-common-margin: 33px;
 $nav-top-position: 37px;
 $header-footer-padding: 35px;
 $nav-padding: 12px;
+$footer-text-top-position: 20px;
