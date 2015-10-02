@@ -7,6 +7,7 @@ import warn from '../../utils/warn';
 
 const stringsEn = {
   'site-name': 'Water Dashboard',
+  'site.flag': 'Flag of Tanzania',
 
   'nav.home': 'Home',
   'nav.data': 'Data',
