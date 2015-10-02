@@ -52,8 +52,8 @@ body {
 
 .footer {
   bottom: 0;
-  height: $footer-height;
   left: 0;
+  min-height: $footer-height; 
   position: absolute;
   right: 0;
 }
