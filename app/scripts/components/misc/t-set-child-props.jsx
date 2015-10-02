@@ -1,15 +1,17 @@
 import React from 'react';
+import isObject from 'lodash/lang/isObject';
+import isString from 'lodash/lang/isString';
+import isUndefined from 'lodash/lang/isUndefined';
 import warn from '../../utils/warn';
-import { stringsEn } from './t';
+import { translate } from './t';
 
 const TSetChildProps = React.createClass({
   propTypes: {
     children: React.PropTypes.node.isRequired,
-    props: React.PropTypes.object.isRequired,
   },
 
   getInitialState() {
-    return {strings: stringsEn};
+    return {lang: 'en'};
   },
 
   componentWillMount() {
@@ -32,18 +34,37 @@ const TSetChildProps = React.createClass({
     }
   },
 
+  isTranslateObj(obj) {
+    if (!isObject(obj) || isUndefined(obj.k)) {
+      return false;
+    } else if (!isString(obj.k)) {  // k but wrong type -- probably a mistake
+      warn('Tried to translate obj', obj, 'but `k` was not a string.');
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+  translateObj(obj) {
+    return translate(this.state.lang, obj.k, obj.i);
+  },
+
+  getTranslatedProps(child) {
+    return Object.keys(child.props)
+     .filter(propName => this.isTranslateObj(child.props[propName]))
+     .reduce((aggProps, propName) => {
+       return {
+         ...aggProps,
+         [propName]: this.translateObj(child.props[propName]),
+       };
+     }, {});
+  },
+
   render() {
-    const translatedProps = {};
-    Object.keys(this.props.props).forEach(prop => {
-      const translated = this.state.strings[this.props.props[prop]];
-      if (typeof translated !== 'undefined') {
-        translatedProps[prop] = translated;
-      } else {
-        warn('missing translation for key', this.props.props[prop]);
-        translatedProps[prop] = this.props.props[prop];
-      }
+    const fixed = React.Children.map(this.props.children, child => {
+      const translatedProps = this.getTranslatedProps(child);
+      return React.cloneElement(child, translatedProps);
     });
-    const fixed = React.cloneElement(this.props.children, translatedProps);
     return <span>{fixed}</span>;
   },
 });
