@@ -6,10 +6,15 @@ $logo-width: 80px;
 $nav-item-height: 20px;
 
 $filters-closed-height: 33px;
-$charts-closed-height: 125px;
-$footer-height: 100px;
+
+$charts-nav-height: 41px;
+$charts-summary-height: 78px;
+$charts-above-height: $charts-nav-height + $charts-summary-height;
+
 $tab-label-width: 200px;
 $tab-icon-size: 20px;
+
+$footer-height: 100px;
 
 // margins and padding
 $logo-top-position: 18px;
