@@ -19,14 +19,19 @@
     & > li {
       border-left: 1px solid $tab-expand-bg;
       display: table-cell;
+      vertical-align: top;
 
       a {
         color: $theme-blue;
-        display: block;
+        display: table-cell;
         font-size: $tab-text;
         font-weight: bold;
-        padding: $base-unit $base-unit*4;
+        height: $charts-nav-height;
+        padding: 0 $base-unit;
         text-align: center;
+        vertical-align: middle;
+        // hack to make the a fill the li's width:
+        width: 1000px;
 
         &:hover,
         &.active {

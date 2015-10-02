@@ -19,7 +19,11 @@ const allTranslations = {
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
 
-    'filters.title': 'Filters',
+    'filters.title': 'Dashboard Filters',
+    'filters.population-served': 'Population Served',
+    'filters.population-served.unit': 'Number of people',
+    'filters.filter-two': 'Filter Two',
+    'filters.filter-three': 'Filter Three',
 
     'dash.waterpoints': 'Water Points',
     'dash.waterpoint': 'A Water Point',
