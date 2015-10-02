@@ -5,20 +5,21 @@
 .header {
 
   img {
-      float: left;
-      margin-right: $header-common-margin;
-      margin-top: $logo-top-position;
-      width: $header-height;
+    float: left;
+    margin-right: $header-common-margin;
+    margin-top: $logo-top-position;
+    width: $header-height;
     }
-    h1 {
-      color: $theme-blue-alt;
-      display: inline-block;
-      float: left;
-      font-size: $dash-title;
-      font-weight: $title-weight;
-      line-height: $dash-title + 2;
-      margin-top: $header-common-margin;
-      text-transform: uppercase;
-      width: $tab-label-width;
+
+  h1 {
+    color: $theme-blue-alt;
+    display: inline-block;
+    float: left;
+    font-size: $dash-title;
+    font-weight: $title-weight;
+    line-height: $dash-title-line-height;
+    margin-top: $header-common-margin;
+    text-transform: uppercase;
+    width: $tab-label-width;
     }
 }
