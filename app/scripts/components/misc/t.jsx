@@ -49,6 +49,14 @@ const allTranslations = {
   },
 
   'sw-tz': {
+
+    'nav.home': 'Mwanzo',
+    'nav.data': 'Takwimu',
+    'nav.speak-out': 'Maoni',
+
+    'view-mode.region': 'Mkoa',
+    'view-mode.district': 'Wilaya',
+
   },
 };
 
