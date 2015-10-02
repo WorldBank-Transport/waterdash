@@ -1,6 +1,7 @@
 /* eslint-env jest */
-describe('Translator component', () => {
+describe('Spinner Modal', () => {
   jest.dontMock('results');
+  jest.dontMock('../t');
   let React, state, SpinnerModal;
   beforeEach(() => {
     React = require('react/addons');
