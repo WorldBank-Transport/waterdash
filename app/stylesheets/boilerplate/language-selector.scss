@@ -23,7 +23,11 @@ ul.language-selector {
       border: 0;
     }
 
-    &:hover {
+    a {
+      color: inherit;
+    }
+    &.active a,
+    a:hover {
       color: $theme-blue;
     }
   }
