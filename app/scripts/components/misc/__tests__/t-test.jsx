@@ -16,4 +16,12 @@ describe('Translator component', () => {
     expect(React.findDOMNode(t).textContent).toEqual('Water Dashboard');
   });
 
+  it('should interpolate the translated string', () => {
+    const t = React.addons.TestUtils.renderIntoDocument(
+      <T i={['test']} k="error.api.ckan.record-missing-field" />
+    );
+    expect(React.findDOMNode(t).textContent)
+      .toEqual('A record from the CKAN data server was missing the field \'test\'');
+  });
+
 });
