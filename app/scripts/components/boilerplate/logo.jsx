@@ -1,7 +1,7 @@
 import React from 'react';
 import T from '../misc/t';
 
-require('stylesheets/boilerplate/header');
+require('stylesheets/boilerplate/logo');
 
 const Logo = React.createClass({
   render() {
