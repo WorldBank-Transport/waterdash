@@ -12,7 +12,7 @@ rules:
     - 2
     -
       include: true
-  empty-line-between-blocks: 2
+  empty-line-between-blocks: 0
   extends-before-declarations: 2
   extends-before-mixins: 2
   final-newline: 2

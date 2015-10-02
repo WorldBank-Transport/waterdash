@@ -1,11 +1,26 @@
 $base-unit: 1em;
-$header-height: 80px;
+
+// widths and heights
+$header-height: 120px;
+
+$logo-width: 80px;
+
+$nav-item-height: 20px;
 
 $filters-closed-height: 48px;
 $filters-title-width: 220px;
 $filters-item-width: 180px;
 
-$charts-closed-height: 120px;
+$charts-closed-height: 125px;
+
 $footer-height: 60px;
+
 $tab-label-width: 200px;
 $tab-icon-size: 20px;
+
+// margins and padding
+$logo-top-position: 18px;
+$header-common-margin: 33px;
+$nav-top-position: 37px;
+$header-footer-padding: 35px;
+$nav-padding: 12px;
