@@ -11,9 +11,10 @@ $charts-nav-height: 41px;
 $charts-summary-height: 78px;
 $charts-above-height: $charts-nav-height + $charts-summary-height;
 
-$footer-height: 60px;
 $tab-label-width: 200px;
 $tab-icon-size: 20px;
+
+$footer-height: 100px;
 
 // margins and padding
 $logo-top-position: 18px;
@@ -21,3 +22,4 @@ $header-common-margin: 33px;
 $nav-top-position: 37px;
 $header-footer-padding: 35px;
 $nav-padding: 12px;
+$footer-text-top-position: 20px;
