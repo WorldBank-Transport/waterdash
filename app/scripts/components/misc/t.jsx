@@ -60,7 +60,13 @@ const allTranslations = {
  * @returns {string} the translated string, or the key if it's missing
  */
 function translate(lang, k, i) {
-  let translated = allTranslations[lang][k];
+  const langTranslations = allTranslations[lang];
+  if (isUndefined(langTranslations)) {
+    // if the language key is bad, quit early
+    warn(`missing language ${lang} to translate ${k}`);
+    return k;
+  }
+  let translated = langTranslations[k];
   if (isUndefined(translated)) {
     warn(`missing translation for key: ${k}`);
     translated = k;

@@ -21,7 +21,11 @@
     "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/reflux",
       "<rootDir>/node_modules/lodash",
+      "<rootDir>/app/scripts/utils/sane-store-mixin",
+      "<rootDir>/app/scripts/utils/functional",
+      "<rootDir>/app/scripts/stores/",
       "<rootDir>/node_modules/results"
     ],
     "testFileExtensions": [
