@@ -12,10 +12,10 @@ const MetricStatus = React.createClass({
 
   render() {
     let className, iconSymbol;
-    if (false) {  // some condition
+    if (Math.random() < 1 / 3.0) {  // some condition
       className = 'good';
       iconSymbol = '✓';
-    } else if (false) {
+    } else if (Math.random() < 1 / 2.0) {
       className = 'medium';
       iconSymbol = '-';
     } else {
