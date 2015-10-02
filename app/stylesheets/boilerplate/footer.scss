@@ -1,9 +1,13 @@
 @import '../config/colours';
 @import '../config/type';
+@import '../config/dimensions';
+
 
 .footer {
   background: $theme-blue;
   color: $bg-color;
+  padding-left: $header-common-margin;
+  padding-right: $header-common-margin;
 
   a {
     color: $bg-color;
@@ -14,11 +18,11 @@
   }
 
   .copy {
-    @include no-margin();
     display: inline-block;
     float: right;
-    font-size: 0.8em;
+    font-size: $footer-text;
+    margin-top: $footer-text-top-position;
     text-align: right;
-    width: 66%;
+    width: 40%;
   }
 }
