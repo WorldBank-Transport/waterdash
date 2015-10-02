@@ -22,6 +22,7 @@ body {
   position: absolute;
   right: 0;
   top: $header-height;
+  z-index: 3;
 }
 
 .main {

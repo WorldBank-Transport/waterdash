@@ -1,21 +1,25 @@
-import assign from 'object-assign';
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { setSomeFilter } from '../actions/filters';
+import filtersActions from '../actions/filters';
 
 
 const FilterStore = createStore({
-  initialData: {},
+  initialData: {
+    populationServed: [0, 10000],
+  },
   mixins: [SaneStore],
   init() {
-    this.listenTo(setSomeFilter, 'setSomeFilter');
+    this.listenTo(filtersActions.setPopulationServed, 'populationServed');
   },
-  updateData(update) {
-    const updated = assign({}, this.data, update);
+  updateData(key, to) {
+    const updated = {
+      ...this.data,
+      [key]: to,
+    };
     this.setData(updated);
   },
-  setSomeFilter(what) {
-    this.updateData({someFilter: what});
+  populationServed([min, max]) {
+    this.updateData('populationServed', [min, max]);
   },
 });
 

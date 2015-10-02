@@ -13,7 +13,7 @@ function pullLatLng(record) {
   return pulled;
 }
 
-const WaterPointsStore = createStore({
+const WaterpointsStore = createStore({
   initialData: [],
   mixins: [SaneStore],
   init() {
@@ -26,4 +26,4 @@ const WaterPointsStore = createStore({
 });
 
 
-export default WaterPointsStore;
+export default WaterpointsStore;
