@@ -7,7 +7,6 @@ Water Dashboards
 
 * IOJS >= 3 or NodeJS >= 4
 
-
 ## Installation
 
 ```bash
