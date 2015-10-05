@@ -18,13 +18,17 @@ gulp.task('copy:index', function() {
 });
 
 gulp.task('slack-notify', function() {
-	var fs = require('fs');
-	var SLACK_URL = fs.readFileSync('slackHookURL.txt','utf8');
-	
-	var slack = require('slack-notify')(SLACK_URL);
-  	slack.alert({
-	  	channel: '#tanzania-dashboards',
-	  	icon_emoji: ':sweat_drops:',
-  		text: 'http://maji.takwimu.org/'
-  	});
+  var fs = require('fs');
+  try {
+  	var SLACK_URL = fs.readFileSync('slackHookURL.txt','utf8');
+  } catch (err) {
+    console.log(err);
+    return
+  }
+ var slack = require('slack-notify')(SLACK_URL);
+  slack.alert({
+    channel: '#tanzania-dashboards',
+	  icon_emoji: ':sweat_drops:',
+  	  text: 'http://maji.takwimu.org/'
+    });
 });
