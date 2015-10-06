@@ -23,10 +23,25 @@ function reduceResult(process, reducer, init, data) {
   ), Ok(init));
 }
 
+/**
+ * Reduce the data with the reducer function and return the reduced value of init.
+ * @param {func} reducer A function for reduce the array.
+ * @param {any} init The initial accumulator value.
+ * @param {array<any>} data The array of data to be processed.
+ * @returns {any} The accumulated value.
+ */
 function reduce(reducer, init, data) {
   return data.reduce(reducer, init);
 }
 
+/**
+ * filter and Reduce the data with the reducer function and return the reduced value of init.
+ * @param {func} filter A function for filtering the array.
+ * @param {func} reducer A function for reduce the array.
+ * @param {any} init The initial accumulator value.
+ * @param {array<any>} data The array of data to be processed.
+ * @returns {any} The accumulated value.
+ */
 function filterAndReduce(filter, reducer, init, data) {
   return data.filter(filter).reduce(reducer, init);
 }
