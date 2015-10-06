@@ -1,6 +1,7 @@
 /* eslint-env jest */
 describe('Translator component wrapper', () => {
   jest.dontMock('../t');
+  jest.dontMock('../../../stores/lang');
   let React, TS;
   beforeEach(() => {
     React = require('react/addons');
