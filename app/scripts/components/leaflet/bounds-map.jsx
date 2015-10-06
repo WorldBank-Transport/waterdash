@@ -17,7 +17,9 @@ export default class BoundsMap extends LeafletMap {
 
   componentDidMount() {
     super.componentDidMount();
-    this.leafletElement.fitBounds(this.props.bounds);
+    setTimeout(() => {  // in dev, wait for CSS to be injected
+      this.leafletElement.fitBounds(this.props.bounds);
+    }, 0);
     this.setState({map: this.leafletElement});
   }
 

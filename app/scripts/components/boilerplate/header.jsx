@@ -1,7 +1,7 @@
 import React from 'react';
-import T from '../misc/t';
 import OpenDataNav from './open-data-nav';
 import LanguageSelector from './language-selector';
+import Logo from './logo';
 
 require('stylesheets/boilerplate/header');
 
@@ -9,9 +9,7 @@ const Header = React.createClass({
   render() {
     return (
       <div className="header">
-        <div className="logo">
-          <h1><T k="site-name" /></h1>
-        </div>
+        <Logo/>
         <div className="header-nav">
           <OpenDataNav />
           <LanguageSelector />
