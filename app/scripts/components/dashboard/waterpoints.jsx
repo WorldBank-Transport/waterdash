@@ -45,7 +45,8 @@ const WaterPoints = React.createClass({
         </div>
         <ChartsContainer
             onToggle={toggleCharts}
-            state={this.state.layout.charts}>
+            state={this.state.layout.charts}
+            waterpoints={this.state.waterpoints}>
           <StackBarChart data={this.state.waterpoints} />
         </ChartsContainer>
       </div>

@@ -22,6 +22,7 @@ const ChartsContainer = React.createClass({
       Open: () => [ 'open', this.props.children ],
       Closed: () => [ 'closed', []],
     });
+    const data = func.Result.countBy(this.props.waterpoints, 'STATUS');
     return (
       <div className={`charts-container ${stateClass}`}>
         <div className="above">
@@ -36,13 +37,11 @@ const ChartsContainer = React.createClass({
             <ViewMode />
           </div>
           <div className="charts-container-summary">
-            {func.Result.sumByProp(this.props.waterpoints, 'STATUS').andThen(data =>
-              <div>
-                <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
-                <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
-                <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
-              </div>
-            )}
+            <div>
+              <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
+              <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
+              <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
+            </div>
           </div>
         </div>
         <div className="below">
