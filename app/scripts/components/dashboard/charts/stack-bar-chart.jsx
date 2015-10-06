@@ -6,40 +6,53 @@ require('stylesheets/dashboard/charts/stack-bar-chart');
 
 const StackBarChart = React.createClass({
   propTypes: {
-    data: PropTypes.object,
+    data: PropTypes.object.isRequired,
   },
-  render() {
-    const dataRes = func.Result.aggregate(this.props.data, 'STATUS', 'REGION');
-    return dataRes.andThen(data => {
-      if (data.keys.aggProps.length > 0) {
-        const barData = Object.keys(data)
+
+  getAllValues(data) {
+    const returnValue = [];
+    Object.keys(data)
+      .map(item => {
+        Object.keys(data[item])
+          .filter(key => key !== 'total')
+          .map(value => returnValue.push(value));
+      });
+    return returnValue;
+  },
+
+  parseData(data) {
+    const allVal = this.getAllValues(data);
+    const compare = (a, b) => {
+      return b.y - a.y;
+    };
+    return Object.keys(data)
           .filter(key => key !== 'keys')
           .map(key => {
             return {
               name: key,
-              values: data.keys.sumProps.map(status => {
+              values: allVal.map(status => {
                 return {
                   x: status,
                   y: data[key][status] ? data[key][status] : 0,
                 };
-              }),
+              }).sort(compare),
             };
           });
-        return (<div className="stack-bar-chart">
-                  <BarChart
-                      data={barData}
-                      fill={'#3182bd'}
-                      height={200}
-                      legend={true}
-                      stackOffset={'wigget'}
-                      title="Bar Chart"
-                      width={500} />
-                </div>
-        );
-      } else {
-        return <div>no chart</div>;
-      }
-    });
+  },
+
+  render() {
+    const dataRes = func.Result.countByGroupBy(this.props.data, 'STATUS', 'REGION');
+    return (
+      <div className="stack-bar-chart">
+        <BarChart
+            data={this.parseData(dataRes)}
+            fill="#3182bd"
+            height={200}
+            legend={true}
+            stackOffset="wigget"
+            title="Bar Chart"
+            width={500} />
+      </div>);
   },
 });
 

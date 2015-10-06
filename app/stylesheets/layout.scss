@@ -22,6 +22,7 @@ body {
   position: absolute;
   right: 0;
   top: $header-height;
+  z-index: 3;
 }
 
 .main {
@@ -37,7 +38,7 @@ body {
 
   .charts-container {
     bottom: 0;
-    height: $charts-closed-height;
+    height: $charts-above-height;
     left: 0;
     position: absolute;
     right: 0;
@@ -52,8 +53,8 @@ body {
 
 .footer {
   bottom: 0;
-  height: $footer-height;
   left: 0;
+  min-height: $footer-height; 
   position: absolute;
   right: 0;
 }

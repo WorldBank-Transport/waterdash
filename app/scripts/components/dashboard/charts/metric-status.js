@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import T from '../../misc/t';
 
 require('stylesheets/dashboard/charts/metric-status');
@@ -12,24 +11,34 @@ const MetricStatus = React.createClass({
   },
 
   render() {
-    const classes = classNames({
-      'icon': true,
-      'good': false, // some conditions
-      'medium': false,
-      'poor': false,
-    });
+    let className, iconSymbol;
+    if (Math.random() < 1 / 3.0) {  // some condition
+      className = 'good';
+      iconSymbol = '✓';
+    } else if (Math.random() < 1 / 2.0) {
+      className = 'medium';
+      iconSymbol = '-';
+    } else {
+      className = 'poor';
+      iconSymbol = '×';
+    }
     if (this.props.sumProps.total > 0) {
       const percent = (this.props.sumProps[this.props.metric] / this.props.sumProps.total * 100).toFixed(2);
-      return (
-        <div className="metric-chart">
-          <div className="row">
-            <div className={classes}>icon</div>
-            <div className="big-number-metric">{percent} %</div>
+    return (
+      <div className={`metric-status ${className}`}>
+        <div className="icon">
+          {iconSymbol}
+        </div>
+        <div className="content">
+          <div className="big-number">
+            <span className="number">{percent}</span>
+            %
           </div>
-          <div className="row">
-            <span><T k={this.props.title} /> - {this.props.sumProps[this.props.metric]}</span>
+          <div className="context">
+            <T k={this.props.title} /> - {this.props.sumProps[this.props.metric]}
           </div>
         </div>
+      </div>
       );
     } else {
       return false;

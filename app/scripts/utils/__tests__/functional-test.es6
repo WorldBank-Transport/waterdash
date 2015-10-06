@@ -1,6 +1,8 @@
 /* eslint-env jest */
 describe('Functional utilities', () => {
   jest.dontMock('results');
+  jest.dontMock('lodash/lang/isUndefined');
+  jest.dontMock('lodash/lang/isObject');
   let func;
   beforeEach(() => {
     func = require.requireActual('../functional');
@@ -85,6 +87,49 @@ describe('Functional utilities', () => {
       expect(func.Result.merge(
         [{a: 1}, {b: 2}, {c: 3}]
       ).unwrap()).toEqual({a: 1, b: 2, c: 3});
+    });
+  });
+
+  describe('groupBy', () => {
+    it('should groupBy b', () => {
+      expect(func.Result.groupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'b'))
+        .toEqual({b: [{a: 1, b: 'b'}, {a: 2, b: 'b'}], a: [{a: 1, b: 'a'}]});
+    });
+    it('hould only groupBy c, ignore the rest', () => {
+      expect(func.Result.groupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}, {a: 2, c: 'c'}], 'c'))
+        .toEqual({c: [{a: 2, c: 'c'}]});
+    });
+    it('fail: should not groupBy c, missing prop', () => {
+      expect(func.Result.groupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'c'))
+        .toEqual({});
+    });
+  });
+  describe('countBy', () => {
+    it('it shall countBy b', () => {
+      expect(func.Result.countBy([{a: 1, b: 'm'}, {a: 2, b: 'm'}, {a: 1, b: 'n'}], 'b'))
+        .toEqual({m: 2, n: 1, total: 3});
+    });
+    it('it shall only countBy c, ignore the rest', () => {
+      expect(func.Result.countBy([{a: 1, b: 'm'}, {a: 2, b: 'm'}, {a: 1, b: 'n'}, {a: 3, c: 'm'}], 'c'))
+        .toEqual({m: 1, total: 1});
+    });
+    it('fail: should not countBy c, missing prop', () => {
+      expect(func.Result.countBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'c'))
+        .toEqual({});
+    });
+  });
+  describe('countByGroupBy', () => {
+    it('it shall countBy b and GroupBy a', () => {
+      expect(func.Result.countByGroupBy([{a: 1, b: 'm'}, {a: 2, b: 'm'}, {a: 1, b: 'n'}, {a: 1, b: 'm'}], 'a', 'b'))
+        .toEqual({1: {m: 2, n: 1, total: 3}, 2: {m: 1, total: 1}});
+    });
+    it('fail: should not countByGroupBy c, missing group prop', () => {
+      expect(func.Result.countByGroupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'c', 'b'))
+        .toEqual({});
+    });
+    it('fail: should not countByGroupBy c, missing count prop', () => {
+      expect(func.Result.countByGroupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'a', 'c'))
+        .toEqual({});
     });
   });
 

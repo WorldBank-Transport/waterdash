@@ -3,7 +3,7 @@ import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
 import { toggleCharts } from '../../actions/layout';
 import LayoutStore from '../../stores/layout';
-import WaterpointsStore from '../../stores/waterpoints';
+import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
@@ -20,7 +20,7 @@ const WaterPoints = React.createClass({
     children: PropTypes.node,
   },
   mixins: [
-    connect(WaterpointsStore, 'waterpoints'),
+    connect(FilteredWaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
     connect(LayoutStore, 'layout'),
   ],
@@ -36,7 +36,7 @@ const WaterPoints = React.createClass({
               className="leaflet-map">
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {this.state.waterpoints.map(waterpoint =>
-              <WaterpointMarker key={waterpoint.WATER_POINT_CODE} {...waterpoint} />
+              <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
             )}
           </BoundsMap>
           <SpinnerModal
@@ -45,12 +45,8 @@ const WaterPoints = React.createClass({
         </div>
         <ChartsContainer
             onToggle={toggleCharts}
-            state={this.state.layout.charts}
-            waterpoints={this.state.waterpoints}>
-          charts for waterpoints...
-          There are {this.state.waterpoints.length} waterpoints loaded
-          <br/>
-          <StackBarChart data={this.state.waterpoints}  />
+            state={this.state.layout.charts}>
+          <StackBarChart data={this.state.waterpoints} />
         </ChartsContainer>
       </div>
     );

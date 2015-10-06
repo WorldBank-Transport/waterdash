@@ -1,6 +1,17 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300,600);
 
+// font sizes
+$dash-title: 24px;
+$filter-text: 18px;
+$big-number: 28px;
 $tab-text: 12px;
+$small-text: 10px;
+$footer-text: 13px;
+
+// font weights
+$title-weight: 700;
+
+$dash-title-line-height: 26px;
 
 @mixin no-margin() {
   margin: 0;

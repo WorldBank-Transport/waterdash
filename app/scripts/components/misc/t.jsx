@@ -1,9 +1,13 @@
+import isUndefined from 'lodash/lang/isUndefined';
+import isFunction from 'lodash/lang/isFunction';
+import isArray from 'lodash/lang/isArray';
 import React from 'react';
 import warn from '../../utils/warn';
 
 
 const stringsEn = {
   'site-name': 'Water Dashboard',
+  'site.flag': 'Flag of Tanzania',
 
   'nav.home': 'Home',
   'nav.data': 'Data',
@@ -12,7 +16,11 @@ const stringsEn = {
   'lang.en': 'English',
   'lang.sw-tz': 'Kiswahili',
 
-  'filters.title': 'Filters',
+  'filters.title': 'Dashboard Filters',
+  'filters.population-served': 'Population Served',
+  'filters.population-served.unit': 'Number of people',
+  'filters.filter-two': 'Filter Two',
+  'filters.filter-three': 'Filter Three',
 
   'dash.waterpoints': 'Water Points',
   'dash.waterpoint': 'A Water Point',
@@ -44,31 +52,45 @@ const stringsEn = {
 };
 
 
+/**
+ * @param {string} lang The language to translate to like 'en'
+ * @param {string} k The key for the translation, like 'site.name'
+ * @param {array<any>} i Any values to interpolate into the string
+ * @returns {string} the translated string, or the key if it's missing
+ */
+function translate(lang, k, i) {
+  const strings = stringsEn;  // TODO: choose with lang
+  let translated = strings[k];
+  if (isUndefined(translated)) {
+    warn(`missing translation for key: ${k}`);
+    translated = k;
+  } else if (isFunction(translated)) {
+    if (!isArray(i)) {
+      warn(`missing expected array for interpolating ${k}, got: ${i}`);
+      translated = translated([]);
+    } else {
+      translated = translated(i);
+    }
+  }
+  return translated;
+}
+
+
 const T = React.createClass({
   propTypes: {
     i: React.PropTypes.array,
     k: React.PropTypes.string.isRequired,
   },
   getInitialState() {
-    return {strings: stringsEn};
+    return {lang: 'en'};
   },
   render() {
-    let translated = this.state.strings[this.props.k];
-    if (typeof translated === 'undefined') {
-      warn('missing translation for key', this.props.k);
-      translated = this.props.k;
-    } else if (typeof translated === 'function') {
-      if (!(this.propTypes.i instanceof Array)) {
-        warn('missing expected array for interpolating', this.props.k, 'got:', this.propTypes.i);
-        translated = translated();
-      } else {
-        translated = translated(...this.props.i);
-      }
-    }
+    const translated = translate(this.state.lang, this.props.k, this.props.i);
     return (
       <span className="t">{translated}</span>
     );
   },
 });
 
+export { translate };
 export default T;
