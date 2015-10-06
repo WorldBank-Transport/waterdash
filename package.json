@@ -5,7 +5,7 @@
   "license": "GPL-3.0",
   "main": "server.js",
   "scripts": {
-    "build": "npm run clean && webpack && npm run _copy-stuff",
+    "build": "npm run clean && webpack && npm run _copy-stuff && npm run _notify",
     "clean": "rm -fr dist",
     "_copy-index": "gulp copy:index",
     "_copy-static": "cd app && cp -r favicon.ico images ../dist/",
@@ -13,6 +13,8 @@
     "lint": "npm run lint-scripts && npm run lint-styles",
     "lint-scripts": "eslint 'app/**/*.{es6,js,jsx}'",
     "lint-styles": "gulp lint-styles",
+    "_slack_notify" : "gulp slack-notify",
+    "_notify": "npm run _slack_notify",
     "start": "node server.js",
     "test": "npm run lint && npm run test-only",
     "test-only": "jest"
@@ -73,7 +75,8 @@
     "sass-loader": "2.0.1",
     "style-loader": "0.12.4",
     "webpack": "1.12.1",
-    "webpack-dev-server": "1.11.0"
+    "webpack-dev-server": "1.11.0",
+    "slack-notify":"0.1.4"
   },
   "dependencies": {
     "classnames": "2.1.3",
