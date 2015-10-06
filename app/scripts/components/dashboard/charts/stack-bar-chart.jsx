@@ -6,13 +6,11 @@ require('stylesheets/dashboard/charts/stack-bar-chart');
 
 const StackBarChart = React.createClass({
   propTypes: {
-    data: PropTypes.object,
+    data: PropTypes.object.isRequired,
   },
-  render() {
-    const dataRes = func.Result.aggregate(this.props.data, 'STATUS', 'REGION');
-    return dataRes.andThen(data => {
-      if (data.keys.aggProps.length > 0) {
-        const barData = Object.keys(data)
+
+  parseData(data) {
+    return Object.keys(data)
           .filter(key => key !== 'keys')
           .map(key => {
             return {
@@ -25,20 +23,23 @@ const StackBarChart = React.createClass({
               }),
             };
           });
-        return (<div className="stack-bar-chart">
-                  <BarChart
-                      data={barData}
-                      fill={'#3182bd'}
-                      height={200}
-                      legend={true}
-                      stackOffset={'wigget'}
-                      title="Bar Chart"
-                      width={500} />
-                </div>
-        );
-      } else {
-        return <div>no chart</div>;
-      }
+  },
+
+  render() {
+    const dataRes = func.Result.aggregate(this.props.data, 'STATUS', 'REGION');
+    return dataRes.match({
+      Ok: (data) => (
+        <div className="stack-bar-chart">
+          <BarChart
+              data={this.parseData(data)}
+              fill="#3182bd"
+              height={200}
+              legend={true}
+              stackOffset="wigget"
+              title="Bar Chart"
+              width={500} />
+        </div>),
+      Err: () => (<div>no chart</div>),
     });
   },
 });
