@@ -10,7 +10,7 @@ import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
 import SpinnerModal from '../misc/spinner-modal';
-import WaterpointStatusChart from './charts/waterpoint-staus-chart';
+import WaterpointStatusChart from './charts/waterpoint-status-chart';
 import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
 
 require('stylesheets/dashboard/waterpoints');
@@ -46,14 +46,15 @@ const WaterPoints = React.createClass({
         </div>
         <ChartsContainer
             onToggle={toggleCharts}
-            state={this.state.layout.charts}>
+            state={this.state.layout.charts}
+            waterpoints={this.state.waterpoints}>
           <div className="container">
             <div className="secondaryCharts">
-              <div className="row"><WaterpointFunctionalChart data={this.state.waterpoints}/></div>
+              <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
               <div className="row"></div>
             </div>
             <div className="mainChart">
-              <WaterpointStatusChart data={this.state.waterpoints} />
+              <WaterpointStatusChart waterpoints={this.state.waterpoints} />
             </div>
           </div>
 

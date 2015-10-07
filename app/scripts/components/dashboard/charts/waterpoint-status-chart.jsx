@@ -4,9 +4,9 @@ import * as func from '../../../utils/functional';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
-const StackBarChart = React.createClass({
+const WaterpointStatusChart = React.createClass({
   propTypes: {
-    data: PropTypes.object.isRequired,
+    waterpoints: PropTypes.array.isRequired,
   },
 
   getAllValues(data) {
@@ -41,7 +41,7 @@ const StackBarChart = React.createClass({
   },
 
   render() {
-    const dataRes = func.Result.countByGroupBy(this.props.data, 'STATUS', 'REGION');
+    const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
         <BarChart
@@ -50,10 +50,12 @@ const StackBarChart = React.createClass({
             height={200}
             legend={true}
             stackOffset="wigget"
-            title="Bar Chart"
-            width={500} />
+            title="Waterpoint status"
+            width={500}
+            xAxisLabel="Regions"
+            yAxisLabel="Status" />
       </div>);
   },
 });
 
-export default StackBarChart;
+export default WaterpointStatusChart;

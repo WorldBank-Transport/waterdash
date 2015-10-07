@@ -6,32 +6,32 @@ require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {
-    data: PropTypes.object.isRequired,
+    waterpoints: PropTypes.array.isRequired,
   },
 
-  parseData(data) {
+  parseData(waterpoints) {
     const comparator = (a, b) => b.y - a.y;
     return [{
       name: '% Functional',
-      values: Object.keys(data).map(key => {
-          return {
-            x: key,
-            y: (data[key].FUNCTIONAL / data[key].total * 100),
-          };
-        }).sort(comparator)
+      values: Object.keys(waterpoints).map(key => {
+        return {
+          x: key,
+          y: (waterpoints[key].FUNCTIONAL / waterpoints[key].total * 100),
+        };
+      }).sort(comparator),
     }];
   },
 
   render() {
-    const dataRes = func.Result.countByGroupBy(this.props.data, 'REGION', 'STATUS');
+    const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
         <BarChart
-            data={this.parseData(dataRes)}
+            data={this.parseData(waterpointsRes)}
             fill="#3182bd"
             height={200}
             title="Functional WaterPoints"
-            width={500} 
+            width={500}
             xAxisLabel="Regions"
             yAxisLabel="%"/>
       </div>);

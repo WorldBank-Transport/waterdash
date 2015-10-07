@@ -1,6 +1,5 @@
 import { Ok } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
-import isObject from 'lodash/lang/isObject';
 import has from 'lodash/object/has';
 
 /**
