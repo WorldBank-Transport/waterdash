@@ -82,15 +82,6 @@ const countByProp = (propName, agg, item) => {
 };
 
 /**
- * this function shall be use to aggregate into add the current item base on aggProp
- * @param {object} agg The initial accumulator value
- * @param {object} item The data to process
- * @param {string} aggProp the property name to aggregate
- * @param {string} countProp the property name to count
- * @returns {any} The accumulated value
- */
-
-/**
  * @param {Result<T>} result An Ok() or Err() from `results`
  * @returns {Promise<T>} A promise that resolves Ok or rejects Err.
  */
