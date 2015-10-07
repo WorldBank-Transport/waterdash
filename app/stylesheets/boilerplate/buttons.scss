@@ -1,0 +1,19 @@
+@import '../config/type';
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/box';
+
+
+a.button-link {
+  @include border-radius(3px);
+  background: $theme-blue;
+  color: $text-inverse;
+  display: inline-block;
+  font-weight: $title-weight;
+  margin: $button-link-vert 0;
+  padding: $button-link-vert $button-link-horiz;
+  text-transform: uppercase;
+  &:hover {
+    background: $btn-hover;
+  }
+}

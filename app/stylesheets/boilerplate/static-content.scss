@@ -4,7 +4,6 @@
 @import '../config/type';
 
 // homepage
-
 .homebanner {
   float: left;
   height: $full;
@@ -23,4 +22,8 @@
     font-size: $dashboard-intro;
     font-weight: $static-content-weight;
    }
+
+  p {
+    font-size: $dashboard-description;
+  }
 }

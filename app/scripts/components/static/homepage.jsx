@@ -12,7 +12,7 @@ const Homepage = React.createClass({
           <img src="images/home-img.png"/>
         </div>
         <div className="homecontent">
-        <h2>Locate water projects throughout the country, your region, your district, or your ward. Use the Water Dashboard to examine water resources to make a difference in your community.</h2>
+        <h2>Locate water projects throughout the country, your region, your district, or your ward. Use the Water Dashboard to examine water resources to make a difference in your community.</h2>
         <DashboardBtn />
         <p>
           This Water Dashboard is a public open data portal to view the latest national water resource data and monitor the information that is important to you. You can also use the menu options above to see original data and speak out about missing or wrong data.
