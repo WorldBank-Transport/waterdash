@@ -3,6 +3,8 @@ import isObject from 'lodash/lang/isObject';
 import isString from 'lodash/lang/isString';
 import isUndefined from 'lodash/lang/isUndefined';
 import warn from '../../utils/warn';
+import { connect } from 'reflux';
+import langStore from '../../stores/lang';
 import { translate } from './t';
 
 const TSetChildProps = React.createClass({
@@ -10,9 +12,9 @@ const TSetChildProps = React.createClass({
     children: React.PropTypes.node.isRequired,
   },
 
-  getInitialState() {
-    return {lang: 'en'};
-  },
+  mixins: [
+    connect(langStore, 'lang'),
+  ],
 
   componentWillMount() {
     try {
