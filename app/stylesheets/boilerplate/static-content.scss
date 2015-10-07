@@ -1,0 +1,26 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+// homepage
+
+.homebanner {
+  float: left;
+  height: $full;
+}
+
+.homebanner img {
+  height: $full;
+}
+
+.homecontent  {
+  float: left;
+  padding: $general-content-padding;
+  width: $half;
+
+  h2 {
+    color: $grey-medium;
+    font-size: $dashboard-intro;
+    font-weight: $static-content-weight;
+   }
+}

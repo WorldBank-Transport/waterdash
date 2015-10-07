@@ -23,7 +23,7 @@ describe('Static Components', () => {
     const data = React.addons.TestUtils.renderIntoDocument(<Data />);
     expect(React.findDOMNode(data).className).toEqual('main');
 
-    const data = React.addons.TestUtils.renderIntoDocument(<Homepage />);
+    const homepage = React.addons.TestUtils.renderIntoDocument(<Homepage />);
     expect(React.findDOMNode(homepage).className).toEqual('main');
 
     const speakOut = React.addons.TestUtils.renderIntoDocument(<SpeakOut />);

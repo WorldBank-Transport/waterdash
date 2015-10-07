@@ -1,7 +1,6 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
 import Router, {Route, IndexRoute} from 'react-router';
-
 import Root from './components/root.jsx';
 import WaterPoints from './components/dashboard/waterpoints.jsx';
 import WaterPoint from './components/dashboard/waterpoint.jsx';
@@ -16,8 +15,9 @@ import NotFound from './components/static/not-found.jsx';
 React.render((
   <Router>
     <Route path="/" component={Root}>
-      <IndexRoute component={WaterPoints} />
-      <Route path="waterpoints/:id" component={WaterPoint} />
+      <Route path="waterpoints/" component={WaterPoints} >
+        <Route path=":id" component={WaterPoint} />
+      </Route>
       <Route path="data/" component={Data} />
       <Route path="homepage/" component={Homepage} />
       <Route path="speak-out/" component={SpeakOut} />

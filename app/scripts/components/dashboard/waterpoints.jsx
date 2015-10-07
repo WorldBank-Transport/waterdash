@@ -10,6 +10,8 @@ import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
 import SpinnerModal from '../misc/spinner-modal';
+import Filters from '../filters/filters';
+
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -28,7 +30,10 @@ const WaterPoints = React.createClass({
   },
   render() {
     return (
-      <div className="main waterpoints">
+<div>
+    <Filters />
+
+    <div className="main waterpoints">
         <div className="map-container">
           <BoundsMap
               bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
@@ -48,6 +53,7 @@ const WaterPoints = React.createClass({
           charts go here...
         </ChartsContainer>
       </div>
+  </div>
     );
   },
 });
