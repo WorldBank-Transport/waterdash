@@ -33,6 +33,8 @@ const allTranslations = {
 
     'charts.toggle.activate': 'View Charts',
     'chart.title.functional': 'Functional',
+    'chart.title.non-functional': 'Non Functional',
+    'chart.title.repair': 'Needs Repair',
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
