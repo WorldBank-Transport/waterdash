@@ -88,7 +88,7 @@
     "no-new-wrappers": 2,
     "no-octal": 2,
     "no-obj-calls": 2,
-    "no-param-reassign": [2, {"props": true}],
+    "no-param-reassign": 2,
     "no-redeclare": 2,
     "no-regex-spaces": 2,
     "no-return-assign": 2,

@@ -1,4 +1,6 @@
 import { Ok } from 'results';
+import isUndefined from 'lodash/lang/isUndefined';
+import isObject from 'lodash/lang/isObject';
 
 /**
  * @param {func} process A transformation to apply to each element of data
@@ -21,6 +23,28 @@ function reduceResult(process, reducer, init, data) {
   ), Ok(init));
 }
 
+/**
+ * Reduce the data with the reducer function and return the reduced value of init.
+ * @param {func} reducer A function for reduce the array.
+ * @param {any} init The initial accumulator value.
+ * @param {array<any>} data The array of data to be processed.
+ * @returns {any} The accumulated value.
+ */
+function reduce(reducer, init, data) {
+  return data.reduce(reducer, init);
+}
+
+/**
+ * filter and Reduce the data with the reducer function and return the reduced value of init.
+ * @param {func} filter A function for filtering the array.
+ * @param {func} reducer A function for reduce the array.
+ * @param {any} init The initial accumulator value.
+ * @param {array<any>} data The array of data to be processed.
+ * @returns {any} The accumulated value.
+ */
+function filterAndReduce(filter, reducer, init, data) {
+  return data.filter(filter).reduce(reducer, init);
+}
 
 const mergeTwo = (a, b) => {
   return {...a, ...b};  // returns a shallow merge without mutating a or b.
@@ -36,6 +60,36 @@ function asArray(obj) {
     .map(k => [k, obj[k]]);
 }
 
+const hasProperty = (data, propName) => (!isUndefined(data) && isObject(data) && !isUndefined(data[propName]));
+
+const groupByProp = (properyName, agg, item) => {
+  if (isUndefined(agg[item[properyName]])) {
+    agg[item[properyName]] = [];
+  }
+  agg[item[properyName]].push(item);
+  return agg;
+};
+
+const countByProp = (propName, agg, item) => {
+  if (isUndefined(agg.total)) {
+    agg.total = 0;
+  }
+  if (isUndefined(agg[item[propName]])) {
+    agg[item[propName]] = 0;
+  }
+  agg[item[propName]]++;
+  agg.total++;
+  return agg;
+};
+
+/**
+ * this function shall be use to aggregate into add the current item base on aggProp
+ * @param {object} agg The initial accumulator value
+ * @param {object} item The data to process
+ * @param {string} aggProp the property name to aggregate
+ * @param {string} countProp the property name to count
+ * @returns {any} The accumulated value
+ */
 
 /**
  * @param {Result<T>} result An Ok() or Err() from `results`
@@ -81,3 +135,24 @@ Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray
  * @returns {Result<object>} The merged object in a Result.Ok
  */
 Result.merge = (data) => reduceResult((v) => Ok(v), mergeTwo, {}, data);
+
+Result.groupBy = (data, propName) => filterAndReduce((v) => hasProperty(v, propName), (agg, item) => groupByProp(propName, agg, item), {}, data);
+
+Result.countBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
+
+/**
+ * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok
+ * @param {string} aggProp the property name to aggregate
+ * @param {string} countProp the property name to count
+ * @returns {Result<object>} The object in a Result.Ok
+ */
+Result.countByGroupBy = (data, aggProp, countProp) => {
+  const result = {};
+  const filter = (item => (hasProperty(item, aggProp) && hasProperty(item, countProp)));
+  const grouped = filterAndReduce(filter, (agg, item) => groupByProp(aggProp, agg, item), result, data);
+  Object.keys(grouped).map(key => {
+    const counted = reduce((agg, item) => countByProp(countProp, agg, item), {}, grouped[key]);
+    result[key] = counted;
+  });
+  return result;
+};
