@@ -24,7 +24,7 @@ const MetricStatus = React.createClass({
     }
     if (this.props.sumProps.total > 0) {
       const percent = (this.props.sumProps[this.props.metric] / this.props.sumProps.total * 100).toFixed(2);
-    return (
+      return (
       <div className={`metric-status ${className}`}>
         <div className="icon">
           {iconSymbol}
