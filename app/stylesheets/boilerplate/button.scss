@@ -4,15 +4,17 @@
 @import '../config/box';
 
 
-a.button-link {
+.button {
   @include border-radius(3px);
   background: $theme-blue;
-  color: $text-inverse;
   display: inline-block;
   font-weight: $button-weight;
   margin: $button-link-vert 0;
   padding: $button-link-vert $button-link-horiz;
   text-transform: uppercase;
+  a {
+    color: $text-inverse;
+  }
   &:hover {
     background: $btn-hover;
   }
