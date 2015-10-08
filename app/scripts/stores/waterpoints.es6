@@ -1,4 +1,3 @@
-import omit from 'lodash/object/omit';
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import { loadProgress, loadCompleted } from '../actions/waterpoints';
@@ -18,8 +17,8 @@ function pullLatLng(record) {
   So here's a faster version (48ms):
   */
   const pulled = {};
-  for (let k in record) {
-    if (record.hasOwnProperty(k) && k !== 'LATITUDE' && k != 'LONGITUDE') {
+  for (const k in record) {
+    if (record.hasOwnProperty(k) && k !== 'LATITUDE' && k !== 'LONGITUDE') {
       pulled[k] = record[k];
     }
   }

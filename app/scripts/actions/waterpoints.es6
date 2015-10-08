@@ -15,11 +15,4 @@ waterpointActions.load.listen(() => {
     .catch(waterpointActions.loadFailed);
 });
 
-const log = id => payload => console.info(id, payload);
-
-waterpointActions.load.listen(log('LOAD'));
-waterpointActions.loadProgress.listen(log('PROGRESS'));
-waterpointActions.loadCompleted.listen(log('Completed'));
-waterpointActions.loadFailed.listen(log('FAILED'));
-
 export default waterpointActions;

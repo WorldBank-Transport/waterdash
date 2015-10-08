@@ -1,5 +1,6 @@
+/* eslint camelcase: 0 */  // snake_case query params are not set by us
 import * as func from './functional';
-import { Ok, Err, Some, None } from 'results';
+import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
 import warn from './warn';
 import { toQuery } from './querystring';
@@ -92,7 +93,7 @@ export function convertRecord(fieldConverters, record) {
   here is a faster implementation:
   */
   const converted = {};
-  for (let k in fieldConverters) {
+  for (const k in fieldConverters) {
     if (fieldConverters.hasOwnProperty(k)) {
       if (typeof record[k] !== 'undefined') {
         converted[k] = fieldConverters[k](record[k]);
@@ -130,16 +131,6 @@ const resourceUrl = (id, params = {}) => func.promiseResult(
     })
     .andThen(qs => Ok(`${API_ROOT}/action/datastore_search?${qs}`)));
 
-const peek = id => payload => new Promise(resolve => {
-  console.log(id, payload);
-  resolve(payload);
-});
-
-const peer = id => err => new Promise((resolve, reject) => {
-  console.error(id, err);
-  reject(err);
-});
-
 /**
  * @param {string} id The resource's id
  * @param {object} query Any query to be applied
@@ -147,13 +138,13 @@ const peer = id => err => new Promise((resolve, reject) => {
  * @returns {Promise<array<object>>} The converted data
  */
 function get(id, query = {}, notify = () => null) {
-  const chunk = 6000;
+  const chunk = 100000;
 
-  const getOffsets = (chunk, total) => {
+  const getOffsets = (chunkSize, total) => {
     const offsets = [];
-    const num = Math.ceil(total / chunk);
+    const num = Math.ceil(total / chunkSize);
     for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
-      offsets.push(i * chunk);
+      offsets.push(i * chunkSize);
     }
     return offsets;
   };
@@ -165,7 +156,7 @@ function get(id, query = {}, notify = () => null) {
       .then(rejectIfNotHTTPOk)
       .then(resp => resp.json())
       .then(rejectIfNotSuccess)
-      .then(data => func.promiseResult(convertCkanResp(data)))
+      .then(data => func.promiseResult(convertCkanResp(data)));
   };
 
   const promiseConcat = (...promises) => new Promise((resolve, reject) => {
@@ -205,9 +196,7 @@ function get(id, query = {}, notify = () => null) {
       .then(rejectIfNotHTTPOk)
       .then(resp => resp.json())
       .then(rejectIfNotSuccess)
-      .catch(peer('init?'))
       .then(getTheRest)
-      .then(peek('the rest?'))
       .then(resolve, reject);
   });
 

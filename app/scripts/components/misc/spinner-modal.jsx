@@ -6,9 +6,9 @@ require('stylesheets/misc/spinner-modal');
 
 const SpinnerModal = React.createClass({
   propTypes: {
+    message: PropTypes.string,
     retry: PropTypes.func,
     state: PropTypes.object.isRequired,
-    message: PropTypes.string,
   },
   render() {
     return this.props.state.match({

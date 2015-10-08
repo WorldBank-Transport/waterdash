@@ -134,7 +134,7 @@ Result.map = function(fn, data) {
     }
   }
   return Ok(res);
-}
+};
 
 /**
  * @param {func} fn A function to process a single key/value pair (passed as [k, v]),
