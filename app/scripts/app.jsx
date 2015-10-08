@@ -19,7 +19,7 @@ React.render((
         <Route path=":id" component={WaterPoint} />
       </Route>
       <Route path="data/" component={Data} />
-      <Route path="homepage/" component={Homepage} />
+      <IndexRoute component={Homepage} />
       <Route path="speak-out/" component={SpeakOut} />
       <Route path=":polytype/" component={Polygons}>
         <Route path=":id" component={Polygon} />
