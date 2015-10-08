@@ -140,22 +140,7 @@ const resourceUrl = (id, params = {}) => func.promiseResult(
  */
 function get(id, query = {}, notify = () => null) {
   const chunk = 6000;
-  const maxParallel = 4;
-  const fetchWaitQueue = [];
-  const throttledNotify = throttle(notify, 1000, {leading: true, trailing: true});
-
-  const startNext = () => {
-    const next = fetchWaitQueue.shift();
-    if (typeof next === 'function') {
-      next().then(startNext);
-    }
-  };
-
-  const startQueue = () => {
-    for (let i = 0; i < maxParallel; i++) {
-      startNext();
-    }
-  };
+  const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
   const getOffsets = (chunkSize, total) => {
     const offsets = [];
@@ -167,18 +152,13 @@ function get(id, query = {}, notify = () => null) {
   };
 
   const getChunk = (offset) => {
-    return new Promise((resolve, reject) => {
-      fetchWaitQueue.push(() =>
-        resourceUrl(id, {...query, limit: chunk, offset: offset})
-          .then(fetch)
-          .catch(makeHTTPErrorNice)
-          .then(rejectIfNotHTTPOk)
-          .then(resp => resp.json())
-          .then(rejectIfNotSuccess)
-          .then(data => func.promiseResult(convertCkanResp(data)))
-          .then(resolve, reject)
-      );
-    });
+    return resourceUrl(id, {...query, limit: chunk, offset: offset})
+      .then(fetch)
+      .catch(makeHTTPErrorNice)
+      .then(rejectIfNotHTTPOk)
+      .then(resp => resp.json())
+      .then(rejectIfNotSuccess)
+      .then(data => func.promiseResult(convertCkanResp(data)));
   };
 
   const promiseConcat = (...promises) => new Promise((resolve, reject) => {
@@ -206,7 +186,6 @@ function get(id, query = {}, notify = () => null) {
     } else {
       promiseConcat(first, ...getOffsets(chunk, total).map(getChunk))
         .then(resolve, reject);
-      startQueue();
     }
   });
 
