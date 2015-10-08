@@ -1,6 +1,7 @@
 import { Ok } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
 import isObject from 'lodash/lang/isObject';
+import isNumber from 'lodash/lang/isNumber';
 
 /**
  * @param {func} process A transformation to apply to each element of data
@@ -82,6 +83,20 @@ const countByProp = (propName, agg, item) => {
   return agg;
 };
 
+const sumByProp = (propName, agg, item) => {
+  if (isNumber(item[propName])) {
+    if (isUndefined(agg.total)) {
+      agg.total = 0;
+    }
+    if (isUndefined(agg[propName])) {
+      agg[propName] = 0;
+    }
+    agg[propName] += item[propName];
+    agg.total++;
+  }
+  return agg;
+};
+
 /**
  * @param {Result<T>} result An Ok() or Err() from `results`
  * @returns {Promise<T>} A promise that resolves Ok or rejects Err.
@@ -131,6 +146,8 @@ Result.groupBy = (data, propName) => filterAndReduce((v) => hasProperty(v, propN
 
 Result.countBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
 
+Result.sumBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propName), (agg, item) => sumByProp(propName, agg, item), {}, data);
+
 /**
  * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok
  * @param {string} aggProp the property name to aggregate
@@ -144,6 +161,17 @@ Result.countByGroupBy = (data, aggProp, countProp) => {
   Object.keys(grouped).map(key => {
     const counted = reduce((agg, item) => countByProp(countProp, agg, item), {}, grouped[key]);
     result[key] = counted;
+  });
+  return result;
+};
+
+Result.sumByGroupBy = (data, aggProp, sumProps) => {
+  const result = {};
+  const filter = (item => hasProperty(item, aggProp));
+  const grouped = filterAndReduce(filter, (agg, item) => groupByProp(aggProp, agg, item), result, data);
+  Object.keys(grouped).forEach(key => {
+    const sumary = sumProps.map(prop => filterAndReduce((v) => hasProperty(v, prop), (agg, item) => sumByProp(prop, agg, item), {}, grouped[key]));
+    result[key] = sumary;
   });
   return result;
 };

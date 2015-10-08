@@ -3,6 +3,7 @@ describe('Functional utilities', () => {
   jest.dontMock('results');
   jest.dontMock('lodash/lang/isUndefined');
   jest.dontMock('lodash/lang/isObject');
+  jest.dontMock('lodash/lang/isNumber');
   let func;
   beforeEach(() => {
     func = require.requireActual('../functional');
@@ -130,6 +131,40 @@ describe('Functional utilities', () => {
     it('fail: should not countByGroupBy c, missing count prop', () => {
       expect(func.Result.countByGroupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'a', 'c'))
         .toEqual({});
+    });
+  });
+
+  describe('sumBy', () => {
+    it('it shall sumBy a', () => {
+      expect(func.Result.sumBy([{a: 1, b: 'm'}, {a: 2, b: 'm'}, {a: 1, b: 'n'}, {a: 1, b: 'm'}], 'a'))
+        .toEqual({a: 5, total: 4});
+    });
+    it('fail: should not sumBy c, missing group prop', () => {
+      expect(func.Result.sumBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'c'))
+        .toEqual({});
+    });
+    it('fail: should only sumBy a which is numeric, ignore the rest', () => {
+      expect(func.Result.sumBy([{a: 3, b: 'b'}, {a: 'odd', b: 'b'}, {a: 1, b: 'a'}], 'a'))
+        .toEqual({a: 4, total: 2});
+    });
+  });
+
+  describe('sumByGroupBy', () => {
+    it('it shall sumBy a, b and groupby c', () => {
+      expect(func.Result.sumByGroupBy([{a: 1, b: 4, c: 'm'}, {a: 2, b: 1, c: 'm'}, {a: 1, b: 2, c: 'n'}, {a: 1, c: 'm'}], 'c', ['a', 'b']))
+        .toEqual({m: [{a: 4, total: 3}, {b: 5, total: 2}], n: [{a: 1, total: 1}, {b: 2, total: 1}]});
+    });
+    it('it shall sumBy a, b only numeric values, ignore the rest and groupby c', () => {
+      expect(func.Result.sumByGroupBy([{a: 'odd', b: 4, c: 'm'}, {a: 2, b: 1, c: 'm'}, {a: 1, b: 'X', c: 'n'}, {a: 1, c: 'm'}], 'c', ['a', 'b']))
+        .toEqual({m: [{a: 3, total: 2}, {b: 5, total: 2}], n: [{a: 1, total: 1}, {}]});
+    });
+    it('should not groupBy c, missing group prop', () => {
+      expect(func.Result.sumByGroupBy([{a: 1, b: 'b'}, {a: 2, b: 'b'}, {a: 1, b: 'a'}], 'c', []))
+        .toEqual({});
+    });
+    it('should only groupBy a, SumBy c which is not a property', () => {
+      expect(func.Result.sumByGroupBy([{a: 3, b: 'b'}, {a: 'odd', b: 'b'}, {a: 1, b: 'a'}], 'b', ['c']))
+        .toEqual({a: [{}], b: [{}]});
     });
   });
 
