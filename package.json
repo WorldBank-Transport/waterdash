@@ -16,7 +16,8 @@
     "_slack_notify" : "gulp slack-notify",
     "_notify": "npm run _slack_notify",
     "start": "node server.js",
-    "test": "npm run lint && npm run test-only",
+    "test": "npm run test-only",
+    "posttest": "npm run lint",
     "test-only": "jest"
   },
   "jest": {
