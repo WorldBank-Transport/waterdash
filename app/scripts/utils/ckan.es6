@@ -1,4 +1,5 @@
 /* eslint camelcase: 0 */  // snake_case query params are not set by us
+import throttle from 'lodash/function/throttle';
 import * as func from './functional';
 import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
@@ -138,7 +139,23 @@ const resourceUrl = (id, params = {}) => func.promiseResult(
  * @returns {Promise<array<object>>} The converted data
  */
 function get(id, query = {}, notify = () => null) {
-  const chunk = 100000;
+  const chunk = 6000;
+  const maxParallel = 4;
+  const fetchWaitQueue = [];
+  const throttledNotify = throttle(notify, 1000, {leading: true, trailing: true});
+
+  const startNext = () => {
+    const next = fetchWaitQueue.shift();
+    if (typeof next === 'function') {
+      next().then(startNext);
+    }
+  };
+
+  const startQueue = () => {
+    for (let i = 0; i < maxParallel; i++) {
+      startNext();
+    }
+  };
 
   const getOffsets = (chunkSize, total) => {
     const offsets = [];
@@ -150,13 +167,18 @@ function get(id, query = {}, notify = () => null) {
   };
 
   const getChunk = (offset) => {
-    return resourceUrl(id, {...query, limit: chunk, offset: offset})
-      .then(fetch)
-      .catch(makeHTTPErrorNice)
-      .then(rejectIfNotHTTPOk)
-      .then(resp => resp.json())
-      .then(rejectIfNotSuccess)
-      .then(data => func.promiseResult(convertCkanResp(data)));
+    return new Promise((resolve, reject) => {
+      fetchWaitQueue.push(() =>
+        resourceUrl(id, {...query, limit: chunk, offset: offset})
+          .then(fetch)
+          .catch(makeHTTPErrorNice)
+          .then(rejectIfNotHTTPOk)
+          .then(resp => resp.json())
+          .then(rejectIfNotSuccess)
+          .then(data => func.promiseResult(convertCkanResp(data)))
+          .then(resolve, reject)
+      );
+    });
   };
 
   const promiseConcat = (...promises) => new Promise((resolve, reject) => {
@@ -165,7 +187,7 @@ function get(id, query = {}, notify = () => null) {
       .then(newData => {
         if (combined.isOk()) {
           combined = Ok(combined.unwrap().concat(newData));
-          notify(combined.unwrap());
+          throttledNotify(combined.unwrap());
         }
       })
       .catch(err => {
@@ -184,11 +206,12 @@ function get(id, query = {}, notify = () => null) {
     } else {
       promiseConcat(first, ...getOffsets(chunk, total).map(getChunk))
         .then(resolve, reject);
+      startQueue();
     }
   });
 
   return new Promise((resolve, reject) => {
-    notify([]);
+    throttledNotify([]);
 
     resourceUrl(id, {...query, limit: chunk})
       .then(fetch)
@@ -200,15 +223,6 @@ function get(id, query = {}, notify = () => null) {
       .then(resolve, reject);
   });
 
-
-  // return resourceUrl(id, {limit: 100})
-  //   .then(fetch)
-  //   .catch(makeHTTPErrorNice)
-  //   .then(rejectIfNotHTTPOk)
-  //   .then(resp => resp.json())
-  //   .then(peek('data!'))
-  //   .then(rejectIfNotSuccess)
-  //   .then(data => func.promiseResult(convertCkanResp(data)));
 }
 
 
