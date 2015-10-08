@@ -30,30 +30,29 @@ const WaterPoints = React.createClass({
   },
   render() {
     return (
-<div>
-    <Filters />
-
-    <div className="main waterpoints">
-        <div className="map-container">
-          <BoundsMap
-              bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
-              className="leaflet-map">
-            <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {this.state.waterpoints.map(waterpoint =>
+      <div>
+        <Filters />
+        <div className="main waterpoints">
+          <div className="map-container">
+            <BoundsMap
+                bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
+                className="leaflet-map">
+                <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {this.state.waterpoints.map(waterpoint =>
               <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
             )}
-          </BoundsMap>
-          <SpinnerModal
-              retry={load}
-              state={this.state.waterpointsState} />
+            </BoundsMap>
+            <SpinnerModal
+                retry={load}
+                state={this.state.waterpointsState} />
+          </div>
+          <ChartsContainer
+              onToggle={toggleCharts}
+              state={this.state.layout.charts}>
+              charts go here...
+          </ChartsContainer>
         </div>
-        <ChartsContainer
-            onToggle={toggleCharts}
-            state={this.state.layout.charts}>
-          charts go here...
-        </ChartsContainer>
       </div>
-  </div>
     );
   },
 });

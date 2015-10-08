@@ -5,7 +5,7 @@ require('stylesheets/boilerplate/divider');
 const Divider = React.createClass({
   render() {
     return (
-      <div className="layoutdivider"></div>
+      <div className="divider"></div>
     );
   },
 });
