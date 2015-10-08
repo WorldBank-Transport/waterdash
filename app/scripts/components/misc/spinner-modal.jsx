@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import T from './t';
+import TChildProps from './t-set-child-props';
 
 require('stylesheets/misc/spinner-modal');
 
@@ -7,13 +8,19 @@ const SpinnerModal = React.createClass({
   propTypes: {
     retry: PropTypes.func,
     state: PropTypes.object.isRequired,
+    message: PropTypes.string,
   },
   render() {
     return this.props.state.match({
       Finished: () => <div style={{display: 'none'}}></div>,
       Active: () => (
         <div className="spinner-modal">
-          <div className="spinner">TODO: replace me with the font-awesome spinner</div>
+          <div className="spinner">
+            <TChildProps>
+              <img alt={{k: 'loading'}} src="/images/loading-icon.gif" />
+            </TChildProps>
+            {this.props.message}
+          </div>
         </div>
       ),
       Failed: ({ errKey, errInterp }) => (

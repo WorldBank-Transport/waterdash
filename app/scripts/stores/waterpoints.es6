@@ -1,7 +1,7 @@
 import omit from 'lodash/object/omit';
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted } from '../actions/waterpoints';
+import { loadProgress, loadCompleted } from '../actions/waterpoints';
 
 /**
  * @param {object} record The waterpoint database record
@@ -17,6 +17,7 @@ const WaterpointsStore = createStore({
   initialData: [],
   mixins: [SaneStore],
   init() {
+    this.listenTo(loadProgress, 'loadData');
     this.listenTo(loadCompleted, 'loadData');
   },
   loadData(data) {

@@ -7,8 +7,8 @@ import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
-import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
+import TChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
 import WaterpointStatusChart from './charts/waterpoint-status-chart';
 import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
@@ -39,13 +39,14 @@ const WaterPoints = React.createClass({
                 bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
                 className="leaflet-map">
                 <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              {this.state.waterpoints.map(waterpoint =>
-              <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
-            )}
+                {/* <ClusteredWaterpoints data={this.state.waterpoints} /> */}
             </BoundsMap>
-            <SpinnerModal
-                retry={load}
-                state={this.state.waterpointsState} />
+            <TChildProps>
+              <SpinnerModal
+                  message={{k: 'loading.waterpoints', i: [this.state.waterpoints.length]}}
+                  retry={load}
+                  state={this.state.waterpointsState} />
+            </TChildProps>
           </div>
           <ChartsContainer
               onToggle={toggleCharts}

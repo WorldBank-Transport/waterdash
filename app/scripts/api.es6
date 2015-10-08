@@ -21,19 +21,22 @@ const staticResource = q => `layers/${q}.json`;
 const get = url =>
   fetch(url).then(resp => resp.json());
 
-export const getWaterpoints = () =>
-  resourceUrl('a94b3653-55f4-4455-9bed-42b92d5c4370', {
-    limit: 500,  // TODO: fix performance and remove this limit
-    fields: [
-      'LATITUDE',
-      'LONGITUDE',
-      'POPULATION SERVED',
-      'WATER_POINT_CODE',
-      'WATER_POINT_NAME',
-      'STATUS',
-      'REGION',
-    ],
-  }).then(ckan.get);
+
+const waterpointsQ = {
+  fields: [
+    'LATITUDE',
+    'LONGITUDE',
+    'POPULATION SERVED',
+    'WATER_POINT_CODE',
+    'WATER_POINT_NAME',
+    'STATUS',
+    'REGION',
+  ],
+  distinct: true,
+};
+
+export const getWaterpoints = (onProgress) =>
+  ckan.get('a94b3653-55f4-4455-9bed-42b92d5c4370', waterpointsQ, onProgress);
 
 export const getBoreholes = () =>
   resourceUrl('3b1d0344-1e83-4212-877e-428dd81cd802').then(ckan.get);
