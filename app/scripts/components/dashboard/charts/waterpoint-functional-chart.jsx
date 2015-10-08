@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3';
 import * as func from '../../../utils/functional';
+import TSetChildProps from '../../misc/t-set-child-props';
 
 require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 
@@ -26,14 +27,16 @@ const WaterpointFunctionalChart = React.createClass({
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
-        <BarChart
-            data={this.parseData(waterpointsRes)}
-            fill="#3182bd"
-            height={200}
-            title="Functional WaterPoints"
-            width={500}
-            xAxisLabel="Regions"
-            yAxisLabel="%"/>
+        <TSetChildProps>
+          <BarChart
+              data={this.parseData(waterpointsRes)}
+              fill="#3182bd"
+              height={200}
+              title={{k: 'chart.functional-waterpoints.title'}}
+              width={500}
+              xAxisLabel={{k: 'chart.functional-waterpoints.x-axis'}}
+              yAxisLabel={{k: 'chart.functional-waterpoints.y-axis'}} />
+        </TSetChildProps>
       </div>);
   },
 });

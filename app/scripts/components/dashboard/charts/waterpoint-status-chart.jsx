@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3';
 import * as func from '../../../utils/functional';
+import TSetChildProps from '../../misc/t-set-child-props';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
@@ -44,16 +45,18 @@ const WaterpointStatusChart = React.createClass({
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
-        <BarChart
-            data={this.parseData(dataRes)}
-            fill="#3182bd"
-            height={200}
-            legend={true}
-            stackOffset="wigget"
-            title="Waterpoint status"
-            width={500}
-            xAxisLabel="Regions"
-            yAxisLabel="Status" />
+        <TSetChildProps>
+          <BarChart
+              data={this.parseData(dataRes)}
+              fill="#3182bd"
+              height={200}
+              legend={true}
+              stackOffset="wigget"
+              title={{k: 'chart.status-waterpoints.title'}}
+              width={500}
+              xAxisLabel={{k: 'chart.status-waterpoints.x-axis'}}
+              yAxisLabel={{k: 'chart.status-waterpoints.y-axis'}} />
+          </TSetChildProps>
       </div>);
   },
 });
