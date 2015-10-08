@@ -8,7 +8,21 @@ import { loadProgress, loadCompleted } from '../actions/waterpoints';
  * @returns {object} The record with a `position` prop with lat/lng array
  */
 function pullLatLng(record) {
-  const pulled = omit(record, 'LATITUDE', 'LONGITUDE');
+  /*
+  The following slow implementation burns >400ms CPU time for me
+
+    const pulled = omit(record, 'LATITUDE', 'LONGITUDE');
+    pulled.position = [record.LATITUDE, record.LONGITUDE];
+    return pulled;
+
+  So here's a faster version (48ms):
+  */
+  const pulled = {};
+  for (let k in record) {
+    if (record.hasOwnProperty(k) && k !== 'LATITUDE' && k != 'LONGITUDE') {
+      pulled[k] = record[k];
+    }
+  }
   pulled.position = [record.LATITUDE, record.LONGITUDE];
   return pulled;
 }

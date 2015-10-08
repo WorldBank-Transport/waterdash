@@ -71,17 +71,38 @@ export function convertField({id, type} = {}) {
 /**
  * @param {object} fieldConverters A key:func mapping of field names to converter functions
  * @param {object} record The key:rawValue record to be converted
- * @returns {object} the record but with converted values
+ * @returns {Result} the record but with converted values
  */
 export function convertRecord(fieldConverters, record) {
-  return func.Result.mapMergeObj(([id, converter]) => {
-    if (!isUndefined(record[id])) {
-      return Ok({[id]: converter(record[id])});
-    } else {
-      warn(`Record is missing field '${id}': ${JSON.stringify(record)}`);
-      return Err(['error.api.ckan.record-missing-field', id]);
+  /*
+  Original, slow version:
+
+    function convertRecord(fieldConverters, record) {
+      return func.Result.mapMergeObj(([id, converter]) => {
+        if (!isUndefined(record[id])) {
+          return Ok({[id]: converter(record[id])});
+        } else {
+          warn(`Record is missing field '${id}': ${JSON.stringify(record)}`);
+          return Err(['error.api.ckan.record-missing-field', id]);
+        }
+      }, fieldConverters);
     }
-  }, fieldConverters);
+
+  The above function ate over 2s of CPU time for waterpoints on my machine, so
+  here is a faster implementation:
+  */
+  const converted = {};
+  for (let k in fieldConverters) {
+    if (fieldConverters.hasOwnProperty(k)) {
+      if (typeof record[k] !== 'undefined') {
+        converted[k] = fieldConverters[k](record[k]);
+      } else {
+        warn(`Record is missing field '${k}': ${JSON.stringify(record)}`);
+        return Err(['error.api.ckan.record-missing-field', k]);
+      }
+    }
+  }
+  return Ok(converted);
 }
 
 /**
