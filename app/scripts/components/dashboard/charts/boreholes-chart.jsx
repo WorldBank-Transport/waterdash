@@ -37,10 +37,10 @@ const StackBarChart = React.createClass({
               data={this.parseData(dataRes)}
               fill="#3182bd"
               height={200}
-              title={{t: 'chart.boreholes.title' }}
+              title={{k: 'chart.boreholes.title' }}
               width={500}
-              xAccessName={{t: 'chart.boreholes.x-axis' }}
-              yAccessTitle={{t: 'chart.boreholes.y-axis' }} />
+              xAxisLabel={{k: 'chart.boreholes.x-axis' }}
+              yAxisLabel={{k: 'chart.boreholes.y-axis' }} />
         </TSetChildProps>
       </div>);
   },
