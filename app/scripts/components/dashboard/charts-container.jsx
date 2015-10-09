@@ -11,7 +11,7 @@ const ChartsContainer = React.createClass({
     children: PropTypes.node.isRequired,
     onToggle: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
-    waterpoints: PropTypes.object.isRequired,
+    waterpoints: PropTypes.array.isRequired,
   },
   toggle(e) {
     e.preventDefault();
