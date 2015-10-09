@@ -36,6 +36,10 @@ const allTranslations = {
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
 
+    'chart.boreholes.title': 'Boreholes',
+    'chart.boreholes.x-axis': 'Regions',
+    'chart.boreholes.y-axis': '#',
+
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
     'view-mode.district': 'District',

@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
+import { load as loadBoreholes } from '../../actions/boreholes';
 import { toggleCharts } from '../../actions/layout';
 import LayoutStore from '../../stores/layout';
 import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
+import BoreholesStore from '../../stores/boreholes';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
 import SpinnerModal from '../misc/spinner-modal';
 import StackBarChart from './charts/stack-bar-chart';
+import BoreholesChart from './charts/boreholes-chart';
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -22,10 +25,12 @@ const WaterPoints = React.createClass({
   mixins: [
     connect(FilteredWaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
+    connect(BoreholesStore, 'boreholes'),
     connect(LayoutStore, 'layout'),
   ],
   componentDidMount() {
     load();
+    loadBoreholes();
   },
   render() {
     return (
@@ -47,7 +52,11 @@ const WaterPoints = React.createClass({
             onToggle={toggleCharts}
             state={this.state.layout.charts}
             waterpoints={this.state.waterpoints}>
-          <StackBarChart data={this.state.waterpoints} />
+          <div>
+            <StackBarChart data={this.state.waterpoints} />
+
+            <BoreholesChart boreholes={this.state.boreholes}/>
+          </div>
         </ChartsContainer>
       </div>
     );
