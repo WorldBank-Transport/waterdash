@@ -33,14 +33,12 @@ export function makeHTTPErrorNice(err) {
  * @returns {Promise<object>} resolves to the raw response again or rejects
  */
 export function rejectIfNotHTTPOk(response) {
-  return new Promise((resolve, reject) => {
-    if (!(response.status >= 200 && response.status < 300)) {
-      warn(response);
-      reject(['error.api.http.not-ok', response.status, response.statusText]);
-    } else {
-      resolve(response);
-    }
-  });
+  if (!response.ok) {
+    warn(response);
+    return Promise.reject(['error.api.http.not-ok', response.status, response.statusText]);
+  } else {  // pass-through
+    return response;
+  }
 }
 
 /**
@@ -48,14 +46,12 @@ export function rejectIfNotHTTPOk(response) {
  * @returns {Promise<object>} resolves the object, or rejects if it's an error
  */
 export function rejectIfNotSuccess(ckanObj) {
-  return new Promise((resolve, reject) => {
-    if (!ckanObj.success) {
-      warn(ckanObj);
-      reject(['error.api.ckan']);
-    } else {
-      resolve(ckanObj);
-    }
-  });
+  if (!ckanObj.success) {
+    warn(ckanObj);
+    return Promise.reject(['error.api.ckan']);
+  } else {  // pass-through
+    return ckanObj;
+  }
 }
 
 /**
