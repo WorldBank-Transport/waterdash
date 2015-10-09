@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import { load } from '../../actions/waterpoints';
+import { load as loadBoreholes } from '../../actions/boreholes';
 import { toggleCharts } from '../../actions/layout';
 import LayoutStore from '../../stores/layout';
 import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
+import BoreholesStore from '../../stores/boreholes';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import ClusteredWaterpoints from '../leaflet/clustered-waterpoints';
@@ -13,6 +15,7 @@ import TChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
 import WaterpointStatusChart from './charts/waterpoint-status-chart';
 import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
+import BoreholesChart from './charts/boreholes-chart';
 import Filters from '../filters/filters';
 
 require('stylesheets/dashboard/waterpoints');
@@ -25,10 +28,12 @@ const WaterPoints = React.createClass({
   mixins: [
     connect(FilteredWaterpointsStore, 'waterpoints'),
     connect(WaterpointsStateStore, 'waterpointsState'),
+    connect(BoreholesStore, 'boreholes'),
     connect(LayoutStore, 'layout'),
   ],
   componentDidMount() {
     load();
+    loadBoreholes();
   },
   render() {
     return (
@@ -56,7 +61,7 @@ const WaterPoints = React.createClass({
             <div className="container">
               <div className="secondaryCharts">
                 <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
-                <div className="row"></div>
+                <div className="row"><BoreholesChart boreholes={this.state.boreholes}/></div>
               </div>
               <div className="mainChart">
                 <WaterpointStatusChart waterpoints={this.state.waterpoints} />

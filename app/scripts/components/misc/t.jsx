@@ -42,6 +42,10 @@ const allTranslations = {
     'chart.status-waterpoints.x-axis': 'Regions',
     'chart.status-waterpoints.y-axis': 'Status',
 
+    'chart.boreholes.title': 'Boreholes',
+    'chart.boreholes.x-axis': 'Regions',
+    'chart.boreholes.y-axis': '#',
+
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
     'view-mode.district': 'District',
