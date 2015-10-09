@@ -6,9 +6,10 @@
  */
 
 describe('Static Components', () => {
-  let React, Data, SpeakOut, NotFound;
+  let React, Homepage, Data, SpeakOut, NotFound;
   beforeEach(() => {
     React = require('react/addons');
+    Homepage = require.requireActual('../homepage.jsx');
     Data = require.requireActual('../data.jsx');
     SpeakOut = require.requireActual('../speak-out.jsx');
     NotFound = require.requireActual('../not-found.jsx');
@@ -21,6 +22,9 @@ describe('Static Components', () => {
   it('should have class "main"', () => {
     const data = React.addons.TestUtils.renderIntoDocument(<Data />);
     expect(React.findDOMNode(data).className).toEqual('main');
+
+    const homepage = React.addons.TestUtils.renderIntoDocument(<Homepage />);
+    expect(React.findDOMNode(homepage).className).toEqual('main');
 
     const speakOut = React.addons.TestUtils.renderIntoDocument(<SpeakOut />);
     expect(React.findDOMNode(speakOut).className).toEqual('main');

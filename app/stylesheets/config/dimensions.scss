@@ -1,7 +1,7 @@
 $base-unit: 1em;
 
 // widths and heights
-$header-height: 120px;
+$header-height: 118px;
 
 $logo-width: 80px;
 
@@ -20,6 +20,10 @@ $tab-icon-size: 20px;
 
 $footer-height: 100px;
 
+$divider-height: 12px;
+
+$general-content-padding: 30px;
+
 // margins and padding
 $logo-top-position: 18px;
 $header-common-margin: 33px;
@@ -27,3 +31,9 @@ $nav-top-position: 37px;
 $header-footer-padding: 35px;
 $nav-padding: 12px;
 $footer-text-top-position: 20px;
+
+$content-padding-vert: 10px;
+$content-padding-horiz: 100px;
+
+$button-link-horiz: 100px;
+$button-link-vert: 10px;
