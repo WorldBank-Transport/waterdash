@@ -131,6 +131,34 @@ const resourceUrl = (root, id, params = {}) => func.promiseResult(
     })
     .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`)));
 
+const getOffsets = (chunkSize, total) => {
+  const offsets = [];
+  const num = Math.ceil(total / chunkSize);
+  for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
+    offsets.push(i * chunkSize);
+  }
+  return offsets;
+};
+
+const convertChunk = data => func.promiseResult(convertCkanResp(data));
+
+const promiseConcat = (notify, ...promises) => new Promise((resolve, reject) => {
+  let combined = Ok([]);
+  promises.forEach(prom => prom
+    .then(newData => {
+      if (combined.isOk()) {
+        combined = Ok(combined.unwrap().concat(newData));
+        notify(combined.unwrap());
+      }
+    })
+    .catch(err => {
+      combined = Err(err);
+    }));
+  Promise.all(promises)
+    .then(() => resolve(combined.unwrap()))
+    .catch(reject);
+});
+
 /**
  * @param {string} root The CKAN API root
  * @param {string} id The resource's id
@@ -142,62 +170,31 @@ function get(root, id, query = {}, notify = () => null) {
   const chunk = 6000;
   const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
-  const getOffsets = (chunkSize, total) => {
-    const offsets = [];
-    const num = Math.ceil(total / chunkSize);
-    for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
-      offsets.push(i * chunkSize);
-    }
-    return offsets;
-  };
-
   const getChunk = (offset) => {
     return resourceUrl(root, id, {...query, limit: chunk, offset: offset})
       .then(fetch)
       .catch(makeHTTPErrorNice)
       .then(rejectIfNotHTTPOk)
       .then(resp => resp.json())
-      .then(rejectIfNotSuccess)
-      .then(data => func.promiseResult(convertCkanResp(data)));
+      .then(rejectIfNotSuccess);
   };
-
-  const promiseConcat = (...promises) => new Promise((resolve, reject) => {
-    let combined = Ok([]);
-    promises.forEach(prom => prom
-      .then(newData => {
-        if (combined.isOk()) {
-          combined = Ok(combined.unwrap().concat(newData));
-          throttledNotify(combined.unwrap());
-        }
-      })
-      .catch(err => {
-        combined = Err(err);
-      }));
-    Promise.all(promises)
-      .then(() => resolve(combined.unwrap()))
-      .catch(reject);
-  });
 
   const getTheRest = (firstResp) => new Promise((resolve, reject) => {
     const { total } = firstResp.result;
-    const first = func.promiseResult(convertCkanResp(firstResp));
-    if (total <=  chunk) {
+    const first = convertChunk(firstResp);
+    if (total <= chunk) {
       first.then(resolve, reject);
     } else {
-      promiseConcat(first, ...getOffsets(chunk, total).map(getChunk))
+      const chunkPromises = getOffsets(chunk, total)
+        .map(offset => getChunk(offset).then(convertChunk));
+      promiseConcat(throttledNotify, first, ...chunkPromises)
         .then(resolve, reject);
     }
   });
 
   return new Promise((resolve, reject) => {
     throttledNotify([]);
-
-    resourceUrl(root, id, {...query, limit: chunk})
-      .then(fetch)
-      .catch(makeHTTPErrorNice)
-      .then(rejectIfNotHTTPOk)
-      .then(resp => resp.json())
-      .then(rejectIfNotSuccess)
+    getChunk(0)
       .then(getTheRest)
       .then(resolve, reject);
   });
