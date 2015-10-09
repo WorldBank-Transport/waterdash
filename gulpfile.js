@@ -3,7 +3,10 @@ const sassLint = require('gulp-sass-lint');
 const inject = require('gulp-inject');
 
 gulp.task('lint-styles', function() {
-  gulp.src('app/stylesheets/**/*.scss')
+  gulp.src([
+    'app/stylesheets/**/*.scss',
+    '!app/stylesheets/leaflet/prune-cluster.scss',  // vendor file
+  ])
     .pipe(sassLint())
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError());
