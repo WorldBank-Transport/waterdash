@@ -246,14 +246,18 @@ var PruneCluster;
             });
         };
         PruneCluster.prototype._sortMarkers = function () {
-            // EDIT BY PHIL: always use built in sort. Insertion sort is sloooooooooooow
-            // var markers = this._markers, length = markers.length;
-            // if (this._nbChanges && (!length || this._nbChanges / length > ratioForNativeSort)) {
+            /*
+            EDIT BY PHIL: Cap insertionSort at max 300 insertions
+            */
+            var markers = this._markers, length = markers.length;
+            if (this._nbChanges) {
+              if (this._nbChanges < 300 && (this._nbChanges / length) < 0.2) {
+                insertionSort(markers);
+              } else {
                 this._markers.sort(function (a, b) { return a.position.lng - b.position.lng; });
-            // }
-            // else {
-            //     insertionSort(markers);
-            // }
+              }
+            }
+
             this._nbChanges = 0;
         };
         PruneCluster.prototype._sortClusters = function () {
