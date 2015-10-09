@@ -19,10 +19,12 @@ const converters = {
  * @returns {Promise<object>} re-rejects the err with the error code key
  */
 export function makeHTTPErrorNice(err) {
-  return new Promise((resolve, reject) => {
+  if (err instanceof Error) {  // this probably came from fetch()
     warn(err);
-    reject(['error.api.http']);
-  });
+    return Promise.reject(['error.api.http']);
+  } else {  // probably not an http error, so just pass it on
+    return Promise.reject(err);
+  }
 }
 
 
