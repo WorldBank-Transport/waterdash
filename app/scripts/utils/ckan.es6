@@ -179,26 +179,20 @@ function get(root, id, query = {}, notify = () => null) {
       .then(rejectIfNotSuccess);
   };
 
-  const getTheRest = (firstResp) => new Promise((resolve, reject) => {
+  const getTheRest = (firstResp) => {
     const { total } = firstResp.result;
     const first = convertChunk(firstResp);
     if (total <= chunk) {
-      first.then(resolve, reject);
+      return first;  // we have it all
     } else {
       const chunkPromises = getOffsets(chunk, total)
         .map(offset => getChunk(offset).then(convertChunk));
-      promiseConcat(throttledNotify, first, ...chunkPromises)
-        .then(resolve, reject);
+      return promiseConcat(throttledNotify, first, ...chunkPromises);
     }
-  });
+  };
 
-  return new Promise((resolve, reject) => {
-    throttledNotify([]);
-    getChunk(0)
-      .then(getTheRest)
-      .then(resolve, reject);
-  });
-
+  return getChunk(0)
+    .then(getTheRest);
 }
 
 
