@@ -4,8 +4,8 @@ import React, { PropTypes } from 'react';
 
 const ClusteredWaterpoints = React.createClass({
   propTypes: {
-    data: PropTypes.array.isRequired,
     map: PropTypes.instanceOf(Map).isRequired,
+    waterpoints: PropTypes.array.isRequired,
   },
   componentWillMount() {
     this.pruneCluster = new PruneClusterForLeaflet();
@@ -17,7 +17,7 @@ const ClusteredWaterpoints = React.createClass({
     this.updateCluster();
   },
   shouldComponentUpdate(nextProps) {
-    return nextProps.data !== this.props.data;
+    return nextProps.waterpoints !== this.props.waterpoints;
   },
   componentDidUpdate() {
     this.updateCluster();
@@ -30,7 +30,7 @@ const ClusteredWaterpoints = React.createClass({
     const nextMap = {};
 
     // Existing markers: remove or keep
-    this.props.data.forEach(waterpoint => {
+    this.props.waterpoints.forEach(waterpoint => {
       const id = waterpoint.WATER_POINT_CODE;
       if (typeof this.markerIdMap[id] !== 'undefined') {  // already have it
         nextMap[id] = this.markerIdMap[id];  // just copy the ref over

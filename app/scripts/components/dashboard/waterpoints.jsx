@@ -40,7 +40,7 @@ const WaterPoints = React.createClass({
                 bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
                 className="leaflet-map">
               <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <ClusteredWaterpoints data={this.state.waterpoints} />
+              <ClusteredWaterpoints waterpoints={this.state.waterpoints} />
             </BoundsMap>
             <TChildProps>
               <SpinnerModal
