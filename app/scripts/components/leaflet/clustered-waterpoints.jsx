@@ -44,7 +44,22 @@ const ClusteredWaterpoints = React.createClass({
       m.setOpacity = () => null;  // PruneCluster tries to call this
       return m;
     };
-    this.pruneCluster.Cluster.Size = 21;
+    const originalProcessView = this.pruneCluster.ProcessView;
+    this.pruneCluster.ProcessView = () => {
+      let clusterSize;
+      const zoom = this.props.map.getZoom();
+      if (zoom < 8) {
+        clusterSize = 21;
+      } else if (zoom < 11) {
+        clusterSize = 8;
+      } else if (zoom < 13) {
+        clusterSize = 3;
+      } else {
+        clusterSize = 0.01;
+      }
+      this.pruneCluster.Cluster.Size = clusterSize;
+      originalProcessView.apply(this.pruneCluster);
+    };
     this.props.map.addLayer(this.pruneCluster);
     this.markerIdMap = {};
   },
