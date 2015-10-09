@@ -2,7 +2,16 @@
 describe('Functional utilities', () => {
   jest.dontMock('results');
   jest.dontMock('lodash/lang/isUndefined');
-  jest.dontMock('lodash/lang/isObject');
+  jest.dontMock('lodash/object/has');
+  jest.dontMock('lodash/internal/baseGet');
+  jest.dontMock('lodash/internal/baseSlice');
+  jest.dontMock('lodash/lang/isArguments');
+  jest.dontMock('lodash/lang/isArray');
+  jest.dontMock('lodash/internal/isIndex');
+  jest.dontMock('lodash/internal/isKey');
+  jest.dontMock('lodash/internal/isLength');
+  jest.dontMock('lodash/array/last');
+  jest.dontMock('lodash/internal/toPath');
   let func;
   beforeEach(() => {
     func = require.requireActual('../functional');
