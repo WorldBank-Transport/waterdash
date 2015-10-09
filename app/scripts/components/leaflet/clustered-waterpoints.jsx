@@ -1,6 +1,22 @@
 import { Map } from 'leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from './prune-cluster';
 import React, { PropTypes } from 'react';
+import ClusterIcon from './cluster-icon';
+import colours from '../../utils/colours';
+
+const statuses = [
+  'FUNCTIONAL',  // 0
+  'FUNCTIONAL NEEDS REPAIR',  // 1
+  'NON FUNCTIONAL',  // 2
+];
+
+const statusCategory = {
+  'FUNCTIONAL': 'good',
+  'FUNCTIONAL NEEDS REPAIR': 'medium',
+  'NON FUNCTIONAL': 'poor',
+};
+
+const statusCatColours = statuses.map(status => colours[statusCategory[status]]);
 
 const ClusteredWaterpoints = React.createClass({
   propTypes: {
@@ -9,6 +25,13 @@ const ClusteredWaterpoints = React.createClass({
   },
   componentWillMount() {
     this.pruneCluster = new PruneClusterForLeaflet();
+    this.pruneCluster.BuildLeafletClusterIcon = cluster => new ClusterIcon({
+      categories: statusCatColours,
+      stats: cluster.stats,
+      population: cluster.population,
+      textColor: colours.textColor,
+      bgColor: colours.bgColor,
+    });
     this.pruneCluster.Cluster.Size = 21;
     this.props.map.addLayer(this.pruneCluster);
     this.markerIdMap = {};
@@ -37,6 +60,7 @@ const ClusteredWaterpoints = React.createClass({
         delete this.markerIdMap[id];  // clear ref from old map
       } else {
         const marker = new PruneCluster.Marker(...waterpoint.position);
+        marker.category = statuses.indexOf(waterpoint.STATUS);
         nextMap[id] = marker;
         this.pruneCluster.RegisterMarker(marker);
       }
