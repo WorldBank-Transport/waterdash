@@ -37,7 +37,7 @@ export function rejectIfNotHTTPOk(response) {
     warn(response);
     return Promise.reject(['error.api.http.not-ok', response.status, response.statusText]);
   } else {  // pass-through
-    return response;
+    return Promise.resolve(response);
   }
 }
 
@@ -50,7 +50,7 @@ export function rejectIfNotSuccess(ckanObj) {
     warn(ckanObj);
     return Promise.reject(['error.api.ckan']);
   } else {  // pass-through
-    return ckanObj;
+    return Promise.resolve(ckanObj);
   }
 }
 
