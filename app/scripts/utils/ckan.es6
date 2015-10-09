@@ -131,6 +131,12 @@ const resourceUrl = (root, id, params = {}) => func.promiseResult(
     })
     .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`)));
 
+/**
+ * @param {number} chunkSize How big is each chunk allowed to be
+ * @param {number} total How many rows there are to be chunked
+ * @returns {array<number>} The offset of each chunk to fetch (not including
+ * the first one, which we already fetched to find the total)
+ */
 const getOffsets = (chunkSize, total) => {
   const offsets = [];
   const num = Math.ceil(total / chunkSize);
@@ -142,6 +148,12 @@ const getOffsets = (chunkSize, total) => {
 
 const convertChunk = data => func.promiseResult(convertCkanResp(data));
 
+/**
+ * @param {function} notify A callback to provide partial data updates
+ * @param {array<Promise>} promises The promises to wait for
+ * @returns {Promise} Resolves all the resolved data concatenated in one big
+ * array, or rejects if any the promises fail.
+ */
 const promiseConcat = (notify, ...promises) => new Promise((resolve, reject) => {
   let combined = Ok([]);
   promises.forEach(prom => prom
