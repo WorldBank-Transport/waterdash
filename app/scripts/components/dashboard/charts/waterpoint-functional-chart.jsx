@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {BarChart} from 'react-d3';
+import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 
@@ -13,7 +13,7 @@ const WaterpointFunctionalChart = React.createClass({
   parseData(waterpoints) {
     const comparator = (a, b) => b.y - a.y;
     return [{
-      name: '% Functional',
+      label: '% Functional',
       values: Object.keys(waterpoints).map(key => {
         return {
           x: key,
@@ -30,8 +30,8 @@ const WaterpointFunctionalChart = React.createClass({
         <TSetChildProps>
           <BarChart
               data={this.parseData(waterpointsRes)}
-              fill="#3182bd"
               height={200}
+              margin={{top: 10, bottom: 50, left: 50, right: 10}}
               title={{k: 'chart.functional-waterpoints.title'}}
               width={500}
               xAxisLabel={{k: 'chart.functional-waterpoints.x-axis'}}

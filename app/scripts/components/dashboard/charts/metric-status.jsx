@@ -12,10 +12,10 @@ const MetricStatus = React.createClass({
 
   render() {
     let className, iconSymbol;
-    if (Math.random() < 1 / 3.0) {  // some condition
+    if (this.props.metric === 'FUNCTIONAL') {  // some condition
       className = 'good';
       iconSymbol = '✓';
-    } else if (Math.random() < 1 / 2.0) {
+    } else if (this.props.metric === 'FUNCTIONAL NEEDS REPAIR') {
       className = 'medium';
       iconSymbol = '-';
     } else {
