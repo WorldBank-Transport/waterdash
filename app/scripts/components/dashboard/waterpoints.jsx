@@ -10,7 +10,9 @@ import BoundsMap from '../leaflet/bounds-map';
 import WaterpointMarker from '../leaflet/waterpoint-marker';
 import ChartsContainer from './charts-container';
 import SpinnerModal from '../misc/spinner-modal';
-import StackBarChart from './charts/stack-bar-chart';
+import WaterpointStatusChart from './charts/waterpoint-status-chart';
+import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
+import Filters from '../filters/filters';
 
 require('stylesheets/dashboard/waterpoints');
 
@@ -29,26 +31,37 @@ const WaterPoints = React.createClass({
   },
   render() {
     return (
-      <div className="main waterpoints">
-        <div className="map-container">
-          <BoundsMap
-              bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
-              className="leaflet-map">
-            <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {this.state.waterpoints.map(waterpoint =>
+      <div className="main">
+        <Filters />
+        <div className="waterpoints">
+          <div className="map-container">
+            <BoundsMap
+                bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
+                className="leaflet-map">
+                <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              {this.state.waterpoints.map(waterpoint =>
               <WaterpointMarker center={waterpoint.position} key={waterpoint.WATER_POINT_CODE} />
             )}
-          </BoundsMap>
-          <SpinnerModal
-              retry={load}
-              state={this.state.waterpointsState} />
+            </BoundsMap>
+            <SpinnerModal
+                retry={load}
+                state={this.state.waterpointsState} />
+          </div>
+          <ChartsContainer
+              onToggle={toggleCharts}
+              state={this.state.layout.charts}
+              waterpoints={this.state.waterpoints}>
+            <div className="container">
+              <div className="secondaryCharts">
+                <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
+                <div className="row"></div>
+              </div>
+              <div className="mainChart">
+                <WaterpointStatusChart waterpoints={this.state.waterpoints} />
+              </div>
+            </div>
+          </ChartsContainer>
         </div>
-        <ChartsContainer
-            onToggle={toggleCharts}
-            state={this.state.layout.charts}
-            waterpoints={this.state.waterpoints}>
-          <StackBarChart data={this.state.waterpoints} />
-        </ChartsContainer>
       </div>
     );
   },

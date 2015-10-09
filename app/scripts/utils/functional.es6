@@ -1,7 +1,7 @@
 import { Ok } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
-import isObject from 'lodash/lang/isObject';
 import isNumber from 'lodash/lang/isNumber';
+import has from 'lodash/object/has';
 
 /**
  * @param {func} process A transformation to apply to each element of data
@@ -60,8 +60,6 @@ function asArray(obj) {
   return Object.keys(obj)
     .map(k => [k, obj[k]]);
 }
-
-const hasProperty = (data, propName) => (!isUndefined(data) && isObject(data) && !isUndefined(data[propName]));
 
 const groupByProp = (properyName, agg, item) => {
   if (isUndefined(agg[item[properyName]])) {
@@ -142,11 +140,11 @@ Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray
  */
 Result.merge = (data) => reduceResult((v) => Ok(v), mergeTwo, {}, data);
 
-Result.groupBy = (data, propName) => filterAndReduce((v) => hasProperty(v, propName), (agg, item) => groupByProp(propName, agg, item), {}, data);
+Result.groupBy = (data, propName) => filterAndReduce((v) => has(v, propName), (agg, item) => groupByProp(propName, agg, item), {}, data);
 
-Result.countBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
+Result.countBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
 
-Result.sumBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propName), (agg, item) => sumByProp(propName, agg, item), {}, data);
+Result.sumBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => sumByProp(propName, agg, item), {}, data);
 
 /**
  * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok
@@ -156,7 +154,7 @@ Result.sumBy = (data, propName) =>  filterAndReduce((v) => hasProperty(v, propNa
  */
 Result.countByGroupBy = (data, aggProp, countProp) => {
   const result = {};
-  const filter = (item => (hasProperty(item, aggProp) && hasProperty(item, countProp)));
+  const filter = item => (has(item, aggProp) && has(item, countProp));
   const grouped = filterAndReduce(filter, (agg, item) => groupByProp(aggProp, agg, item), result, data);
   Object.keys(grouped).map(key => {
     const counted = reduce((agg, item) => countByProp(countProp, agg, item), {}, grouped[key]);
@@ -167,10 +165,10 @@ Result.countByGroupBy = (data, aggProp, countProp) => {
 
 Result.sumByGroupBy = (data, aggProp, sumProps) => {
   const result = {};
-  const filter = (item => hasProperty(item, aggProp));
+  const filter = (item => has(item, aggProp));
   const grouped = filterAndReduce(filter, (agg, item) => groupByProp(aggProp, agg, item), result, data);
   Object.keys(grouped).forEach(key => {
-    const sumary = sumProps.map(prop => filterAndReduce((v) => hasProperty(v, prop), (agg, item) => sumByProp(prop, agg, item), {}, grouped[key]));
+    const sumary = sumProps.map(prop => filterAndReduce((v) => has(v, prop), (agg, item) => sumByProp(prop, agg, item), {}, grouped[key]));
     result[key] = sumary;
   });
   return result;

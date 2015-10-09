@@ -35,6 +35,12 @@ const allTranslations = {
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
+    'chart.functional-waterpoints.title': 'Functional WaterPoints',
+    'chart.functional-waterpoints.x-axis': 'Regions',
+    'chart.functional-waterpoints.y-axis': '%',
+    'chart.status-waterpoints.title': 'Waterpoint status',
+    'chart.status-waterpoints.x-axis': 'Regions',
+    'chart.status-waterpoints.y-axis': 'Status',
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
@@ -62,6 +68,10 @@ const allTranslations = {
 
     'view-mode.region': 'Mkoa',
     'view-mode.district': 'Wilaya',
+
+    'chart.functional-waterpoints.title': 'puntos de agua funcionando',
+    'chart.functional-waterpoints.x-axis': 'Regiones',
+    'chart.functional-waterpoints.y-axis': 'porc',
 
   },
 };
