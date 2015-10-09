@@ -7,6 +7,7 @@ import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
+import ClusteredWaterpoints from '../leaflet/clustered-waterpoints';
 import ChartsContainer from './charts-container';
 import TChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
@@ -38,8 +39,8 @@ const WaterPoints = React.createClass({
             <BoundsMap
                 bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
                 className="leaflet-map">
-                <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                {/* <ClusteredWaterpoints data={this.state.waterpoints} /> */}
+              <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+              <ClusteredWaterpoints data={this.state.waterpoints} />
             </BoundsMap>
             <TChildProps>
               <SpinnerModal
