@@ -1,4 +1,4 @@
-import { Map } from 'leaflet';
+import { Map, CircleMarker } from 'leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from './prune-cluster';
 import React, { PropTypes } from 'react';
 import ClusterIcon from './cluster-icon';
@@ -32,6 +32,18 @@ const ClusteredWaterpoints = React.createClass({
       textColor: colours.textColor,
       bgColor: colours.bgColor,
     });
+    this.pruneCluster.BuildLeafletMarker = (marker, position) => {
+      const m = new CircleMarker(position, {
+        radius: 8,
+        color: '#fff',
+        opacity: 0.75,
+        weight: 1,
+        fillOpacity: 1,
+        fillColor: colours[statusCategory[statuses[marker.category]]] || colours.unknown,
+      });
+      m.setOpacity = () => null;  // PruneCluster tries to call this
+      return m;
+    };
     this.pruneCluster.Cluster.Size = 21;
     this.props.map.addLayer(this.pruneCluster);
     this.markerIdMap = {};

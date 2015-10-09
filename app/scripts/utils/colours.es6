@@ -8,4 +8,5 @@ export default {
   good: '#82c675',
   medium: '#fbc030',
   poor: '#f05e55',
+  unknown: '#7d7d7d',
 };
