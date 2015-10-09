@@ -123,22 +123,22 @@ export function convertCkanResp(result) {
       func.Result.map(rec => convertRecord(fieldConverters, rec), records));
 }
 
-const API_ROOT = '//data.takwimu.org/api';
-const resourceUrl = (id, params = {}) => func.promiseResult(
+const resourceUrl = (root, id, params = {}) => func.promiseResult(
   toQuery({...params, resource_id: id})
     .orElse(err => {
       warn(err);
       return Err(['error.api.pre-request']);
     })
-    .andThen(qs => Ok(`${API_ROOT}/action/datastore_search?${qs}`)));
+    .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`)));
 
 /**
+ * @param {string} root The CKAN API root
  * @param {string} id The resource's id
  * @param {object} query Any query to be applied
  * @param {func} notify A callback to indicate progress
  * @returns {Promise<array<object>>} The converted data
  */
-function get(id, query = {}, notify = () => null) {
+function get(root, id, query = {}, notify = () => null) {
   const chunk = 6000;
   const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
@@ -152,7 +152,7 @@ function get(id, query = {}, notify = () => null) {
   };
 
   const getChunk = (offset) => {
-    return resourceUrl(id, {...query, limit: chunk, offset: offset})
+    return resourceUrl(root, id, {...query, limit: chunk, offset: offset})
       .then(fetch)
       .catch(makeHTTPErrorNice)
       .then(rejectIfNotHTTPOk)
@@ -192,7 +192,7 @@ function get(id, query = {}, notify = () => null) {
   return new Promise((resolve, reject) => {
     throttledNotify([]);
 
-    resourceUrl(id, {...query, limit: chunk})
+    resourceUrl(root, id, {...query, limit: chunk})
       .then(fetch)
       .catch(makeHTTPErrorNice)
       .then(rejectIfNotHTTPOk)
