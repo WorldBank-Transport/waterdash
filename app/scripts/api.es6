@@ -36,7 +36,28 @@ export const getWaterpoints = () =>
   }).then(ckan.get);
 
 export const getBoreholes = () =>
-  resourceUrl('3b1d0344-1e83-4212-877e-428dd81cd802').then(ckan.get);
+  resourceUrl('3b1d0344-1e83-4212-877e-428dd81cd802', {
+    limit: 500,
+    fields: [
+      'REGION',
+      'DISTRICT',
+      'LOCATION',
+      'BOREHOLE_NO',
+      'RIG_NO',
+      'DIAMETER',
+      'DEPTH_METER',
+      'STATIC_WATER_LEVEL',
+      'DYNAMIC_WATER_LEVEL_METER',
+      'DRAW _DOWN_METER',
+      'YIELD_METER_CUBED_PER_HOUR',
+      'DATE_OF_COMMENCEMENT',
+      'DATE_OF_COMPLETION',
+      'ELECTRICAL_CONDUCTIVITY',
+      'CONSULTANT',
+      'YEAR_FROM',
+      'YEAR_TO',
+    ],
+  }).then(ckan.get);
 
 export const getDams = () =>
   resourceUrl('d6dcc9f8-c480-4bd0-b748-2d0b12d92396').then(ckan.get);
