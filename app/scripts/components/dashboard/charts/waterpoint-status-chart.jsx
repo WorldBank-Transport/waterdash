@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {BarChart} from 'react-d3';
+import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 
@@ -30,7 +30,7 @@ const WaterpointStatusChart = React.createClass({
           .filter(key => key !== 'keys')
           .map(key => {
             return {
-              name: key,
+              label: key,
               values: allVal.map(status => {
                 return {
                   x: status,
@@ -48,13 +48,12 @@ const WaterpointStatusChart = React.createClass({
         <TSetChildProps>
           <BarChart
               data={this.parseData(dataRes)}
-              fill="#3182bd"
               height={200}
               legend={true}
-              stackOffset="wigget"
+              margin={{top: 10, bottom: 50, left: 50, right: 10}}
               title={{k: 'chart.status-waterpoints.title'}}
               width={500}
-              xAxisLabel={{k: 'chart.status-waterpoints.x-axis'}}
+              xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
               yAxisLabel={{k: 'chart.status-waterpoints.y-axis'}} />
           </TSetChildProps>
       </div>);

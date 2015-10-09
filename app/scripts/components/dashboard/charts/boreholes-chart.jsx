@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {BarChart} from 'react-d3';
+import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 
@@ -15,7 +15,7 @@ const StackBarChart = React.createClass({
       return b.y - a.y;
     };
     return [{
-      name: 'Boreholes',
+      label: 'Boreholes',
       values: Object.keys(data)
                 .filter(k => k !== 'total')
                 .map(key => {
@@ -35,8 +35,8 @@ const StackBarChart = React.createClass({
         <TSetChildProps>
           <BarChart
               data={this.parseData(dataRes)}
-              fill="#3182bd"
               height={200}
+              margin={{top: 10, bottom: 50, left: 50, right: 10}}
               title={{k: 'chart.boreholes.title' }}
               width={500}
               xAxisLabel={{k: 'chart.boreholes.x-axis' }}
