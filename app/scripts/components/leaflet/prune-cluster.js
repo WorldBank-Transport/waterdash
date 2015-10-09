@@ -42,7 +42,7 @@ require('stylesheets/leaflet/prune-cluster');
 // A tiny fix for this line (`this` is undefined here):
 var __extends = function (d, b) {
 // The rest of the file after this comment contains the unmodified contents
-// of dist/PruneCluster.js, until the export at the end:
+// of dist/PruneCluster.js, until the export at the end or where noted:
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -246,13 +246,14 @@ var PruneCluster;
             });
         };
         PruneCluster.prototype._sortMarkers = function () {
-            var markers = this._markers, length = markers.length;
-            if (this._nbChanges && (!length || this._nbChanges / length > ratioForNativeSort)) {
+            // EDIT BY PHIL: always use built in sort. Insertion sort is sloooooooooooow
+            // var markers = this._markers, length = markers.length;
+            // if (this._nbChanges && (!length || this._nbChanges / length > ratioForNativeSort)) {
                 this._markers.sort(function (a, b) { return a.position.lng - b.position.lng; });
-            }
-            else {
-                insertionSort(markers);
-            }
+            // }
+            // else {
+            //     insertionSort(markers);
+            // }
             this._nbChanges = 0;
         };
         PruneCluster.prototype._sortClusters = function () {

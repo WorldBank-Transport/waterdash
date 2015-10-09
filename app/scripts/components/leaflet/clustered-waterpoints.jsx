@@ -11,25 +11,49 @@ const ClusteredWaterpoints = React.createClass({
     this.pruneCluster = new PruneClusterForLeaflet();
     this.pruneCluster.Cluster.Size = 21;
     this.props.map.addLayer(this.pruneCluster);
+    this.markerIdMap = {};
   },
   componentDidMount() {
-    this.updatePC();
+    this.updateCluster();
   },
   shouldComponentUpdate(nextProps) {
     return nextProps.data !== this.props.data;
   },
   componentDidUpdate() {
-    this.updatePC();
+    this.updateCluster();
   },
   componentWillUnmount() {
     this.props.map.removeLayer(this.pruneCluster);
+    delete this.markerIdMap;
   },
-  updatePC() {
-    this.pruneCluster.RemoveMarkers();
+  updateCluster() {
+    const nextMap = {};
+
+    // Existing markers: remove or keep
     this.props.data.forEach(waterpoint => {
-      const marker = new PruneCluster.Marker(...waterpoint.position);
-      this.pruneCluster.RegisterMarker(marker);
+      const id = waterpoint.WATER_POINT_CODE;
+      if (typeof this.markerIdMap[id] !== 'undefined') {  // already have it
+        nextMap[id] = this.markerIdMap[id];  // just copy the ref over
+        delete this.markerIdMap[id];  // clear ref from old map
+      } else {
+        const marker = new PruneCluster.Marker(...waterpoint.position);
+        nextMap[id] = marker;
+        this.pruneCluster.RegisterMarker(marker);
+      }
     });
+
+    // remove what's left
+    const toRemove = [];
+    for (const id in this.markerIdMap) {
+      if (this.markerIdMap.hasOwnProperty(id)) {
+        toRemove.push(this.markerIdMap[id]);
+      }
+    }
+    this.pruneCluster.RemoveMarkers(toRemove);
+
+    // save the new map
+    this.markerIdMap = nextMap;
+
     this.pruneCluster.ProcessView();
   },
   render() {
