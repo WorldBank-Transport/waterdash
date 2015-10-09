@@ -30,9 +30,9 @@ const WaterPoints = React.createClass({
   },
   render() {
     return (
-      <div>
+      <div className="main">
         <Filters />
-        <div className="main waterpoints">
+        <div className="waterpoints">
           <div className="map-container">
             <BoundsMap
                 bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
