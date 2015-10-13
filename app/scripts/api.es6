@@ -37,7 +37,7 @@ export const getWaterpoints = () =>
 
 export const getBoreholes = () =>
   resourceUrl('3b1d0344-1e83-4212-877e-428dd81cd802', {
-    limit: 500,
+    limit: 1000,
     fields: [
       'REGION',
       'DISTRICT',
