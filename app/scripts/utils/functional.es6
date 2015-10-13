@@ -19,8 +19,7 @@ import has from 'lodash/object/has';
  */
 function reduceResult(process, reducer, init, data) {
   return data.reduce((result, next) => result.andThen(current =>
-    process(next).andThen(processed =>
-      Ok(reducer(current, processed)))
+    process(next).map(processed => reducer(current, processed))
   ), Ok(init));
 }
 
@@ -116,7 +115,26 @@ export const Result = {};
  * @param {array<any>} data The data to process with {func}
  * @returns {Result<array<any>>} The processed data in a Result.Ok or a Result.Err
  */
-Result.map = (fn, data) => reduceResult(fn, (a, b) => a.concat(b), [], data);
+Result.map = function(fn, data) {
+  /*
+  This function used to be the following one-liner:
+    Result.map = (fn, data) => reduceResult(fn, (a, b) => a.concat(b), [], data);
+  However, in processing the CKAN response, that one line was VERY HOT -- it
+  ate >60s (?!?) of CPU time on my machine for waterpoints. So here is the
+  equivalent but fast version:
+  */
+  const res = [];
+  let processed;
+  for (let i = 0; i < data.length; i++) {
+    processed = fn(data[i]);
+    if (processed.isOk()) {
+      res.push(processed.unwrap());
+    } else {
+      return processed;  // an Err();
+    }
+  }
+  return Ok(res);
+};
 
 /**
  * @param {func} fn A function to process a single key/value pair (passed as [k, v]),
