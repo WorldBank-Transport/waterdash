@@ -13,18 +13,18 @@ const BoreholesStatsChart = React.createClass({
 
   getInitialState() {
     return {
-      DIAMETER: true,
-      DEPTH_METER: true,
-      STATIC_WATER_LEVEL: true,
-      DYNAMIC_WATER_LEVEL_METER: true,
-      'DRAW _DOWN_METER': true,
-      YIELD_METER_CUBED_PER_HOUR: true,
+      DIAMETER: {enabled: true, color: '#FA8072' },
+      DEPTH_METER: {enabled: true, color: '#FF4500' },
+      STATIC_WATER_LEVEL: {enabled: true, color: '#87CEEB' },
+      DYNAMIC_WATER_LEVEL_METER: {enabled: true, color: '#000080' },
+      'DRAW _DOWN_METER': {enabled: true, color: '#DDA0DD' },
+      YIELD_METER_CUBED_PER_HOUR: {enabled: true, color: '#4B0082' },
     };
   },
 
   getActiveMetrics() {
     return Object.keys(this.state)
-      .filter(metric => this.state[metric])
+      .filter(metric => this.state[metric].enabled)
       .map(metric => metric);
   },
 
@@ -39,10 +39,10 @@ const BoreholesStatsChart = React.createClass({
                       x: year,
                       y: data[year].reduce((res, metric) => {
                         if (metric[key]) {
-                          res = metric[key];
+                          res.value = metric[key];
                         }
                         return res;
-                      }, 0),
+                      }, {value: 0}).value,
                       y0: 0,
                     };
                   }),
@@ -51,16 +51,20 @@ const BoreholesStatsChart = React.createClass({
   },
 
   toogleMetric(e, metric) {
-    this.state[metric] = !this.state[metric];
-    this.setState(this.state);
+    this.state[metric].enabled = !this.state[metric].enabled;
+    this.replaceState(this.state);
   },
 
   render() {
     const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', this.getActiveMetrics());
+    const colorScale = (x) => {
+      return this.state[x].color;
+    };
     return (
       <div className="boreholes-stats-chart">
         <TSetChildProps>
           <LineChart
+              colorScale={colorScale}
               data={this.parseData(dataRes)}
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
@@ -69,8 +73,8 @@ const BoreholesStatsChart = React.createClass({
         </TSetChildProps>
         <lu className="boreholes-options">
           {Object.keys(this.state).map(metric =>
-            (<li className="option">
-              <input checked={this.state[metric] ? 'checked' : ''} id={`borehole-${metric}`} name={metric} onChange={e => this.toogleMetric(e, metric)} type="checkbox" />
+            (<li className="option" style={{color: this.state[metric].color}}>
+              <input checked={this.state[metric].enabled ? 'checked' : ''} id={`borehole-${metric}`} name={metric} onChange={e => this.toogleMetric(e, metric)} type="checkbox" />
               <T k={`chart.boreholes.${metric}`} />
             </li>)
           )}
