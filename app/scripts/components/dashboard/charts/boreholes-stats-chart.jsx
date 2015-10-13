@@ -24,8 +24,7 @@ const BoreholesStatsChart = React.createClass({
 
   getActiveMetrics() {
     return Object.keys(this.state)
-      .filter(metric => this.state[metric].enabled)
-      .map(metric => metric);
+      .filter(metric => this.state[metric].enabled);
   },
 
   parseData(data) {
@@ -51,8 +50,14 @@ const BoreholesStatsChart = React.createClass({
   },
 
   toogleMetric(e, metric) {
-    this.state[metric].enabled = !this.state[metric].enabled;
-    this.replaceState(this.state);
+    const newState = {
+      ...this.state,
+      [metric]: {
+        ...this.state[metric],
+        enabled: !this.state[metric].enabled,
+      },
+    };
+    this.replaceState(newState);
   },
 
   render() {
