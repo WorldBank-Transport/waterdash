@@ -60,8 +60,7 @@ const WaterPoints = React.createClass({
               waterpoints={this.state.waterpoints}>
             <div className="container">
               <div className="secondaryCharts">
-                <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
-                <div className="row"><BoreholesStatsChart boreholes={this.state.boreholes}/></div>
+                
               </div>
               <div className="mainChart">
                 <WaterpointStatusChart waterpoints={this.state.waterpoints} />
