@@ -1,3 +1,4 @@
+import throttle from 'lodash/function/throttle';
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import filtersActions from '../actions/filters';
@@ -9,7 +10,8 @@ const FilterStore = createStore({
   },
   mixins: [SaneStore],
   init() {
-    this.listenTo(filtersActions.setPopulationServed, 'populationServed');
+    this.listenTo(filtersActions.setPopulationServed, throttle(range =>
+      this.populationServed(range), 333, {leading: true, trailing: true}));
   },
   updateData(key, to) {
     const updated = {

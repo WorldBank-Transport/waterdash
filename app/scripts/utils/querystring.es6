@@ -18,6 +18,8 @@ function queryVal(thing, recursed = false) {
     }
   } else if (typeof thing === 'number') {
     return Ok(String(thing));
+  } else if (typeof thing === 'boolean') {
+    return Ok(thing ? 'true' : 'false');
   } else if (thing instanceof Array) {
     if (recursed) {
       return Err(`Cannot querystringify recursive array. Inner array: ${JSON.stringify(thing)}`);

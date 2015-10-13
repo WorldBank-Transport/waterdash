@@ -1,7 +1,10 @@
+/* eslint camelcase: 0 */  // snake_case query params are not set by us
+import throttle from 'lodash/function/throttle';
 import * as func from './functional';
 import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
 import warn from './warn';
+import { toQuery } from './querystring';
 
 
 const converters = {
@@ -16,10 +19,12 @@ const converters = {
  * @returns {Promise<object>} re-rejects the err with the error code key
  */
 export function makeHTTPErrorNice(err) {
-  return new Promise((resolve, reject) => {
+  if (err instanceof Error) {  // this probably came from fetch()
     warn(err);
-    reject(['error.api.http']);
-  });
+    return Promise.reject(['error.api.http']);
+  } else {  // probably not an http error, so just pass it on
+    return Promise.reject(err);
+  }
 }
 
 
@@ -28,14 +33,12 @@ export function makeHTTPErrorNice(err) {
  * @returns {Promise<object>} resolves to the raw response again or rejects
  */
 export function rejectIfNotHTTPOk(response) {
-  return new Promise((resolve, reject) => {
-    if (!(response.status >= 200 && response.status < 300)) {
-      warn(response);
-      reject(['error.api.http.not-ok', response.status, response.statusText]);
-    } else {
-      resolve(response);
-    }
-  });
+  if (!response.ok) {
+    warn(response);
+    return Promise.reject(['error.api.http.not-ok', response.status, response.statusText]);
+  } else {  // pass-through
+    return Promise.resolve(response);
+  }
 }
 
 /**
@@ -43,14 +46,12 @@ export function rejectIfNotHTTPOk(response) {
  * @returns {Promise<object>} resolves the object, or rejects if it's an error
  */
 export function rejectIfNotSuccess(ckanObj) {
-  return new Promise((resolve, reject) => {
-    if (!ckanObj.success) {
-      warn(ckanObj);
-      reject(['error.api.ckan']);
-    } else {
-      resolve(ckanObj);
-    }
-  });
+  if (!ckanObj.success) {
+    warn(ckanObj);
+    return Promise.reject(['error.api.ckan']);
+  } else {  // pass-through
+    return Promise.resolve(ckanObj);
+  }
 }
 
 /**
@@ -70,17 +71,38 @@ export function convertField({id, type} = {}) {
 /**
  * @param {object} fieldConverters A key:func mapping of field names to converter functions
  * @param {object} record The key:rawValue record to be converted
- * @returns {object} the record but with converted values
+ * @returns {Result} the record but with converted values
  */
 export function convertRecord(fieldConverters, record) {
-  return func.Result.mapMergeObj(([id, converter]) => {
-    if (!isUndefined(record[id])) {
-      return Ok({[id]: converter(record[id])});
-    } else {
-      warn(`Record is missing field '${id}': ${JSON.stringify(record)}`);
-      return Err(['error.api.ckan.record-missing-field', id]);
+  /*
+  Original, slow version:
+
+    function convertRecord(fieldConverters, record) {
+      return func.Result.mapMergeObj(([id, converter]) => {
+        if (!isUndefined(record[id])) {
+          return Ok({[id]: converter(record[id])});
+        } else {
+          warn(`Record is missing field '${id}': ${JSON.stringify(record)}`);
+          return Err(['error.api.ckan.record-missing-field', id]);
+        }
+      }, fieldConverters);
     }
-  }, fieldConverters);
+
+  The above function ate over 2s of CPU time for waterpoints on my machine, so
+  here is a faster implementation:
+  */
+  const converted = {};
+  for (const k in fieldConverters) {
+    if (fieldConverters.hasOwnProperty(k)) {
+      if (typeof record[k] !== 'undefined') {
+        converted[k] = fieldConverters[k](record[k]);
+      } else {
+        warn(`Record is missing field '${k}': ${JSON.stringify(record)}`);
+        return Err(['error.api.ckan.record-missing-field', k]);
+      }
+    }
+  }
+  return Ok(converted);
 }
 
 /**
@@ -99,17 +121,89 @@ export function convertCkanResp(result) {
       func.Result.map(rec => convertRecord(fieldConverters, rec), records));
 }
 
+const resourceUrl = (root, id, params = {}) => func.promiseResult(
+  toQuery({...params, resource_id: id})
+    .orElse(err => {
+      warn(err);
+      return Err(['error.api.pre-request']);
+    })
+    .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`)));
+
 /**
- * @param {string} url The resource's url
+ * @param {number} chunkSize How big is each chunk allowed to be
+ * @param {number} total How many rows there are to be chunked
+ * @returns {array<number>} The offset of each chunk to fetch (not including
+ * the first one, which we already fetched to find the total)
+ */
+const getOffsets = (chunkSize, total) => {
+  const offsets = [];
+  const num = Math.ceil(total / chunkSize);
+  for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
+    offsets.push(i * chunkSize);
+  }
+  return offsets;
+};
+
+const convertChunk = data => func.promiseResult(convertCkanResp(data));
+
+/**
+ * @param {function} notify A callback to provide partial data updates
+ * @param {array<Promise>} promises The promises to wait for
+ * @returns {Promise} Resolves all the resolved data concatenated in one big
+ * array, or rejects if any the promises fail.
+ */
+const promiseConcat = (notify, ...promises) => new Promise((resolve, reject) => {
+  let combined = Ok([]);
+  promises.forEach(prom => prom
+    .then(newData => {
+      if (combined.isOk()) {
+        combined = Ok(combined.unwrap().concat(newData));
+        notify(combined.unwrap());
+      }
+    })
+    .catch(err => {
+      combined = Err(err);
+    }));
+  Promise.all(promises)
+    .then(() => resolve(combined.unwrap()))
+    .catch(reject);
+});
+
+/**
+ * @param {string} root The CKAN API root
+ * @param {string} id The resource's id
+ * @param {object} query Any query to be applied
+ * @param {func} notify A callback to indicate progress
  * @returns {Promise<array<object>>} The converted data
  */
-function get(url) {
-  return fetch(url)
-    .catch(makeHTTPErrorNice)
-    .then(rejectIfNotHTTPOk)
-    .then(resp => resp.json())
-    .then(rejectIfNotSuccess)
-    .then(data => func.promiseResult(convertCkanResp(data)));
+function get(root, id, query = {}, notify = () => null) {
+  const chunk = 6000;
+  const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
+
+  const getChunk = (offset) => {
+    return resourceUrl(root, id, {...query, limit: chunk, offset: offset})
+      .then(fetch)
+      .catch(makeHTTPErrorNice)
+      .then(rejectIfNotHTTPOk)
+      .then(resp => resp.json())
+      .then(rejectIfNotSuccess);
+  };
+
+  const getTheRest = (firstResp) => {
+    const { total } = firstResp.result;
+    const first = convertChunk(firstResp);
+    if (total <= chunk) {
+      return first;  // we have it all
+    } else {
+      const chunkPromises = getOffsets(chunk, total)
+        .map(offset => getChunk(offset).then(convertChunk));
+      return promiseConcat(throttledNotify, first, ...chunkPromises);
+    }
+  };
+
+  return getChunk(0)
+    .then(getTheRest);
 }
+
 
 export default { get };
