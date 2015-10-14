@@ -8,7 +8,7 @@
     "build": "npm run _clean-dist && webpack && npm run _copy-stuff && npm run _notify",
     "_clean-dist": "gulp clean:dist",
     "_copy-index": "gulp copy:index",
-    "_copy-static": "gulp copy:favicon",
+    "_copy-static": "gulp copy:static",
     "_copy-stuff": "npm run _copy-index && npm run _copy-static",
     "lint": "npm run lint-scripts && npm run lint-styles",
     "lint-scripts": "eslint 'app/**/*.{es6,js,jsx}'",

@@ -26,13 +26,10 @@ gulp.task('clean:dist', function () {
         .pipe(clean());
 });
 
-gulp.task('copy:favicon', function() {
-  const cssStream = gulp
-    .src('favicon.ico', {read: false, cwd: __dirname + '/dist/'});
-  gulp.src('app/favicon.ico')
-    .pipe(inject(cssStream, {removeTags: true}))
-    .pipe(gulp.dest('dist/'));
-});
+gulp.task('copy:static', function() {
+  gulp.src(['app/images/**/*']).pipe(gulp.dest('dist/images'));
+  gulp.src(['app/favicon.ico']).pipe(gulp.dest('dist'));
+ });
 
 gulp.task('slack-notify', function() {
   var fs = require('fs');
