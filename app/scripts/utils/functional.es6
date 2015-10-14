@@ -1,6 +1,7 @@
 import { Ok } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
 import isNumber from 'lodash/lang/isNumber';
+import isNaN from 'lodash/lang/isNaN';
 import has from 'lodash/object/has';
 
 /**
@@ -81,7 +82,7 @@ const countByProp = (propName, agg, item) => {
 };
 
 const sumByProp = (propName, agg, item) => {
-  if (isNumber(item[propName])) {
+  if (isNumber(item[propName]) && !isNaN(item[propName])) {
     if (isUndefined(agg.total)) {
       agg.total = 0;
     }

@@ -45,6 +45,12 @@ const allTranslations = {
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',
     'chart.boreholes.y-axis': '#',
+    'chart.boreholes.DIAMETER': 'Diameter',
+    'chart.boreholes.DEPTH_METER': 'Depth Meter',
+    'chart.boreholes.STATIC_WATER_LEVEL': 'Static Water Level',
+    'chart.boreholes.DYNAMIC_WATER_LEVEL_METER': 'Dynamic Water Level',
+    'chart.boreholes.DRAW _DOWN_METER': 'Draw Down Meter',
+    'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per Hour',
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
