@@ -61,7 +61,7 @@ const damsQ = {
     'RESERVOIR_',
     'LONGITUDE',
     'LATITUDE',
-  ]
+  ],
 };
 
 export const getBoreholes = (onProgress) =>

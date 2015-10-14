@@ -30,21 +30,26 @@ const DamsStatsChart = React.createClass({
             };
           });
     const responseTwo = {};
-    const getAvg = (key, obj) => obj[key]/obj.total;
+    const getAvg = (key, obj) => obj[key] / obj.total;
     Object.keys(sumaries).forEach(region => {
       sumaries[region].forEach(sum => {
         Object.keys(sum)
           .filter(key => key !== 'total')
           .forEach(key => {
-            if(!responseTwo[key]) {
+            if (!responseTwo[key]) {
               responseTwo[key] = [];
             }
-            if (key === 'DAM_HEIGHT') responseTwo[key].push({x: region, y: getAvg(key, sum)});
-            else if (key === 'ELEVATION_') responseTwo[key].push({x: region, y: getAvg(key, sum)});
-            else if (key === 'RESERVOIR_') responseTwo[key].push({x: region, y: sum[key]});
-            else throw Error(`not expected key, actual: ${key}`);
+            if (key === 'DAM_HEIGHT') {
+              responseTwo[key].push({x: region, y: getAvg(key, sum)});
+            } else if (key === 'ELEVATION_') {
+              responseTwo[key].push({x: region, y: getAvg(key, sum)});
+            } else if (key === 'RESERVOIR_') {
+              responseTwo[key].push({x: region, y: sum[key]});
+            } else {
+              throw Error(`not expected key, actual: ${key}`);
+            }
           });
-      }); 
+      });
     });
 
     Object.keys(responseTwo).forEach(key => {
@@ -58,7 +63,7 @@ const DamsStatsChart = React.createClass({
 
   render() {
     const dataRes = func.Result.countByGroupBy(this.props.dams, 'BASIN', 'REGION');
-    const sumaries = func.Result.sumByGroupBy(this.props.dams, 'REGION', ['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_'])
+    const sumaries = func.Result.sumByGroupBy(this.props.dams, 'REGION', ['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']);
     return (
       <div className="dams-chart">
         <TSetChildProps>
