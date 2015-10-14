@@ -17,7 +17,7 @@ import TChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
 import WaterpointStatusChart from './charts/waterpoint-status-chart';
 import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
-import BoreholesChart from './charts/boreholes-chart';
+import BoreholesStatsChart from './charts/boreholes-stats-chart';
 import Filters from '../filters/filters';
 import DamsStatsChart from './charts/dams-stats-chart';
 
@@ -67,7 +67,7 @@ const WaterPoints = React.createClass({
               <div className="secondaryCharts">
                 <div className="row"><DamsStatsChart dams={this.state.dams}/></div>
                 <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
-                <div className="row"><BoreholesChart boreholes={this.state.boreholes}/></div>               
+                <div className="row"><BoreholesStatsChart boreholes={this.state.boreholes}/></div>
               </div>
               <div className="mainChart">
                 <WaterpointStatusChart waterpoints={this.state.waterpoints} />
