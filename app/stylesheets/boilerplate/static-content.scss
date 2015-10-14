@@ -7,23 +7,47 @@
 .homebanner {
   float: left;
   height: 100%;
+  @media (max-width: $l) {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+  }
 }
 
 .homebanner img {
   height: 100%;
+  @media (max-width: $l) {
+    height: auto;
+    width: 100%;
+  }
 }
 
 .homecontent  {
   overflow: auto;
   padding: $content-padding-vert $content-padding-horiz;
 
+  @media (max-width: $l) {
+    background-color: $background-img-overlay;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+  }
+
   h2 {
     color: $grey-medium;
     font-size: $dashboard-intro;
     font-weight: $static-content-weight;
+
+    @media (max-width: $l) {
+      color: $text-inverse;
+    }
+
    }
 
   p {
     font-size: $dashboard-description;
+    @media (max-width: $l) {
+      color: $text-inverse;
+    }
   }
 }
