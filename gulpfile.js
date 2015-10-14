@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const sassLint = require('gulp-sass-lint');
 const inject = require('gulp-inject');
-const clean = require('gulp-clean');
 
 gulp.task('lint-styles', function() {
   gulp.src([
@@ -17,19 +16,6 @@ gulp.task('copy:index', function() {
   const cssStream = gulp
     .src('style.css', {read: false, cwd: __dirname + '/dist/'});
   gulp.src('app/index.html')
-    .pipe(inject(cssStream, {removeTags: true}))
-    .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('clean:dist', function () {
-    return gulp.src('dist', {read: false})
-        .pipe(clean());
-});
-
-gulp.task('copy:favicon', function() {
-  const cssStream = gulp
-    .src('favicon.ico', {read: false, cwd: __dirname + '/dist/'});
-  gulp.src('app/favicon.ico')
     .pipe(inject(cssStream, {removeTags: true}))
     .pipe(gulp.dest('dist/'));
 });
