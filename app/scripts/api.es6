@@ -50,11 +50,25 @@ const boreholesQ = {
   ],
 };
 
+const damsQ = {
+  fields: [
+    'REGION',
+    'DISTRICT',
+    'DAM_NAME',
+    'BASIN',
+    'DAM_HEIGHT',
+    'ELEVATION_',
+    'RESERVOIR_',
+    'LONGITUDE',
+    'LATITUDE',
+  ]
+};
+
 export const getBoreholes = (onProgress) =>
   ckan.get(API_ROOT, '3b1d0344-1e83-4212-877e-428dd81cd802', boreholesQ, onProgress);
 
-export const getDams = () =>
-  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396');
+export const getDams = (onProgress) =>
+  ckan.get(API_ROOT, '5da4eb70-47a0-4694-b735-397bb3732b99', damsQ, onProgress);
 
 export const getRegions = () =>
   get(staticResource('tz_regions'));
