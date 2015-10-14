@@ -20,6 +20,10 @@
     height: auto;
     width: 100%;
   }
+  @media (max-width: $s) {
+    height: 100%;
+    width: auto;
+  }
 }
 
 .homecontent  {
