@@ -36,10 +36,25 @@ const TSetChildProps = React.createClass({
     }
   },
 
+  getKObject(obj) {
+    return Object.keys(obj).reduce((ret, propName) => {
+      if (isObject(obj[propName]) && !isUndefined(obj[propName].k) && isString(obj[propName].k)) {
+        ret.found = true;
+        ret.kOjb = obj[propName];
+        ret.propName = propName;
+      }
+      return ret;
+    }, {found: false});
+  },
+
   isTranslateObj(obj) {
-    if (!isObject(obj) || isUndefined(obj.k)) {
+    if (!isObject(obj)) {
       return false;
-    } else if (!isString(obj.k)) {  // k but wrong type -- probably a mistake
+    } else if (this.getKObject(obj).found) {
+      return true;
+    } else if (isUndefined(obj.k)) {
+      return false;
+    } else if (!isString(obj.k)) { // k but wrong type -- probably a mistake
       warn('Tried to translate obj', obj, 'but `k` was not a string.');
       return false;
     } else {
@@ -48,7 +63,15 @@ const TSetChildProps = React.createClass({
   },
 
   translateObj(obj) {
-    return translate(this.state.lang, obj.k, obj.i);
+    const nestedKOjject = this.getKObject(obj);
+    if (nestedKOjject.found) {
+      return {
+        ...obj,
+        [nestedKOjject.propName]: translate(this.state.lang, nestedKOjject.kOjb.k, nestedKOjject.kOjb.i),
+      };
+    } else {
+      return translate(this.state.lang, obj.k, obj.i);
+    }
   },
 
   getTranslatedProps(child) {

@@ -51,6 +51,9 @@ const allTranslations = {
     'chart.boreholes.DYNAMIC_WATER_LEVEL_METER': 'Dynamic Water Level',
     'chart.boreholes.DRAW _DOWN_METER': 'Draw Down Meter',
     'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per Hour',
+    'chart.boreholes-stats.x-axis': 'Years',
+    'chart.boreholes-stats.y-axis': '#',
+
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',

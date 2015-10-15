@@ -5,7 +5,7 @@ import TSetChildProps from '../../misc/t-set-child-props';
 
 require('stylesheets/dashboard/charts/boreholes-chart');
 
-const StackBarChart = React.createClass({
+const BoreholesChart = React.createClass({
   propTypes: {
     boreholes: PropTypes.array.isRequired,
   },
@@ -37,13 +37,12 @@ const StackBarChart = React.createClass({
               data={this.parseData(dataRes)}
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              title={{k: 'chart.boreholes.title' }}
               width={500}
-              xAxisLabel={{k: 'chart.boreholes.x-axis' }}
-              yAxisLabel={{k: 'chart.boreholes.y-axis' }} />
+              xAxis={{label: {k: 'chart.boreholes.x-axis' }}}
+              yAxis={{label: {k: 'chart.boreholes.y-axis' }}} />
         </TSetChildProps>
       </div>);
   },
 });
 
-export default StackBarChart;
+export default BoreholesChart;

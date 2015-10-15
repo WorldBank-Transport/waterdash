@@ -49,12 +49,10 @@ const WaterpointStatusChart = React.createClass({
           <BarChart
               data={this.parseData(dataRes)}
               height={200}
-              legend={true}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              title={{k: 'chart.status-waterpoints.title'}}
               width={500}
               xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
-              yAxisLabel={{k: 'chart.status-waterpoints.y-axis'}} />
+              yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>
       </div>);
   },

@@ -73,8 +73,9 @@ const BoreholesStatsChart = React.createClass({
               data={this.parseData(dataRes)}
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              title={{k: 'chart.boreholes.title' }}
-              width={800} />
+              width={800}
+              xAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.x-axis'}}}
+              yAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.y-axis'}}} />
         </TSetChildProps>
         <lu className="boreholes-options">
           {Object.keys(this.state).map(metric =>
