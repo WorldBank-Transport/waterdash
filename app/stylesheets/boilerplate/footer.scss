@@ -13,16 +13,20 @@
     color: $bg-color;
   }
 
-  .footer-nav {
-    float: left;
-  }
-
   .copy {
     display: inline-block;
     float: right;
     font-size: $footer-text;
     margin-top: $footer-text-top-position;
     text-align: right;
-    width: 40%;
+    width: $copy-width-large;
+
+    @media (max-width: $l) {
+      width: $copy-width-med;
+    }
+    @media (max-width: $xs) {
+      width: 100%;
+      text-align:center;
+    }
   }
 }

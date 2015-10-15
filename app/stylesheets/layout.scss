@@ -35,6 +35,12 @@ body {
   right: 0;
   top: $header-height;
 
+  @media (max-width: $s) {
+    height: 100%;
+    padding: 50px 0;
+    top:50px;
+  }
+
   .map-container {
     z-index: 1;
   }
@@ -63,6 +69,10 @@ body {
   bottom: 0;
   left: 0;
   min-height: $footer-height;
-  position: absolute;
+  position: fixed;
   right: 0;
+
+  @media (max-width: $s) {
+    display: none;
+  }
 }

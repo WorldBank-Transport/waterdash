@@ -4,8 +4,14 @@
 
 
 .header {
-  padding-left: $header-common-margin;
-  padding-right: $header-common-margin;
+  padding-left: $header-mobile-padding;
+  padding-right: $header-mobile-padding;
+
+  @media (max-width: $s) {
+    position: absolute;
+    right: $top-nav-right-mobile-s;
+    top: $top-nav-vert-pos-mobile;
+  }
 
   .header-nav {
     float: right;

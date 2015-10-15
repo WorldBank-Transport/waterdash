@@ -8,12 +8,27 @@ ul.open-data-nav {
   @include list-inline();
   @include list-unstyle();
 
+  @media (max-width: $s) {
+    position: absolute;
+    right: $top-nav-right-mobile-s;
+    top: $top-nav-vert-pos-mobile;
+  }
+
+  @media (max-width: $xs) {
+    right: $top-nav-right-mobile-s;
+  }
+
   li {
     border-right: 1px solid $grey-light;
     height: $nav-item-height;
     line-height: $filter-text;
     padding-left: $header-common-margin;
     padding-right: $header-common-margin;
+
+    @media (max-width: $s) {
+      padding-left: $nav-padding;
+      padding-right: $nav-padding;
+    }
 
     &:last-child {
       border-right: 0;
@@ -31,19 +46,30 @@ ul.open-data-nav {
 
 // the same nav in footer
 .footer-nav {
-  margin-top: $nav-top-position;
+  float: left;
+  margin: $footer-text-top-position 0;
+
+  @media (max-width: $s) {
+    display: none;
+  }
+
 
   ul.open-data-nav {
+
     li {
       border-right: 1px solid $bg-color;
+      @media (max-width: $m-max) {
+        padding-left: $nav-padding;
+        padding-right: $nav-padding;
+      }
 
       a {
         color: $text-inverse;
+        font-size: $footer-text;
 
         &:hover {
           color: $text-color;
         }
-
       }
 
       &:last-child {

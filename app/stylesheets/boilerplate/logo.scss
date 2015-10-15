@@ -10,6 +10,12 @@
     margin-right: $header-common-margin;
     margin-top: $logo-top-position;
     width: $header-height;
+
+    @media (max-width: $s) {
+      margin-right: 10px;
+      width: $logo-width-mobile;
+    }
+
     }
 
   h1 {
@@ -22,5 +28,12 @@
     margin-top: $header-common-margin;
     text-transform: uppercase;
     width: $tab-label-width;
+
+    @media (max-width: $s) {
+      font-size: $dash-title-mobile;
+      line-height: $dash-title-line-height-mobile;
+      margin-top: 20px;
+      width: $dash-title-width-mobile;
+      }
     }
 }

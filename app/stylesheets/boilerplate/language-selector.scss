@@ -12,12 +12,27 @@ ul.language-selector {
   padding-bottom: $nav-padding;
   padding-top: $nav-padding;
 
+  @media (max-width: $s) {
+    padding-bottom: $lang-nav-mobile-padding;
+    padding-top: $lang-nav-mobile-padding;
+    position: absolute;
+    right: $header-mobile-padding;
+    top: $header-mobile-padding;
+  }
+
+
   & > li {
     background: $tab-expand-bg;
     border-right: 1px solid $theme-blue;
     height: $nav-item-height;
     padding-left: $header-common-margin;
     padding-right: $header-common-margin;
+
+    @media (max-width: $s) {
+      font-size: $nav-text-mobile;
+      padding-left: $lang-item-mobile-padding;
+      padding-right: $lang-item-mobile-padding;
+    }
 
     &:last-child {
       border: 0;
