@@ -7,6 +7,25 @@ import { connect } from 'reflux';
 import langStore from '../../stores/lang';
 import { translate } from './t';
 
+
+/**
+ * This component can be used inject translations into the props of its children
+ *
+ * Use it to wrap a single component which has props that you want to translate,
+ * setting those props to a `{k: 'translation.k', i: ['interpolations']}`
+ * object (the `i` key is optional).
+ *
+ * It will also check one-level deep for a single nested tranlation object, and
+ * throw if there is more than one.
+ *
+ * Examples:
+ *
+ *     <TSetChildProps><img alt={k: 'site-name'} /></TSetChildProps>
+ *
+ *     <TSetChildProps>
+ *       <Chart xAxis={label: {k: 'chart.x-axis-label'}} />
+ *     </TSetChildProps>
+ */
 const TSetChildProps = React.createClass({
   propTypes: {
     children: React.PropTypes.node.isRequired,
