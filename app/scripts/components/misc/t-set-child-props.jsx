@@ -7,6 +7,25 @@ import { connect } from 'reflux';
 import langStore from '../../stores/lang';
 import { translate } from './t';
 
+
+/**
+ * This component can be used inject translations into the props of its children
+ *
+ * Use it to wrap a single component which has props that you want to translate,
+ * setting those props to a `{k: 'translation.k', i: ['interpolations']}`
+ * object (the `i` key is optional).
+ *
+ * It will also check one-level deep for a single nested tranlation object, and
+ * throw if there is more than one.
+ *
+ * Examples:
+ *
+ *     <TSetChildProps><img alt={k: 'site-name'} /></TSetChildProps>
+ *
+ *     <TSetChildProps>
+ *       <Chart xAxis={label: {k: 'chart.x-axis-label'}} />
+ *     </TSetChildProps>
+ */
 const TSetChildProps = React.createClass({
   propTypes: {
     children: React.PropTypes.node.isRequired,
@@ -36,10 +55,28 @@ const TSetChildProps = React.createClass({
     }
   },
 
+  getKObject(obj) {
+    return Object.keys(obj).reduce((ret, propName) => {
+      if (isObject(obj[propName]) && !isUndefined(obj[propName].k) && isString(obj[propName].k)) {
+        if (ret.found) {
+          throw new Error('TSetChildProps on object props should one k element.');
+        }
+        ret.found = true;
+        ret.kOjb = obj[propName];
+        ret.propName = propName;
+      }
+      return ret;
+    }, {found: false});
+  },
+
   isTranslateObj(obj) {
-    if (!isObject(obj) || isUndefined(obj.k)) {
+    if (!isObject(obj)) {
       return false;
-    } else if (!isString(obj.k)) {  // k but wrong type -- probably a mistake
+    } else if (this.getKObject(obj).found) {
+      return true;
+    } else if (isUndefined(obj.k)) {
+      return false;
+    } else if (!isString(obj.k)) { // k but wrong type -- probably a mistake
       warn('Tried to translate obj', obj, 'but `k` was not a string.');
       return false;
     } else {
@@ -48,7 +85,15 @@ const TSetChildProps = React.createClass({
   },
 
   translateObj(obj) {
-    return translate(this.state.lang, obj.k, obj.i);
+    const nestedKOjject = this.getKObject(obj);
+    if (nestedKOjject.found) {
+      return {
+        ...obj,
+        [nestedKOjject.propName]: translate(this.state.lang, nestedKOjject.kOjb.k, nestedKOjject.kOjb.i),
+      };
+    } else {
+      return translate(this.state.lang, obj.k, obj.i);
+    }
   },
 
   getTranslatedProps(child) {

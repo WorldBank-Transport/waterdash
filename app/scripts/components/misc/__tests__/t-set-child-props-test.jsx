@@ -20,6 +20,26 @@ describe('Translator component wrapper', () => {
     expect(attrText).toEqual('Water Dashboard');
   });
 
+  it('should put translated props on the object prop which has a k', () => {
+    const ts = React.addons.TestUtils.renderIntoDocument(
+      <TS>
+        <text tooltip={{propA: {k: 'site-name'}}} />
+      </TS>
+    );
+    const wc = React.addons.TestUtils.findRenderedDOMComponentWithTag(ts, 'text');
+    const objTranslated = wc.props.tooltip;
+    expect(objTranslated).toBeDefined();
+    expect(objTranslated).toEqual({propA: 'Water Dashboard'});
+  });
+
+  it('should break to put translated props on the object prop which has two a k', () => {
+    expect(() => React.addons.TestUtils.renderIntoDocument(
+      <TS>
+        <text tooltip={{propA: {k: 'site-name'}, propB: {k: 'site.flag'}}} />
+      </TS>
+    )).toThrow('TSetChildProps on object props should one k element.');
+  });
+
   it('should break for no children', () => {
     expect(() => React.addons.TestUtils.renderIntoDocument(
       <TS />

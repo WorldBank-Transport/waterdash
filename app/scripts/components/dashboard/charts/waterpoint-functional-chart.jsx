@@ -32,10 +32,9 @@ const WaterpointFunctionalChart = React.createClass({
               data={this.parseData(waterpointsRes)}
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              title={{k: 'chart.functional-waterpoints.title'}}
               width={500}
-              xAxisLabel={{k: 'chart.functional-waterpoints.x-axis'}}
-              yAxisLabel={{k: 'chart.functional-waterpoints.y-axis'}} />
+              xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
+              yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
         </TSetChildProps>
       </div>);
   },
