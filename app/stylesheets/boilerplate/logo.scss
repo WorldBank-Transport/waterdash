@@ -12,7 +12,7 @@
     width: $header-height;
 
     @media (max-width: $s) {
-      margin-right: 10px;
+      margin-right: $base-unit;
       width: $logo-width-mobile;
     }
 
@@ -32,7 +32,7 @@
     @media (max-width: $s) {
       font-size: $dash-title-mobile;
       line-height: $dash-title-line-height-mobile;
-      margin-top: 20px;
+      margin-top: $header-mobile-padding;
       width: $dash-title-width-mobile;
       }
     }
