@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
+import * as c from '../../../utils/colours';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
@@ -10,35 +11,45 @@ const WaterpointStatusChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
-  getAllValues(data) {
+  getRegionsOrderByFunctional(data) {
     const returnValue = [];
+    const seen = {total: true};
+    const unique = (item) => seen.hasOwnProperty(item) ? false : (seen[item] = true);
     Object.keys(data)
-      .map(item => {
+      .forEach(item => {
         Object.keys(data[item])
-          .filter(key => key !== 'total')
-          .map(value => returnValue.push(value));
+          .filter(unique)
+          .forEach(key => returnValue.push({name: key, functional: data.FUNCTIONAL[key] ? data.FUNCTIONAL[key] : 0}));
       });
-    return returnValue;
+    const ordered = returnValue
+      .sort( (a, b) => b.functional - a.functional)
+      .map(item => item.name);
+    return ordered;
   },
 
   parseData(data) {
-    const allVal = this.getAllValues(data);
-    const compare = (a, b) => {
-      return b.y - a.y;
+    const regions = this.getRegionsOrderByFunctional(data);
+    const labelComparator = (a, b) => {
+      if (a.label < b.label) {
+        return -1;
+      } else if (a.label > b.label) {
+        return 1;
+      } else {
+        return 0;
+      }
     };
     return Object.keys(data)
-          .filter(key => key !== 'keys')
-          .map(key => {
+          .map(status => {
             return {
-              label: key,
-              values: allVal.map(status => {
+              label: status,
+              values: regions.map(region => {
                 return {
-                  x: status,
-                  y: data[key][status] ? data[key][status] : 0,
+                  x: region,
+                  y: data[status][region] ? data[status][region] : 0,
                 };
-              }).sort(compare),
+              }),
             };
-          });
+          }).sort(labelComparator);
   },
 
   render() {
@@ -47,10 +58,11 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <TSetChildProps>
           <BarChart
+              colorScale={c.Color.getWaterpointColor}
               data={this.parseData(dataRes)}
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              width={500}
+              width={600}
               xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
               yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>

@@ -10,3 +10,35 @@ export default {
   poor: '#f05e55',
   unknown: '#7d7d7d',
 };
+
+export const Color = {};
+
+Color.getWaterpointColor = (status) => {
+  let color = null;
+  switch (status) {
+  case 'FUNCTIONAL':
+    color = 'green';
+    break;
+  case 'NON FUNCTIONAL':
+    color = 'red';
+    break;
+  case 'NON FUNCTIONAL < 3M':
+    color = 'red';
+    break;
+  case 'NON FUNCTIONAL > 3M':
+    color = 'red';
+    break;
+  case 'NON FUNCTIONAL < 6M':
+    color = 'red';
+    break;
+  case 'NON FUNCTIONAL > 6M':
+    color = 'red';
+    break;
+  case 'FUNCTIONAL NEEDS REPAIR':
+    color = 'yellow';
+    break;
+  default:
+    throw Error(`there is not state found, actual: ${status}`);
+  }
+  return color;
+};
