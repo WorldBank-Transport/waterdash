@@ -37,8 +37,8 @@ body {
 
   @media (max-width: $s) {
     height: 100%;
-    padding: 50px 0;
-    top:50px;
+    padding: $content-space-mobile 0;
+    top: $content-space-mobile;
   }
 
   .map-container {
