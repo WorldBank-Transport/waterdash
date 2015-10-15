@@ -39,6 +39,9 @@ const TSetChildProps = React.createClass({
   getKObject(obj) {
     return Object.keys(obj).reduce((ret, propName) => {
       if (isObject(obj[propName]) && !isUndefined(obj[propName].k) && isString(obj[propName].k)) {
+        if (ret.found) {
+          throw new Error('TSetChildProps on object props should one k element.');
+        }
         ret.found = true;
         ret.kOjb = obj[propName];
         ret.propName = propName;
