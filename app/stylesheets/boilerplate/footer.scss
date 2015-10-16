@@ -21,12 +21,15 @@
     text-align: right;
     width: $copy-width-large;
 
-    @media (max-width: $l) {
+    @include up-to($tablet-landscape) {
       width: $copy-width-med;
     }
-    @media (max-width: $xs) {
+    @include up-to($tablet-alt) {
+      width: 60%;
+    }
+    @include up-to($phone) {
+      text-align: center;
       width: 100%;
-      text-align:center;
     }
   }
 }

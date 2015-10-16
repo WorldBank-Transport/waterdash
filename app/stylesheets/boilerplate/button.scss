@@ -14,6 +14,9 @@
   text-transform: uppercase;
   a {
     color: $text-inverse;
+    @include up-to($phone) {
+      font-size: $btn-text-mobile;
+    }
   }
   &:hover {
     background: $btn-hover;

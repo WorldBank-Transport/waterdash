@@ -5,33 +5,34 @@
 @import '../config/type';
 
 ul.language-selector {
+  @include up-to($tablet-landscape) {
+    padding-bottom: $lang-nav-mobile-padding;
+    padding-top: $lang-nav-mobile-padding;
+    position: absolute;
+    right: $header-mobile-space;
+    top: $header-mobile-space;
+  }
+  @include up-to($tablet-portrait) {
+    top: $header-mobile-space;
+  }
+  @include border-radius(3px);
   @include list-inline();
   @include list-unstyle();
-  @include border-radius(3px);
   background: $tab-expand-bg;
   padding-bottom: $nav-padding;
   padding-top: $nav-padding;
 
-  @media (max-width: $s) {
-    padding-bottom: $lang-nav-mobile-padding;
-    padding-top: $lang-nav-mobile-padding;
-    position: absolute;
-    right: $header-mobile-padding;
-    top: $header-mobile-padding;
-  }
-
   & > li {
+    @include up-to($tablet-portrait) {
+      font-size: $nav-text-mobile;
+      padding-left: $lang-item-mobile-padding;
+      padding-right: $lang-item-mobile-padding;
+    }
     background: $tab-expand-bg;
     border-right: 1px solid $theme-blue;
     height: $nav-item-height;
     padding-left: $header-common-margin;
     padding-right: $header-common-margin;
-
-    @media (max-width: $s) {
-      font-size: $nav-text-mobile;
-      padding-left: $lang-item-mobile-padding;
-      padding-right: $lang-item-mobile-padding;
-    }
 
     &:last-child {
       border: 0;

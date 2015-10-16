@@ -3,43 +3,47 @@ $base-unit: 1em;
 // widths and heights
 
 // header
+$dash-title-width-mobile: 60px;
 $header-height: 118px;
 $logo-width: 80px;
 $logo-width-mobile: 50px;
 $nav-item-height: 20px;
-$dash-title-width-mobile: 60px;
 $top-nav-vert-pos-mobile: 65px;
-$top-nav-right-mobile-s: 20px;
+$top-nav-right-mobile: 7px;
 
 //tabs
-$filters-closed-height: 48px;
-$filters-title-width: 220px;
-$filters-item-width: 180px;
 $charts-nav-height: 41px;
 $charts-summary-height: 78px;
 $charts-above-height: $charts-nav-height + $charts-summary-height;
+$filters-closed-height: 48px;
+$filters-title-width: 220px;
+$filters-item-width: 180px;
 $tab-label-width: 200px;
 $tab-icon-size: 20px;
 
 $general-content-padding: 30px;
+$homecontent-margin: 40px;
+$homecontent-padding: 20px;
 
 // footer
-$footer-height: 70px;
-$copy-width-large: 700px;
+$copy-width-large: 680px;
 $copy-width-med: 450px;
 $divider-height: 12px;
+$footer-height: 70px;
 
 // margins and padding
 $logo-top-position: 18px;
 $header-common-margin: 33px;
 $nav-top-position: 30px;
+$nav-top-position-mobile: 15px;
+
 $footer-nav-top-position: 35px;
+$footer-text-top-position: 20px;
 $header-footer-padding: 35px;
-$header-mobile-padding: 20px;
-$nav-padding: 12px;
+$header-mobile-space: 20px;
 $lang-item-mobile-padding: 12px;
 $lang-nav-mobile-padding: 5px;
-$footer-text-top-position: 20px;
+$nav-padding: 12px;
 
 $content-padding-vert: 10px;
 $content-padding-horiz: 100px;
@@ -49,9 +53,25 @@ $button-link-horiz: 100px;
 $button-link-vert: 10px;
 
 // screen sizes
-$xs: 480px;
-$s: 768px;
-$m-min: 850px;
-$m-max: 992px;
-$l: 1024px;
-$xl: 1280px;
+$phone: 480px;
+$tablet-portrait: 768px;
+$tablet-alt: 980px;
+$tablet-landscape: 1024px;
+
+@mixin up-to($phone) {
+  @media (max-width: $phone) {
+    @content;
+  }
+}
+
+@mixin up-to($tablet-portrait) {
+  @media (max-width: $tablet-portrait) {
+    @content;
+  }
+}
+
+@mixin up-to($tablet-landscape) {
+  @media (max-width: $tablet-landscape) {
+    @content;
+  }
+}

@@ -23,12 +23,7 @@ rules:
     - 2
     -
       include: true
-  mixins-before-declarations:
-    - 2
-    -
-      exclude:
-        - breakpoint
-        - mq
+  mixins-before-declarations: 0
   nesting-depth:
     - 1
     -
