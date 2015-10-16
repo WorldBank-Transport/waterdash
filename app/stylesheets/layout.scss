@@ -6,6 +6,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  @include up-to($tablet-landscape) {
+    overflow-x: hidden;
+  }
 }
 
 .header {
@@ -32,6 +35,12 @@ body {
   right: 0;
   top: $header-height;
 
+  @include up-to($tablet-portrait) {
+    height: 100%;
+    padding: $content-space-mobile 0;
+    top: $content-space-mobile;
+  }
+
   .map-container {
     z-index: 1;
   }
@@ -57,9 +66,13 @@ body {
 }
 
 .footer {
+  @include up-to($tablet-portrait) {
+    display: none;
+  }
+
   bottom: 0;
   left: 0;
   min-height: $footer-height;
-  position: absolute;
+  position: fixed;
   right: 0;
 }

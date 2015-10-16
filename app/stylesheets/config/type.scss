@@ -2,13 +2,17 @@
 
 // font sizes
 $dash-title: 24px;
+$dash-title-mobile: 13px;
+$nav-text-mobile: 12px;
 $filter-text: 18px;
 $big-number: 28px;
 $tab-text: 12px;
 $small-text: 10px;
-$footer-text: 13px;
+$footer-text: 12px;
 $dashboard-intro: 32px;
+$dashboard-intro-mobile: 25px;
 $dashboard-description: 17px;
+$btn-text-mobile: 12px;
 
 // font weights
 $title-weight: 700;
@@ -16,6 +20,7 @@ $button-weight: 700;
 $static-content-weight: 200;
 
 $dash-title-line-height: 26px;
+$dash-title-line-height-mobile: 15px;
 
 @mixin no-margin() {
   margin: 0;

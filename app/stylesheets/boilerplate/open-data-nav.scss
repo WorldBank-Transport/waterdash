@@ -7,8 +7,21 @@
 ul.open-data-nav {
   @include list-inline();
   @include list-unstyle();
+  @include up-to($tablet-landscape) {
+    position: absolute;
+    right: $top-nav-right-mobile;
+    top: $top-nav-vert-pos-mobile;
+  }
+  @include up-to($phone) {
+    right: $top-nav-right-mobile;
+  }
 
   li {
+    @include up-to($tablet-portrait) {
+      padding-left: $nav-padding;
+      padding-right: $nav-padding;
+    }
+
     border-right: 1px solid $grey-light;
     height: $nav-item-height;
     line-height: $filter-text;
@@ -31,19 +44,35 @@ ul.open-data-nav {
 
 // the same nav in footer
 .footer-nav {
-  margin-top: $nav-top-position;
+  @include up-to($phone) {
+    display: none;
+  }
+
+  float: left;
+  margin: $footer-text-top-position 0;
 
   ul.open-data-nav {
+    @include up-to($tablet-landscape) {
+      left: $header-mobile-space;
+      position: absolute;
+      top: $header-mobile-space;
+    }
+
     li {
+      @include up-to($tablet-alt) {
+        padding-left: $nav-padding;
+        padding-right: $nav-padding;
+      }
+      
       border-right: 1px solid $bg-color;
 
       a {
         color: $text-inverse;
+        font-size: $footer-text;
 
         &:hover {
           color: $text-color;
         }
-
       }
 
       &:last-child {

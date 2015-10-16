@@ -13,16 +13,23 @@
     color: $bg-color;
   }
 
-  .footer-nav {
-    float: left;
-  }
-
   .copy {
     display: inline-block;
     float: right;
     font-size: $footer-text;
     margin-top: $footer-text-top-position;
     text-align: right;
-    width: 40%;
+    width: $copy-width-large;
+
+    @include up-to($tablet-landscape) {
+      width: $copy-width-med;
+    }
+    @include up-to($tablet-alt) {
+      width: 60%;
+    }
+    @include up-to($phone) {
+      text-align: center;
+      width: 100%;
+    }
   }
 }

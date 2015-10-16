@@ -4,10 +4,13 @@
 
 
 .header {
-  padding-left: $header-common-margin;
-  padding-right: $header-common-margin;
+  padding-left: $header-mobile-space;
+  padding-right: $header-mobile-space;
 
   .header-nav {
+    @include up-to($tablet-landscape) {
+      width: 50%;
+    }
     float: right;
     margin-top: $nav-top-position;
   }

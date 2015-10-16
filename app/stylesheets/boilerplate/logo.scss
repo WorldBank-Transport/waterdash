@@ -6,13 +6,25 @@
   float: left;
 
   img {
+    @include up-to($tablet-portrait) {
+      margin-right: $base-unit;
+      width: $logo-width-mobile;
+    }
+
     float: left;
     margin-right: $header-common-margin;
     margin-top: $logo-top-position;
-    width: $header-height;
+    width: $logo-width;
     }
 
   h1 {
+    @include up-to($tablet-portrait) {
+      font-size: $dash-title-mobile;
+      line-height: $dash-title-line-height-mobile;
+      margin-top: $header-mobile-space;
+      width: $dash-title-width-mobile;
+    }
+
     color: $theme-blue-alt;
     display: inline-block;
     float: left;
