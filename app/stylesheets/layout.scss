@@ -34,7 +34,6 @@ body {
   position: absolute;
   right: 0;
   top: $header-height;
-  height:100%;
 
   @include up-to($tablet-portrait) {
     height: 100%;
