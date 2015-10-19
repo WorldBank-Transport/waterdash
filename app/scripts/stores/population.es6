@@ -4,7 +4,7 @@ import { loadCompleted } from '../actions/population';
 
 
 const PopulationStore = createStore({
-  initialData: [],
+  initialData: {},
   mixins: [SaneStore],
   init() {
     this.listenTo(loadCompleted, 'loadData');

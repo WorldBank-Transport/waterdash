@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
-import isObject from 'lodash/lang/isObject';
+import isUndefined from 'lodash/lang/isUndefined';
 import {BarChart} from 'react-d3-components';
 import PopulationStore from '../../../stores/population';
 import * as func from '../../../utils/functional';
@@ -25,16 +25,15 @@ const WaterpointPopulationServeChart = React.createClass({
       label: '% Population Served',
       values: [],
     };
-    if (isObject(this.state.population)) {
-      const population = this.state.population;
-      const comparator = (a, b) => b.y - a.y;
-      response.values = Object.keys(waterpoints).map(key => {
-        return {
-          x: key,
-          y: (waterpoints[key][0]['POPULATION SERVED'] / population[key] * 100),
-        };
-      }).sort(comparator);
-    }
+    const population = this.state.population;
+    const comparator = (a, b) => b.y - a.y;
+    response.values = Object.keys(waterpoints).map(key => {
+      const regPopulation = isUndefined(population[key]) ? 100 : population[key]; // if we don't have the population we show the real number
+      return {
+        x: key,
+        y: (waterpoints[key][0]['POPULATION SERVED'] / regPopulation * 100),
+      };
+    }).sort(comparator);
     return response;
   },
 
