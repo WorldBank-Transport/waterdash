@@ -3,6 +3,7 @@ import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import * as c from '../../../utils/colours';
+import T from '../../misc/t';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
@@ -56,7 +57,7 @@ const WaterpointStatusChart = React.createClass({
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
-        <h3 className="main-chart-title">Waterpoints Status- <span className="chart-helptext">Ordered by % of Functional</span></h3>
+        <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
       <div className="chart-container">
         <TSetChildProps>
           <BarChart

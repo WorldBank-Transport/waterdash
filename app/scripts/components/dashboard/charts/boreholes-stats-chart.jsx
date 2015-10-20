@@ -67,7 +67,7 @@ const BoreholesStatsChart = React.createClass({
     };
     return (
       <div className="boreholes-stats-chart">
-        <h3 className="chart-title">Performance Table- <span className="chart-helptext">% Served</span></h3>
+        <h3 className="chart-title"><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
             <LineChart

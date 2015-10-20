@@ -41,6 +41,12 @@ const allTranslations = {
     'chart.status-waterpoints.title': 'Waterpoint status',
     'chart.status-waterpoints.x-axis': 'Regions',
     'chart.status-waterpoints.y-axis': 'Status',
+    'chart.title-waterpoints-status': 'Waterpoints Status',
+    'chart.title-waterpoints-status-helptext': 'Ordered by % of Functional',
+    'chart.title-waterpoints-functional': 'Performance Table',
+    'chart.title-waterpoints-functional-helptext': '% Functional',
+    'chart.title-boreholes-stats': 'Performance Table',
+    'chart.title-boreholes-stats-helptext': '% Served',
 
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',
@@ -50,7 +56,7 @@ const allTranslations = {
     'chart.boreholes.STATIC_WATER_LEVEL': 'Static Water Level',
     'chart.boreholes.DYNAMIC_WATER_LEVEL_METER': 'Dynamic Water Level',
     'chart.boreholes.DRAW _DOWN_METER': 'Draw Down Meter',
-    'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per Hour',
+    'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per hour',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
 
@@ -88,6 +94,7 @@ const allTranslations = {
     'chart.functional-waterpoints.title': 'puntos de agua funcionando',
     'chart.functional-waterpoints.x-axis': 'Regiones',
     'chart.functional-waterpoints.y-axis': 'porc',
+
 
   },
 };

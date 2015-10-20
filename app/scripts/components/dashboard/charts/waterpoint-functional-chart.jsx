@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
+import T from '../../misc/t';
 
 require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 
@@ -27,7 +28,7 @@ const WaterpointFunctionalChart = React.createClass({
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
-        <h3 className="chart-title">Performance Table- <span className="chart-helptext">% Functional</span></h3>
+        <h3 className="chart-title"><T k="chart.title-waterpoints-functional" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-functional-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
             <BarChart
