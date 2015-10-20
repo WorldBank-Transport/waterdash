@@ -8,6 +8,7 @@ require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {
     waterpoints: PropTypes.array.isRequired,
+    drilldown: PropTypes.string.isRequired,
   },
 
   parseData(waterpoints) {
@@ -24,7 +25,8 @@ const WaterpointFunctionalChart = React.createClass({
   },
 
   render() {
-    const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
+    debugger;
+    const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, this.props.drilldown, 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
         <TSetChildProps>

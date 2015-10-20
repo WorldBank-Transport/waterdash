@@ -15,12 +15,12 @@ const ViewMode = React.createClass({
             </Link>
           </li>
           <li>
-            <Link activeClassName="active" to="/region/">
+            <Link activeClassName="active" to="/region/" query={{drilldownField: 'REGION'}}>
               <T k="view-mode.region" />
             </Link>
           </li>
           <li>
-            <Link activeClassName="active" to="/district/">
+            <Link activeClassName="active" to="/district/" query={{drilldownField: 'DISTRICT', field: 'REGION', id: 'ARUSHA'}}>
               <T k="view-mode.district" />
             </Link>
           </li>

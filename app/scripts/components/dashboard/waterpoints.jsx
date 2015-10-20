@@ -7,6 +7,7 @@ import LayoutStore from '../../stores/layout';
 import FilteredWaterpointsStore from '../../stores/filtered-waterpoints';
 import WaterpointsStateStore from '../../stores/waterpoints-state';
 import BoreholesStore from '../../stores/boreholes';
+import DrillDownStore from '../../stores/drilldown';
 import { TileLayer } from 'react-leaflet';
 import BoundsMap from '../leaflet/bounds-map';
 import ClusteredWaterpoints from '../leaflet/clustered-waterpoints';
@@ -30,6 +31,7 @@ const WaterPoints = React.createClass({
     connect(WaterpointsStateStore, 'waterpointsState'),
     connect(BoreholesStore, 'boreholes'),
     connect(LayoutStore, 'layout'),
+    connect(DrillDownStore, 'drilldownState'),
   ],
   componentDidMount() {
     load();
@@ -60,7 +62,7 @@ const WaterPoints = React.createClass({
               waterpoints={this.state.waterpoints}>
             <div className="container">
               <div className="secondaryCharts">
-                <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
+                <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints} drilldown={this.state.drilldownState.drilldown.drilldownField}/></div>
                 <div className="row"><BoreholesStatsChart boreholes={this.state.boreholes}/></div>
               </div>
               <div className="mainChart">
