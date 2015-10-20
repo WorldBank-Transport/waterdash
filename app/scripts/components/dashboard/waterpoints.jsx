@@ -16,6 +16,7 @@ import SpinnerModal from '../misc/spinner-modal';
 import WaterpointStatusChart from './charts/waterpoint-status-chart';
 import WaterpointFunctionalChart from './charts/waterpoint-functional-chart';
 import BoreholesStatsChart from './charts/boreholes-stats-chart';
+import WaterpointPopulationServeChart from './charts/waterpoint-population-serve-chart';
 import Filters from '../filters/filters';
 
 require('stylesheets/dashboard/waterpoints');
@@ -60,6 +61,7 @@ const WaterPoints = React.createClass({
               waterpoints={this.state.waterpoints}>
             <div className="container">
               <div className="secondaryCharts">
+                <div className="row"><WaterpointPopulationServeChart waterpoints={this.state.waterpoints}/></div>
                 <div className="row"><WaterpointFunctionalChart waterpoints={this.state.waterpoints}/></div>
                 <div className="row"><BoreholesStatsChart boreholes={this.state.boreholes}/></div>
               </div>

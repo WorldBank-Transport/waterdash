@@ -61,3 +61,6 @@ export const getRegions = () =>
 
 export const getDistricts = () =>
   get(staticResource('tz_districts'));
+
+export const getPopulation = () =>
+  get(staticResource('tz_population'));
