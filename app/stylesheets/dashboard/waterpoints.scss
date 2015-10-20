@@ -1,5 +1,7 @@
 @import '../config/colours';
 @import '../config/dimensions';
+@import '../config/type';
+@import '../config/box';
 
 .waterpoints {
   .map-container {
@@ -17,4 +19,44 @@
       }
     }
   }
+}
+
+
+.secondaryCharts {
+  background: $bg-color;
+  overflow: hidden;
+  padding: $chart-container-padding/2 $chart-container-padding;
+
+  .col-left {
+    float: left;
+    width: $main-chart-width;
+  }
+  .col-right {
+    float: right;
+    width: $sec-chart-width;
+  }
+}
+
+// chart titles - apply to all 3 charts
+h3 {
+  &.chart-title {
+    color: $theme-blue-alt;
+    font-size: $chart-title;
+    font-weight: $static-content-weight;
+  }
+
+  &.main-chart-title {
+    @extend .chart-title;  // lint warning here to use % but it affects the style
+    font-size: $main-chart-title;
+    }
+
+  .chart-helptext {
+    color: $text-color;
+    }
+  }
+
+// chart containers
+.chart-container {
+  @include border-radius(4px);
+  @include chart-border();
 }

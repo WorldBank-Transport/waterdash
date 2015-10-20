@@ -27,16 +27,21 @@ const WaterpointFunctionalChart = React.createClass({
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
-        <TSetChildProps>
-          <BarChart
-              data={this.parseData(waterpointsRes)}
-              height={200}
-              margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              width={500}
-              xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
-              yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
-        </TSetChildProps>
-      </div>);
+        <h3 className="chart-title">Performance Table- <span className="chart-helptext">% Functional</span></h3>
+        <div className="chart-container ">
+          <TSetChildProps>
+            <BarChart
+                data={this.parseData(waterpointsRes)}
+                height={200}
+                margin={{top: 10, bottom: 50, left: 50, right: 10}}
+                width={500}
+                xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
+                yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
+              </TSetChildProps>
+        </div>
+      </div>
+
+    );
   },
 });
 

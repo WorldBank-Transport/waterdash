@@ -56,6 +56,8 @@ const WaterpointStatusChart = React.createClass({
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
+        <h3 className="main-chart-title">Waterpoints Status- <span className="chart-helptext">Ordered by % of Functional</span></h3>
+      <div className="chart-container">
         <TSetChildProps>
           <BarChart
               colorScale={c.Color.getWaterpointColor}
@@ -66,7 +68,10 @@ const WaterpointStatusChart = React.createClass({
               xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
               yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>
-      </div>);
+      </div>
+      </div>
+
+    );
   },
 });
 
