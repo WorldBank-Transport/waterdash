@@ -10,6 +10,7 @@ import Homepage from './components/static/homepage.jsx';
 import Data from './components/static/data.jsx';
 import SpeakOut from './components/static/speak-out.jsx';
 import NotFound from './components/static/not-found.jsx';
+import DrillDown from './components/dashboard/drilldown.jsx';
 
 
 React.render((
@@ -18,6 +19,10 @@ React.render((
       <Route path="waterpoints/" component={WaterPoints} >
         <Route path=":id" component={WaterPoint} />
       </Route>
+      <Route path="region/" component={DrillDown}>
+        <Route path=":id" component={DrillDown} />
+      </Route>
+      <Route path="district/" component={DrillDown} />
       <Route path="data/" component={Data} />
       <IndexRoute component={Homepage} />
       <Route path="speak-out/" component={SpeakOut} />
