@@ -37,8 +37,15 @@ const WaterpointPopulationServeChart = React.createClass({
     return response;
   },
 
+  removeDuplicatePopulation(waterpoints) {
+    const seen = {};
+    const unique = (item) => seen.hasOwnProperty(item.VILLAGE) ? false : (seen[item.VILLAGE] = true);
+    return waterpoints.filter(unique);
+  },
+
   render() {
-    const waterpointsRes = func.Result.sumByGroupBy(this.props.waterpoints, 'REGION', ['POPULATION SERVED']);
+    const singleVillageWaterpoints = this.removeDuplicatePopulation(this.props.waterpoints);
+    const waterpointsRes = func.Result.sumByGroupBy(singleVillageWaterpoints, 'REGION', ['POPULATION SERVED']);
     return (
       <div className="waterpoint-population-serve-chart">
         <TSetChildProps>
