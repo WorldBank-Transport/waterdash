@@ -4,8 +4,10 @@ import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import * as c from '../../../utils/colours';
 import T from '../../misc/t';
+import waterpointstatusOptions from './waterpoint-status-chart';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
+
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
@@ -58,7 +60,9 @@ const WaterpointStatusChart = React.createClass({
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
+        <waterpointstatusOptions />
       <div className="chart-container">
+      <div className="waterpoints-chart-options-container">this is something</div>
         <TSetChildProps>
           <BarChart
               colorScale={c.Color.getWaterpointColor}

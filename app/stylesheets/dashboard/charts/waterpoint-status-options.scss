@@ -1,0 +1,8 @@
+@import '../../config/colours';
+
+.waterpoints-chart-options-container {
+  // @include border-radius(3px);
+  background: $grey-light;
+  // border: 2px solid #f00;
+  height: 50px;
+}
