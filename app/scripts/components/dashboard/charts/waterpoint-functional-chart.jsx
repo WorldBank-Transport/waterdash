@@ -38,6 +38,7 @@ const WaterpointFunctionalChart = React.createClass({
                 width={500}
                 xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
                 yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
+
               </TSetChildProps>
         </div>
       </div>

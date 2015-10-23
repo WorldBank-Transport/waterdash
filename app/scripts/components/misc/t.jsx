@@ -47,6 +47,9 @@ const allTranslations = {
     'chart.title-waterpoints-functional-helptext': '% Functional',
     'chart.title-boreholes-stats': 'Performance Table',
     'chart.title-boreholes-stats-helptext': '% Served',
+    'chart.title-population-served': 'Population',
+    'chart.title-title-population-served-helptext': '% Served',
+
 
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',

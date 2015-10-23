@@ -4,7 +4,7 @@ import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import * as c from '../../../utils/colours';
 import T from '../../misc/t';
-import waterpointstatusOptions from './waterpoint-status-chart';
+import WaterpointstatusOptions from './waterpoint-status-options';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
@@ -60,17 +60,16 @@ const WaterpointStatusChart = React.createClass({
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
-        <waterpointstatusOptions />
+        <WaterpointstatusOptions />
       <div className="chart-container">
-      <div className="waterpoints-chart-options-container">this is something</div>
         <TSetChildProps>
           <BarChart
               colorScale={c.Color.getWaterpointColor}
               data={this.parseData(dataRes)}
               height={200}
-              margin={{top: 10, bottom: 50, left: 50, right: 10}}
+              margin={{top: 30, bottom: 50, left: 50, right: 10}}
               width={600}
-              xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
+              xAxis={{innerTickSize: 12, label: {k: 'chart.status-waterpoints.x-axis'}}}
               yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>
       </div>

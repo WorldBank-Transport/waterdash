@@ -1,8 +1,29 @@
+@import '../../config/dimensions';
+@import '../../config/box';
 @import '../../config/colours';
 
 .waterpoints-chart-options-container {
-  // @include border-radius(3px);
+  @include border-radius(3px);
   background: $grey-light;
-  // border: 2px solid #f00;
   height: 50px;
+  padding: 3px 10px;
+
+  ul {
+    li {
+      float: left;
+      list-style: none;
+      margin-right: $chart-legend-margin;
+
+      &.functional {
+        color: green;
+      }
+      &.needrepair {
+        color: yellow;
+      }
+      &.nonfunctional {
+        color: red;
+      }
+    }
+  }
+
 }

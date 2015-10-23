@@ -6,6 +6,7 @@ import PopulationStore from '../../../stores/population';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import {load} from '../../../actions/population';
+import T from '../../misc/t';
 
 require('stylesheets/dashboard/charts/waterpoint-population-serve-chart');
 
@@ -41,11 +42,12 @@ const WaterpointPopulationServeChart = React.createClass({
     const waterpointsRes = func.Result.sumByGroupBy(this.props.waterpoints, 'REGION', ['POPULATION SERVED']);
     return (
       <div className="waterpoint-population-serve-chart">
+      <h3 className="main-chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
         <TSetChildProps>
           <BarChart
               data={this.parseData(waterpointsRes)}
               height={200}
-              margin={{top: 10, bottom: 50, left: 50, right: 10}}
+              margin={{top: 40, bottom: 50, left: 50, right: 10}}
               width={500}
               xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
               yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />

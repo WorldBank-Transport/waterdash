@@ -1,11 +1,16 @@
+@import '../../config/colours';
+
 .waterpoint-population-serve-chart {
   margin: 0;
 
   .tick text {
     -webkit-transform: rotate(-75deg);
-    font-size: 9px;
+    font-size: 12px;
     transform: rotate(-75deg);
     x: -20;
     y: 5;
+    fill: $text-color;
+    top:4
   }
+
 }
