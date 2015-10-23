@@ -1,6 +1,7 @@
 import React from 'react';
 import Divider from '../boilerplate/divider';
 import Button from '../boilerplate/button';
+
 require('stylesheets/boilerplate/static-content');
 
 const Homepage = React.createClass({

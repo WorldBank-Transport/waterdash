@@ -1,12 +1,21 @@
 @import '../../config/dimensions';
 @import '../../config/box';
 @import '../../config/colours';
+@import '../../config/type';
+// the react component for font awesome didn't work without this import
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 .waterpoints-chart-options-container {
   @include border-radius(3px);
   background: $grey-light;
   height: 50px;
   padding: 3px 10px;
+
+  i {
+    color: $text-inverse;
+    font-size: $chart-legend-icon;
+    margin-right: $legend-icon-margin;
+  }
 
   ul {
     li {
