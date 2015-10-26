@@ -64,7 +64,6 @@ const WaterPoints = React.createClass({
                 <div className="col-left">
                   <div className="mainChart">
                     <WaterpointStatusChart waterpoints={this.state.waterpoints} />
-                    <WaterpointPopulationServeChart waterpoints={this.state.waterpoints}/>
                   </div>
                 </div>
                 <div className="col-right">

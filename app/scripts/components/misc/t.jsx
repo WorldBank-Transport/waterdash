@@ -16,6 +16,11 @@ const allTranslations = {
     'nav.data': 'Data',
     'nav.speak-out': 'Speak Out',
 
+    'static.data-title': 'Explore the data behind the dashboard.',
+    'static.data-content': 'This Water Dashboard was built on open data release by the government of Tanzania. The raw data is published on the Government\'s open data portal in machine-readable format with a license that encourages re-use. The data behind this education dashboard comes from Ministry of Water and the National Bureau of Statistics of Tanzania.',
+    'static.speakout-title': 'Your voice matters!',
+    'static.speakout-content': 'Complete this form to share feedback about the data.',
+
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
 
@@ -90,6 +95,11 @@ const allTranslations = {
     'nav.home': 'Mwanzo',
     'nav.data': 'Takwimu',
     'nav.speak-out': 'Maoni',
+
+    'static.data-title': 'Chunguza data ya dashibodi',
+    'static.data-content': 'Dashibodi ya maji imejengwa juu ya Takwimu Huria zilizoainishwa na Serikali ya Tanzania. Takwimu ghafi zilizoidhinishwa zimetangazwa kwa tovuti kuu ya  Serikaliopen data portal kwa njia inayosomeka na kompyuta ikitumia leseni  inayohamasisha matumizi kwa jumla. Takwimu zimetangazwa na Wizara ya Maji ya Tanzania, na Ofisi ya Taifa ya Takwimu.',
+    'static.speakout-title': 'Sauti yako ni ya maana!',
+    'static.speakout-content': 'Jaza fomu hii utupe maoni yako kuhusu takwimu zilizopo.',
 
     'view-mode.region': 'Mkoa',
     'view-mode.district': 'Wilaya',

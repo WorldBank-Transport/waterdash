@@ -2,6 +2,7 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 // homepage
 .homebanner {
@@ -39,7 +40,7 @@
   margin-left: $homecontent-margin;
   overflow: auto;
   padding: $content-padding-vert;
-  width: 40%;
+  width: $home-content-width;
 
   @include up-to($tablet-landscape) {
     background-color: $background-img-overlay;
@@ -76,4 +77,62 @@
       color: $text-inverse;
     }
   }
+}
+
+.static-content {
+  margin: 0 auto;
+  width: $static-content-width;
+  &.text-center {
+    text-align: center;
+  }
+
+  h2 {
+    color: $theme-blue;
+    font-size: $static-content-title;
+    font-weight: $static-content-weight;
+  }
+
+  p {
+    color: $text-color;
+    font-size: $static-content-text;
+    font-weight: $static-content-weight;
+  }
+}
+
+.feedback-form-container {
+  @include up-to($tablet-landscape) {
+    padding-bottom: $iframe-height-table;
+  }
+  @include up-to($tablet-portrait) {
+    padding-bottom: $iframe-height-phone;
+    width: $iframe-width-tablet;
+    left: $iframe-left-tablet;
+  }
+  height: 0;
+  overflow: hidden;
+  padding-bottom: $iframe-height-laptop;
+  padding-top: $iframe-container-padding;
+  position: relative;
+
+  iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: $iframe-width-desktop;
+  }
+}
+
+ul.data-sources {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 30px;
+
+  li {
+    float: left;
+    margin-right: 80px;
+  }
+
 }

@@ -36,6 +36,10 @@ $main-chart-width: 63%;
 $sec-chart-width: 34%;
 $legend-icon-margin: 5px;
 
+// static content
+$static-content-width: 80%;
+$home-content-width: 40%;
+
 // margins and padding
 $logo-top-position: 18px;
 $header-common-margin: 20px;
@@ -60,6 +64,17 @@ $button-link-vert: 10px;
 $chart-container-padding: 60px;
 
 $chart-legend-margin: 30px;
+
+// google form / iframe responsive size variables
+$iframe-height-phone: 750px;
+$iframe-height-table: 630px;
+$iframe-height-laptop: 80%;
+$iframe-container-padding: 35px;
+$iframe-left-tablet: -6%;
+$iframe-width-tablet: 110%;
+$iframe-width-desktop: 99%;
+
+
 
 // screen sizes
 $phone: 480px;

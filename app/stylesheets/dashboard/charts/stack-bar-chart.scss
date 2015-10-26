@@ -1,6 +1,16 @@
+@import '../../config/colours';
+@import '../../config/type';
+
 .stack-bar-chart {
   margin: 0;
-  svg {
-    font-size: 14px;
+  .tick text {
+    -webkit-transform: rotate(-75deg);
+    fill: $text-color;
+    font-size: $chart-axis-text;
+    top: 4;
+    transform: rotate(-75deg);
+    x: -20;
+    y: 5;
   }
+
 }
