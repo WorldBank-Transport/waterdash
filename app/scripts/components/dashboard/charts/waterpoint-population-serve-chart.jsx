@@ -22,16 +22,18 @@ const WaterpointPopulationServeChart = React.createClass({
 
   parseData(waterpoints) {
     const response = {
-      label: '% Population Served',
+      label: 'People Waterpoint Ratio',
       values: [],
     };
     const population = this.state.population;
     const comparator = (a, b) => b.y - a.y;
-    response.values = Object.keys(waterpoints).map(key => {
-      const regPopulation = isUndefined(population[key]) ? 100 : population[key]; // if we don't have the population we show the real number
+    response.values = Object.keys(waterpoints)
+                        .filter(key => key !== 'total')
+                        .map(key => {
+      const regPopulation = isUndefined(population[key]) ? 0 : population[key]; // if we don't have the population we show the real number
       return {
         x: key,
-        y: (waterpoints[key][0]['POPULATION SERVED'] / regPopulation * 100),
+        y: (regPopulation / waterpoints[key]),
       };
     }).sort(comparator);
     return response;
@@ -45,7 +47,7 @@ const WaterpointPopulationServeChart = React.createClass({
 
   render() {
     const singleVillageWaterpoints = this.removeDuplicatePopulation(this.props.waterpoints);
-    const waterpointsRes = func.Result.sumByGroupBy(singleVillageWaterpoints, 'REGION', ['POPULATION SERVED']);
+    const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
     return (
       <div className="waterpoint-population-serve-chart">
         <TSetChildProps>
@@ -54,8 +56,8 @@ const WaterpointPopulationServeChart = React.createClass({
               height={200}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
               width={500}
-              xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
-              yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
+              xAxis={{label: {k: 'chart.waterpoints-people-ratio.x-axis'}}}
+              yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
         </TSetChildProps>
       </div>);
   },
