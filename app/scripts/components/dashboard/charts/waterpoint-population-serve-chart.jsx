@@ -30,23 +30,16 @@ const WaterpointPopulationServeChart = React.createClass({
     response.values = Object.keys(waterpoints)
                         .filter(key => key !== 'total')
                         .map(key => {
-      const regPopulation = isUndefined(population[key]) ? 0 : population[key]; // if we don't have the population we show the real number
-      return {
-        x: key,
-        y: (regPopulation / waterpoints[key]),
-      };
-    }).sort(comparator);
+                          const regPopulation = isUndefined(population[key]) ? 0 : population[key]; // if we don't have the population we show the real number
+                          return {
+                            x: key,
+                            y: (regPopulation / waterpoints[key]),
+                          };
+                        }).sort(comparator);
     return response;
   },
 
-  removeDuplicatePopulation(waterpoints) {
-    const seen = {};
-    const unique = (item) => seen.hasOwnProperty(item.VILLAGE) ? false : (seen[item.VILLAGE] = true);
-    return waterpoints.filter(unique);
-  },
-
   render() {
-    const singleVillageWaterpoints = this.removeDuplicatePopulation(this.props.waterpoints);
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
     return (
       <div className="waterpoint-population-serve-chart">
