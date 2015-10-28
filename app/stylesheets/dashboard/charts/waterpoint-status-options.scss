@@ -24,13 +24,13 @@
       margin-right: $chart-legend-margin;
 
       &.functional {
-        color: green;
+        color: $status-good;
       }
       &.needrepair {
-        color: yellow;
+        color: $status-medium;
       }
       &.nonfunctional {
-        color: red;
+        color: $status-poor;
       }
     }
   }
