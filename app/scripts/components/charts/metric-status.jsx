@@ -1,5 +1,5 @@
 import React from 'react';
-import T from '../../misc/t';
+import T from '../misc/t';
 
 require('stylesheets/dashboard/charts/metric-status');
 

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
-import * as func from '../../../utils/functional';
-import TSetChildProps from '../../misc/t-set-child-props';
+import * as func from '../../utils/functional';
+import TSetChildProps from '../misc/t-set-child-props';
 
 require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 

@@ -121,13 +121,14 @@ export function convertCkanResp(result) {
       func.Result.map(rec => convertRecord(fieldConverters, rec), records));
 }
 
-const resourceUrl = (root, id, params = {}) => func.promiseResult(
+const resourceUrl = (root, id, params = {}) =>
   toQuery({...params, resource_id: id})
     .orElse(err => {
       warn(err);
       return Err(['error.api.pre-request']);
     })
-    .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`)));
+    .andThen(qs => Ok(`${root}/action/datastore_search?${qs}`))
+    .promise();
 
 /**
  * @param {number} chunkSize How big is each chunk allowed to be
@@ -141,24 +142,29 @@ const getOffsets = (chunkSize, total) => {
   for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
     offsets.push(i * chunkSize);
   }
-  return offsets;
+  return [];  // TODO: revert when ckan starts working again offsets;
 };
 
-const convertChunk = data => func.promiseResult(convertCkanResp(data));
+const convertChunk = data => convertCkanResp(data).promise();
 
 /**
- * @param {function} notify A callback to provide partial data updates
+ * @param {func} postprocess A callback to process incoming data
+ * @param {func} notify A callback to provide partial data updates
  * @param {array<Promise>} promises The promises to wait for
  * @returns {Promise} Resolves all the resolved data concatenated in one big
  * array, or rejects if any the promises fail.
  */
-const promiseConcat = (notify, ...promises) => new Promise((resolve, reject) => {
+const promiseConcat = (postprocess, notify, ...promises) => new Promise((resolve, reject) => {
   let combined = Ok([]);
   promises.forEach(prom => prom
     .then(newData => {
       if (combined.isOk()) {
-        combined = Ok(combined.unwrap().concat(newData));
-        notify(combined.unwrap());
+        try {  // in case postprocess throws
+          combined = Ok(postprocess(combined.unwrap().concat(newData)));
+          notify(combined.unwrap());
+        } catch (err) {
+          combined = Err(['error.api.postprocess']);
+        }
       }
     })
     .catch(err => {
@@ -174,9 +180,10 @@ const promiseConcat = (notify, ...promises) => new Promise((resolve, reject) => 
  * @param {string} id The resource's id
  * @param {object} query Any query to be applied
  * @param {func} notify A callback to indicate progress
+ * @param {func} preprocess A callback to run on the incoming data
  * @returns {Promise<array<object>>} The converted data
  */
-function get(root, id, query = {}, notify = () => null) {
+function get(root, id, query = {}, notify = () => null, preprocess = v => v) {
   const chunk = 6000;
   const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
@@ -197,7 +204,7 @@ function get(root, id, query = {}, notify = () => null) {
     } else {
       const chunkPromises = getOffsets(chunk, total)
         .map(offset => getChunk(offset).then(convertChunk));
-      return promiseConcat(throttledNotify, first, ...chunkPromises);
+      return promiseConcat(preprocess, throttledNotify, first, ...chunkPromises);
     }
   };
 

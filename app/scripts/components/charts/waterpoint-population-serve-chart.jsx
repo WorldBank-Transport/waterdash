@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import isUndefined from 'lodash/lang/isUndefined';
 import {BarChart} from 'react-d3-components';
-import PopulationStore from '../../../stores/population';
-import * as func from '../../../utils/functional';
-import TSetChildProps from '../../misc/t-set-child-props';
-import {load} from '../../../actions/population';
+import PopulationStore from '../../stores/population';
+import * as func from '../../utils/functional';
+import TSetChildProps from '../misc/t-set-child-props';
+import {load} from '../../actions/population';
 
 require('stylesheets/dashboard/charts/waterpoint-population-serve-chart');
 
@@ -16,9 +16,6 @@ const WaterpointPopulationServeChart = React.createClass({
   mixins: [
     connect(PopulationStore, 'population'),
   ],
-  componentDidMount() {
-    load();
-  },
 
   parseData(waterpoints) {
     const response = {

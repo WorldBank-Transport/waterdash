@@ -1,0 +1,44 @@
+@import '../config/colours';
+@import '../config/list';
+@import '../config/dimensions';
+@import '../config/type';
+
+.data-type {
+  display: table-cell;
+  vertical-align: top;
+  width: 100%;
+
+  & > ul {
+    @include list-unstyle();
+    background: $bg-color;
+    display: table;
+    float: right;
+    table-layout: fixed;
+    width: 100%;
+
+    & > li {
+      border-left: 1px solid $tab-expand-bg;
+      display: table-cell;
+      vertical-align: top;
+
+      a {
+        color: $theme-blue;
+        display: table-cell;
+        font-size: $tab-text;
+        font-weight: bold;
+        height: $charts-nav-height;
+        padding: 0 $base-unit;
+        text-align: center;
+        vertical-align: middle;
+        // hack to make the a fill the li's width:
+        width: 1000px;
+
+        &:hover,
+        &.active {
+          background: $theme-blue;
+          color: $bg-color;
+        }
+      }
+    }
+  }
+}

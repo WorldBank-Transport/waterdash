@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import {LineChart} from 'react-d3-components';
-import * as func from '../../../utils/functional';
-import TSetChildProps from '../../misc/t-set-child-props';
-import T from '../../misc/t';
+import * as func from '../../utils/functional';
+import TSetChildProps from '../misc/t-set-child-props';
+import T from '../misc/t';
 
 require('stylesheets/dashboard/charts/boreholes-stats-chart');
 

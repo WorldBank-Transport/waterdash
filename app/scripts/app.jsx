@@ -1,30 +1,72 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
-import Router, {Route, IndexRoute} from 'react-router';
-import Root from './components/root.jsx';
-import WaterPoints from './components/dashboard/waterpoints.jsx';
-import WaterPoint from './components/dashboard/waterpoint.jsx';
-import Polygons from './components/dashboard/polygons.jsx';
-import Polygon from './components/dashboard/polygon.jsx';
-import Homepage from './components/static/homepage.jsx';
-import Data from './components/static/data.jsx';
-import SpeakOut from './components/static/speak-out.jsx';
-import NotFound from './components/static/not-found.jsx';
+import Router, { Route } from 'react-router';
+import history from './history';
+import DataTypes from './constants/data-types';
+import ViewModes from './constants/view-modes';
+import { setView } from './actions/view.es6';
+
+// Route components
+import Root from './components/root';
+// static page components:
+import StaticLayout from './components/static/layout';
+import Homepage from './components/static/homepage';
+import Data from './components/static/data';
+import SpeakOut from './components/static/speak-out';
+import NotFound from './components/static/not-found';
+// dashboard views
+import DashRoot from './components/dashboard/dash-root';
+import PointsMap from './components/dashboard/points-map';
+import Point from './components/dashboard/point';
+import PolysMap from './components/dashboard/polys-map';
+import Poly from './components/dashboard/poly';
+
+/**
+ * @param {object} nextState From react-router
+ * @returns {void}
+ */
+function setPointsView(nextState) {
+  setView({
+    viewMode: ViewModes.Points(),
+    dataType: DataTypes.fromParam(nextState.params.dataType),
+  });
+}
+
+/**
+ * @param {object} nextState From react-router
+ * @returns {void}
+ */
+function setPolysView(nextState) {
+  setView({
+    viewMode: ViewModes.fromParam(nextState.params.polyType),
+    dataType: DataTypes.fromParam(nextState.params.dataType),
+  });
+}
 
 
 React.render((
-  <Router>
-    <Route path="/" component={Root}>
-      <Route path="waterpoints/" component={WaterPoints} >
-        <Route path=":id" component={WaterPoint} />
+  <Router history={history}>
+    <Route component={Root}>
+
+      <Route component={StaticLayout}>
+        <Route path="/" component={Homepage} />
+        <Route path="data/" component={Data} />
+        <Route path="speak-out/" component={SpeakOut} />
       </Route>
-      <Route path="data/" component={Data} />
-      <IndexRoute component={Homepage} />
-      <Route path="speak-out/" component={SpeakOut} />
-      <Route path=":polytype/" component={Polygons}>
-        <Route path=":id" component={Polygon} />
+
+      <Route path="/dash/" component={DashRoot}>
+        <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
+          <Route path=":id" component={Point} />
+        </Route>
+        <Route path=":polyType/:dataType/" component={PolysMap} onEnter={setPolysView}>
+          <Route path=":id" component={Poly} />
+        </Route>
       </Route>
-      <Route path="*" component={NotFound} />
+
+      <Route component={StaticLayout}>
+        <Route path="*" component={NotFound} />
+      </Route>
+
     </Route>
   </Router>
 ), document.body);

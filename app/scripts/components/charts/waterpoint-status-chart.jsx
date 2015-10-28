@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
-import * as func from '../../../utils/functional';
-import TSetChildProps from '../../misc/t-set-child-props';
-import * as c from '../../../utils/colours';
+import * as func from '../../utils/functional';
+import TSetChildProps from '../misc/t-set-child-props';
+import * as c from '../../utils/colours';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 

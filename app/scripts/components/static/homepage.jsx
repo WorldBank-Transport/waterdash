@@ -1,19 +1,17 @@
 import React from 'react';
-import Divider from '../boilerplate/divider';
 import Button from '../boilerplate/button';
 require('stylesheets/boilerplate/static-content');
 
 const Homepage = React.createClass({
   render() {
     return (
-      <div className="main">
-        <Divider />
+      <div className="home-page">
         <div className="homebanner">
           <img src="images/home-img.png"/>
         </div>
         <div className="homecontent">
           <h2>Locate water projects throughout the country, your region, your district, or your ward. Use the Water Dashboard to examine water resources to make a difference in your community.</h2>
-          <Button linkTo="/waterpoints/">
+          <Button linkTo="/dash/points/waterpoints/">
             Water Points
           </Button>
           <p>

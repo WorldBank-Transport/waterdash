@@ -1,16 +1,18 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { toggleCharts } from '../actions/layout';
-import { charts } from '../constants/layout';
+import { toggleCharts, toggleFilters } from '../actions/layout';
+import OpenClosed from '../constants/open-closed';
 
 
 const LayoutStore = createStore({
   initialData: {
-    charts: charts.Closed(),
+    charts: OpenClosed.Closed(),
+    filters: OpenClosed.Closed(),
   },
   mixins: [SaneStore],
   init() {
     this.listenTo(toggleCharts, 'toggleCharts');
+    this.listenTo(toggleFilters, 'toggleFilters');
   },
   update(what, to) {
     this.setData({
@@ -19,10 +21,10 @@ const LayoutStore = createStore({
     });
   },
   toggleCharts() {
-    this.update('charts', this.get().charts.match({
-      Open: () => charts.Closed(),
-      Closed: () => charts.Open(),
-    }));
+    this.update('charts', this.get().charts.toggle());
+  },
+  toggleFilters() {
+    this.update('filters', this.get().filters.toggle());
   },
 });
 

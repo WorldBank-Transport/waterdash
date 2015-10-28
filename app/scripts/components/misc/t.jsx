@@ -31,7 +31,8 @@ const allTranslations = {
     'dash.district': 'Districts',
     'dash.ward': 'Wards',
 
-    'charts.toggle.activate': 'View Charts',
+    'charts.toggle.open': 'View Charts',
+    'charts.toggle.close': 'Hide Charts',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
@@ -54,11 +55,19 @@ const allTranslations = {
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
 
+    'filters.toggle.open': 'Dashboard Filters',
+    'filters.toggle.close': 'Hide Filters',
 
-    'view-mode.points': 'All Water Points',
+    'view-mode.points': i => `All ${i[0]}`,
     'view-mode.region': 'Region',
     'view-mode.district': 'District',
     'view-mode.ward': 'Ward',
+
+    'data-type.waterpoints': 'Waterpoints',
+    'data-type.boreholes': 'Boreholes',
+    'data-type.dams': 'Dams',
+
+    'overview-bar': 'Overview stuff',
 
     'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
@@ -73,6 +82,7 @@ const allTranslations = {
     'error.api.ckan': 'The CKAN data server encountered an error while trying to fetch data',
     'error.api.ckan.unknown-field-type': i => `The CKAN data server returned data of an unknown type '${i[0]}' for field '${i[1]}'`,
     'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
+    'error.api.postprocess': 'An error occurred while the application was processing data',
 
   },
 

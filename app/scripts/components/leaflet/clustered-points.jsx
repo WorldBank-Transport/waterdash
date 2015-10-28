@@ -18,20 +18,22 @@ const statusCategory = {
 
 const statusCatColours = statuses.map(status => colours[statusCategory[status]]);
 
-const ClusteredWaterpoints = React.createClass({
+const ClusteredPoints = React.createClass({
   propTypes: {
-    map: PropTypes.instanceOf(Map).isRequired,
-    waterpoints: PropTypes.array.isRequired,
+    map: PropTypes.instanceOf(Map),  // injected by BoundsMap
+    points: PropTypes.array.isRequired,
   },
   componentWillMount() {
     this.pruneCluster = new PruneClusterForLeaflet();
-    this.pruneCluster.BuildLeafletClusterIcon = cluster => new ClusterIcon({
-      categories: statusCatColours,
-      stats: cluster.stats,
-      population: cluster.population,
-      textColor: colours.textColor,
-      bgColor: colours.bgColor,
-    });
+    this.pruneCluster.BuildLeafletClusterIcon = cluster => {
+      return new ClusterIcon({
+        categories: statusCatColours,
+        stats: cluster.stats,
+        population: cluster.population,
+        textColor: colours.textColor,
+        bgColor: colours.bgColor,
+      });
+    };
     this.pruneCluster.BuildLeafletMarker = (marker, position) => {
       const m = new CircleMarker(position, {
         radius: 8,
@@ -67,7 +69,7 @@ const ClusteredWaterpoints = React.createClass({
     this.updateCluster();
   },
   shouldComponentUpdate(nextProps) {
-    return nextProps.waterpoints !== this.props.waterpoints;
+    return nextProps.points !== this.props.points;
   },
   componentDidUpdate() {
     this.updateCluster();
@@ -80,14 +82,14 @@ const ClusteredWaterpoints = React.createClass({
     const nextMap = {};
 
     // Existing markers: remove or keep
-    this.props.waterpoints.forEach(waterpoint => {
-      const id = waterpoint.WATER_POINT_CODE;
+    this.props.points.forEach(point => {
+      const id = point.WATER_POINT_CODE;
       if (typeof this.markerIdMap[id] !== 'undefined') {  // already have it
         nextMap[id] = this.markerIdMap[id];  // just copy the ref over
         delete this.markerIdMap[id];  // clear ref from old map
       } else {
-        const marker = new PruneCluster.Marker(...waterpoint.position);
-        marker.category = statuses.indexOf(waterpoint.STATUS);
+        const marker = new PruneCluster.Marker(...point.position);
+        marker.category = statuses.indexOf(point.STATUS);
         nextMap[id] = marker;
         this.pruneCluster.RegisterMarker(marker);
       }
@@ -114,4 +116,4 @@ const ClusteredWaterpoints = React.createClass({
   },
 });
 
-export default ClusteredWaterpoints;
+export default ClusteredPoints;

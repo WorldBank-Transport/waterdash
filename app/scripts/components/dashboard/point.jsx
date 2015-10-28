@@ -1,6 +1,5 @@
 import React,  { PropTypes } from 'react';
 import T from '../misc/t';
-import WaterPoints from './waterpoints';
 
 const WaterPoint = React.createClass({
   propTypes: {
@@ -10,13 +9,11 @@ const WaterPoint = React.createClass({
   },
   render() {
     return (
-      <WaterPoints>
-        <h1>
-          <T k="dash.waterpoint" />
-          {' '}
-          <small>{this.props.params.id}</small>
-        </h1>
-      </WaterPoints>
+      <h1>
+        <T k="dash.waterpoint" />
+        {' '}
+        <small>{this.props.params.id}</small>
+      </h1>
     );
   },
 });

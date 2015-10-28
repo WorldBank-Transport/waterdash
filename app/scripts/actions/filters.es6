@@ -1,7 +1,16 @@
-import { createActions } from 'reflux';
+import { createAction } from 'reflux';
 
-const filtersActions = createActions({
-  setPopulationServed: {},
-});
+const clear = createAction();
+const clearFilter = createAction();
+const setRange = createAction();
+const setInclude = createAction();
+const setExclude = createAction();
 
-export default filtersActions;
+
+export default {
+  clear,
+  clearFilter,
+  setRange,
+  setInclude,
+  setExclude,
+};
