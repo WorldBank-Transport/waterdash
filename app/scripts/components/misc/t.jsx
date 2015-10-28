@@ -46,7 +46,6 @@ const allTranslations = {
     'chart.status-waterpoints.title': 'Waterpoint status',
     'chart.status-waterpoints.x-axis': 'Regions',
     'chart.status-waterpoints.y-axis': 'Status',
-<<<<<<< HEAD
     'chart.title-waterpoints-status': 'Waterpoints Status',
     'chart.title-waterpoints-status-helptext': 'Ordered by % of Functional',
     'chart.title-waterpoints-functional': 'Performance Table',
@@ -55,11 +54,8 @@ const allTranslations = {
     'chart.title-boreholes-stats-helptext': '% Served',
     'chart.title-population-served': 'Population',
     'chart.title-title-population-served-helptext': '% Served',
-
-=======
     'chart.waterpoints-people-ratio.x-axis': 'Regions',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
->>>>>>> master
 
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',
