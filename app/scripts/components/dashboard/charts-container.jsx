@@ -3,6 +3,7 @@ import T from '../misc/t';
 import ViewMode from '../boilerplate/view-mode';
 import MetricStatus from './charts/metric-status';
 import * as func from '../../utils/functional';
+import CategoryFilter from './category-filter';
 
 require('stylesheets/dashboard/charts-container');
 
@@ -41,6 +42,7 @@ const ChartsContainer = React.createClass({
               <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
               <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
               <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
+              <CategoryFilter parentState={this.props.state}/>
             </div>
           </div>
         </div>

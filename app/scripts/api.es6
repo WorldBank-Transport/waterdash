@@ -22,6 +22,10 @@ const waterpointsQ = {
     'REGION',
     'WARD',
     'VILLAGE',
+    'HARDWARE_PROBLEM',
+    'WATER_QUALITY',
+    'WATER_QUANTITY',
+    'SOURCE_TYPE',
   ],
   distinct: true,
 };
