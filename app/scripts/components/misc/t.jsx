@@ -16,6 +16,11 @@ const allTranslations = {
     'nav.data': 'Data',
     'nav.speak-out': 'Speak Out',
 
+    'static.data-title': 'Explore the data behind the dashboard.',
+    'static.data-content': 'This Water Dashboard was built on open data release by the government of Tanzania. The raw data is published on the Government\'s open data portal in machine-readable format with a license that encourages re-use. The data behind this education dashboard comes from Ministry of Water and the National Bureau of Statistics of Tanzania.',
+    'static.speakout-title': 'Your voice matters!',
+    'static.speakout-content': 'Complete this form to share feedback about the data.',
+
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
 
@@ -41,6 +46,14 @@ const allTranslations = {
     'chart.status-waterpoints.title': 'Waterpoint status',
     'chart.status-waterpoints.x-axis': 'Regions',
     'chart.status-waterpoints.y-axis': 'Status',
+    'chart.title-waterpoints-status': 'Waterpoints Status',
+    'chart.title-waterpoints-status-helptext': 'Ordered by % of Functional',
+    'chart.title-waterpoints-functional': 'Performance Table',
+    'chart.title-waterpoints-functional-helptext': '% Functional',
+    'chart.title-boreholes-stats': 'Performance Table',
+    'chart.title-boreholes-stats-helptext': '% Served',
+    'chart.title-population-served': 'Population',
+    'chart.title-title-population-served-helptext': '% Served',
     'chart.waterpoints-people-ratio.x-axis': 'Regions',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
 
@@ -52,7 +65,7 @@ const allTranslations = {
     'chart.boreholes.STATIC_WATER_LEVEL': 'Static Water Level',
     'chart.boreholes.DYNAMIC_WATER_LEVEL_METER': 'Dynamic Water Level',
     'chart.boreholes.DRAW _DOWN_METER': 'Draw Down Meter',
-    'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per Hour',
+    'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per hour',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
 
@@ -125,12 +138,18 @@ const allTranslations = {
     'nav.data': 'Takwimu',
     'nav.speak-out': 'Maoni',
 
+    'static.data-title': 'Chunguza data ya dashibodi',
+    'static.data-content': 'Dashibodi ya maji imejengwa juu ya Takwimu Huria zilizoainishwa na Serikali ya Tanzania. Takwimu ghafi zilizoidhinishwa zimetangazwa kwa tovuti kuu ya  Serikaliopen data portal kwa njia inayosomeka na kompyuta ikitumia leseni  inayohamasisha matumizi kwa jumla. Takwimu zimetangazwa na Wizara ya Maji ya Tanzania, na Ofisi ya Taifa ya Takwimu.',
+    'static.speakout-title': 'Sauti yako ni ya maana!',
+    'static.speakout-content': 'Jaza fomu hii utupe maoni yako kuhusu takwimu zilizopo.',
+
     'view-mode.region': 'Mkoa',
     'view-mode.district': 'Wilaya',
 
     'chart.functional-waterpoints.title': 'puntos de agua funcionando',
     'chart.functional-waterpoints.x-axis': 'Regiones',
     'chart.functional-waterpoints.y-axis': 'porc',
+
 
   },
 };
