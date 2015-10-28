@@ -23,23 +23,25 @@ const WaterpointPopulationServeChart = React.createClass({
 
   parseData(waterpoints) {
     const response = {
-      label: '% Population Served',
+      label: 'People Waterpoint Ratio',
       values: [],
     };
     const population = this.state.population;
     const comparator = (a, b) => b.y - a.y;
-    response.values = Object.keys(waterpoints).map(key => {
-      const regPopulation = isUndefined(population[key]) ? 100 : population[key]; // if we don't have the population we show the real number
-      return {
-        x: key,
-        y: (waterpoints[key][0]['POPULATION SERVED'] / regPopulation * 100),
-      };
-    }).sort(comparator);
+    response.values = Object.keys(waterpoints)
+                        .filter(key => key !== 'total')
+                        .map(key => {
+                          const regPopulation = isUndefined(population[key]) ? 0 : population[key]; // if we don't have the population we show the real number
+                          return {
+                            x: key,
+                            y: (regPopulation / waterpoints[key]),
+                          };
+                        }).sort(comparator);
     return response;
   },
 
   render() {
-    const waterpointsRes = func.Result.sumByGroupBy(this.props.waterpoints, 'REGION', ['POPULATION SERVED']);
+    const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
     return (
       <div className="waterpoint-population-serve-chart">
       <h3 className="main-chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
@@ -49,8 +51,8 @@ const WaterpointPopulationServeChart = React.createClass({
               height={200}
               margin={{top: 40, bottom: 50, left: 50, right: 10}}
               width={500}
-              xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
-              yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
+              xAxis={{label: {k: 'chart.waterpoints-people-ratio.x-axis'}}}
+              yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
         </TSetChildProps>
       </div>);
   },

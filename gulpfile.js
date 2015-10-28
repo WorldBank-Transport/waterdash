@@ -29,6 +29,7 @@ gulp.task('clean:dist', function () {
 gulp.task('copy:static', function() {
   gulp.src(['app/images/**/*']).pipe(gulp.dest('dist/images'));
   gulp.src(['app/favicon.ico']).pipe(gulp.dest('dist'));
+  gulp.src(['app/layers/**/*']).pipe(gulp.dest('dist/layers'));
  });
 
 gulp.task('slack-notify', function() {
