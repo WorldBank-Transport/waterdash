@@ -8,6 +8,7 @@ import ViewStore from '../../stores/view';
 
 // Actions
 import { load } from '../../actions/data';
+import { clear, setRange, setInclude } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
 
 // Components
@@ -77,7 +78,12 @@ const DashRoot = React.createClass({
 
           {/* Overlays that can cover the map: */}
           <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
-          <Filters openClosed={this.state.layout.filters} {...propsForChildren} />
+          <Filters
+              clear={clear}
+              openClosed={this.state.layout.filters}
+              setInclude={setInclude}
+              setRange={setRange}
+              {...propsForChildren} />
           <TSetChildProps>
             <SpinnerModal
                 message={{k: `loading.${this.state.view.dataType.toParam()}`,

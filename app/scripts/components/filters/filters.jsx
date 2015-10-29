@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react';
-import { asArray } from '../../utils/functional';
+import { _ } from 'results';  // catch-all for match
 
 import DataTypes from '../../constants/data-types';
-import FilterTypes from '../../constants/filter-types';
 import OpenClosed from  '../../constants/open-closed';
 import ViewModes from '../../constants/view-modes';
 
-import filterActions from '../../actions/filters';
 
 import T from '../misc/t';
 import Range from './range';
@@ -15,11 +13,37 @@ require('stylesheets/filters/filters');
 
 const Filters = React.createClass({
   propTypes: {
-    children: PropTypes.node,
-    data: PropTypes.array,  // injected
-    dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
-    openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
-    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
+    clear: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired,
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
+    openClosed: PropTypes.instanceOf(OpenClosed.OptionClass).isRequired,
+    setInclude: PropTypes.func.isRequired,
+    setRange: PropTypes.func.isRequired,
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass).isRequired,
+  },
+  componentDidUpdate(prevProps) {
+    if (!this.props.dataType.equals(prevProps.dataType)) {
+      this.props.clear();
+    }
+  },
+  renderWaterpoints() {
+    return (
+      <div>
+        <h4>pop served</h4>
+        <Range
+            defaultValue={[0, 10000]}
+            max={10000}
+            min={0}
+            onChange={range => this.props.setRange('POPULATION SERVED', range)} />
+      </div>
+    );
+  },
+  renderOthers() {
+    return (
+      <div>
+        other filters...
+      </div>
+    );
   },
   render() {
     return OpenClosed.match(this.props.openClosed, {
@@ -28,23 +52,10 @@ const Filters = React.createClass({
           <div className="filters-title">
             <h2><T k="filters.title" /></h2>
           </div>
-          <ul className="filters-row">
-            {/*asArray(this.state.filters).map(([k, f]) =>
-              <li key={k}>
-                <h4>Some filter...</h4>
-                {FilterTypes.match(f.type, {
-                  Range: (
-                    <Range
-                        max={10000}
-                        min={0}
-                        onChange={range => filterActions.setRange(k, range)} />
-                  ),
-                  Include: <div>include filter</div>,
-                  Exclude: <div>exclude filter</div>,
-                })}
-              </li>
-            )*/}
-          </ul>
+          {DataTypes.match(this.props.dataType, {
+            Waterpoints: this.renderWaterpoints,
+            [_]: this.renderOthers,
+          })}
         </div>
       ),
       Closed: () => <div style={{display: 'none'}}></div>,
