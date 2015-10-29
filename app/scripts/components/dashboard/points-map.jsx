@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
+import { Map } from 'leaflet';
 
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
-import { TileLayer } from 'react-leaflet';
-import BoundsMap from '../leaflet/bounds-map';
 import ClusteredWaterpoints from '../leaflet/clustered-points';
 
 
@@ -13,17 +12,11 @@ const PointsMap = React.createClass({
     children: PropTypes.node,  // for selected point
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
   render() {
-    return (
-      <BoundsMap
-          bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
-          className="leaflet-map">
-        <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <ClusteredWaterpoints points={this.props.data} />
-      </BoundsMap>
-    );
+    return <ClusteredWaterpoints map={this.props.map} points={this.props.data} />;
   },
 });
 

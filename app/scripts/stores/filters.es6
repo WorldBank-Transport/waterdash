@@ -1,7 +1,6 @@
 import omit from 'lodash/object/omit';
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import FilterTypes from '../constants/filter-types';
 import filtersActions from '../actions/filters';
 import throttleCalls from '../utils/throttle-calls';
 
@@ -44,22 +43,13 @@ const FilterStore = createStore({
     this.setData(updated);
   },
   setRange(key, [min, max]) {
-    this.setFilter(key, {
-      type: FilterTypes.Range(),
-      fn: inRange(min, max),
-    });
+    this.setFilter(key, inRange(min, max));
   },
   setInclude(key, vals) {
-    this.setFilter(key, {
-      type: FilterTypes.Include(),
-      fn: include(vals),
-    });
+    this.setFilter(key, include(vals));
   },
   setExclude(key, vals) {
-    this.setFilter(key, {
-      type: FilterTypes.Exclude(),
-      fn: exclude(vals),
-    });
+    this.setFilter(key, exclude(vals));
   },
 });
 

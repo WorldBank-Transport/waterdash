@@ -1,14 +1,9 @@
 /* eslint camelcase: 0 */  // snake_case query params are not set by us
 
-import ckan from './utils/ckan';
+import ckan from './utils/api/ckan';
+import * as staticData from './utils/api/static-data';
 
 const API_ROOT = '//data.takwimu.org/api';
-
-// const queryUrl = q => `${API_ROOT}/action/datastore_search_sql?sql=${q}`;
-const staticResource = q => `layers/${q}.json`;
-
-const get = url =>
-  fetch(url).then(resp => resp.json());
 
 
 /**
@@ -48,6 +43,7 @@ const waterpointsQ = {
     'WATER_POINT_NAME',
     'STATUS',
     'REGION',
+    'DISTRICT',
     'WARD',
     'VILLAGE',
     'HARDWARE_PROBLEM',
@@ -89,14 +85,18 @@ export const getBoreholes = (onProgress) =>
   ckan.get(API_ROOT, '3b1d0344-1e83-4212-877e-428dd81cd802', boreholesQ, onProgress);
 
 
-export const getDams = () =>
-  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396');
+export const getDams = (onProgress) =>
+  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396', {}, onProgress);
+
 
 export const getRegions = () =>
-  get(staticResource('tz_regions'));
+  staticData.getPolygons('/layers/tz_regions.json', 'tz_Regions');
 
 export const getDistricts = () =>
-  get(staticResource('tz_districts'));
+  staticData.getPolygons('/layers/tz_districts.json', 'tz_districts');
+
+export const getWards = () =>
+  staticData.getPolygons('/layers/tz_wards.json', 'TzWards');
 
 export const getPopulation = () =>
-  get(staticResource('tz_population'));
+  staticData.getJson('/layers/tz_population.json');

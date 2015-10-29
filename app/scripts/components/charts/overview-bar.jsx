@@ -3,7 +3,7 @@ import DataTypes from '../../constants/data-types';
 import T from '../misc/t';
 import WaterpointsOverviewBar from './waterpoints-overview-bar';
 
-require('stylesheets/boilerplate/overview-bar');
+require('stylesheets/charts/overview-bar');
 
 const OverviewBar = React.createClass({
   render() {

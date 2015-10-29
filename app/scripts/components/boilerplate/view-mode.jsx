@@ -1,48 +1,47 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'reflux';
+import { Maybe } from 'results';
 import { Link } from 'react-router';
 import DataTypes from '../../constants/data-types';
-import LangStore from '../../stores/lang';
-import T, { translate } from '../misc/t';
+import ViewModes from '../../constants/view-modes';
+import T from '../misc/t';
+import TSetChildProps from '../misc/t-set-child-props';
 
 require('stylesheets/boilerplate/view-mode');
 
 const ViewMode = React.createClass({
   propTypes: {
     dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
+    viewMode: PropTypes.instanceOf(DataTypes.ViewModes).isRequired,
   },
-  mixins: [
-    connect(LangStore, 'lang'),  // for the translated label :(
-  ],
+  renderLink(viewMode, k) {
+    const { dataType } = this.props;
+    return (
+      <li>
+        {Maybe.match(dataType.getLocationColumn(viewMode), {
+          Some: () => (  // we have data for this viewMode/dataType combo
+            <Link activeClassName="active" to={`/dash/${viewMode.toParam()}/${dataType.toParam()}/`}>
+              <T k={k} />
+            </Link>
+          ),
+          None: () => (  // if we do _not_ have data for this viewMode/dataType combo
+            <TSetChildProps>
+              <span className="disabled" title={{k: 'view-mode.disabled'}}>
+                <T k={k} />
+              </span>
+            </TSetChildProps>
+          ),
+        })}
+      </li>
+    );
+  },
   render() {
-    const currentDataType = this.props.dataType.toParam();
-
-    // necessary to get `i` for dynamic translated points label :(
-    const currentDataName = translate(this.state.lang, `data-type.${currentDataType}`);
-
     return (
       <div className="view-mode">
         <ul>
-          <li>
-            <Link activeClassName="active" to={`/dash/points/${currentDataType}/`}>
-              <T i={[currentDataName]} k="view-mode.points" />
-            </Link>
-          </li>
-          <li>
-            <Link activeClassName="active" to={`/dash/regions/${currentDataType}/`}>
-              <T k="view-mode.region" />
-            </Link>
-          </li>
-          <li>
-            <Link activeClassName="active" to={`/dash/districts/${currentDataType}/`}>
-              <T k="view-mode.district" />
-            </Link>
-          </li>
-          <li>
-            <Link activeClassName="active" to={`/dash/wards/${currentDataType}/`}>
-              <T k="view-mode.ward" />
-            </Link>
-          </li>
+          {this.renderLink(ViewModes.Points(), `view-mode.points.${this.props.dataType.toParam()}`)}
+          {this.renderLink(ViewModes.Regions(), `view-mode.region`)}
+          {this.renderLink(ViewModes.Districts(), `view-mode.district`)}
+          {this.renderLink(ViewModes.Wards(), `view-mode.ward`)}
         </ul>
       </div>
     );

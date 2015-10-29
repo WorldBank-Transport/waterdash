@@ -1,6 +1,6 @@
+import isUndefined from 'lodash/lang/isUndefined';
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
-import isUndefined from 'lodash/lang/isUndefined';
 import {BarChart} from 'react-d3-components';
 import PopulationStore from '../../../stores/population';
 import * as func from '../../../utils/functional';
@@ -9,7 +9,7 @@ import {load} from '../../../actions/population';
 import T from '../../misc/t';
 import Resize from '../../../utils/resize-mixin';
 
-require('stylesheets/dashboard/charts/waterpoint-population-serve-chart');
+require('stylesheets/charts/waterpoint-population-serve-chart');
 
 const WaterpointPopulationServeChart = React.createClass({
   propTypes: {
@@ -45,7 +45,7 @@ const WaterpointPopulationServeChart = React.createClass({
   },
 
   render() {
-    if (!this.state.size) {
+    if (isUndefined(this.state.size)) {
       return (<div>empty</div>);
     }
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');

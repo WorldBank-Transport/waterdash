@@ -16,7 +16,7 @@ const FilteredDataStore = createStore({
     const data = DataStore.get();
     const filterItems = items(FilterStore.get());
     const filteredData = data.filter(record =>
-      filterItems.every(([k, f]) => f.fn(record[k])));
+      filterItems.every(([k, f]) => f(record[k])));
     this.setData(filteredData);
   },
 });

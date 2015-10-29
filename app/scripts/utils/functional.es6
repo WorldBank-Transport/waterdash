@@ -148,11 +148,20 @@ Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray
  */
 Result.merge = (data) => reduceResult(v => v, mergeTwo, {}, data);
 
-Result.groupBy = (data, propName) => filterAndReduce((v) => has(v, propName), (agg, item) => groupByProp(propName, agg, item), {}, data);
+Result.groupBy = (data, propName) => filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => groupByProp(propName, agg, item),  // reduce
+  {}, data);
 
-Result.countBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
+Result.countBy = (data, propName) =>  filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => countByProp(propName, agg, item),  // reduce
+  {}, data);
 
-Result.sumBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => sumByProp(propName, agg, item), {}, data);
+Result.sumBy = (data, propName) =>  filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => sumByProp(propName, agg, item),  // reduce
+  {}, data);
 
 /**
  * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok

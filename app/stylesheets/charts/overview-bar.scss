@@ -1,0 +1,13 @@
+@import '../config/colours';
+@import '../config/dimensions';
+
+.overview-bar {
+  background: $grey-light;
+  height: $overview-bar-height;
+  overflow-y: auto;
+  padding: $nav-padding;  // TODO: tighten up this layout
+
+  & > .waterpoints-metrics {
+    display: flex;  // TODO: this might break IE
+  }
+}

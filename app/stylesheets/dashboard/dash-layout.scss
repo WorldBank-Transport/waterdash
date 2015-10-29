@@ -14,14 +14,21 @@
     right: 0;
     top: $map-nav-height;
 
-    // These rules are not from dash-layout.jsx, but from leaflet...
-    // Reaching in from here did seem like the best place to do it though
+    // WARNING: These rules reach into child components, which is not nice
+    // but since they affect each other, ... oh well
     & > .leaflet-map {
       height: 100%;
+      z-index: 1;
 
       &.leaflet-container {
         background: $map-bg;  // override leaflet's setting
       }
+    }
+    .charts {
+      z-index: 2;
+    }
+    .filters {
+      z-index: 3;
     }
   }
 

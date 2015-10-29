@@ -5,7 +5,7 @@ import TSetChildProps from '../../misc/t-set-child-props';
 import T from '../../misc/t';
 import Resize from '../../../utils/resize-mixin';
 
-require('stylesheets/dashboard/charts/waterpoint-functional-chart');
+require('stylesheets/charts/waterpoint-functional-chart');
 
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {

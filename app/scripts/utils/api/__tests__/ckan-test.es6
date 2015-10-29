@@ -2,7 +2,7 @@
 describe('CKAN', () => {
   jest.dontMock('results');
   jest.dontMock('lodash/lang/isUndefined');
-  jest.dontMock('../functional');
+  jest.dontMock('../../functional');
   let ckan;
   beforeEach(() => {
     ckan = require.requireActual('../ckan');

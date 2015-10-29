@@ -5,11 +5,20 @@ const ViewModes = Union({
   Wards: {},
   Districts: {},
   Regions: {},
-}, {  // option instance methods
+}, {
+  // option instance methods
+  equals(other) {
+    if (!(other instanceof ViewModes.OptionClass)) {
+      return false;
+    } else {
+      return other.name === this.name;
+    }
+  },
   toParam() {
     return this.name.toLowerCase();
   },
-}, {  // ViewModes static methods
+}, {
+  // ViewModes static methods
   fromParam(param) {
     if (param === 'points') {
       return ViewModes.Points();

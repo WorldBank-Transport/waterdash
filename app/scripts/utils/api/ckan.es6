@@ -1,9 +1,10 @@
 /* eslint camelcase: 0 */  // snake_case query params are not set by us
 import throttle from 'lodash/function/throttle';
-import * as func from './functional';
-import { Ok, Err } from 'results';
 import isUndefined from 'lodash/lang/isUndefined';
-import warn from './warn';
+import { Ok, Err } from 'results';
+import * as func from '../functional';
+import warn from '../warn';
+import { fetchAndCheck } from './http';
 import { toQuery } from './querystring';
 
 
@@ -12,34 +13,6 @@ const converters = {
   numeric: n => parseFloat(n),
   int4: n => parseInt(n, 10),
 };
-
-
-/**
- * @param {object} err The HTTP error
- * @returns {Promise<object>} re-rejects the err with the error code key
- */
-export function makeHTTPErrorNice(err) {
-  if (err instanceof Error) {  // this probably came from fetch()
-    warn(err);
-    return Promise.reject(['error.api.http']);
-  } else {  // probably not an http error, so just pass it on
-    return Promise.reject(err);
-  }
-}
-
-
-/**
- * @param {object} response The raw fetch response
- * @returns {Promise<object>} resolves to the raw response again or rejects
- */
-export function rejectIfNotHTTPOk(response) {
-  if (!response.ok) {
-    warn(response);
-    return Promise.reject(['error.api.http.not-ok', response.status, response.statusText]);
-  } else {  // pass-through
-    return Promise.resolve(response);
-  }
-}
 
 /**
  * @param {object} ckanObj The object returned by CKAN
@@ -142,7 +115,7 @@ const getOffsets = (chunkSize, total) => {
   for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
     offsets.push(i * chunkSize);
   }
-  return [];  // TODO: revert when ckan starts working again offsets;
+  return offsets;  //[];  // TODO: revert when ckan starts working again offsets;
 };
 
 const convertChunk = data => convertCkanResp(data).promise();
@@ -189,9 +162,7 @@ function get(root, id, query = {}, notify = () => null, preprocess = v => v) {
 
   const getChunk = (offset) => {
     return resourceUrl(root, id, {...query, limit: chunk, offset: offset})
-      .then(fetch)
-      .catch(makeHTTPErrorNice)
-      .then(rejectIfNotHTTPOk)
+      .then(fetchAndCheck)
       .then(resp => resp.json())
       .then(rejectIfNotSuccess);
   };

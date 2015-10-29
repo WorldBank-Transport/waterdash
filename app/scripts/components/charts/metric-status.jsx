@@ -1,7 +1,7 @@
 import React from 'react';
 import T from '../misc/t';
 
-require('stylesheets/dashboard/charts/metric-status');
+require('stylesheets/charts/metric-status');
 
 const MetricStatus = React.createClass({
   propTypes: {

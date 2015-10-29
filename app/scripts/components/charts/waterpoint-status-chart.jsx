@@ -7,7 +7,7 @@ import T from '../../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../../utils/resize-mixin';
 
-require('stylesheets/dashboard/charts/stack-bar-chart');
+require('stylesheets/charts/stack-bar-chart');
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
