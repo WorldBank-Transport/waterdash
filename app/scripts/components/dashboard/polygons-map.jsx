@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Map } from 'leaflet';
 
-import colours from '../../utils/colours';
+import colours, { polygon as polyColour } from '../../utils/colours';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
@@ -17,20 +17,45 @@ const PolygonsMap = React.createClass({
     polygonsData: PropTypes.array,  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
+
+  handleClickFor(feature) {
+    return e => {
+      console.log('clicked', e, feature);
+    };
+  },
+
+  handleMouseoutFor(feature) {
+    const colour = this.getFeatureColor(feature);
+    return e => {
+      e.target.setStyle(polyColour.normal(colour));
+    };
+  },
+
+  handleMouseover(e) {
+    e.target.setStyle(polyColour.hovered);
+  },
+
+  getFeatureColor(feature) {
+    // TODO
+    return feature.properties.data.and('purple').unwrapOr(colours.unknown);
+  },
+
   renderFeature(feature) {
     // prefix the key with the viewMode, since regions districts might have the same name
     const key = `${this.props.viewMode.toParam()}-${feature.id}`;
-
-    const pathStyle = {
-      color: '#fff',
-      fillOpacity: 0.75,
-      opacity: 0.6,
-      weight: 2,
-      fillColor: feature.properties.data.and('purple').unwrapOr(colours.unknown),
-    };
-
-    return <GeoJson data={feature} key={key} map={this.props.map} {...pathStyle} />;
+    const pathStyle = polyColour.normal(this.getFeatureColor(feature));
+    return (
+      <GeoJson
+          data={feature}
+          key={key}
+          map={this.props.map}
+          onLeafletClick={this.handleClickFor(feature)}
+          onLeafletMouseout={this.handleMouseoutFor(feature)}
+          onLeafletMouseover={this.handleMouseover}
+          {...pathStyle} />
+    );
   },
+
   render() {
     return (
       <div style={{display: 'none'}}>
