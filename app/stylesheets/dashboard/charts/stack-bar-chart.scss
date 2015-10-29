@@ -3,14 +3,39 @@
 
 .stack-bar-chart {
   margin: 0;
-  .tick text {
-    -webkit-transform: rotate(-75deg);
+  svg {
+    width: 100%; height: 100%;
+    pointer-events: none; /* so that you can resize the element */
+  }
+
+  .x {
+    text-align: left;
+    .tick text {
+      -webkit-transform: rotate(-75deg);
+      fill: $text-color;
+      font-size: $chart-axis-text;
+      pointer-events: auto;
+      transform: rotate(-75deg);
+      x: -20;
+      y: 5;
+      width: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      direction: rtl;
+      text-anchor: inherit;
+    }
+  }
+
+  .y {
+    .tick text {
+      fill: $text-color;
+      font-size: $chart-axis-text;
+    }
+  }
+  .label {
     fill: $text-color;
     font-size: $chart-axis-text;
-    top: 4;
-    transform: rotate(-75deg);
-    x: -20;
-    y: 5;
   }
 
 }

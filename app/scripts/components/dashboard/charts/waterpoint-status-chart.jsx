@@ -14,6 +14,21 @@ const WaterpointStatusChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
+  getInitialState() {
+    return {};
+  },
+
+  componentDidMount() {
+    const newState = {
+      ...this.state,
+      size: {
+        width: this.getDOMNode().offsetWidth - 30,
+        height: this.getDOMNode().offsetHeight - 30,
+      }
+    };
+    this.replaceState(newState); 
+  },
+
   getRegionsOrderByFunctional(data) {
     const returnValue = [];
     const seen = {total: true};
@@ -56,6 +71,9 @@ const WaterpointStatusChart = React.createClass({
   },
 
   render() {
+    if(!this.state.size) {
+      return (<div>empty</div>);
+    }
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
@@ -66,11 +84,11 @@ const WaterpointStatusChart = React.createClass({
           <BarChart
               colorScale={c.Color.getWaterpointColor}
               data={this.parseData(dataRes)}
-              height={200}
-              margin={{top: 30, bottom: 50, left: 50, right: 10}}
-              width={600}
-              xAxis={{innerTickSize: 12, label: {k: 'chart.status-waterpoints.x-axis'}}}
-              yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
+              height={400}
+              margin={{top: 30, bottom: 100, left: 40, right: 20}}
+              width={this.state.size.width}
+              xAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.x-axis'}}}
+              yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>
       </div>
       </div>

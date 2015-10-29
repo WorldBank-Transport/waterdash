@@ -4,13 +4,24 @@
 
 .waterpoint-functional-chart {
   margin: 0;
-  .tick text {
-    -webkit-transform: rotate(-75deg);
+  .x {
+    .tick text {
+      -webkit-transform: rotate(-75deg);
+      fill: $text-color;
+      font-size: 11px;
+      transform: rotate(-75deg);
+      direction: rtl;
+      text-anchor: inherit;
+    }
+  }
+  .y {
+    .tick text {
+      fill: $text-color;
+      font-size: 11px;
+    }
+  }
+  .label {
     fill: $text-color;
-    font-size: 12px;
-    top: 4;
-    transform: rotate(-75deg);
-    x: -20;
-    y: 5;
+    font-size: $chart-axis-text;
   }
 }
