@@ -1,0 +1,54 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+.category-filter {
+  border-right: 1px solid $grey-light-detail;
+  color: $text-color;
+  display: table-cell;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 2*$base-unit;
+  vertical-align: top;
+
+  .category-filter-toogle {
+    background-color: $bg-color;
+
+    &:hover {
+      background: darken($grey-light, 10%);
+    }
+
+    i.fa {
+      float: right;
+      padding-right: 5px;
+      padding-top: 2px;
+    }
+  }
+
+  .flyout {
+    background-color: $grey-light;
+    height: 300px;
+    overflow: auto;
+    position: relative;
+    width: 500px;
+    z-index: 10;
+  }
+  .open-up {
+    float: left;
+    margin: 0;
+    top: -332px;
+  }
+  .open-down {
+    float: left;
+    margin: 0;
+    top: 10px;
+  }
+  .visible {
+    visibility: block;
+  }
+  .hidden {
+    display: none;
+  }
+}

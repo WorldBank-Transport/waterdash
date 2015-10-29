@@ -20,7 +20,6 @@ import Filters from '../filters/filters';
 
 require('stylesheets/dashboard/waterpoints');
 
-
 const WaterPoints = React.createClass({
   propTypes: {
     children: PropTypes.node,
