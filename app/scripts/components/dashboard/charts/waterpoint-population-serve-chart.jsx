@@ -7,6 +7,7 @@ import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import {load} from '../../../actions/population';
 import T from '../../misc/t';
+import Resize from '../../../utils/resize-mixin';
 
 require('stylesheets/dashboard/charts/waterpoint-population-serve-chart');
 
@@ -16,9 +17,12 @@ const WaterpointPopulationServeChart = React.createClass({
   },
   mixins: [
     connect(PopulationStore, 'population'),
+    Resize,
   ],
-  componentDidMount() {
+
+  getInitialState() {
     load();
+    return {};
   },
 
   parseData(waterpoints) {
@@ -41,6 +45,9 @@ const WaterpointPopulationServeChart = React.createClass({
   },
 
   render() {
+    if (!this.state.size) {
+      return (<div>empty</div>);
+    }
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
     return (
       <div className="waterpoint-population-serve-chart">
@@ -51,7 +58,7 @@ const WaterpointPopulationServeChart = React.createClass({
                 data={this.parseData(waterpointsRes)}
                 height={200}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={500}
+                width={this.state.size.width * 0.25}
                 xAxis={{label: {k: 'chart.waterpoints-people-ratio.x-axis'}}}
                 yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
           </TSetChildProps>

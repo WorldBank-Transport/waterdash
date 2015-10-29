@@ -5,6 +5,7 @@ import TSetChildProps from '../../misc/t-set-child-props';
 import * as c from '../../../utils/colours';
 import T from '../../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
+import Resize from '../../../utils/resize-mixin';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
@@ -14,19 +15,10 @@ const WaterpointStatusChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
+  mixins: [Resize],
+
   getInitialState() {
     return {};
-  },
-
-  componentDidMount() {
-    const newState = {
-      ...this.state,
-      size: {
-        width: this.getDOMNode().offsetWidth - 30,
-        height: this.getDOMNode().offsetHeight - 30,
-      },
-    };
-    this.replaceState(newState);
   },
 
   getRegionsOrderByFunctional(data) {
@@ -44,6 +36,7 @@ const WaterpointStatusChart = React.createClass({
       .map(item => item.name);
     return ordered;
   },
+
 
   parseData(data) {
     const regions = this.getRegionsOrderByFunctional(data);
@@ -86,7 +79,7 @@ const WaterpointStatusChart = React.createClass({
               data={this.parseData(dataRes)}
               height={400}
               margin={{top: 30, bottom: 100, left: 40, right: 20}}
-              width={this.state.size.width}
+              width={this.state.size.width * 0.6}
               xAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.x-axis'}}}
               yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>

@@ -9,7 +9,7 @@
       -webkit-transform: rotate(-75deg);
       direction: rtl;
       fill: $text-color;
-      font-size: 11px;     
+      font-size: 10px;     
       text-anchor: inherit;
       transform: rotate(-75deg);
     }
@@ -17,7 +17,7 @@
   .y {
     .tick text {
       fill: $text-color;
-      font-size: 11px;
+      font-size: 10px;
     }
   }
   .label {
