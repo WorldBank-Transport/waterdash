@@ -1,7 +1,7 @@
 /* eslint-env jest */
 describe('querystring util', () => {
   jest.dontMock('results');
-  jest.dontMock('../functional');
+  jest.dontMock('../../functional');
   let querystring;
   beforeEach(() => {
     querystring = require.requireActual('../querystring');
@@ -9,7 +9,7 @@ describe('querystring util', () => {
 
   describe('queryval', () => {
     it('should stringify `undefined` with a warning', () => {
-      const mockedWarn = require('../warn');  // jest auto-mocks requires
+      const mockedWarn = require('../../warn');  // jest auto-mocks requires
       expect(querystring.queryVal().isOk()).toBe(true);
       expect(querystring.queryVal().unwrap()).toEqual('undefined');
       expect(mockedWarn).toBeCalled();

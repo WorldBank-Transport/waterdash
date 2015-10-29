@@ -1,27 +1,34 @@
 import { createActions } from 'reflux';
-import { getRegions, getDistricts } from '../api';
+import ViewModes from '../constants/view-modes';
+import { getRegions, getDistricts, getWards } from '../api';
+
 
 const polygonActions = createActions({
-  loadRegions: {},
-  loadRegionsCompleted: {},
-  loadRegionsFailed: {},
-  loadDistricts: {},
-  loadDistrictsCompleted: {},
-  loadDistrictsFailed: {},
+  clearPolygons: {},
+  loadPolygons: {},
+  loadProgress: {},
+  loadCompleted: {},
+  loadFailed: {},
 });
 
-// SIDE-EFFECT: xhr request is triggered on polygonActions.loadRegions()
-polygonActions.loadRegions.listen(() => {
-  getRegions()
-    .then(polygonActions.loadRegionsCompleted)
-    .catch(polygonActions.loadRegionsFailed);
-});
 
-// SIDE-EFFECT: xhr request is triggered on polygonActions.loadDistricts()
-polygonActions.loadDistricts.listen(() => {
-  getDistricts()
-    .then(polygonActions.loadDistrictsCompleted)
-    .catch(polygonActions.loadDistrictsFailed);
-});
+// Inject the api request promise instead of the point type
+polygonActions.loadPolygons.preEmit = type =>
+  ViewModes.match(type, {
+    Regions: () => getRegions(polygonActions.loadProgress),
+    Districts: () => getDistricts(polygonActions.loadProgress),
+    Wards: () => getWards(polygonActions.loadProgress),
+    Points: () => {
+      throw new Error('Cannot load polygons for points');
+    },
+  });
+
+
+// Wire up the completed and failed actions to the promise's result
+polygonActions.loadPolygons.listen(dataPromise =>
+  dataPromise
+    .then(polygonActions.loadCompleted)
+    .catch(polygonActions.loadFailed));
+
 
 export default polygonActions;

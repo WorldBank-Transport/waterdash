@@ -1,4 +1,7 @@
+// Utils
 import { connect } from 'reflux';
+import { _ } from 'results';  // catch-all for match
+import ViewModes from '../../constants/view-modes';
 
 // Stores
 import FilteredDataStore from '../../stores/filtered-data';
@@ -8,6 +11,7 @@ import ViewStore from '../../stores/view';
 
 // Actions
 import { load } from '../../actions/data';
+import { loadPolygons, clearPolygons } from '../../actions/polygons';
 import { clear, setRange, setInclude } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
 
@@ -43,11 +47,21 @@ const DashRoot = React.createClass({
   ],
   componentDidMount() {
     load(this.state.view.dataType);
+    this.updatePolygons();
   },
   componentDidUpdate(prevProps, prevState) {
     if (!this.state.view.dataType.equals(prevState.view.dataType)) {
       load(this.state.view.dataType);
     }
+    if (!this.state.view.viewMode.equals(prevState.view.viewMode)) {
+      this.updatePolygons();
+    }
+  },
+  updatePolygons() {
+    ViewModes.match(this.state.view.viewMode, {
+      Points: () => clearPolygons(),
+      [_]: () => loadPolygons(this.state.view.viewMode),
+    });
   },
   render() {
     const propsForChildren = {

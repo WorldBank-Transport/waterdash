@@ -1,7 +1,7 @@
 import contains from 'lodash/collection/contains';
 import { Ok, Err } from 'results';
-import { Result } from './functional';
-import warn from './warn';
+import { Result } from '../functional';
+import warn from '../warn';
 
 
 /**

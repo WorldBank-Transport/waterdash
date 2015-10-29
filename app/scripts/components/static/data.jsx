@@ -1,5 +1,4 @@
 import React from 'react';
-import Divider from '../boilerplate/divider';
 
 const Data = React.createClass({
   render() {

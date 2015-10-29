@@ -18,8 +18,8 @@ import NotFound from './components/static/not-found';
 import DashRoot from './components/dashboard/dash-root';
 import PointsMap from './components/dashboard/points-map';
 import Point from './components/dashboard/point';
-import PolysMap from './components/dashboard/polys-map';
-import Poly from './components/dashboard/poly';
+import PolygonsMap from './components/dashboard/polygons-map';
+import Polygon from './components/dashboard/polygon';
 
 /**
  * @param {object} nextState From react-router
@@ -65,8 +65,8 @@ React.render((
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
           <Route path=":id" component={Point} />
         </Route>
-        <Route path=":polyType/:dataType/" component={PolysMap} onEnter={setPolysView}>
-          <Route path=":id" component={Poly} />
+        <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView}>
+          <Route path=":id" component={Polygon} />
         </Route>
       </Route>
 
