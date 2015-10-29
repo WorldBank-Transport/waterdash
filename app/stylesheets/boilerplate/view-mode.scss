@@ -10,22 +10,21 @@
 
   & > ul {
     @include list-unstyle();
-    background: $bg-color;
+    background: $theme-blue;
     display: table;
     float: right;
     table-layout: fixed;
     width: 100%;
 
     & > li {
-      border-left: 1px solid $tab-expand-bg;
+      border-left: 1px solid $theme-blue-light;
       display: table-cell;
       vertical-align: top;
 
       a {
-        color: $theme-blue;
+        color: $text-inverse;
         display: table-cell;
         font-size: $tab-text;
-        font-weight: bold;
         height: $charts-nav-height;
         padding: 0 $base-unit;
         text-align: center;
@@ -35,8 +34,10 @@
 
         &:hover,
         &.active {
-          background: $theme-blue;
-          color: $bg-color;
+          background: $btn-hover;  // TODO: this is prob not the right var for this
+        }
+        &.active {
+          font-weight: bold;
         }
       }
     }

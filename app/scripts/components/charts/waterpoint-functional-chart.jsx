@@ -3,7 +3,7 @@ import {BarChart} from 'react-d3-components';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 
-require('stylesheets/dashboard/charts/waterpoint-functional-chart');
+require('stylesheets/charts/waterpoint-functional-chart');
 
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {

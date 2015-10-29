@@ -4,7 +4,7 @@ import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import * as c from '../../utils/colours';
 
-require('stylesheets/dashboard/charts/stack-bar-chart');
+require('stylesheets/charts/stack-bar-chart');
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {

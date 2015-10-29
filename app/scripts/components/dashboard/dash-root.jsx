@@ -61,7 +61,10 @@ const DashRoot = React.createClass({
 
         <div className="dash-top">
           <MapNav primary={(
-            <MapNavPrimary onToggle={toggleCharts} openClosed={this.state.layout.charts}>
+            <MapNavPrimary
+                extraClasses="charts-toggle"
+                onToggle={toggleCharts}
+                openClosed={this.state.layout.charts}>
               <T k={`charts.toggle.${this.state.layout.charts.getId()}`} />
             </MapNavPrimary>
           )}>
@@ -86,7 +89,10 @@ const DashRoot = React.createClass({
 
         <div className="dash-bottom">
           <MapNav primary={(
-            <MapNavPrimary onToggle={toggleFilters} openClosed={this.state.layout.filters}>
+            <MapNavPrimary
+                extraClasses="filters-toggle"
+                onToggle={toggleFilters}
+                openClosed={this.state.layout.filters}>
               <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
             </MapNavPrimary>
           )}>

@@ -5,6 +5,7 @@
 .map-nav-primary {
   @include button-reset();
 
+  color: $text-color;
   display: block;
   font-size: $tab-text;
   width: 20%;
@@ -14,5 +15,15 @@
   }
   &:hover {
     cursor: pointer;
+  }
+
+  // customized styles through extraClasses props
+  &.charts-toggle {
+    background: $grey-light;
+    font-weight: bold;
+  }
+  &.filters-toggle {
+    background: $theme-blue;
+    color: $text-inverse;
   }
 }
