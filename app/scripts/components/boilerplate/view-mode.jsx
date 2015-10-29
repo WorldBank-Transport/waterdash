@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'reflux';
+import { _ } from 'results';  // catch-all for match
 import { Link } from 'react-router';
 import DataTypes from '../../constants/data-types';
-import LangStore from '../../stores/lang';
-import T, { translate } from '../misc/t';
+import T from '../misc/t';
+import TSetChildProps from '../misc/t-set-child-props';
 
 require('stylesheets/boilerplate/view-mode');
 
@@ -11,22 +11,27 @@ const ViewMode = React.createClass({
   propTypes: {
     dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
   },
-  mixins: [
-    connect(LangStore, 'lang'),  // for the translated label :(
-  ],
   render() {
     const currentDataType = this.props.dataType.toParam();
-
-    // necessary to get `i` for dynamic translated points label :(
-    const currentDataName = translate(this.state.lang, `data-type.${currentDataType}`);
 
     return (
       <div className="view-mode">
         <ul>
           <li>
-            <Link activeClassName="active" to={`/dash/points/${currentDataType}/`}>
-              <T i={[currentDataName]} k="view-mode.points" />
-            </Link>
+            {DataTypes.match(this.props.dataType, {
+              Waterpoints: () => (
+                <Link activeClassName="active" to={`/dash/points/${currentDataType}/`}>
+                  <T k={`view-mode.points.${currentDataType}`} />
+                </Link>
+              ),
+              [_]: () => (
+                <TSetChildProps>
+                  <span className="disabled" title={{k: 'view-mode.disabled'}}>
+                    <T k={`view-mode.points.${currentDataType}`} />
+                  </span>
+                </TSetChildProps>
+              ),
+            })}
           </li>
           <li>
             <Link activeClassName="active" to={`/dash/regions/${currentDataType}/`}>
@@ -39,9 +44,20 @@ const ViewMode = React.createClass({
             </Link>
           </li>
           <li>
-            <Link activeClassName="active" to={`/dash/wards/${currentDataType}/`}>
-              <T k="view-mode.ward" />
-            </Link>
+            {DataTypes.match(this.props.dataType, {
+              Waterpoints: () => (
+                <Link activeClassName="active" to={`/dash/wards/${currentDataType}/`}>
+                  <T k="view-mode.ward" />
+                </Link>
+              ),
+              [_]: () => (
+                <TSetChildProps>
+                  <span className="disabled" title={{k: 'view-mode.disabled'}}>
+                    <T k="view-mode.ward" />
+                  </span>
+                </TSetChildProps>
+              ),
+            })}
           </li>
         </ul>
       </div>

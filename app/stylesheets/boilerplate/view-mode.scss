@@ -21,8 +21,8 @@
       display: table-cell;
       vertical-align: top;
 
-      a {
-        color: $text-inverse;
+      a,
+      .disabled {
         display: table-cell;
         font-size: $tab-text;
         height: $charts-nav-height;
@@ -31,6 +31,10 @@
         vertical-align: middle;
         // hack to make the a fill the li's width:
         width: 1000px;
+      }
+
+      a {
+        color: $text-inverse;
 
         &:hover,
         &.active {
@@ -38,6 +42,15 @@
         }
         &.active {
           font-weight: bold;
+        }
+      }
+
+      .disabled {
+        background: $grey-medium;
+        color: $grey-light;
+
+        &:hover {
+          cursor: not-allowed;
         }
       }
     }

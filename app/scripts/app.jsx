@@ -1,6 +1,6 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
-import Router, { Route } from 'react-router';
+import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
@@ -55,6 +55,13 @@ React.render((
       </Route>
 
       <Route path="/dash/" component={DashRoot}>
+        {/* Redirect invalid paths -- we don't points or wards for dams & boreholes */}
+        <Redirect from="points/boreholes/" to="/dash/districts/boreholes/" />
+        <Redirect from="wards/boreholes/" to="/dash/districts/boreholes/" />
+        <Redirect from="points/dams/" to="/dash/districts/dams/" />
+        <Redirect from="wards/dams/" to="/dash/districts/dams/" />
+
+        {/* Normal dashboard routing */}
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
           <Route path=":id" component={Point} />
         </Route>

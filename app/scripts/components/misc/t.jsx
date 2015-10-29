@@ -58,10 +58,13 @@ const allTranslations = {
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',
 
-    'view-mode.points': i => `All ${i[0]}`,
+    'view-mode.points.waterpoints': 'All Waterpoints',
+    'view-mode.points.dams': 'All Dams',
+    'view-mode.points.boreholes': 'All Boreholes',
     'view-mode.region': 'Region',
     'view-mode.district': 'District',
     'view-mode.ward': 'Ward',
+    'view-mode.disabled': 'Data not available',
 
     'data-type.waterpoints': 'Waterpoints',
     'data-type.boreholes': 'Boreholes',
