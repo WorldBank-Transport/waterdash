@@ -78,6 +78,10 @@ const allTranslations = {
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
     'loading.boreholes': i => `${i[0]} boreholes loaded...`,
     'loading.dams': i => `${i[0]} dams loaded...`,
+    'loading.regions': 'Loading regions...',
+    'loading.districts': 'Loading districts...',
+    'loading.wards': 'Loading wards...',
+    'loading.points': 'If you see this message, there is likely an error in the application.',
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',

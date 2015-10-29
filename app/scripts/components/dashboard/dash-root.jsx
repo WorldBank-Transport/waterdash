@@ -7,6 +7,8 @@ import ViewModes from '../../constants/view-modes';
 import FilteredDataStore from '../../stores/filtered-data';
 import LayoutStore from '../../stores/layout';
 import LoadingDataStore from '../../stores/loading-data';
+import LoadingPolygonsStore from '../../stores/loading-polygons';
+import PolygonsStore from '../../stores/polygons';
 import ViewStore from '../../stores/view';
 
 // Actions
@@ -43,6 +45,8 @@ const DashRoot = React.createClass({
     connect(FilteredDataStore, 'data'),
     connect(LayoutStore, 'layout'),
     connect(LoadingDataStore, 'loadingData'),
+    connect(LoadingPolygonsStore, 'loadingPolygons'),
+    connect(PolygonsStore, 'polygons'),
     connect(ViewStore, 'view'),
   ],
   componentDidMount() {
@@ -69,7 +73,10 @@ const DashRoot = React.createClass({
       data: this.state.data,
       viewMode: this.state.view.viewMode,
     };
-    const mapChild = React.cloneElement(this.props.children, propsForChildren);
+    const mapChild = React.cloneElement(this.props.children, {
+      ...propsForChildren,
+      polygons: this.state.polygons,
+    });
 
     return (
       <div className="main dash-layout">
@@ -98,12 +105,20 @@ const DashRoot = React.createClass({
               setInclude={setInclude}
               setRange={setRange}
               {...propsForChildren} />
+          {/* Polygons loading overlay */}
+          <TSetChildProps>
+            <SpinnerModal
+                message={{k: `loading.${this.state.view.viewMode.toParam()}`}}
+                retry={() => load(this.state.view.dataType)}
+                state={this.state.loadingData} />
+          </TSetChildProps>
+          {/* Data loading overlay */}
           <TSetChildProps>
             <SpinnerModal
                 message={{k: `loading.${this.state.view.dataType.toParam()}`,
                   i: [this.state.data.length]}}
-                retry={() => load(this.state.view.dataType)}
-                state={this.state.loadingData} />
+                retry={this.updatePolygons}
+                state={this.state.loadingPolygons} />
           </TSetChildProps>
         </div>
 

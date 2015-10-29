@@ -12,9 +12,11 @@ const PolygonsMap = React.createClass({
     children: PropTypes.node,  // for selected point
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    polygons: PropTypes.array,  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
   render() {
+    console.log('polys?', this.props.polygons);
     return (
       <BoundsMap
           bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
