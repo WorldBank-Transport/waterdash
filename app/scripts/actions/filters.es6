@@ -5,6 +5,8 @@ const clearFilter = createAction();
 const setRange = createAction();
 const setInclude = createAction();
 const setExclude = createAction();
+const setPopulationServed = createAction();
+const setSubcategory = createAction();
 
 
 export default {
@@ -13,4 +15,6 @@ export default {
   setRange,
   setInclude,
   setExclude,
+  setPopulationServed,
+  setSubcategory,
 };

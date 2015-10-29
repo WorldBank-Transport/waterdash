@@ -4,6 +4,9 @@ import PointTypes from '../../constants/point-types';
 import ViewModes from '../../constants/view-modes';
 import T from '../misc/t';
 import ViewMode from '../boilerplate/view-mode';
+import MetricStatus from './charts/metric-status';
+import * as func from '../../utils/functional';
+import CategoryFilter from './category-filter';
 
 require('stylesheets/dashboard/charts-container');
 
@@ -25,7 +28,7 @@ const ChartsContainer = React.createClass({
       Open: () => [ 'open', this.props.children ],
       Closed: () => [ 'closed', []],
     });
-    // const data = func.Result.countBy(this.props.waterpoints, 'STATUS');
+    const data = func.Result.countBy(this.props.points, 'STATUS');
     return (
       <div className={`charts-container ${openClosedClass}`}>
         <div className="above">
@@ -41,11 +44,10 @@ const ChartsContainer = React.createClass({
           </div>
           <div className="charts-container-summary">
             <div>
-              {/*
               <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
               <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
               <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
-              */}
+              <CategoryFilter parentState={this.props.state}/>
             </div>
           </div>
         </div>

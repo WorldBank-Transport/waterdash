@@ -1,14 +1,23 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
-import * as func from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
-import * as c from '../../utils/colours';
+import * as func from '../../../utils/functional';
+import TSetChildProps from '../../misc/t-set-child-props';
+import * as c from '../../../utils/colours';
+import T from '../../misc/t';
+import WaterpointstatusOptions from './waterpoint-status-options';
+import Resize from '../../../utils/resize-mixin';
 
 require('stylesheets/dashboard/charts/stack-bar-chart');
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
     waterpoints: PropTypes.array.isRequired,
+  },
+
+  mixins: [Resize],
+
+  getInitialState() {
+    return {};
   },
 
   getRegionsOrderByFunctional(data) {
@@ -53,20 +62,29 @@ const WaterpointStatusChart = React.createClass({
   },
 
   render() {
+    if (!this.state.size) {
+      return (<div>empty</div>);
+    }
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     return (
       <div className="stack-bar-chart">
+        <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
+        <WaterpointstatusOptions />
+      <div className="chart-container">
         <TSetChildProps>
           <BarChart
               colorScale={c.Color.getWaterpointColor}
               data={this.parseData(dataRes)}
-              height={200}
-              margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              width={600}
-              xAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.x-axis'}}}
-              yAxis={{innerTickSize: 6, label: {k: 'chart.status-waterpoints.y-axis'}}} />
+              height={400}
+              margin={{top: 30, bottom: 100, left: 40, right: 20}}
+              width={this.state.size.width * 0.6}
+              xAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.x-axis'}}}
+              yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
           </TSetChildProps>
-      </div>);
+      </div>
+      </div>
+
+    );
   },
 });
 

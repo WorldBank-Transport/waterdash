@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../boilerplate/button';
+
 require('stylesheets/boilerplate/static-content');
 
 const Homepage = React.createClass({

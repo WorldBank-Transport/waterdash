@@ -1,3 +1,42 @@
+@import '../../config/colours';
+@import '../../config/type';
+
 .stack-bar-chart {
   margin: 0;
+  svg {
+    height: 100%;
+    pointer-events: none;
+    width: 100%;
+  }
+
+  .x {
+    text-align: left;
+    .tick text {
+      -webkit-transform: rotate(-75deg);
+      direction: rtl;
+      fill: $text-color;
+      font-size: $chart-axis-text;
+      overflow: hidden;
+      pointer-events: auto;
+      text-anchor: inherit;
+      text-overflow: ellipsis;
+      transform: rotate(-75deg);
+      white-space: nowrap;
+      width: 10px;
+      x: -20;
+      y: 5;
+    }
+  }
+
+  .y {
+    .tick text {
+      fill: $text-color;
+      font-size: $chart-axis-text;
+    }
+  }
+  .label {
+    fill: $text-color;
+    font-size: $chart-axis-text;
+  }
+
 }

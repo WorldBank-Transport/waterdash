@@ -3,7 +3,6 @@
 @import '../config/dimensions';
 @import '../config/box';
 
-
 .button {
   @include border-radius(3px);
   background: $theme-blue;

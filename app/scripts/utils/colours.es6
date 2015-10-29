@@ -17,25 +17,25 @@ Color.getWaterpointColor = (status) => {
   let color = null;
   switch (status) {
   case 'FUNCTIONAL':
-    color = 'green';
+    color = '#82c675';
     break;
   case 'NON FUNCTIONAL':
-    color = 'red';
+    color = '#f05e55';
     break;
   case 'NON FUNCTIONAL < 3M':
-    color = 'red';
+    color = '#f05e55';
     break;
   case 'NON FUNCTIONAL > 3M':
-    color = 'red';
+    color = '#f05e55';
     break;
   case 'NON FUNCTIONAL < 6M':
-    color = 'red';
+    color = '#f05e55';
     break;
   case 'NON FUNCTIONAL > 6M':
-    color = 'red';
+    color = '#f05e55';
     break;
   case 'FUNCTIONAL NEEDS REPAIR':
-    color = 'yellow';
+    color = '#fbc030';
     break;
   default:
     throw Error(`there is not state found, actual: ${status}`);
