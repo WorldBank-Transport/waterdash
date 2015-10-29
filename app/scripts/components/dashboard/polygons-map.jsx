@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
+import { Map } from 'leaflet';
 
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
-import { TileLayer, GeoJson } from 'react-leaflet';
-import BoundsMap from '../leaflet/bounds-map';
+import { GeoJson } from 'react-leaflet';
 
 
 const PolygonsMap = React.createClass({
@@ -12,21 +12,20 @@ const PolygonsMap = React.createClass({
     children: PropTypes.node,  // for selected point
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     polygonsData: PropTypes.array,  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
   render() {
     return (
-      <BoundsMap
-          bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
-          className="leaflet-map">
-        <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <div style={{display: 'none'}}>
         {this.props.polygonsData.map(feature => (
           <GeoJson
               data={feature}
-              key={`${this.props.viewMode.toParam()}-${feature.id}`} />
+              key={`${this.props.viewMode.toParam()}-${feature.id}`}
+              map={this.props.map} />
         ))}
-      </BoundsMap>
+      </div>
     );
   },
 });

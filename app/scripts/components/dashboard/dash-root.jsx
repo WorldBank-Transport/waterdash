@@ -26,6 +26,8 @@ import MapNavPrimary from '../boilerplate/map-nav-primary';
 import MapNav from '../boilerplate/map-nav';
 import DataType from '../boilerplate/data-type';
 // map and overlays:
+import BoundsMap from '../leaflet/bounds-map';
+import { TileLayer } from 'react-leaflet';
 import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
@@ -95,7 +97,12 @@ const DashRoot = React.createClass({
         </div>
 
         <div className="map-container">
-          {mapChild}
+          <BoundsMap
+              bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
+              className="leaflet-map">
+            <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {mapChild}
+          </BoundsMap>
 
           {/* Overlays that can cover the map: */}
           <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
