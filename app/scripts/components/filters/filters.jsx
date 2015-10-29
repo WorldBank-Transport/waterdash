@@ -29,7 +29,7 @@ const Filters = React.createClass({
             <h2><T k="filters.title" /></h2>
           </div>
           <ul className="filters-row">
-            {asArray(this.state.filters).map(([k, f]) =>
+            {/*asArray(this.state.filters).map(([k, f]) =>
               <li key={k}>
                 <h4>Some filter...</h4>
                 {FilterTypes.match(f.type, {
@@ -43,7 +43,7 @@ const Filters = React.createClass({
                   Exclude: <div>exclude filter</div>,
                 })}
               </li>
-            )}
+            )*/}
           </ul>
         </div>
       ),

@@ -7,6 +7,8 @@ import OpenClosed from  '../../constants/open-closed';
 // import WaterpointFunctionalChart from './waterpoint-functional-chart';
 // import WaterpointPopulationServeChart from './waterpoint-population-serve-chart';
 
+require('stylesheets/charts/charts');
+
 
 const Charts = React.createClass({
   propTypes: {
@@ -19,7 +21,8 @@ const Charts = React.createClass({
   render() {
     return OpenClosed.match(this.props.openClosed, {
       Open: () => (
-        <div className="points-charts">
+        <div className="charts">
+          Charts!!!
           <div className="secondaryCharts">
             {/*
             <div className="row"><WaterpointPopulationServeChart waterpoints={this.props.data}/></div>

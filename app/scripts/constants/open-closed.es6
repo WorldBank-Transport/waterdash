@@ -10,6 +10,12 @@ const OpenClosed = Union({
       Closed: () => OpenClosed.Open(),
     });
   },
+  getId() {
+    return OpenClosed.match(this, {
+      Open: () => 'opened',
+      Closed: () => 'closed',
+    });
+  },
 });
 
 export default OpenClosed;

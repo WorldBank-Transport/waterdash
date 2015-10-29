@@ -12,17 +12,17 @@ import { toggleCharts, toggleFilters } from '../../actions/layout';
 
 // Components
 import React, { PropTypes } from 'react';
+import T from '../misc/t';
 import TSetChildProps from '../misc/t-set-child-props';
+import MapNavPrimary from '../boilerplate/map-nav-primary';
 // above map:
 import MapNav from '../boilerplate/map-nav';
-import ChartsToggle from '../boilerplate/charts-toggle';
 import DataType from '../boilerplate/data-type';
 // map and overlays:
 import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
 // below map
-import FiltersToggle from '../boilerplate/filters-toggle';
 import ViewMode from '../boilerplate/view-mode';
 import OverviewBar from '../charts/overview-bar';
 
@@ -43,6 +43,11 @@ const DashRoot = React.createClass({
   componentDidMount() {
     load(this.state.view.dataType);
   },
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.state.view.dataType.equals(prevState.view.dataType)) {
+      load(this.state.view.dataType);
+    }
+  },
   render() {
     const propsForChildren = {
       dataType: this.state.view.dataType,
@@ -55,7 +60,11 @@ const DashRoot = React.createClass({
       <div className="main dash-layout">
 
         <div className="dash-top">
-          <MapNav primary={<ChartsToggle onToggle={toggleCharts} openClosed={this.state.layout.charts} />}>
+          <MapNav primary={(
+            <MapNavPrimary onToggle={toggleCharts} openClosed={this.state.layout.charts}>
+              <T k={`charts.toggle.${this.state.layout.charts.getId()}`} />
+            </MapNavPrimary>
+          )}>
             <DataType {...propsForChildren} />
           </MapNav>
         </div>
@@ -76,7 +85,11 @@ const DashRoot = React.createClass({
         </div>
 
         <div className="dash-bottom">
-          <MapNav primary={<FiltersToggle onToggle={toggleFilters} openClosed={this.state.layout.filters} />}>
+          <MapNav primary={(
+            <MapNavPrimary onToggle={toggleFilters} openClosed={this.state.layout.filters}>
+              <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
+            </MapNavPrimary>
+          )}>
             <ViewMode {...propsForChildren} />
           </MapNav>
           <OverviewBar {...propsForChildren} />

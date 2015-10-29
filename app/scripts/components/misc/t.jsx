@@ -31,8 +31,8 @@ const allTranslations = {
     'dash.district': 'Districts',
     'dash.ward': 'Wards',
 
-    'charts.toggle.open': 'View Charts',
-    'charts.toggle.close': 'Hide Charts',
+    'charts.toggle.closed': 'View Charts',
+    'charts.toggle.opened': 'Hide Charts',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
@@ -55,8 +55,8 @@ const allTranslations = {
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
 
-    'filters.toggle.open': 'Dashboard Filters',
-    'filters.toggle.close': 'Hide Filters',
+    'filters.toggle.closed': 'Dashboard Filters',
+    'filters.toggle.opened': 'Hide Filters',
 
     'view-mode.points': i => `All ${i[0]}`,
     'view-mode.region': 'Region',
@@ -73,6 +73,8 @@ const allTranslations = {
 
     'loading': 'Loading',
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
+    'loading.boreholes': i => `${i[0]} boreholes loaded...`,
+    'loading.dams': i => `${i[0]} dams loaded...`,
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',

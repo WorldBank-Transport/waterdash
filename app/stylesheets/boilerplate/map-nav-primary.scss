@@ -1,0 +1,18 @@
+@import '../config/buttons';
+@import '../config/colours';
+@import '../config/type';
+
+.map-nav-primary {
+  @include button-reset();
+
+  display: block;
+  font-size: $tab-text;
+  width: 20%;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
