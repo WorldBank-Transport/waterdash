@@ -53,7 +53,7 @@ const allTranslations = {
     'chart.title-boreholes-stats': 'Performance Table',
     'chart.title-boreholes-stats-helptext': '% Served',
     'chart.title-population-served': 'Population',
-    'chart.title-title-population-served-helptext': '% Served',
+    'chart.title-title-population-served-helptext': 'People-Waterpoint ratio',
     'chart.waterpoints-people-ratio.x-axis': 'Regions',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
 
