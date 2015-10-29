@@ -15,7 +15,7 @@ export const pullFeatures = topoKey => data => {
 export const useNamePropAsId = feature => {
   if (isUndefined(feature.properties.name)) {
     warn(`Feature is missing 'name' in 'properties': ${JSON.stringify(feature)}`);
-    return Err(['error.api.static.feature-missing-name']);
+    return Err(['error.api.static.postprocess']);
   } else {
     return Ok({
       ...feature,

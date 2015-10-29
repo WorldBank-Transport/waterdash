@@ -22,7 +22,7 @@ const DataTypes = Union({
   getLocationColumn(viewMode) {
     return DataTypes.match(this, {
       Waterpoints: () => ViewModes.match(viewMode, {
-        Points: () => Some(['LATITIUDE', 'LONGITUDE']),  // TODO: this is currently not used anywhere
+        Points: () => Some(['LATITIUDE', 'LONGITUDE']),  // TODO: use this in pullLatLng
         Regions: () => Some('REGION'),
         Districts: () => Some('DISTRICT'),
         [_]: () => None(),
