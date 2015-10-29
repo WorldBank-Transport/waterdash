@@ -1,4 +1,5 @@
-import { Union } from 'results';
+import { Union, Some, None, _ } from 'results';
+import ViewModes from './view-modes';
 
 const DataTypes = Union({
   Waterpoints: {},
@@ -12,6 +13,31 @@ const DataTypes = Union({
     } else {
       return other.name === this.name;
     }
+  },
+  /**
+   * Map column names for region, district, ward to each datatset
+   * @param {Union<ViewModes>} viewMode the viewMode to lookup
+   * @returns {Maybe} Either Some(columnName) or None if the dataset does not have it
+   */
+  getLocationColumn(viewMode) {
+    return DataTypes.match(this, {
+      Waterpoints: () => ViewModes.match(viewMode, {
+        Points: () => Some(['LATITIUDE', 'LONGITUDE']),  // TODO: this is currently not used anywhere
+        Regions: () => Some('REGION'),
+        Districts: () => Some('DISTRICT'),
+        [_]: () => None(),
+      }),
+      Boreholes: () => ViewModes.match(viewMode, {
+        Regions: () => Some('REGION'),
+        Districts: () => Some('DISTRICT'),
+        [_]: () => None(),
+      }),
+      Dams: () => ViewModes.match(viewMode, {
+        Regions: () => Some('REGION'),
+        Districts: () => Some('DISTRICT'),
+        [_]: () => None(),
+      }),
+    });
   },
   toParam() {
     return DataTypes.match(this, {

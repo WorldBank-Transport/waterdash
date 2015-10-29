@@ -1,4 +1,8 @@
+import isUndefined from 'lodash/lang/isUndefined';
 import topojson from 'topojson';
+import { Ok, Err } from 'results';
+import warn from '../warn';
+import { Result } from '../functional';
 import { fetchAndCheck } from './http';
 
 
@@ -6,6 +10,24 @@ export const pullFeatures = topoKey => data => {
   const { features } = topojson.feature(data, data.objects[topoKey]);
   return features;
 };
+
+
+export const useNamePropAsId = feature => {
+  if (isUndefined(feature.properties.name)) {
+    warn(`Feature is missing 'name' in 'properties': ${JSON.stringify(feature)}`);
+    return Err(['error.api.static.feature-missing-name']);
+  } else {
+    return Ok({
+      ...feature,
+      id: feature.properties.name.toUpperCase(),  // match casing of data
+    });
+  }
+};
+
+
+export const mapNamePropsAsIds = features =>
+  Result.map(useNamePropAsId, features)
+    .promise();
 
 
 export const get = path =>
@@ -19,4 +41,5 @@ export const getJson = path =>
 
 export const getPolygons = (path, topoKey) =>
   getJson(path)
-    .then(pullFeatures(topoKey));
+    .then(pullFeatures(topoKey))
+    .then(mapNamePropsAsIds);

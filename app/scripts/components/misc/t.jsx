@@ -92,6 +92,7 @@ const allTranslations = {
     'error.api.ckan.unknown-field-type': i => `The CKAN data server returned data of an unknown type '${i[0]}' for field '${i[1]}'`,
     'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
     'error.api.postprocess': 'An error occurred while the application was processing data',
+    'error.api.static.postprocess': 'An issue in the boundary data was found',
 
   },
 

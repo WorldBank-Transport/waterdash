@@ -8,7 +8,7 @@ import FilteredDataStore from '../../stores/filtered-data';
 import LayoutStore from '../../stores/layout';
 import LoadingDataStore from '../../stores/loading-data';
 import LoadingPolygonsStore from '../../stores/loading-polygons';
-import PolygonsStore from '../../stores/polygons';
+import PolygonsDataStore from '../../stores/polygons-with-data';
 import ViewStore from '../../stores/view';
 
 // Actions
@@ -46,7 +46,7 @@ const DashRoot = React.createClass({
     connect(LayoutStore, 'layout'),
     connect(LoadingDataStore, 'loadingData'),
     connect(LoadingPolygonsStore, 'loadingPolygons'),
-    connect(PolygonsStore, 'polygons'),
+    connect(PolygonsDataStore, 'polygonsData'),
     connect(ViewStore, 'view'),
   ],
   componentDidMount() {
@@ -75,7 +75,7 @@ const DashRoot = React.createClass({
     };
     const mapChild = React.cloneElement(this.props.children, {
       ...propsForChildren,
-      polygons: this.state.polygons,
+      polygonsData: this.state.polygonsData,
     });
 
     return (

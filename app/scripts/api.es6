@@ -43,6 +43,7 @@ const waterpointsQ = {
     'WATER_POINT_NAME',
     'STATUS',
     'REGION',
+    'DISTRICT',
   ],
   distinct: true,
 };
