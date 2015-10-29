@@ -115,7 +115,7 @@ const getOffsets = (chunkSize, total) => {
   for (let i = 1; i < num; i++) {  // skip the first chunk (we already have it)
     offsets.push(i * chunkSize);
   }
-  return [];  // TODO: revert when ckan starts working again offsets;
+  return offsets;  //[];  // TODO: revert when ckan starts working again offsets;
 };
 
 const convertChunk = data => convertCkanResp(data).promise();

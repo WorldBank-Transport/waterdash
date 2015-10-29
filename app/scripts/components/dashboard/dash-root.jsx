@@ -109,16 +109,16 @@ const DashRoot = React.createClass({
           <TSetChildProps>
             <SpinnerModal
                 message={{k: `loading.${this.state.view.viewMode.toParam()}`}}
-                retry={() => load(this.state.view.dataType)}
-                state={this.state.loadingData} />
+                retry={this.updatePolygons}
+                state={this.state.loadingPolygons} />
           </TSetChildProps>
           {/* Data loading overlay */}
           <TSetChildProps>
             <SpinnerModal
                 message={{k: `loading.${this.state.view.dataType.toParam()}`,
                   i: [this.state.data.length]}}
-                retry={this.updatePolygons}
-                state={this.state.loadingPolygons} />
+                retry={() => load(this.state.view.dataType)}
+                state={this.state.loadingData} />
           </TSetChildProps>
         </div>
 
