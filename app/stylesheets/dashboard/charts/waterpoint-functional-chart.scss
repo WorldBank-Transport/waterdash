@@ -7,11 +7,11 @@
   .x {
     .tick text {
       -webkit-transform: rotate(-75deg);
-      fill: $text-color;
-      font-size: 11px;
-      transform: rotate(-75deg);
       direction: rtl;
+      fill: $text-color;
+      font-size: 11px;     
       text-anchor: inherit;
+      transform: rotate(-75deg);
     }
   }
   .y {

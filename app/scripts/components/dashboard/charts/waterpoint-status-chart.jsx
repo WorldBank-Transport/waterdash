@@ -24,9 +24,9 @@ const WaterpointStatusChart = React.createClass({
       size: {
         width: this.getDOMNode().offsetWidth - 30,
         height: this.getDOMNode().offsetHeight - 30,
-      }
+      },
     };
-    this.replaceState(newState); 
+    this.replaceState(newState);
   },
 
   getRegionsOrderByFunctional(data) {
@@ -71,7 +71,7 @@ const WaterpointStatusChart = React.createClass({
   },
 
   render() {
-    if(!this.state.size) {
+    if (!this.state.size) {
       return (<div>empty</div>);
     }
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');

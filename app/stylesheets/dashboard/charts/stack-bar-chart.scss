@@ -4,26 +4,27 @@
 .stack-bar-chart {
   margin: 0;
   svg {
-    width: 100%; height: 100%;
-    pointer-events: none; /* so that you can resize the element */
+    height: 100%;
+    pointer-events: none;
+    width: 100%;
   }
 
   .x {
     text-align: left;
     .tick text {
       -webkit-transform: rotate(-75deg);
+      direction: rtl;
       fill: $text-color;
       font-size: $chart-axis-text;
+      overflow: hidden;
       pointer-events: auto;
+      text-anchor: inherit;
+      text-overflow: ellipsis;
       transform: rotate(-75deg);
+      white-space: nowrap;
+      width: 10px;
       x: -20;
       y: 5;
-      width: 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      direction: rtl;
-      text-anchor: inherit;
     }
   }
 
