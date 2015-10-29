@@ -3,11 +3,10 @@ import IconChart from '../../boilerplate/icon-check';
 
 require('stylesheets/dashboard/charts/waterpoint-status-options');
 
-const WaterpointstatusOptions = React.createClass({
+const WaterpointStatusOptions = React.createClass({
   render() {
     return (
       <div className="waterpoints-chart-options-container">
-
         <ul>
           <li className="functional"><IconChart />Functional</li>
           <li className="needrepair"><IconChart />Need repair</li>
@@ -17,4 +16,4 @@ const WaterpointstatusOptions = React.createClass({
     );
   },
 });
-export default WaterpointstatusOptions;
+export default WaterpointStatusOptions;

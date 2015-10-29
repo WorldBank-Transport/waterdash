@@ -1,6 +1,6 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted } from '../actions/waterpoints';
+import { loadCompleted } from '../actions/data';
 import { setSubcategory } from '../actions/filters';
 import * as func from '../utils/functional';
 
