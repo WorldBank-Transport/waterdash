@@ -1,3 +1,9 @@
+/**
+ * TODO: remove waterpoints-specific hardcoded stuff from this module
+ * so that it will be easier to add points for boreholes and dams (if
+ * we ever get that data)
+ */
+
 import { Map, CircleMarker } from 'leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from './prune-cluster';
 import React, { PropTypes } from 'react';

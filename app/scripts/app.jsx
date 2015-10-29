@@ -55,11 +55,13 @@ React.render((
       </Route>
 
       <Route path="/dash/" component={DashRoot}>
-        {/* Redirect invalid paths -- we don't points or wards for dams & boreholes */}
+        {/* Redirect invalid paths -- we don't have points or wards for dams & boreholes */}
         <Redirect from="points/boreholes/" to="/dash/districts/boreholes/" />
         <Redirect from="wards/boreholes/" to="/dash/districts/boreholes/" />
         <Redirect from="points/dams/" to="/dash/districts/dams/" />
         <Redirect from="wards/dams/" to="/dash/districts/dams/" />
+        {/* We don't have wards for waterpoints */}
+        <Redirect from="wards/waterpoints/" to="/dash/districts/waterpoints/" />
 
         {/* Normal dashboard routing */}
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>

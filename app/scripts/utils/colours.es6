@@ -20,18 +20,10 @@ Color.getWaterpointColor = (status) => {
     color = 'green';
     break;
   case 'NON FUNCTIONAL':
-    color = 'red';
-    break;
   case 'NON FUNCTIONAL < 3M':
-    color = 'red';
-    break;
   case 'NON FUNCTIONAL > 3M':
-    color = 'red';
-    break;
   case 'NON FUNCTIONAL < 6M':
-    color = 'red';
-    break;
-  case 'NON FUNCTIONAL > 6M':
+  case 'NON FUNCTIONAL > 6M':  // TODO: consider checking if string starts with NON FUNCTIONAL instead of the switch/case fall-through
     color = 'red';
     break;
   case 'FUNCTIONAL NEEDS REPAIR':
