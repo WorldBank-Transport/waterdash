@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
-import * as func from '../../../utils/functional';
-import TSetChildProps from '../../misc/t-set-child-props';
-import * as c from '../../../utils/colours';
-import T from '../../misc/t';
+import * as func from '../../utils/functional';
+import TSetChildProps from '../misc/t-set-child-props';
+import * as c from '../../utils/colours';
+import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
-import Resize from '../../../utils/resize-mixin';
+import Resize from '../../utils/resize-mixin';
 
 require('stylesheets/charts/stack-bar-chart');
 

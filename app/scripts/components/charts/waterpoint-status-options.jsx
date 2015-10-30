@@ -1,5 +1,5 @@
 import React from 'react';
-import IconChart from '../../boilerplate/icon-check';
+import IconChart from '../boilerplate/icon-check';
 
 require('stylesheets/dashboard/charts/waterpoint-status-options');
 
