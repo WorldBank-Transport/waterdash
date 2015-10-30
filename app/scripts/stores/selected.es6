@@ -36,11 +36,12 @@ const SelectedStore = createStore({
     this.listenTo(select, 'selectById');
 
     // update when any dependencies change
-    this.listenTo(DataStore, this.emit_, this);
-    this.listenTo(LoadingDataStore, this.emit_, this);
-    this.listenTo(LoadingPolygonsStore, this.emit_, this);
-    this.listenTo(PolygonsDataStore, this.emit_, this);
-    this.listenTo(ViewStore, this.emit_, this);
+    // this._emit comes from SaneStoreMixin
+    this.listenTo(DataStore, this.emit, this);
+    this.listenTo(LoadingDataStore, this.emit, this);
+    this.listenTo(LoadingPolygonsStore, this.emit, this);
+    this.listenTo(PolygonsDataStore, this.emit, this);
+    this.listenTo(ViewStore, this.emit, this);
   },
   selectById(id) {
     this.setData(Some(id));
