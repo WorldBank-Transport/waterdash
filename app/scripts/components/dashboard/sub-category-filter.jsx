@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import T from '../misc/t';
 import CategoriesStore from '../../stores/categories';
-import { setSubcategory } from '../../actions/filters';
+import { setSubcategory, setSubcategoryValue} from '../../actions/filters';
 import { Icon } from 'react-font-awesome';
 
 //require('stylesheets/dashboard/category-filter');
@@ -17,7 +17,7 @@ const SubCategoryFilter = React.createClass({
   ],
 
   getInitialState() {
-    return {open: false};
+    return {open: false, all: true};
   },
 
   toggle() {
@@ -33,6 +33,18 @@ const SubCategoryFilter = React.createClass({
     setSubcategory(metric, value);
   },
 
+  selectAll(e) {
+    e.preventDefault();
+    const newState = {
+      ...this.state,
+      all: !this.state.all,
+    };
+    Object.keys(this.state.categories[this.props.type]).forEach(subcategory => {
+      setSubcategoryValue(this.props.type, subcategory, newState.all);
+    });
+    this.replaceState(newState);
+  },
+
   render() {
     if (!this.state.categories[this.props.type]) {
       return false;
@@ -45,10 +57,11 @@ const SubCategoryFilter = React.createClass({
     const direction = this.state.open ? 'up' : 'down';
     return (
       <div className="sub-category-filter">
-        <div onClick={this.toggle}>
+        <div className="caterory-collapsable" onClick={this.toggle}>
           <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`angle-double-${direction}`}/>
         </div>
         <ul className={visibleClass}>
+          <li><input checked={this.state.all} onChange={this.selectAll} type="checkbox"/> <T k="charts.sub-category.all" /></li>
           {listOfOptions}
         </ul>
       </div>

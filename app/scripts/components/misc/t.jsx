@@ -108,6 +108,7 @@ const allTranslations = {
     'charts.sub-category.value.LAKE': 'LAKE',
     'charts.sub-category.value.HAND DTW': 'HAND DTW',
     'charts.sub-category.value.NONE': 'NONE',
+    'charts.sub-category.all': 'Select All',
 
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',

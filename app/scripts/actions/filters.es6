@@ -7,6 +7,7 @@ const setInclude = createAction();
 const setExclude = createAction();
 const setPopulationServed = createAction();
 const setSubcategory = createAction();
+const setAllSubcategory = createAction();
 
 
 export default {
@@ -17,4 +18,5 @@ export default {
   setExclude,
   setPopulationServed,
   setSubcategory,
+  setAllSubcategory,
 };

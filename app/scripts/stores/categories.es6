@@ -1,7 +1,7 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import { loadCompleted } from '../actions/data';
-import { setSubcategory } from '../actions/filters';
+import { setSubcategory, setAllSubcategory } from '../actions/filters';
 import * as func from '../utils/functional';
 
 const CategoriesStore = createStore({
@@ -10,13 +10,22 @@ const CategoriesStore = createStore({
   init() {
     this.listenTo(loadCompleted, 'loadData');
     this.listenTo(setSubcategory, 'changeSubcategory');
+    this.listenTo(setAllSubcategory, 'changeSubcategoryValue');
   },
 
-  changeSubcategory(metric, value) {
+  changeSubcategory(category, subcategory) {
     const updated = {
       ...this.data,
     };
-    updated[metric][value] = !this.data[metric][value]; // TODO check a better way to update the property
+    updated[category][subcategory] = !this.data[category][subcategory]; // TODO check a better way to update the property
+    this.setData(updated);
+  },
+
+  changeSubcategoryValue(category, subcategory, value) {
+    const updated = {
+      ...this.data,
+    };
+    updated[category][subcategory] = value; // TODO check a better way to update the property
     this.setData(updated);
   },
 
