@@ -1,7 +1,7 @@
 import React from 'react';
 import IconChart from '../boilerplate/icon-check';
 
-require('stylesheets/dashboard/charts/waterpoint-status-options');
+require('stylesheets/charts/waterpoint-status-options');
 
 const WaterpointStatusOptions = React.createClass({
   render() {

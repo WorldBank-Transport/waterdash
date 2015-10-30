@@ -3,13 +3,9 @@ import { _ } from 'results';  // catch-all for match
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
-
-import WaterpointStatusChart from './waterpoint-status-chart';
-import WaterpointFunctionalChart from './waterpoint-functional-chart';
-import WaterpointPopulationServeChart from './waterpoint-population-serve-chart';
+import WaterpointsChart from './waterpoints-charts';
 
 require('stylesheets/charts/charts');
-
 
 const Charts = React.createClass({
   propTypes: {
@@ -19,25 +15,7 @@ const Charts = React.createClass({
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
-  renderWaterpointsCharts() {
-    return (
-      <div className="container">
-        <div className="secondaryCharts">
-          <div className="col-left">
-            <div className="mainChart">
-              <WaterpointStatusChart waterpoints={this.props.data} />
-            </div>
-          </div>
-          <div className="col-right">
-            <WaterpointFunctionalChart waterpoints={this.props.data}/>
-          </div>
-          <div className="col-right">
-            <WaterpointPopulationServeChart waterpoints={this.props.data}/>
-          </div>
-        </div>
-      </div>
-    );
-  },
+
   renderOtherCharts() {
     return 'other charts not yet implemented';
   },
@@ -46,7 +24,7 @@ const Charts = React.createClass({
       Open: () => (
         <div className="charts">
           {DataTypes.match(this.props.dataType, {
-            Waterpoints: this.renderWaterpointsCharts,
+            Waterpoints: () => (<WaterpointsChart {...this.props}/>),
             [_]: this.renderOtherCharts,
           })}
         </div>

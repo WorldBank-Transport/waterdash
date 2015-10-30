@@ -15,6 +15,7 @@
 
   .category-filter-toogle {
     background-color: $bg-color;
+    width: 300px;
 
     &:hover {
       background: darken($grey-light, 10%);
@@ -31,18 +32,16 @@
     background-color: $grey-light;
     height: 300px;
     overflow: auto;
-    position: relative;
-    width: 500px;
+    position: absolute;
+    width: 300px;
     z-index: 10;
   }
   .open-up {
     float: left;
-    margin: 0;
-    top: -332px;
+    top: -259px;
   }
   .open-down {
     float: left;
-    margin: 0;
     top: 10px;
   }
   .visible {
