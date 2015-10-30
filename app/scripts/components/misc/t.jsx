@@ -110,6 +110,7 @@ const allTranslations = {
     'charts.sub-category.value.LAKE': 'LAKE',
     'charts.sub-category.value.HAND DTW': 'HAND DTW',
     'charts.sub-category.value.NONE': 'NONE',
+    'charts.sub-category.all': 'Select All',
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',
