@@ -21,17 +21,19 @@ const Charts = React.createClass({
   },
   renderWaterpointsCharts() {
     return (
-      <div>
+      <div className="container">
         <div className="secondaryCharts">
-          <div className="row">
-            <WaterpointPopulationServeChart waterpoints={this.props.data}/>
+          <div className="col-left">
+            <div className="mainChart">
+              <WaterpointStatusChart waterpoints={this.props.data} />
+            </div>
           </div>
-          <div className="row">
+          <div className="col-right">
             <WaterpointFunctionalChart waterpoints={this.props.data}/>
           </div>
-        </div>
-        <div className="mainChart">
-          <WaterpointStatusChart waterpoints={this.props.data} />
+          <div className="col-right">
+            <WaterpointPopulationServeChart waterpoints={this.props.data}/>
+          </div>
         </div>
       </div>
     );

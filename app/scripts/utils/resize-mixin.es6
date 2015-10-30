@@ -1,14 +1,17 @@
 const Resize = {
   getInitialState: function() {
-    return {};
+    return {
+      size: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }
+    };
   },
 
   handleResize: function() {
-    this.setState({windowWidth: window.innerWidth});
-
     const newState = {
       ...this.state,
-      [size]: {
+      size: {
         width: window.innerWidth,
         height: window.innerHeight,
       },
