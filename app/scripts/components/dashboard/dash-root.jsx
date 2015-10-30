@@ -2,6 +2,7 @@
 import { connect } from 'reflux';
 import { _ } from 'results';  // catch-all for match
 import ViewModes from '../../constants/view-modes';
+import tzBounds from '../../constants/tz-bounds';
 
 // Stores
 import FilteredDataStore from '../../stores/filtered-data';
@@ -9,10 +10,13 @@ import LayoutStore from '../../stores/layout';
 import LoadingDataStore from '../../stores/loading-data';
 import LoadingPolygonsStore from '../../stores/loading-polygons';
 import PolygonsDataStore from '../../stores/polygons-with-data';
+import SelectedStore from '../../stores/selected';
 import ViewStore from '../../stores/view';
 
 // Actions
 import { load } from '../../actions/data';
+import select from '../../actions/select';
+import { setMapBounds } from '../../actions/view';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
 import { clear, setRange, setInclude } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
@@ -49,9 +53,11 @@ const DashRoot = React.createClass({
     connect(LoadingDataStore, 'loadingData'),
     connect(LoadingPolygonsStore, 'loadingPolygons'),
     connect(PolygonsDataStore, 'polygonsData'),
+    connect(SelectedStore, 'selected'),
     connect(ViewStore, 'view'),
   ],
   componentDidMount() {
+    setMapBounds(tzBounds);  // reset bounds (eg. if we went to a static page and came back)
     load(this.state.view.dataType);
     this.updatePolygons();
   },
@@ -78,6 +84,8 @@ const DashRoot = React.createClass({
     const mapChild = React.cloneElement(this.props.children, {
       ...propsForChildren,
       polygonsData: this.state.polygonsData,
+      select: select,
+      selected: this.state.selected,
     });
 
     return (
@@ -98,7 +106,7 @@ const DashRoot = React.createClass({
 
         <div className="map-container">
           <BoundsMap
-              bounds={[[-0.8, 29.3], [-11.8, 40.8]]}
+              bounds={this.state.view.mapBounds}
               className="leaflet-map">
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {mapChild}

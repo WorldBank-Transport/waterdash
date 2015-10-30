@@ -28,6 +28,7 @@ const ClusteredPoints = React.createClass({
   propTypes: {
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     points: PropTypes.array.isRequired,
+    select: PropTypes.func.isRequired,
   },
   componentWillMount() {
     this.pruneCluster = new PruneClusterForLeaflet();
@@ -50,6 +51,8 @@ const ClusteredPoints = React.createClass({
         fillColor: colours[statusCategory[statuses[marker.category]]] || colours.unknown,
       });
       m.setOpacity = () => null;  // PruneCluster tries to call this
+      m.on('click', this.handleMarkerClickFor(marker.data.id));  // TODO: does this callback ever get cleaned up when the marker is removed?
+                                                                 // ... not sure how to hook into pruneCluster's marker removal to call .off()
       return m;
     };
     const originalProcessView = this.pruneCluster.ProcessView;
@@ -95,6 +98,7 @@ const ClusteredPoints = React.createClass({
         delete this.markerIdMap[id];  // clear ref from old map
       } else {
         const marker = new PruneCluster.Marker(...point.position);
+        marker.data.id = id;
         marker.category = statuses.indexOf(point.STATUS);
         nextMap[id] = marker;
         this.pruneCluster.RegisterMarker(marker);
@@ -115,6 +119,11 @@ const ClusteredPoints = React.createClass({
 
     this.pruneCluster.ProcessView();
   },
+
+  handleMarkerClickFor(id) {
+    return () => this.props.select(id);
+  },
+
   render() {
     return (
       <div style={{display: 'none'}}></div>

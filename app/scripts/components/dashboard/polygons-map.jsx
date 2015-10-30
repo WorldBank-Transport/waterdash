@@ -1,3 +1,5 @@
+import pick from 'lodash/object/pick';
+import { Maybe } from 'results';
 import React, { PropTypes } from 'react';
 import { Map } from 'leaflet';
 
@@ -15,13 +17,13 @@ const PolygonsMap = React.createClass({
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     polygonsData: PropTypes.array,  // injected
+    select: PropTypes.func,  // injected
+    selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
   handleClickFor(feature) {
-    return e => {
-      console.log('clicked', e, feature);
-    };
+    return () => this.props.select(feature.id);
   },
 
   handleMouseoutFor(feature) {
@@ -32,6 +34,7 @@ const PolygonsMap = React.createClass({
   },
 
   handleMouseover(e) {
+    e.target.bringToFront();
     e.target.setStyle(polyColour.hovered);
   },
 
@@ -57,9 +60,17 @@ const PolygonsMap = React.createClass({
   },
 
   render() {
+    const propsForPopup = pick(this.props,
+      [ 'data', 'dataType', 'selected', 'viewMode' ]);
+    const popup = this.props.children ?
+      React.cloneElement(this.props.children, propsForPopup) : null;
+
     return (
-      <div style={{display: 'none'}}>
+      <div>
         {this.props.polygonsData.map(this.renderFeature)}
+
+        {/* popup overlay for polygon */}
+        {popup}
       </div>
     );
   },

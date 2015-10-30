@@ -25,7 +25,7 @@ const DataTypes = Union({
         Points: () => Some(['LATITIUDE', 'LONGITUDE']),  // TODO: use this in pullLatLng
         Regions: () => Some('REGION'),
         Districts: () => Some('DISTRICT'),
-        [_]: () => None(),
+        Wards: () => Some('WARD'),
       }),
       Boreholes: () => ViewModes.match(viewMode, {
         Regions: () => Some('REGION'),
@@ -33,10 +33,18 @@ const DataTypes = Union({
         [_]: () => None(),
       }),
       Dams: () => ViewModes.match(viewMode, {
+        Points: () => Some(['LATITIUDE', 'LONGITUDE']),
         Regions: () => Some('REGION'),
         Districts: () => Some('DISTRICT'),
         [_]: () => None(),
       }),
+    });
+  },
+  getIdColumn() {
+    return DataTypes.match(this, {
+      Waterpoints: () => 'WATER_POINT_CODE',
+      Boreholes: () => '_id',  // TODO: _id is generated from ckan. need a stable, unique id for all boreholes.
+      Dams: () => '_id',  // TODO: _id is generated from ckan. need a stable, unique id for all dams.
     });
   },
   toParam() {
