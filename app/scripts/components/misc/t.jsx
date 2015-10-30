@@ -53,7 +53,7 @@ const allTranslations = {
     'chart.title-boreholes-stats': 'Performance Table',
     'chart.title-boreholes-stats-helptext': '% Served',
     'chart.title-population-served': 'Population',
-    'chart.title-title-population-served-helptext': '% Served',
+    'chart.title-title-population-served-helptext': 'People-Waterpoint ratio',
     'chart.waterpoints-people-ratio.x-axis': 'Regions',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
 
@@ -110,6 +110,7 @@ const allTranslations = {
     'charts.sub-category.value.LAKE': 'LAKE',
     'charts.sub-category.value.HAND DTW': 'HAND DTW',
     'charts.sub-category.value.NONE': 'NONE',
+    'charts.sub-category.all': 'Select All',
 
     'view-mode.points': 'All Water Points',
     'view-mode.region': 'Region',

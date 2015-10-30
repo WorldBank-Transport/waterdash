@@ -3,12 +3,19 @@ import {BarChart} from 'react-d3-components';
 import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import T from '../../misc/t';
+import Resize from '../../../utils/resize-mixin';
 
 require('stylesheets/dashboard/charts/waterpoint-functional-chart');
 
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {
     waterpoints: PropTypes.array.isRequired,
+  },
+
+  mixins: [Resize],
+
+  getInitialState() {
+    return {};
   },
 
   parseData(waterpoints) {
@@ -25,6 +32,9 @@ const WaterpointFunctionalChart = React.createClass({
   },
 
   render() {
+    if (!this.state.size) {
+      return (<div>empty</div>);
+    }
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
@@ -35,10 +45,9 @@ const WaterpointFunctionalChart = React.createClass({
                 data={this.parseData(waterpointsRes)}
                 height={200}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={500}
+                width={this.state.size.width * 0.25}
                 xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
                 yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
-
               </TSetChildProps>
         </div>
       </div>

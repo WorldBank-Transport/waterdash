@@ -7,6 +7,7 @@ import * as func from '../../../utils/functional';
 import TSetChildProps from '../../misc/t-set-child-props';
 import {load} from '../../../actions/population';
 import T from '../../misc/t';
+import Resize from '../../../utils/resize-mixin';
 
 require('stylesheets/dashboard/charts/waterpoint-population-serve-chart');
 
@@ -16,9 +17,12 @@ const WaterpointPopulationServeChart = React.createClass({
   },
   mixins: [
     connect(PopulationStore, 'population'),
+    Resize,
   ],
-  componentDidMount() {
+
+  getInitialState() {
     load();
+    return {};
   },
 
   parseData(waterpoints) {
@@ -41,19 +45,24 @@ const WaterpointPopulationServeChart = React.createClass({
   },
 
   render() {
+    if (!this.state.size) {
+      return (<div>empty</div>);
+    }
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
     return (
       <div className="waterpoint-population-serve-chart">
-      <h3 className="main-chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
-        <TSetChildProps>
-          <BarChart
-              data={this.parseData(waterpointsRes)}
-              height={200}
-              margin={{top: 40, bottom: 50, left: 50, right: 10}}
-              width={500}
-              xAxis={{label: {k: 'chart.waterpoints-people-ratio.x-axis'}}}
-              yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
-        </TSetChildProps>
+        <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
+        <div className="chart-container ">
+          <TSetChildProps>
+            <BarChart
+                data={this.parseData(waterpointsRes)}
+                height={200}
+                margin={{top: 10, bottom: 50, left: 50, right: 10}}
+                width={this.state.size.width * 0.25}
+                xAxis={{label: {k: 'chart.waterpoints-people-ratio.x-axis'}}}
+                yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
+          </TSetChildProps>
+        </div>
       </div>);
   },
 });
