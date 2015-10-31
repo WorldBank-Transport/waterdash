@@ -15,14 +15,22 @@ import { createAction } from 'reflux';
 import history from '../history';
 import ViewStore from '../stores/view';
 
-const select = createAction();
+export const select = createAction();
+export const ensureSelect = createAction();  // alternate to avoid pushing extra history state
+export const deselect = createAction();
+
+const route = subPath => {
+  const { viewMode, dataType } = ViewStore.get();
+  return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${subPath || ''}`;
+};
 
 /**
  * Navigate the browser to the URL for this selected id
  */
-select.listen(id => {
-  const { viewMode, dataType } = ViewStore.get();
-  history.pushState(null, `/dash/${viewMode.toParam()}/${dataType.toParam()}/${id}`);
-});
+select.listen(id => history.pushState(null, route(id)));
 
-export default select;
+
+/**
+ * Navigate the browser 1 level up when a popup is deselected
+ */
+deselect.listen(() => history.pushState(null, route()));

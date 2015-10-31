@@ -5,7 +5,7 @@ import filtersActions from '../actions/filters';
 import throttleCalls from '../utils/throttle-calls';
 
 
-const inRange = (min, max) => v => (min <= v && v <= max);
+export const inRange = (min, max) => v => (min <= v && v <= max);
 
 
 const withValsAsObjKeys = testFn => arr => {
@@ -15,8 +15,8 @@ const withValsAsObjKeys = testFn => arr => {
   }
   return v => testFn(obj, v);
 };
-const include = withValsAsObjKeys((obj, v) => obj.hasOwnProperty(v));
-const exclude = withValsAsObjKeys((obj, v) => !obj.hasOwnProperty(v));
+export const include = withValsAsObjKeys((obj, v) => obj.hasOwnProperty(v));
+export const exclude = withValsAsObjKeys((obj, v) => !obj.hasOwnProperty(v));
 
 
 const FilterStore = createStore({
@@ -52,12 +52,6 @@ const FilterStore = createStore({
     this.setFilter(key, exclude(vals));
   },
 });
-
-
-// export filter functions for tests
-FilterStore.inRange = inRange;
-FilterStore.include = include;
-FilterStore.exclude = exclude;
 
 
 export default FilterStore;

@@ -15,6 +15,7 @@ const PolygonsMap = React.createClass({
     children: PropTypes.node,  // for selected point
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    deselect: PropTypes.func,  // injected
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     polygonsData: PropTypes.array,  // injected
     select: PropTypes.func,  // injected
@@ -61,7 +62,7 @@ const PolygonsMap = React.createClass({
 
   render() {
     const propsForPopup = pick(this.props,
-      [ 'data', 'dataType', 'selected', 'viewMode' ]);
+      [ 'data', 'dataType', 'deselect', 'selected', 'viewMode' ]);
     const popup = this.props.children ?
       React.cloneElement(this.props.children, propsForPopup) : null;
 

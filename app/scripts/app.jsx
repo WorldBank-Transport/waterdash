@@ -4,7 +4,8 @@ import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
-import { setView } from './actions/view.es6';
+import { setView } from './actions/view';
+import { ensureSelect, deselect } from './actions/select';
 
 // Route components
 import Root from './components/root';
@@ -42,6 +43,14 @@ function setPolysView(nextState) {
   });
 }
 
+/**
+ * @param {object} nextState From react-router
+ * @returns {void}
+ */
+function ensurePopup(nextState) {
+  ensureSelect(nextState.params.id);
+}
+
 
 React.render((
   <Router history={history}>
@@ -61,10 +70,10 @@ React.render((
 
         {/* Normal dashboard routing */}
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
-          <Route path=":id" component={Popup} />
+          <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
         <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView}>
-          <Route path=":id" component={Popup} />
+          <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
       </Route>
 

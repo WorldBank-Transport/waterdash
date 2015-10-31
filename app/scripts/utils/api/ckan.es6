@@ -133,7 +133,7 @@ const promiseConcat = (postprocess, notify, ...promises) => new Promise((resolve
     .then(newData => {
       if (combined.isOk()) {
         try {  // in case postprocess throws
-          combined = Ok(postprocess(combined.unwrap().concat(newData)));
+          combined = Ok(combined.unwrap().concat(postprocess(newData)));
           notify(combined.unwrap());
         } catch (err) {
           combined = Err(['error.api.postprocess']);
@@ -153,10 +153,10 @@ const promiseConcat = (postprocess, notify, ...promises) => new Promise((resolve
  * @param {string} id The resource's id
  * @param {object} query Any query to be applied
  * @param {func} notify A callback to indicate progress
- * @param {func} preprocess A callback to run on the incoming data
+ * @param {func} postprocess A callback to run on the incoming data
  * @returns {Promise<array<object>>} The converted data
  */
-function get(root, id, query = {}, notify = () => null, preprocess = v => v) {
+function get(root, id, query = {}, notify = () => null, postprocess = v => v) {
   const chunk = 6000;
   const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
@@ -175,7 +175,7 @@ function get(root, id, query = {}, notify = () => null, preprocess = v => v) {
     } else {
       const chunkPromises = getOffsets(chunk, total)
         .map(offset => getChunk(offset).then(convertChunk));
-      return promiseConcat(preprocess, throttledNotify, first, ...chunkPromises);
+      return promiseConcat(postprocess, throttledNotify, first, ...chunkPromises);
     }
   };
 

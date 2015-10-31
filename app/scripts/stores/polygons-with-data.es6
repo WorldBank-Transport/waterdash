@@ -42,7 +42,7 @@ const PolygonsDataStore = createStore({
     const features = PolygonsStore.get();
     const { viewMode, dataType } = ViewStore.get();
 
-    const dataFeatures = dataType.getLocationColumn(viewMode)
+    const dataFeatures = dataType.getLocationProp(viewMode)
       .andThen(groupByLoc(data))
       .andThen(injectDataIntoFeatures(features))
       .unwrapOr(this.initialData);

@@ -1,6 +1,7 @@
 // Utils
 import { connect } from 'reflux';
 import { _ } from 'results';  // catch-all for match
+import AsyncState from '../../constants/async';
 import ViewModes from '../../constants/view-modes';
 import tzBounds from '../../constants/tz-bounds';
 
@@ -15,7 +16,7 @@ import ViewStore from '../../stores/view';
 
 // Actions
 import { load } from '../../actions/data';
-import select from '../../actions/select';
+import { select, deselect } from '../../actions/select';
 import { setMapBounds } from '../../actions/view';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
 import { clear, setRange, setInclude } from '../../actions/filters';
@@ -44,9 +45,12 @@ require('stylesheets/dashboard/dash-layout');
 
 
 const DashRoot = React.createClass({
+
   propTypes: {
     children: PropTypes.node.isRequired,
   },
+
+  // Hook up all the data
   mixins: [
     connect(FilteredDataStore, 'data'),
     connect(LayoutStore, 'layout'),
@@ -56,25 +60,58 @@ const DashRoot = React.createClass({
     connect(SelectedStore, 'selected'),
     connect(ViewStore, 'view'),
   ],
+
+  // Reset bounds and load any required data
   componentDidMount() {
     setMapBounds(tzBounds);  // reset bounds (eg. if we went to a static page and came back)
     load(this.state.view.dataType);
-    this.updatePolygons();
+    this.loadPolygons();
   },
+
+  // Reload data if necessary
   componentDidUpdate(prevProps, prevState) {
     if (!this.state.view.dataType.equals(prevState.view.dataType)) {
       load(this.state.view.dataType);
     }
     if (!this.state.view.viewMode.equals(prevState.view.viewMode)) {
-      this.updatePolygons();
+      this.loadPolygons();
     }
   },
-  updatePolygons() {
+
+  loadPolygons() {
     ViewModes.match(this.state.view.viewMode, {
       Points: () => clearPolygons(),
       [_]: () => loadPolygons(this.state.view.viewMode),
     });
   },
+
+  // Show one loading overlay for all loading data
+  renderLoadingOverlay() {
+    const loading = AsyncState.match(this.state.loadingData, {
+      Finished: () => ({  // data is finished but polys are still loading
+        loadState: this.state.loadingPolygons,
+        message: {k: `loading.${this.state.view.viewMode.toParam()}`},
+        retry: this.loadPolygons,
+      }),
+      [_]: () => ({  // polys are still loading or failed
+        loadState: this.state.loadingData,
+        message: {
+          k: `loading.${this.state.view.dataType.toParam()}`,
+          i: [this.state.data.length],
+        },
+        retry: () => load(this.state.view.dataType),
+      }),
+    });
+    return (
+      <TSetChildProps>
+        <SpinnerModal
+            message={loading.message}
+            retry={loading.retry}
+            state={loading.loadState} />
+      </TSetChildProps>
+    );
+  },
+
   render() {
     const propsForChildren = {
       dataType: this.state.view.dataType,
@@ -84,8 +121,9 @@ const DashRoot = React.createClass({
     const mapChild = React.cloneElement(this.props.children, {
       ...propsForChildren,
       polygonsData: this.state.polygonsData,
-      select: select,
       selected: this.state.selected,
+      deselect,
+      select,
     });
 
     return (
@@ -120,21 +158,7 @@ const DashRoot = React.createClass({
               setInclude={setInclude}
               setRange={setRange}
               {...propsForChildren} />
-          {/* Polygons loading overlay */}
-          <TSetChildProps>
-            <SpinnerModal
-                message={{k: `loading.${this.state.view.viewMode.toParam()}`}}
-                retry={this.updatePolygons}
-                state={this.state.loadingPolygons} />
-          </TSetChildProps>
-          {/* Data loading overlay */}
-          <TSetChildProps>
-            <SpinnerModal
-                message={{k: `loading.${this.state.view.dataType.toParam()}`,
-                  i: [this.state.data.length]}}
-                retry={() => load(this.state.view.dataType)}
-                state={this.state.loadingData} />
-          </TSetChildProps>
+          {this.renderLoadingOverlay()}
         </div>
 
         <div className="dash-bottom">

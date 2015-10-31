@@ -19,10 +19,10 @@ const DataTypes = Union({
    * @param {Union<ViewModes>} viewMode the viewMode to lookup
    * @returns {Maybe} Either Some(columnName) or None if the dataset does not have it
    */
-  getLocationColumn(viewMode) {
+  getLocationProp(viewMode) {
     return DataTypes.match(this, {
       Waterpoints: () => ViewModes.match(viewMode, {
-        Points: () => Some(['LATITIUDE', 'LONGITUDE']),  // TODO: use this in pullLatLng
+        Points: () => Some('position'),  // pulled into this prop by pullLatLng in api module
         Regions: () => Some('REGION'),
         Districts: () => Some('DISTRICT'),
         Wards: () => Some('WARD'),
@@ -33,7 +33,7 @@ const DataTypes = Union({
         [_]: () => None(),
       }),
       Dams: () => ViewModes.match(viewMode, {
-        Points: () => Some(['LATITIUDE', 'LONGITUDE']),
+        Points: () => Some('position'),  // from pullLatLng in api module
         Regions: () => Some('REGION'),
         Districts: () => Some('DISTRICT'),
         [_]: () => None(),

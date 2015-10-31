@@ -86,7 +86,7 @@ export const getBoreholes = (onProgress) =>
 
 
 export const getDams = (onProgress) =>
-  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396', {}, onProgress);
+  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396', {}, onProgress, eachRecord(pullLatLng));
 
 
 export const getRegions = () =>

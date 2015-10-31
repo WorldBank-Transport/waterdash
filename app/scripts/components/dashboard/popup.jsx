@@ -1,24 +1,20 @@
+/*eslint-disable react/no-set-state */
 import React, { PropTypes } from 'react';
 import { Maybe, _ } from 'results';
 import AsyncState from '../../constants/async';
-import warn from '../../utils/warn';
+import DataTypes from '../../constants/data-types';
+import ViewModes from '../../constants/view-modes';
+import TSetChildProps from '../misc/t-set-child-props';
 
 require('stylesheets/dashboard/popup');
 
 
 const Popup = React.createClass({
   propTypes: {
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    deselect: PropTypes.func,  // injected
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
-  },
-
-  renderWTF() {
-    warn('Popup component mounted when no point or poly is selected (at least' +
-      ' in the selected store). This is probably a bug. Nothing will be drawn' +
-      ' on the screen for the popup. Check `app.jsx` to make sure routing is' +
-      ' correct, polygons-map and points-map to make sure they are passing' +
-      ' `selected` as prop to the popup, and `stores/selected.jsx` to make' +
-      ' sure it is selecting properly.');
-    return <div style={{display: 'none'}}></div>;
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
   renderLoading() {
@@ -33,10 +29,21 @@ const Popup = React.createClass({
     );
   },
 
-  renderPopup(details) {
+  renderPointsPopup(details) {
+    // TODO: this might be worth moving to a new component
     return (
       <div>
-        <h3>I'm a popup!</h3>
+        <h3>I'm a points popup!</h3>
+        <p>{JSON.stringify(details)}</p>
+      </div>
+    );
+  },
+
+  renderPolygonsPopup(details) {
+    // TODO: this might be worth moving to a new component
+    return (
+      <div>
+        <h3>I'm a polygons popup!</h3>
         <p>{JSON.stringify(details)}</p>
       </div>
     );
@@ -44,13 +51,26 @@ const Popup = React.createClass({
 
   render() {
     return Maybe.match(this.props.selected, {
-      None: this.renderWTF,
+      None: () => (  // no popup selected, render nothing
+        <div style={{display: 'none'}}></div>
+      ),
       Some: selected => (
         <div className="popup">
+          <TSetChildProps>
+            <div
+                className="close-button"
+                onClick={this.props.deselect}
+                title={{k: 'popup.close'}}>
+              &times;
+            </div>
+          </TSetChildProps>
           {AsyncState.match(selected.loadState, {
             Finished: () => Maybe.match(selected.details, {
               None: () => this.renderNotFound(selected.id),
-              Some: details => this.renderPopup(details),
+              Some: details => ViewModes.match(this.props.viewMode, {
+                Points: () => this.renderPointsPopup(details),
+                [_]: () => this.renderPolygonsPopup(details),
+              }),
             }),
             [_]: this.renderLoading,
           })}

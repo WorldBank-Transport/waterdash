@@ -1,27 +1,32 @@
 /**
- * This store handles a lot of state- and action-related stuff
+ * This store handles a lot of state- and action-related stuff, and even
+ * triggers map zooming.
  *
  * There might be a better place for some of this, but it works here.
  */
 
+// a hacky way to find the bounds of a geojson layer: instantiate a L.GeoJson
+// instance of it and call `.getBounds` on that. eh, it works :)
+import { geoJson } from 'leaflet';
+
 import isUndefined from 'lodash/lang/isUndefined';
 import find from 'lodash/collection/find';
+
 import { createStore } from 'reflux';
-import { Some, None, _ } from 'results';
+import { Maybe, Some, None, _ } from 'results';
 import SaneStore from '../utils/sane-store-mixin';
-// import DataTypes from '../constants/data-types';
+
 import AsyncState from '../constants/async';
 import ViewModes from '../constants/view-modes';
-import select from '../actions/select';
+
+import { setMapBounds, zoomToPoint } from '../actions/view';
+import { select, ensureSelect, deselect } from '../actions/select';
 
 import DataStore from './data';
 import LoadingDataStore from './loading-data';
 import LoadingPolygonsStore from './loading-polygons';
 import PolygonsDataStore from './polygons-with-data';
 import ViewStore from './view';
-
-
-const maybeUndefined = v => isUndefined(v) ? None() : Some(v);
 
 
 /**
@@ -31,9 +36,15 @@ const maybeUndefined = v => isUndefined(v) ? None() : Some(v);
 const SelectedStore = createStore({
   initialData: None(),
   mixins: [SaneStore],
+
   init() {
+    // private internal state to track when we should trigger map zooms
+    this.__map_needs_zoom = false;  // eslint-disable-line
+
     // select and clear selection
+    this.listenTo(deselect, 'deselect');
     this.listenTo(select, 'selectById');
+    this.listenTo(ensureSelect, 'selectById');
 
     // update when any dependencies change
     // this._emit comes from SaneStoreMixin
@@ -43,13 +54,40 @@ const SelectedStore = createStore({
     this.listenTo(PolygonsDataStore, this.emit, this);
     this.listenTo(ViewStore, this.emit, this);
   },
-  selectById(id) {
-    this.setData(Some(id));
+
+  deselect() {
+    this.__map_needs_zoom = false;  // eslint-disable-line
+    this.setData(None());
   },
+
+  selectById(id) {
+    const shouldUpdate = Maybe.match(this.data, {
+      None: () => true,  // always update if store id was None
+      Some: currentId => {
+        if (id !== currentId) {  // update if selecting a new id
+          return true;
+        } else {
+          return false;  // pass, do nothing if the id has not changed.
+        }
+      },
+    });
+    if (shouldUpdate) {
+      this.__map_needs_zoom = true;  // eslint-disable-line
+      this.setData(Some(id));
+    }
+  },
+
+  /**
+   * Whenever this store triggers, its data is processed through this method
+   * before being given to listeners, so we do all the heavy work here.
+   * See sane-store mixin for details.
+   * @returns {Maybe} Some(details) if anything is selected, or None
+   */
   get() {
     // emit None() if no ID is selected, otherwise compute
     return this.data.andThen(this.getSelected);
   },
+
   getLoadState() {
     const pointsState = LoadingDataStore.get();
     const polysState = LoadingPolygonsStore.get();
@@ -59,19 +97,37 @@ const SelectedStore = createStore({
       [_]: () => pointsState.and(polysState),  // only Finished when both Finished
     });
   },
+
   getPointDetail(id) {
     const pointsData = DataStore.get();
     const { dataType } = ViewStore.get();
     const idField = dataType.getIdColumn();
     const q = {[idField]: id};
     const detail = find(pointsData, q);
-    return maybeUndefined(detail);
+    if (!isUndefined(detail)) {
+      this.maybeZoomToPoint(detail);
+      return Some(detail);
+    } else {
+      return None();
+    }
   },
+
   getPolyDetail(id) {
     const featuresWithData = PolygonsDataStore.get();
     const detail = find(featuresWithData, {id: id});
-    return maybeUndefined(detail);
+    if (!isUndefined(detail)) {
+      this.maybeZoomToPoly(detail);
+      return Some(detail);
+    } else {
+      return None();
+    }
   },
+
+  /**
+   * just defers to getPointDetail or getPolyDetail
+   * @param {string} id The selected thing's id
+   * @returns {object} The detail
+   */
   getDetail(id) {
     const { viewMode } = ViewStore.get();
     return ViewModes.match(viewMode, {
@@ -79,6 +135,7 @@ const SelectedStore = createStore({
       [_]: () => this.getPolyDetail(id),
     });
   },
+
   getSelected(id) {
     const loadState = this.getLoadState();
     return AsyncState.match(loadState, {
@@ -94,6 +151,27 @@ const SelectedStore = createStore({
       }),
     });
   },
+
+  // side-effect methods
+  maybeZoomToPoint(detail) {
+    if (this.__map_needs_zoom) {
+      const { dataType } = ViewStore.get();
+      dataType.getLocationProp(ViewModes.Points())
+        .andThen(locProp => detail[locProp])
+        .andThen(zoomToPoint);
+      this.__map_needs_zoom = false;  // eslint-disable-line
+    }
+  },
+
+  maybeZoomToPoly(detail) {
+    if (this.__map_needs_zoom) {
+      const geoLayer = geoJson(detail);  // L.GeoJson from leaflet
+      const bounds = geoLayer.getBounds();
+      setMapBounds(bounds);
+      this.__map_needs_zoom = false;  // eslint-disable-line
+    }
+  },
 });
+
 
 export default SelectedStore;

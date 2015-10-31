@@ -14,6 +14,7 @@ const PointsMap = React.createClass({
     children: PropTypes.node,  // for selected point popup
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    deselect: PropTypes.func,  // injected
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     select: PropTypes.func,  // injected
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
@@ -21,7 +22,7 @@ const PointsMap = React.createClass({
   },
   render() {
     const propsForPopup = pick(this.props,
-      [ 'data', 'dataType', 'selected', 'viewMode' ]);
+      [ 'data', 'dataType', 'deselect', 'selected', 'viewMode' ]);
     const popup = this.props.children ?
       React.cloneElement(this.props.children, propsForPopup) : null;
 
