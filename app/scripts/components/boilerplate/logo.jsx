@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import T from '../misc/t';
 import TChildProps from '../misc/t-set-child-props';
 
@@ -8,10 +9,16 @@ const Logo = React.createClass({
   render() {
     return (
       <div className="logo">
-        <TChildProps>
-          <img alt={{k: 'site.flag'}} src="images/tz-flag.png"/>
-        </TChildProps>
-        <h1><T k="site-name" /></h1>
+        <Link to="/">
+          <TChildProps>
+            <img alt={{k: 'site.flag'}} src="images/tz-flag.png"/>
+          </TChildProps>
+        </Link>
+        <h1>
+          <Link to="/">
+            <T k="site-name" />
+          </Link>
+        </h1>
       </div>
     );
   },

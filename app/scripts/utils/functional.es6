@@ -20,7 +20,7 @@ import has from 'lodash/object/has';
  */
 function reduceResult(process, reducer, init, data) {
   return data.reduce((result, next) => result.andThen(current =>
-    process(next).map(processed => reducer(current, processed))
+    Ok(process(next)).andThen(processed => reducer(current, processed))
   ), Ok(init));
 }
 
@@ -56,7 +56,7 @@ const mergeTwo = (a, b) => {
  * @param {object} obj The object to split into an array of [k, v] pairs
  * @returns {array<array>} An array of pairs of key/value from obj
  */
-function asArray(obj) {
+export function asArray(obj) {
   return Object.keys(obj)
     .map(k => [k, obj[k]]);
 }
@@ -94,17 +94,6 @@ const sumByProp = (propName, agg, item) => {
   }
   return agg;
 };
-
-/**
- * @param {Result<T>} result An Ok() or Err() from `results`
- * @returns {Promise<T>} A promise that resolves Ok or rejects Err.
- */
-export function promiseResult(result) {
-  return new Promise((resolve, reject) => result.match({
-    Ok: resolve,
-    Err: reject,
-  }));
-}
 
 
 // Result type helpers
@@ -157,13 +146,22 @@ Result.mapObj = (fn, obj) => reduceResult(fn, (a, b) => a.concat(b), [], asArray
  * @param {array<object>} data Some objects to be merged and wrapped in Result.Ok
  * @returns {Result<object>} The merged object in a Result.Ok
  */
-Result.merge = (data) => reduceResult((v) => Ok(v), mergeTwo, {}, data);
+Result.merge = (data) => reduceResult(v => v, mergeTwo, {}, data);
 
-Result.groupBy = (data, propName) => filterAndReduce((v) => has(v, propName), (agg, item) => groupByProp(propName, agg, item), {}, data);
+Result.groupBy = (data, propName) => filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => groupByProp(propName, agg, item),  // reduce
+  {}, data);
 
-Result.countBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => countByProp(propName, agg, item), {}, data);
+Result.countBy = (data, propName) =>  filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => countByProp(propName, agg, item),  // reduce
+  {}, data);
 
-Result.sumBy = (data, propName) =>  filterAndReduce((v) => has(v, propName), (agg, item) => sumByProp(propName, agg, item), {}, data);
+Result.sumBy = (data, propName) =>  filterAndReduce(
+  (v) => has(v, propName),  // filter
+  (agg, item) => sumByProp(propName, agg, item),  // reduce
+  {}, data);
 
 /**
  * @param {array<object>} data Some objects to be aggregated and wrapped in Result.Ok

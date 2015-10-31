@@ -36,7 +36,8 @@ const allTranslations = {
     'dash.district': 'Districts',
     'dash.ward': 'Wards',
 
-    'charts.toggle.activate': 'View Charts',
+    'charts.toggle.closed': 'View Charts',
+    'charts.toggle.opened': 'Hide Charts',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
@@ -68,14 +69,11 @@ const allTranslations = {
     'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per hour',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
-
     'charts.category.filter.title': 'Choose a Subcategory',
     'charts.sub-category.HARDWARE_PROBLEM': 'Hardware Problem',
     'charts.sub-category.WATER_QUALITY': 'Water Quality',
     'charts.sub-category.WATER_QUANTITY': 'Water Quantity',
     'charts.sub-category.SOURCE_TYPE': 'Source Type',
-
-
     'charts.sub-category.value.PUMP STOLEN': 'PUMP STOLEN',
     'charts.sub-category.value.UNDER CONSTRUCTION': 'UNDER CONSTRUCTION',
     'charts.sub-category.value.PUMP BROKEN': 'PUMP BROKEN',
@@ -112,15 +110,36 @@ const allTranslations = {
     'charts.sub-category.value.NONE': 'NONE',
     'charts.sub-category.all': 'Select All',
 
-    'view-mode.points': 'All Water Points',
+    'filters.toggle.closed': 'Dashboard Filters',
+    'filters.toggle.opened': 'Hide Filters',
+
+    'popup.close': 'Close popup',
+
+    'view-mode.points.waterpoints': 'All Waterpoints',
+    'view-mode.points.dams': 'All Dams',
+    'view-mode.points.boreholes': 'All Boreholes',
+    'view-mode.points': i => `All ${i[0]}`,
     'view-mode.region': 'Region',
     'view-mode.district': 'District',
     'view-mode.ward': 'Ward',
+    'view-mode.disabled': 'Data not available',
+
+    'data-type.waterpoints': 'Waterpoints',
+    'data-type.boreholes': 'Boreholes',
+    'data-type.dams': 'Dams',
+
+    'overview-bar': 'Overview stuff',
 
     'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
     'loading': 'Loading',
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
+    'loading.boreholes': i => `${i[0]} boreholes loaded...`,
+    'loading.dams': i => `${i[0]} dams loaded...`,
+    'loading.regions': 'Loading regions...',
+    'loading.districts': 'Loading districts...',
+    'loading.wards': 'Loading wards...',
+    'loading.points': 'If you see this message, there is likely an error in the application.',
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
@@ -130,6 +149,8 @@ const allTranslations = {
     'error.api.ckan': 'The CKAN data server encountered an error while trying to fetch data',
     'error.api.ckan.unknown-field-type': i => `The CKAN data server returned data of an unknown type '${i[0]}' for field '${i[1]}'`,
     'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
+    'error.api.postprocess': 'An error occurred while the application was processing data',
+    'error.api.static.postprocess': 'An error occurred while the application was procesing boundary data',
 
   },
 

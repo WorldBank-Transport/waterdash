@@ -1,7 +1,7 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted } from '../actions/waterpoints';
-import { setSubcategory, setSubcategoryValue } from '../actions/filters';
+import { loadCompleted } from '../actions/data';
+import { setSubcategory, setAllSubcategories, setExclude } from '../actions/filters';
 import * as func from '../utils/functional';
 
 const CategoriesStore = createStore({
@@ -10,7 +10,7 @@ const CategoriesStore = createStore({
   init() {
     this.listenTo(loadCompleted, 'loadData');
     this.listenTo(setSubcategory, 'changeSubcategory');
-    this.listenTo(setSubcategoryValue, 'changeSubcategoryValue');
+    this.listenTo(setAllSubcategories, 'changeAllSubcategories');
   },
 
   changeSubcategory(category, subcategory) {
@@ -19,14 +19,18 @@ const CategoriesStore = createStore({
     };
     updated[category][subcategory] = !this.data[category][subcategory]; // TODO check a better way to update the property
     this.setData(updated);
+    this.excludeCategory(updated, category);
   },
 
-  changeSubcategoryValue(category, subcategory, value) {
+  changeAllSubcategories(category, value) {
     const updated = {
       ...this.data,
     };
-    updated[category][subcategory] = value; // TODO check a better way to update the property
+    Object.keys(updated[category]).forEach(subcategory => {
+      updated[category][subcategory] = value;
+    });
     this.setData(updated);
+    this.excludeCategory(updated, category);
   },
 
   getValuesForProperty(data, property) {
@@ -34,6 +38,11 @@ const CategoriesStore = createStore({
       ret[value] = true;
       return ret;
     }, {});
+  },
+
+  excludeCategory(data, category) {
+    const subcategoryExcluded = Object.keys(data[category]).filter(subcategory => !data[category][subcategory]);
+    setExclude(category, subcategoryExcluded);
   },
 
   loadData(data) {

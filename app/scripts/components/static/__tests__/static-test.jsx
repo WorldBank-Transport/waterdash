@@ -6,9 +6,6 @@
  */
 
 describe('Static Components', () => {
-  jest.dontMock('../../misc/t');
-  jest.dontMock('../../boilerplate/external-links');
-
   let React, Homepage, Data, SpeakOut, NotFound;
   beforeEach(() => {
     React = require('react/addons');
