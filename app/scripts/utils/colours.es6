@@ -8,9 +8,16 @@ const colours = {
   bgColor: '#ffffff',
   textColor: '#555555',
   theme: '#05a2dc',
+
+  // Scale colours
+  many: '#3f7086',  // TODO: I picked these from the polygons mockup
+  few: '#4cafd8',  // ... but we probably need more colours
+
+  // Ranking colours
   good: '#82c675',
   medium: '#fbc030',
   poor: '#f05e55',
+
   unknown: '#7d7d7d',
 };
 export default colours;

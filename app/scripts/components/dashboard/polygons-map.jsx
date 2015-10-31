@@ -40,8 +40,11 @@ const PolygonsMap = React.createClass({
   },
 
   getFeatureColor(feature) {
-    // TODO
-    return feature.properties.data.and('purple').unwrapOr(colours.unknown);
+    // compute average per polygon
+    const avg = this.props.data.length / this.props.polygonsData.length;
+    return feature.properties.data
+      .andThen(d => (d.length > avg) ? colours.many : colours.few)
+      .unwrapOr(colours.unknown);
   },
 
   renderFeature(feature) {

@@ -9,7 +9,7 @@ import ViewStore from './view';
 
 
 export const injectData = dataByLoc => polygon => {
-  const dataForPoly = dataByLoc[polygon];
+  const dataForPoly = dataByLoc[polygon.id];
   return Ok({
     ...polygon,
     properties: {
