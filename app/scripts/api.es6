@@ -46,6 +46,7 @@ const waterpointsQ = {
     'DISTRICT',
     'WARD',
     'VILLAGE',
+    'SUB_VILLAGE',
     'HARDWARE_PROBLEM',
     'WATER_QUALITY',
     'WATER_QUANTITY',
