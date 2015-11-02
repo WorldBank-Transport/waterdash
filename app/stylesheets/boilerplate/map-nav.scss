@@ -1,0 +1,6 @@
+@import '../config/dimensions';
+
+.map-nav {
+  display: flex;  // TODO: this probably breaks IE
+  height: $map-nav-height;
+}

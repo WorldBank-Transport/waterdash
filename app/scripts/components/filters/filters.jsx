@@ -1,43 +1,65 @@
-import React from 'react';
-import { connect } from 'reflux';
-import FilterStore from '../../stores/filters';
-import filterActions from '../../actions/filters';
+import React, { PropTypes } from 'react';
+import { _ } from 'results';  // catch-all for match
+
+import DataTypes from '../../constants/data-types';
+import OpenClosed from  '../../constants/open-closed';
+import ViewModes from '../../constants/view-modes';
+
+
 import T from '../misc/t';
-import Filter from './filter';
 import Range from './range';
 
 require('stylesheets/filters/filters');
 
 const Filters = React.createClass({
-  mixins: [
-    connect(FilterStore, 'filters'),
-  ],
-  render() {
+  propTypes: {
+    clear: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired,
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
+    openClosed: PropTypes.instanceOf(OpenClosed.OptionClass).isRequired,
+    setInclude: PropTypes.func.isRequired,
+    setRange: PropTypes.func.isRequired,
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass).isRequired,
+  },
+  componentDidUpdate(prevProps) {
+    if (!this.props.dataType.equals(prevProps.dataType)) {
+      this.props.clear();
+    }
+  },
+  renderWaterpoints() {
     return (
-      <div className="filters">
-        <div className="filters-title">
-          <h2><T k="filters.title" /></h2>
-        </div>
-        <ul className="filters-row">
-          <li>
-            <Filter name="filters.population-served">
-              <h4><T k="filters.population-served.unit" /></h4>
-              <Range
-                  defaultValue={this.state.filters.populationServed}
-                  max={10000}
-                  min={0}
-                  onChange={filterActions.setPopulationServed} />
-            </Filter>
-          </li>
-          <li>
-            <Filter name="filters.filter-two" />
-          </li>
-          <li>
-            <Filter name="filters.filter-three" />
-          </li>
-        </ul>
+      <div>
+        <h4>pop served</h4>
+        <Range
+            defaultValue={[0, 10000]}
+            max={10000}
+            min={0}
+            onChange={range => this.props.setRange('POPULATION SERVED', range)} />
       </div>
     );
+  },
+  renderOthers() {
+    return (
+      <div>
+        other filters...
+      </div>
+    );
+  },
+  render() {
+    return OpenClosed.match(this.props.openClosed, {
+      Open: () => (
+        <div className="filters">
+          <div className="filters-title">
+            <h2><T k="filters.title" /></h2>
+          </div>
+          {DataTypes.match(this.props.dataType, {
+            Waterpoints: this.renderWaterpoints,
+            [_]: this.renderOthers,
+          })}
+        </div>
+      ),
+      Closed: () => <div style={{display: 'none'}}></div>,
+    });
   },
 });
 

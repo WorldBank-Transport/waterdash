@@ -19,19 +19,6 @@ describe('Functional utilities', () => {
     func = require.requireActual('../functional');
   });
 
-  describe('promise result', () => {
-    pit('should resolve for Ok()', () => {
-      const { Ok } = require.requireActual('results');
-      return func.promiseResult(Ok('k')).then(v =>
-        expect(v).toEqual('k'));
-    });
-    pit('should reject for Ok()', () => {
-      const { Err } = require.requireActual('results');
-      return func.promiseResult(Err('z')).catch(v =>
-        expect(v).toEqual('z'));
-    });
-  });
-
   describe('Result.map', () => {
     it('should pass through an empty array', () => {
       const { Ok, Err } = require.requireActual('results');
@@ -64,14 +51,9 @@ describe('Functional utilities', () => {
       expect(func.Result.mapMergeObj(null, {}).unwrap()).toEqual({});
     });
     it('should mapMergeObj over all ok results', () => {
-      const { Ok } = require.requireActual('results');
-      const fn = ([k, v]) => {
-        return Ok({[k]: v});
-      };
+      const fn = ([k, v]) => ({[k]: v});
       expect(func.Result.mapMergeObj(fn, {a: 1}).unwrap()).toEqual({a: 1});
-      const fn2 = ([k, v]) => {
-        return Ok({[k]: v * 2});
-      };
+      const fn2 = ([k, v]) => ({[k]: v * 2});
       expect(func.Result.mapMergeObj(fn2, {a: 1, b: 2}).unwrap()).toEqual({a: 2, b: 4});
     });
   });
@@ -81,14 +63,9 @@ describe('Functional utilities', () => {
       expect(func.Result.mapObj(null, {}).unwrap()).toEqual([]);
     });
     it('should mapObj over all ok results', () => {
-      const { Ok } = require.requireActual('results');
-      const fn = ([k, v]) => {
-        return Ok(`${k}${v}`);
-      };
+      const fn = ([k, v]) => `${k}${v}`;
       expect(func.Result.mapObj(fn, {a: 1}).unwrap()).toEqual(['a1']);
-      const fn2 = ([k, v]) => {
-        return Ok(`${k}${v * 2}`);
-      };
+      const fn2 = ([k, v]) => `${k}${v * 2}`;
       expect(func.Result.mapObj(fn2, {a: 1, b: 2}).unwrap()).toEqual(['a2', 'b4']);
     });
   });

@@ -13,19 +13,6 @@ body {
 
 .header {
   height: $header-height;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.filters {
-  height: $filters-closed-height;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 3;
 }
 
 .main {
@@ -33,35 +20,12 @@ body {
   left: 0;
   position: absolute;
   right: 0;
-  top: $header-height;
+  top: $header-height + $divider-height;
 
   @include up-to($tablet-portrait) {
     height: 100%;
     padding: $content-space-mobile 0;
     top: $content-space-mobile;
-  }
-
-  .map-container {
-    z-index: 1;
-  }
-
-  .charts-container {
-    $trans: 250ms ease;
-    background-clip: content-box;  // don't extend background into spacer border
-    border-top: 0 solid transparent;  // create a space behind filters
-    bottom: 0;
-    box-sizing: border-box;
-    height: $charts-above-height;
-    left: 0;
-    position: absolute;
-    right: 0;
-    transition: height $trans, border-top $trans;  // open the spacer behind filters
-    z-index: 2;
-
-    &.open {
-      border-top-width: $filters-closed-height;  // spacer behind filters
-      height: 100%;
-    }
   }
 }
 
@@ -71,8 +35,9 @@ body {
   }
 
   bottom: 0;
+  height: $footer-height;
   left: 0;
-  min-height: $footer-height;
-  position: fixed;
+  overflow-y: auto;
+  position: absolute;
   right: 0;
 }

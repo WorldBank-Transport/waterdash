@@ -1,17 +1,19 @@
 import React, { PropTypes } from 'react';
+import AsyncState from '../../constants/async';
 import T from './t';
 import TChildProps from './t-set-child-props';
+import { translatable } from '../types';
 
 require('stylesheets/misc/spinner-modal');
 
 const SpinnerModal = React.createClass({
   propTypes: {
-    message: PropTypes.string,
+    message: translatable.isRequired,
     retry: PropTypes.func,
     state: PropTypes.object.isRequired,
   },
   render() {
-    return this.props.state.match({
+    return AsyncState.match(this.props.state, {
       Finished: () => <div style={{display: 'none'}}></div>,
       Active: () => (
         <div className="spinner-modal">
@@ -19,15 +21,15 @@ const SpinnerModal = React.createClass({
             <TChildProps>
               <img alt={{k: 'loading'}} src="/images/loading-icon.gif" />
             </TChildProps>
-            {this.props.message}
+            <p>{this.props.message}</p>
           </div>
         </div>
       ),
-      Failed: ({ errKey, errInterp }) => (
+      Failed: ({ k, i }) => (
         <div className="spinner-modal failed">
           <div className="fail-message">
             <h1><T k="error" /></h1>
-            <p><T i={errInterp} k={errKey} /></p>
+            <p><T i={i} k={k} /></p>
             {this.props.retry && (
               <p className="retry">
                 <button
