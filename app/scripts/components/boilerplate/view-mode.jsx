@@ -17,7 +17,7 @@ const ViewMode = React.createClass({
     const { dataType } = this.props;
     return (
       <li>
-        {Maybe.match(dataType.getLocationColumn(viewMode), {
+        {Maybe.match(dataType.getLocationProp(viewMode), {
           Some: () => (  // we have data for this viewMode/dataType combo
             <Link activeClassName="active" to={`/dash/${viewMode.toParam()}/${dataType.toParam()}/`}>
               <T k={k} />

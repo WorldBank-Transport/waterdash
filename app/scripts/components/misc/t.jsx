@@ -113,6 +113,8 @@ const allTranslations = {
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',
 
+    'popup.close': 'Close popup',
+
     'view-mode.points.waterpoints': 'All Waterpoints',
     'view-mode.points.dams': 'All Dams',
     'view-mode.points.boreholes': 'All Boreholes',
