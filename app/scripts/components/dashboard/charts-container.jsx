@@ -33,6 +33,7 @@ const ChartsContainer = React.createClass({
                 href="#"
                 onClick={this.toggle}
                 role="button">
+              <img className="icon-chart" src="images/icon-chart.png"/>
               <T k="charts.toggle.activate" />
             </a>
             <ViewMode />

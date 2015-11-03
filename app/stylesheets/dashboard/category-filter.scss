@@ -19,7 +19,8 @@
     text-align: left;
 
     &:hover {
-      background: darken($grey-light, 10%);
+      background: $theme-blue;
+      color: $text-inverse;
     }
 
     i.fa {
@@ -31,7 +32,7 @@
   }
 
   .flyout {
-    background-color: $bg-color;
+    background-color: none;
     height: 300px;
     overflow: auto;
     position: relative;
