@@ -35,53 +35,56 @@ const WaterpointPopup = React.createClass({
             </div>
           </div>
           <h3 className="main-header">{this.props.waterpoint.WATER_POINT_NAME}</h3>
-          <p><T k="popup.waterpoint.code" /> {this.props.waterpoint.WATER_POINT_CODE}</p>
+          <p className="secondary-text"><T k="popup.waterpoint.code" /> {this.props.waterpoint.WATER_POINT_CODE}</p>
         </div>
         <div className="row">
-          <T k="popup.waterpoint.source-type" />
-          {this.props.waterpoint.SOURCE_TYPE}
+          <p className="secondary-text"><T k="popup.waterpoint.source-type" />: {this.props.waterpoint.SOURCE_TYPE}</p>
         </div>
         <div className="row">
           <div className="left">
             <h3 className="main-header"><T k="popup.waterpoint.population-served" /></h3>
-            {this.props.waterpoint['POPULATION SERVED']}
+            <span className="big-number">{this.props.waterpoint['POPULATION SERVED']}</span>
           </div>
           <div className="right">
             <h3 className="main-header"><T k="popup.waterpoint.hardware-problem" /></h3>
-            {this.props.waterpoint.HARDWARE_PROBLEM}
+            <span className="big-number">{this.props.waterpoint.HARDWARE_PROBLEM}</span>
           </div>
         </div>
         <div className="row header">
           <div className="left">
             <h3 className="main-header"><T k="popup.waterpoint.quantity" /></h3>
-            {this.props.waterpoint.WATER_QUANTITY}
+            <span className="big-number">{this.props.waterpoint.WATER_QUANTITY}</span>
           </div>
           <div className="right">
             <h3 className="main-header"><T k="popup.waterpoint.quality" /></h3>
-            {this.props.waterpoint.WATER_QUALITY}
+            <span className="big-number">{this.props.waterpoint.WATER_QUALITY}</span>
           </div>
         </div>
         <div className="row">
-          <T k="popup.waterpoint.location" />
+          <div>
+            <h3 className="second-header"><T k="popup.waterpoint.position" /></h3>
+            <span className="location-text">{JSON.stringify(this.props.waterpoint.position)}</span>
+          </div>
         </div>
         <div className="row">
-          <T k="popup.waterpoint.position" />
-          {this.props.waterpoint.position}
+          <div>
+            <h3 className="second-header"><T k="popup.waterpoint.region" /></h3>
+            <span className="location-text">{this.props.waterpoint.REGION}</span>
+          </div>
         </div>
         <div className="row">
-          <T k="popup.waterpoint.region" />
-          {this.props.waterpoint.REGION}
+          <div>
+            <h3 className="second-header"><T k="popup.waterpoint.district" /></h3>
+            <span className="location-text">{this.props.waterpoint.DISTRICT}</span>
+          </div>
         </div>
         <div className="row">
-          <T k="popup.waterpoint.district" />
-          {this.props.waterpoint.DISTRICT}
-        </div>
-        <div className="row">
-          <T k="popup.waterpoint.ward" />
-          {this.props.waterpoint.WARD} / {this.props.waterpoint.VILLAGE} / {this.props.waterpoint.SUB_VILLAGE}
+          <div>
+            <h3 className="second-header"><T k="popup.waterpoint.ward" /></h3>
+            <span className="location-text">{this.props.waterpoint.WARD} / {this.props.waterpoint.VILLAGE} / {this.props.waterpoint.SUB_VILLAGE}</span>
+          </div>
         </div>
       </div>
-      //{"POPULATION SERVED":0,"WATER_POINT_CODE":"01043013271WP01_420","WATER_POINT_NAME":"BOMBANI","STATUS":"FUNCTIONAL","REGION":"DODOMA","DISTRICT":"CHAMWINO","WARD":"CHINUGULU","VILLAGE":"CHINUGULU","HARDWARE_PROBLEM":"NONE","WATER_QUALITY":"SALTY","WATER_QUANTITY":"INSUFFICIENT","SOURCE_TYPE":"MACHINE DBH","position":[-6.895581543,35.39441686]}
     );
   },
 });

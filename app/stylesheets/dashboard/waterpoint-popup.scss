@@ -22,9 +22,33 @@
     }
     & > h3 {
       display: table-cell;
+      margin-bottom: 0;
     }
     & > p {
       display: table-cell;
+    }
+
+    .big-number {
+      color: $text-color;
+      font-size: $tab-text;
+      line-height: 1em;
+      font-weight: bold;
+
+      & > .number {
+        font-weight: bold;
+      }
+    }
+    .second-header {
+      color: $text-color;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .location-text {
+      color: $theme-blue;
+      font-size: $tab-text;
+      line-height: 1em;
+      font-weight: bold;      
     }
   }
 
