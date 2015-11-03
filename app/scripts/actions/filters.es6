@@ -1,9 +1,22 @@
-import { createActions } from 'reflux';
+import { createAction } from 'reflux';
 
-const filtersActions = createActions({
-  setPopulationServed: {},
-  setSubcategory: {},
-  setSubcategoryValue: {},
-});
+const clear = createAction();
+const clearFilter = createAction();
+const setRange = createAction();
+const setInclude = createAction();
+const setExclude = createAction();
+const setPopulationServed = createAction();
+const setSubcategory = createAction();
+const setAllSubcategories = createAction();
 
-export default filtersActions;
+
+export default {
+  clear,
+  clearFilter,
+  setRange,
+  setInclude,
+  setExclude,
+  setPopulationServed,
+  setSubcategory,
+  setAllSubcategories,
+};

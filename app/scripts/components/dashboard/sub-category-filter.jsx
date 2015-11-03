@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import T from '../misc/t';
 import CategoriesStore from '../../stores/categories';
-import { setSubcategory, setSubcategoryValue} from '../../actions/filters';
+import { setSubcategory, setAllSubcategories} from '../../actions/filters';
 import { Icon } from 'react-font-awesome';
 
 //require('stylesheets/dashboard/category-filter');
@@ -39,9 +39,7 @@ const SubCategoryFilter = React.createClass({
       ...this.state,
       all: !this.state.all,
     };
-    Object.keys(this.state.categories[this.props.type]).forEach(subcategory => {
-      setSubcategoryValue(this.props.type, subcategory, newState.all);
-    });
+    setAllSubcategories(this.props.type, !this.state.all);
     this.replaceState(newState);
   },
 
@@ -58,7 +56,11 @@ const SubCategoryFilter = React.createClass({
     return (
       <div className="sub-category-filter">
         <div className="category-collapsable" onClick={this.toggle}>
+<<<<<<< HEAD
           <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`chevron-${direction}`}/>
+=======
+          <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`angle-double-${direction}`}/>
+>>>>>>> master
         </div>
         <ul className={visibleClass}>
           <li><input checked={this.state.all} onChange={this.selectAll} type="checkbox"/> <T k="charts.sub-category.all" /></li>

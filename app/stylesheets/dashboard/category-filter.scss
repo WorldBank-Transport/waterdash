@@ -16,8 +16,12 @@
   .category-filter-toogle {
     @include link-transition(450ms, ease);
     background-color: $bg-color;
+<<<<<<< HEAD
     padding: 10px 30px 10px 15px;
     text-align: left;
+=======
+    width: 300px;
+>>>>>>> master
 
     &:hover {
       background: $theme-blue;
@@ -34,6 +38,7 @@
     background-color: none;
     height: $subcategory-flyout-height;
     overflow: auto;
+<<<<<<< HEAD
     position: relative;
     width: $subcategory-filter-tab;
     z-index: 3;
@@ -42,15 +47,28 @@
     float: left;
     margin: 0;
     margin-top: $filter-category-expand-position;
+=======
+    position: absolute;
+    width: 300px;
+    z-index: 10;
+  }
+  .open-up {
+    float: left;
+    top: -259px;
+>>>>>>> master
   }
   .open-down {
     border: 1px solid $grey-light;
     float: left;
+<<<<<<< HEAD
     margin: 0;
     position: absolute;
     top: $subcategory-open-down-position;
     width: $subcategory-open-down-width;
     z-index: 5;
+=======
+    top: 10px;
+>>>>>>> master
   }
   .visible {
     background: $bg-color;
@@ -70,10 +88,13 @@
   }
 
   .category-collapsable {
+<<<<<<< HEAD
     @include link-transition(450ms, ease);
     background: $text-inverse;
     border-bottom: 1px solid $grey-light;
     color: $theme-blue;
+=======
+>>>>>>> master
     cursor: pointer;
     padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
     text-align: left;

@@ -1,0 +1,64 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+@import '../config/box';
+
+.charts {
+  $trans: 250ms ease;
+  background: $grey-light;
+  background-clip: content-box;  // don't extend background into spacer border
+  bottom: 0;
+  left: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: height $trans, border-bottom $trans;  // open the spacer behind filters
+  width: 100%;
+  z-index: 2;
+
+  img {
+    margin-right: $base-unit/2;
+    margin-top: -$base-unit/2;
+  }
+}
+.secondaryCharts {
+  background: $bg-color;
+  overflow: hidden;
+  padding: $chart-container-padding/2 $chart-container-padding;
+
+  .col-left {
+    float: left;
+    width: $main-chart-width;
+  }
+  .col-right {
+    float: right;
+    width: $sec-chart-width;
+  }
+}
+
+// chart titles - apply to all 3 charts
+h3 {
+  &.chart-title {
+    color: $theme-blue-alt;
+    font-size: $chart-title;
+    font-weight: $static-content-weight;
+    margin-top: 0;
+  }
+
+  &.main-chart-title {
+    @extend .chart-title;  // lint warning here to use % but it affects the style
+    font-size: $main-chart-title;
+    }
+
+  .chart-helptext {
+    color: $text-color;
+    }
+  }
+
+// chart containers
+.chart-container {
+  @include border-radius(4px);
+  @include chart-border();
+}

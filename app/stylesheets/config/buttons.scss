@@ -14,3 +14,12 @@
     border-color: $status-poor;
   }
 }
+
+@mixin button-reset() {
+  background: transparent;
+  border-width: 0;
+  display: inline;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+}

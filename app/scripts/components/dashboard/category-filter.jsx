@@ -23,10 +23,11 @@ const CategoryFilter = React.createClass({
   },
 
   render() {
-    const [openClass, direction] = this.props.parentState.match({
-      Open: () => [ 'open-down', this.state.open ? 'up' : 'down' ],
-      Closed: () => [ 'open-up', this.state.open ? 'down' : 'up' ],
-    });
+    const [openClass, direction] = [ 'open-up', this.state.open ? 'down' : 'up' ];
+    //const [openClass, direction] = this.props.parentState.match({
+    //  Open: () => [ 'open-down', this.state.open ? 'up' : 'down' ],
+    //  Closed: () => [ 'open-up', this.state.open ? 'down' : 'up' ],
+    //});
     const visibleClass = this.state.open ? 'visible' : 'hidden';
     return (
       <div className="category-filter">
