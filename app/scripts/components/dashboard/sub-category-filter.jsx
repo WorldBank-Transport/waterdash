@@ -57,7 +57,6 @@ const SubCategoryFilter = React.createClass({
       <div className="sub-category-filter">
         <div className="category-collapsable" onClick={this.toggle}>
           <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`chevron-${direction}`}/>
-          <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`angle-double-${direction}`}/>
         </div>
         <ul className={visibleClass}>
           <li><input checked={this.state.all} onChange={this.selectAll} type="checkbox"/> <T k="charts.sub-category.all" /></li>

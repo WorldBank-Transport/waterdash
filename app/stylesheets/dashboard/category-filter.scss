@@ -84,6 +84,8 @@
     border-bottom: 1px solid $grey-light;
     color: $theme-blue;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: $button-weight;
     padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
     text-align: left;
 
@@ -94,6 +96,7 @@
 
     .fa {
       float: right;
+      font-size: $view-charts-icon-size;
     }
 
   }
