@@ -4,11 +4,13 @@ import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
+import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/charts/waterpoint-functional-chart');
 
 const WaterpointFunctionalChart = React.createClass({
   propTypes: {
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
     waterpoints: PropTypes.array.isRequired,
   },
 
@@ -35,7 +37,8 @@ const WaterpointFunctionalChart = React.createClass({
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, 'REGION', 'STATUS');
+    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
+    const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, drillDown, 'STATUS');
     return (
       <div className="waterpoint-functional-chart">
         <h3 className="chart-title"><T k="chart.title-waterpoints-functional" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-functional-helptext" /></span></h3>

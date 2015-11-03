@@ -32,6 +32,14 @@ const ViewModes = Union({
       throw new Error(`Could not get ViewModes type for param '${param}'`);
     }
   },
+  getDrillDown(viewMode) {
+    return ViewModes.match(viewMode, {
+        Points: () => 'REGION',
+        Regions: () => 'DISTRICT',
+        Districts: () => 'WARD',
+        Wards: () => 'VILLAGE',
+      });
+  },
 });
 
 export default ViewModes;

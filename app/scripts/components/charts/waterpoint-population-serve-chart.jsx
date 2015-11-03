@@ -8,11 +8,13 @@ import TSetChildProps from '../misc/t-set-child-props';
 import {load} from '../../actions/population';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
+import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/charts/waterpoint-population-serve-chart');
 
 const WaterpointPopulationServeChart = React.createClass({
   propTypes: {
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
     waterpoints: PropTypes.array.isRequired,
   },
   mixins: [
@@ -48,7 +50,8 @@ const WaterpointPopulationServeChart = React.createClass({
     if (isUndefined(this.state.size)) {
       return (<div>empty</div>);
     }
-    const waterpointsRes = func.Result.countBy(this.props.waterpoints, 'REGION');
+    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
+    const waterpointsRes = func.Result.countBy(this.props.waterpoints, drillDown);
     return (
       <div className="waterpoint-population-serve-chart">
         <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>

@@ -6,11 +6,13 @@ import * as c from '../../utils/colours';
 import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
+import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/charts/stack-bar-chart');
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
     waterpoints: PropTypes.array.isRequired,
   },
 
@@ -65,7 +67,8 @@ const WaterpointStatusChart = React.createClass({
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
+    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
+    const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
