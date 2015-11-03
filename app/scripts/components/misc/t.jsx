@@ -141,6 +141,18 @@ const allTranslations = {
     'loading.wards': 'Loading wards...',
     'loading.points': 'If you see this message, there is likely an error in the application.',
 
+    'popup.waterpoint.code': 'Code #',
+    'popup.waterpoint.source-type': 'Water point Source Type',
+    'popup.waterpoint.population-served': 'Population Served',
+    'popup.waterpoint.hardware-problem': 'Water Point issue',
+    'popup.waterpoint.quantity': 'Quantity',
+    'popup.waterpoint.quality': 'Quality',
+    'popup.waterpoint.location': 'Water Point Location',
+    'popup.waterpoint.position': 'Lat Lon',
+    'popup.waterpoint.region': 'Region',
+    'popup.waterpoint.district': 'District',
+    'popup.waterpoint.ward': 'Ward',
+
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
     'error.api.pre-request': 'An error occurred when the application was preparing to fetch data',
