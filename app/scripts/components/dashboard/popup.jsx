@@ -5,7 +5,7 @@ import AsyncState from '../../constants/async';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import TSetChildProps from '../misc/t-set-child-props';
-import WaterpointPopup from './waterpoint-popup'
+import WaterpointPopup from './waterpoint-popup';
 
 require('stylesheets/dashboard/popup');
 
@@ -42,7 +42,7 @@ const Popup = React.createClass({
   },
 
   renderPolygonsPopup(details) {
-    // TODO: this might be worth moving to a new component
+    // TODO: move this to a new component base on the types
     return (
       <div>
         <h3>I'm a polygons popup!</h3>

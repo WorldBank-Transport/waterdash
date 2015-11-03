@@ -31,8 +31,8 @@
     .big-number {
       color: $text-color;
       font-size: $tab-text;
-      line-height: 1em;
       font-weight: bold;
+      line-height: 1em;
 
       & > .number {
         font-weight: bold;
@@ -47,8 +47,8 @@
     .location-text {
       color: $theme-blue;
       font-size: $tab-text;
+      font-weight: bold;
       line-height: 1em;
-      font-weight: bold;      
     }
   }
 
@@ -56,8 +56,8 @@
     width: 15%;
   }
   .secondary-text {
-    width: 25%;
     vertical-align: top;
+    width: 25%;
   }
 
   .icon {
@@ -86,7 +86,7 @@
   }
 
   .header {
-    border-bottom: 1px solid #cfccd1;
+    border-bottom: 1px solid $grey-light-detail;
     height: 50px;
   }
   .main-header {

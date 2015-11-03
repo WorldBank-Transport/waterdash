@@ -20,7 +20,7 @@ const WaterpointPopup = React.createClass({
     } else {
       className = 'poor';
       iconSymbol = '×';
-    };
+    }
     return [className, iconSymbol];
   },
 
