@@ -1,6 +1,8 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
+
 
 .category-filter {
   border-right: 1px solid $grey-light-detail;
@@ -13,12 +15,14 @@
   padding: 0 $filter-list-left-margin;
   text-align: center;
 
-  .category-filter-toogle {
+  .category-filter-toggle {
     @include link-transition(450ms, ease);
+    @include border-radius(4px);
     background-color: $bg-color;
     padding: 10px 30px 10px 15px;
     text-align: left;
-    width: 300px;
+    width: $subcategory-flyout-dimensions;
+    margin-top: 5px;
 
     &:hover {
       background: $theme-blue;
@@ -33,7 +37,7 @@
 
   .flyout {
     background-color: none;
-    height: $subcategory-flyout-height;
+    height: $subcategory-flyout-dimensions;
     overflow: auto;
     position: relative;
     width: $subcategory-filter-tab;
@@ -44,20 +48,17 @@
     margin: 0;
     margin-top: $filter-category-expand-position;
     position: absolute;
-    width: 300px;
+    width: $subcategory-open-width;
     z-index: 10;
   }
-  .open-up {
-    float: left;
-    top: -259px;
-  }
+
   .open-down {
     border: 1px solid $grey-light;
     float: left;
     margin: 0;
     position: absolute;
     top: $subcategory-open-down-position;
-    width: $subcategory-open-down-width;
+    width: $subcategory-open-width;
     z-index: 5;
   }
   .visible {
