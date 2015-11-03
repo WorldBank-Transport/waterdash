@@ -4,7 +4,7 @@ const Resize = {
       size: {
         width: window.innerWidth,
         height: window.innerHeight,
-      },
+      }
     };
   },
 
