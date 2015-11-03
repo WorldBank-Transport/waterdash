@@ -9,11 +9,12 @@
   font-size: $category-filter-text;
   font-weight: bold;
   margin: 0;
-  padding: 0 20px;
   min-width: $subcategory-filter-tab;
+  padding: 0 $filter-list-left-margin;
   text-align: center;
 
   .category-filter-toogle {
+    @include link-transition(450ms, ease);
     background-color: $bg-color;
     padding: 10px 30px 10px 15px;
     text-align: left;
@@ -25,39 +26,43 @@
 
     i.fa {
       float: right;
-      padding-right: 5px;
-      padding-top: 2px;
-      font-size: 17px;
+      font-size: $subcategory-icon-size;
     }
   }
 
   .flyout {
     background-color: none;
-    height: 300px;
+    height: $subcategory-flyout-height;
     overflow: auto;
     position: relative;
-    width: 500px;
-    z-index: 10;
+    width: $subcategory-filter-tab;
+    z-index: 3;
   }
   .open-up {
     float: left;
     margin: 0;
-    top: $filter-category-expand-position;
+    margin-top: $filter-category-expand-position;
   }
   .open-down {
+    border: 1px solid $grey-light;
     float: left;
     margin: 0;
-    top: 10px;
+    position: absolute;
+    top: $subcategory-open-down-position;
+    width: $subcategory-open-down-width;
+    z-index: 5;
   }
   .visible {
-    visibility: block;
+    background: $bg-color;
     padding-left: 0;
+    visibility: block;
 
-     li {
-       list-style: none;
-       margin-left: $filter-list-left-margin;
-       text-align: left;
-       text-transform: uppercase;
+    li {
+      font-weight: $medium-font-weight;
+      list-style: none;
+      margin-left: $filter-list-left-margin;
+      text-align: left;
+      text-transform: uppercase;
      }
   }
   .hidden {
@@ -65,11 +70,12 @@
   }
 
   .category-collapsable {
+    @include link-transition(450ms, ease);
     background: $text-inverse;
     border-bottom: 1px solid $grey-light;
     color: $theme-blue;
     cursor: pointer;
-    padding: 27px 35px 27px 15px;
+    padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
     text-align: left;
 
     &:hover {

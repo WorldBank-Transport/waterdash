@@ -8,9 +8,9 @@
   display: table-cell;
   margin: 0;
   padding: 0 $base-unit;
+  text-align: center;
   vertical-align: top;
   width: $metric-status-width;
-  text-align:center;
 
   & > .icon {
     border-radius: $metric-icon-size;
@@ -43,7 +43,7 @@
     .big-number {
       color: $theme-blue;
       font-size: $big-number;
-      line-height: 1em;
+      line-height: $base-unit;
 
       & > .number {
         font-weight: bold;
