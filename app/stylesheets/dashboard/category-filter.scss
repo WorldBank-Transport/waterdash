@@ -6,15 +6,17 @@
   border-right: 1px solid $grey-light-detail;
   color: $text-color;
   display: table-cell;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-size: $category-filter-text;
   font-weight: bold;
   margin: 0;
-  padding: 0 2*$base-unit;
-  vertical-align: top;
+  padding: 0 20px;
+  min-width: $subcategory-filter-tab;
+  text-align: center;
 
   .category-filter-toogle {
     background-color: $bg-color;
+    padding: 10px 30px 10px 15px;
+    text-align: left;
 
     &:hover {
       background: darken($grey-light, 10%);
@@ -24,11 +26,12 @@
       float: right;
       padding-right: 5px;
       padding-top: 2px;
+      font-size: 17px;
     }
   }
 
   .flyout {
-    background-color: $grey-light;
+    background-color: $bg-color;
     height: 300px;
     overflow: auto;
     position: relative;
@@ -38,7 +41,7 @@
   .open-up {
     float: left;
     margin: 0;
-    top: -332px;
+    top: $filter-category-expand-position;
   }
   .open-down {
     float: left;
@@ -47,12 +50,35 @@
   }
   .visible {
     visibility: block;
+    padding-left: 0;
+
+     li {
+       list-style: none;
+       margin-left: $filter-list-left-margin;
+       text-align: left;
+       text-transform: uppercase;
+     }
   }
   .hidden {
     display: none;
   }
 
-  .caterory-collapsable {
+  .category-collapsable {
+    background: $text-inverse;
+    border-bottom: 1px solid $grey-light;
+    color: $theme-blue;
     cursor: pointer;
+    padding: 27px 35px 27px 15px;
+    text-align: left;
+
+    &:hover {
+      background: $theme-blue;
+      color: $text-inverse;
+    }
+
+    .fa {
+      float: right;
+    }
+
   }
 }

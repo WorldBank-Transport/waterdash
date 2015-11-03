@@ -31,7 +31,7 @@ const CategoryFilter = React.createClass({
     return (
       <div className="category-filter">
         <div className="category-filter-toogle" onClick={this.toggle}>
-          <T k="charts.category.filter.title" />&nbsp;<Icon type={`arrow-circle-${direction}`}/>
+          <T k="charts.category.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
         </div>
         <div className={`flyout ${openClass} ${visibleClass}`}>
           <SubCategoryFilter type="HARDWARE_PROBLEM"/>

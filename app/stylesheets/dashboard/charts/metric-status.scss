@@ -3,25 +3,25 @@
 @import '../../config/type';
 
 .metric-status {
-  $icon-size: 40px;
 
   border-right: 1px solid $grey-light-detail;
   display: table-cell;
   margin: 0;
   padding: 0 $base-unit;
   vertical-align: top;
+  width: $metric-status-width;
+  text-align:center;
 
   & > .icon {
-    border-radius: $icon-size;
+    border-radius: $metric-icon-size;
     color: $grey-light;
-    display: table-cell;
-    font-size: $icon-size * 0.9;
+    display: inline-block;
+    font-size: $metric-icon-size;
     font-weight: bold;
-    height: $icon-size;
-    line-height: $icon-size;
+    height: $metric-icon-size;
+    line-height: $metric-icon-size;
     text-align: center;
-    vertical-align: middle;
-    width: $icon-size;
+    width: $metric-icon-size;
   }
 
   &.good > .icon {
@@ -37,7 +37,7 @@
   }
 
   .content {
-    display: table-cell;
+    display: inline-block;
     padding-left: $base-unit / 2;
 
     .big-number {
