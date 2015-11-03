@@ -34,11 +34,11 @@ const ViewModes = Union({
   },
   getDrillDown(viewMode) {
     return ViewModes.match(viewMode, {
-        Points: () => 'REGION',
-        Regions: () => 'DISTRICT',
-        Districts: () => 'WARD',
-        Wards: () => 'VILLAGE',
-      });
+      Points: () => 'REGION',
+      Regions: () => 'DISTRICT',
+      Districts: () => 'WARD',
+      Wards: () => 'VILLAGE',
+    });
   },
 });
 
