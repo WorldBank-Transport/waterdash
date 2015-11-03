@@ -46,10 +46,10 @@ const WaterpointFunctionalChart = React.createClass({
           <TSetChildProps>
             <BarChart
                 data={this.parseData(waterpointsRes)}
-                height={200}
-                margin={{top: 10, bottom: 50, left: 50, right: 10}}
+                height={180}
+                margin={{top: 10, bottom: 50, left: 20, right: 10}}
                 width={this.state.size.width * 0.25}
-                xAxis={{label: {k: 'chart.functional-waterpoints.x-axis'}}}
+                xAxis={{label: {k: `chart.functional-waterpoints.x-axis-${drillDown}`}}}
                 yAxis={{label: {k: 'chart.functional-waterpoints.y-axis'}}} />
               </TSetChildProps>
         </div>

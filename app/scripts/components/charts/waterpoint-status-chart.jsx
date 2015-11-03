@@ -73,18 +73,18 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions />
-      <div className="chart-container">
-        <TSetChildProps>
-          <BarChart
-              colorScale={c.Color.getWaterpointColor}
-              data={this.parseData(dataRes)}
-              height={400}
-              margin={{top: 30, bottom: 100, left: 40, right: 20}}
-              width={this.state.size.width * 0.6}
-              xAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.x-axis'}}}
-              yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
-          </TSetChildProps>
-      </div>
+        <div className="chart-container">
+          <TSetChildProps>
+            <BarChart
+                colorScale={c.Color.getWaterpointColor}
+                data={this.parseData(dataRes)}
+                height={350}
+                margin={{top: 20, bottom: 100, left: 30, right: 20}}
+                width={this.state.size.width * 0.53}
+                xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
+                yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
+            </TSetChildProps>
+        </div>
       </div>
 
     );

@@ -42,10 +42,14 @@ const allTranslations = {
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
     'chart.functional-waterpoints.title': 'Functional WaterPoints',
-    'chart.functional-waterpoints.x-axis': 'Regions',
+    'chart.functional-waterpoints.x-axis-REGION': 'Regions',
+    'chart.functional-waterpoints.x-axis-DISTRICT': 'District',
+    'chart.functional-waterpoints.x-axis-WARD': 'Ward',
     'chart.functional-waterpoints.y-axis': '%',
     'chart.status-waterpoints.title': 'Waterpoint status',
-    'chart.status-waterpoints.x-axis': 'Regions',
+    'chart.status-waterpoints.x-axis-REGION': 'Regions',
+    'chart.status-waterpoints.x-axis-DISTRICT': 'Districts',
+    'chart.status-waterpoints.x-axis-WARD': 'Wards',
     'chart.status-waterpoints.y-axis': 'Status',
     'chart.title-waterpoints-status': 'Waterpoints Status',
     'chart.title-waterpoints-status-helptext': 'Ordered by % of Functional',
@@ -55,7 +59,9 @@ const allTranslations = {
     'chart.title-boreholes-stats-helptext': '% Served',
     'chart.title-population-served': 'Population',
     'chart.title-title-population-served-helptext': 'People-Waterpoint ratio',
-    'chart.waterpoints-people-ratio.x-axis': 'Regions',
+    'chart.waterpoints-people-ratio.x-axis-REGION': 'Regions',
+    'chart.waterpoints-people-ratio.x-axis-DISTRICT': 'Districts',
+    'chart.waterpoints-people-ratio.x-axis-WARD': 'Wards',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
 
     'chart.boreholes.title': 'Boreholes',
@@ -181,7 +187,9 @@ const allTranslations = {
     'view-mode.district': 'Wilaya',
 
     'chart.functional-waterpoints.title': 'puntos de agua funcionando',
-    'chart.functional-waterpoints.x-axis': 'Regiones',
+    'chart.functional-waterpoints.x-axis-REGION': 'Regions',
+    'chart.functional-waterpoints.x-axis-DISTRICT': 'District',
+    'chart.functional-waterpoints.x-axis-WARD': 'Ward',
     'chart.functional-waterpoints.y-axis': 'porc',
 
 
