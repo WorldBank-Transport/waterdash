@@ -2,6 +2,7 @@
 @import '../config/dimensions';
 @import '../config/type';
 
+
 .metric-status {
 
   border-right: 1px solid $grey-light-detail;
@@ -15,21 +16,25 @@
   & > .icon {
     border-radius: $metric-icon-size;
     color: $grey-light;
-    display: inline-block;
+    display: block;
+    float: left;
     font-size: $metric-icon-size;
     font-weight: bold;
     height: $metric-icon-size;
     line-height: $metric-icon-size;
+    margin-left: $metric-stat-left-space;
     text-align: center;
     width: $metric-icon-size;
   }
 
   &.good > .icon {
     background: $status-good;
+    font-size: $good-status-font-size;
   }
 
   &.medium > .icon {
     background: $status-medium;
+    line-height: $medium-status-line-height;
   }
 
   &.poor > .icon {
@@ -37,7 +42,8 @@
   }
 
   .content {
-    display: inline-block;
+    display: block;
+    float: left;
     padding-left: $base-unit / 2;
 
     .big-number {
