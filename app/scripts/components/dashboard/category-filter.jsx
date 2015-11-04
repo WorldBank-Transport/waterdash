@@ -31,8 +31,8 @@ const CategoryFilter = React.createClass({
     const visibleClass = this.state.open ? 'visible' : 'hidden';
     return (
       <div className="category-filter">
-        <div className="category-filter-toogle" onClick={this.toggle}>
-          <T k="charts.category.filter.title" />&nbsp;<Icon type={`arrow-circle-${direction}`}/>
+        <div className="category-filter-toggle" onClick={this.toggle}>
+          <T k="charts.category.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
         </div>
         <div className={`flyout ${openClass} ${visibleClass}`}>
           <SubCategoryFilter type="HARDWARE_PROBLEM"/>

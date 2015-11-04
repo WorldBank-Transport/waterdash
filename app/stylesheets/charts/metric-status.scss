@@ -2,34 +2,39 @@
 @import '../config/dimensions';
 @import '../config/type';
 
+
 .metric-status {
-  $icon-size: 40px;
 
   border-right: 1px solid $grey-light-detail;
   display: table-cell;
   margin: 0;
   padding: 0 $base-unit;
+  text-align: center;
   vertical-align: top;
+  width: $metric-status-width;
 
   & > .icon {
-    border-radius: $icon-size;
+    border-radius: $metric-icon-size;
     color: $grey-light;
-    display: table-cell;
-    font-size: $icon-size * 0.9;
+    display: block;
+    float: left;
+    font-size: $metric-icon-size;
     font-weight: bold;
-    height: $icon-size;
-    line-height: $icon-size;
+    height: $metric-icon-size;
+    line-height: $metric-icon-size;
+    margin-left: $metric-stat-left-space;
     text-align: center;
-    vertical-align: middle;
-    width: $icon-size;
+    width: $metric-icon-size;
   }
 
   &.good > .icon {
     background: $status-good;
+    font-size: $good-status-font-size;
   }
 
   &.medium > .icon {
     background: $status-medium;
+    line-height: $medium-status-line-height;
   }
 
   &.poor > .icon {
@@ -37,13 +42,14 @@
   }
 
   .content {
-    display: table-cell;
+    display: block;
+    float: left;
     padding-left: $base-unit / 2;
 
     .big-number {
       color: $theme-blue;
       font-size: $big-number;
-      line-height: 1em;
+      line-height: $base-unit;
 
       & > .number {
         font-weight: bold;
