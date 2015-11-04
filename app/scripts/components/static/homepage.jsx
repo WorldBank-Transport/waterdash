@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../boilerplate/button';
+import T from '../misc/t';
 
 require('stylesheets/boilerplate/static-content');
 
@@ -13,7 +14,13 @@ const Homepage = React.createClass({
         <div className="homecontent">
           <h2>Locate water projects throughout the country, your region, your district, or your ward. Use the Water Dashboard to examine water resources to make a difference in your community.</h2>
           <Button linkTo="/dash/points/waterpoints/">
-            Water Points
+            <T k="home.waterpoints" />
+          </Button>
+          <Button linkTo="dash/regions/boreholes/">
+            <T k="home.boreholes" />
+          </Button>
+          <Button linkTo="dash/points/dams/">
+            <T k="home.dams" />
           </Button>
           <p>
             This Water Dashboard is a public open data portal to view the latest national water resource data and monitor the information that is important to you. You can also use the menu options above to see original data and speak out about missing or wrong data.

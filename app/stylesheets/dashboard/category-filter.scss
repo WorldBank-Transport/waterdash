@@ -1,57 +1,103 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
+
 
 .category-filter {
   border-right: 1px solid $grey-light-detail;
   color: $text-color;
   display: table-cell;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
+  font-size: $category-filter-text;
   font-weight: bold;
   margin: 0;
-  padding: 0 2*$base-unit;
-  vertical-align: top;
+  min-width: $subcategory-filter-tab;
+  padding: 0 $filter-list-left-margin;
+  text-align: center;
 
-  .category-filter-toogle {
+  .category-filter-toggle {
+    @include link-transition(450ms, ease);
+    @include border-radius(4px);
     background-color: $bg-color;
-    width: 300px;
+    padding: 10px 30px 10px 15px;
+    text-align: left;
+    width: $subcategory-flyout-dimensions;
+    margin-top: 5px;
 
     &:hover {
-      background: darken($grey-light, 10%);
+      background: $theme-blue;
+      color: $text-inverse;
     }
 
     i.fa {
       float: right;
-      padding-right: 5px;
-      padding-top: 2px;
+      font-size: $subcategory-icon-size;
     }
   }
 
   .flyout {
-    background-color: $grey-light;
-    height: 300px;
+    background-color: none;
+    height: $subcategory-flyout-dimensions;
     overflow: auto;
-    position: absolute;
-    width: 300px;
-    z-index: 10;
+    position: relative;
+    width: $subcategory-filter-tab;
+    z-index: 3;
   }
   .open-up {
     float: left;
-    top: -259px;
+    margin: 0;
+    margin-top: $filter-category-expand-position;
+    position: absolute;
+    width: $subcategory-open-width;
+    z-index: 10;
   }
+
   .open-down {
+    border: 1px solid $grey-light;
     float: left;
-    top: 10px;
+    margin: 0;
+    position: absolute;
+    top: $subcategory-open-down-position;
+    width: $subcategory-open-width;
+    z-index: 5;
   }
   .visible {
+    background: $bg-color;
+    padding-left: 0;
     visibility: block;
+
+    li {
+      font-weight: $medium-font-weight;
+      list-style: none;
+      margin-left: $filter-list-left-margin;
+      text-align: left;
+      text-transform: uppercase;
+     }
   }
   .hidden {
     display: none;
   }
 
   .category-collapsable {
+    @include link-transition(450ms, ease);
+    background: $text-inverse;
+    border-bottom: 1px solid $grey-light;
+    color: $theme-blue;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: $button-weight;
+    padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
+    text-align: left;
+
+    &:hover {
+      background: $theme-blue;
+      color: $text-inverse;
+    }
+
+    .fa {
+      float: right;
+      font-size: $view-charts-icon-size;
+    }
+
   }
 }
