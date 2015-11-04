@@ -1,0 +1,20 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/box';
+
+.selectable {
+  @include border-radius(2px);
+  background: $bg-color;
+  border: 1 px solid $theme-blue;
+  float: left;
+  height: $checkbox-dimensions;
+  margin-right: $checkbox-dimensions;
+  width: $checkbox-dimensions;
+
+  &:hover {
+    background: $theme-blue;
+  }
+  &.selected {
+    background: $theme-blue;
+  }
+}
