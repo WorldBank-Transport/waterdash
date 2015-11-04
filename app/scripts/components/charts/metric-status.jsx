@@ -1,6 +1,5 @@
 import React from 'react';
 import T from '../misc/t';
-import isUndefined from 'lodash/lang/isUndefined';
 import isNumber from 'lodash/lang/isNumber';
 import isNaN from 'lodash/lang/isNaN';
 
@@ -26,7 +25,7 @@ const MetricStatus = React.createClass({
       iconSymbol = '×';
     }
     if (this.props.sumProps.total > 0) {
-      const value = (isNumber(this.props.sumProps[this.props.metric]) && !isNaN(this.props.sumProps[this.props.metric])) ? this.props.sumProps[this.props.metric] : 0; 
+      const value = (isNumber(this.props.sumProps[this.props.metric]) && !isNaN(this.props.sumProps[this.props.metric])) ? this.props.sumProps[this.props.metric] : 0;
       const percent = (value / this.props.sumProps.total * 100).toFixed(2);
       return (
       <div className={`metric-status ${className}`}>
