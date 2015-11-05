@@ -68,7 +68,9 @@
 
     li {
       font-weight: $medium-font-weight;
+      line-height: $subcategory-filter-line-height;
       list-style: none;
+      margin-bottom: $subcategory-list-bottom-space;
       margin-left: $filter-list-left-margin;
       text-align: left;
       text-transform: uppercase;
