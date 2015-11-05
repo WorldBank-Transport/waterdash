@@ -20,7 +20,7 @@
     @include border-radius(4px);
     background-color: $bg-color;
     margin-top: 5px;
-    padding: 10px 30px 10px 15px;
+    padding: 10px $general-content-padding/2;
     text-align: left;
     width: $subcategory-flyout-dimensions;
 
@@ -86,7 +86,7 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: $button-weight;
-    padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
+    padding: $subcategory-right-top-bottom $general-content-padding/2;
     text-align: left;
 
     &:hover {
