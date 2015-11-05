@@ -19,8 +19,8 @@
     @include link-transition(450ms, ease);
     @include border-radius(4px);
     background-color: $bg-color;
-    margin-top: 5px;
-    padding: 10px $general-content-padding/2;
+    margin-top: $button-link-vert/2;
+    padding: $button-link-vert $general-content-padding/2;
     text-align: left;
     width: $subcategory-flyout-dimensions;
 
@@ -32,12 +32,13 @@
     i.fa {
       float: right;
       font-size: $subcategory-icon-size;
+      margin-right: $general-content-padding/1.8;
     }
   }
 
   .flyout {
     background-color: none;
-    height: $subcategory-flyout-dimensions;
+    height: $subcategory-flyout-height;
     overflow: auto;
     position: relative;
     width: $subcategory-filter-tab;
@@ -70,10 +71,16 @@
       font-weight: $medium-font-weight;
       line-height: $subcategory-filter-line-height;
       list-style: none;
-      margin-bottom: $subcategory-list-bottom-space;
+      margin-bottom: 5px;
       margin-left: $filter-list-left-margin;
       text-align: left;
-      text-transform: uppercase;
+      text-transform: capitalize;
+
+      &:first-child {
+        font-style: italic;
+        font-weight: $title-weight;
+      }
+
      }
   }
   .hidden {
