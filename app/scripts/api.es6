@@ -30,6 +30,20 @@ function pullLatLng(record) {
   return pulled;
 }
 
+/**
+ * @param {object} record The waterpoint database record
+ * @returns {object} The record with a `position` prop with lat/lng array
+ */
+function toUppercase(record) {
+  const pulled = {};
+  for (const k in record) {
+    if (record.hasOwnProperty(k)) {
+      pulled[k] = (typeof record[k] === 'string') ? record[k].toUpperCase() : record[k];
+    }
+  }
+  return pulled;
+}
+
 
 const eachRecord = fn => data => data.map(fn);
 
@@ -85,10 +99,21 @@ const boreholesQ = {
 export const getBoreholes = (onProgress) =>
   ckan.get(API_ROOT, '3b1d0344-1e83-4212-877e-428dd81cd802', boreholesQ, onProgress);
 
-
 export const getDams = (onProgress) =>
-  ckan.get(API_ROOT, 'd6dcc9f8-c480-4bd0-b748-2d0b12d92396', {}, onProgress, eachRecord(pullLatLng));
+  ckan.get(API_ROOT, '5da4eb70-47a0-4694-b735-397bb3732b99', {}, onProgress, eachRecord(pullLatLng));
 
+const populationQ = {
+  fields: [
+    'REGION',
+    'DISTRICT',
+    'WARD',
+    'VILLAGE',
+    'TOTAL',
+  ],
+};
+
+export const getPopulation = (onProgress) =>
+  ckan.get(API_ROOT, 'ab84afa2-0afa-411e-9630-aeddc7bccb03', populationQ, onProgress, eachRecord(toUppercase));
 
 export const getRegions = () =>
   staticData.getPolygons('/layers/tz_regions.json', 'tz_Regions');
@@ -98,6 +123,3 @@ export const getDistricts = () =>
 
 export const getWards = () =>
   staticData.getPolygons('/layers/tz_wards.json', 'TzWards');
-
-export const getPopulation = () =>
-  staticData.getJson('/layers/tz_population.json');
