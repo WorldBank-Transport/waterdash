@@ -12,9 +12,13 @@
   width: $checkbox-dimensions;
 
   &:hover {
-    background: $theme-blue;
+    background: $theme-blue-alt;
   }
   &.selected {
     background: $theme-blue;
+
+    &:hover {
+      background: $theme-blue-light;
+    }
   }
 }
