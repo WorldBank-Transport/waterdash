@@ -19,7 +19,7 @@ const WaterpointsOverviewBar = React.createClass({
         <div>
           <MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" />
           <MetricStatus metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
-          <MetricStatus metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
+          <MetricStatus grouped={true} metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
           <CategoryFilter parentState={this.props.openClosed}/>
         </div>
       </div>
