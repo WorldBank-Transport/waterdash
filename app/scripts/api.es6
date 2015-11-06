@@ -29,13 +29,21 @@ function pullLatLng(record) {
   pulled.position = [record.LATITUDE, record.LONGITUDE];
   return pulled;
 }
-
+/**
+ * add a POINT_ID and parse the geolocation for a waterpoint
+ * @param {object} record The waterpoint database record
+ * @returns {object} The record with a `position` prop with lat/lng array
+ */
 function waterpointProcess(record) {
   const pulled = pullLatLng(record);
   pulled.POINT_ID = pulled.WATER_POINT_CODE;
   return pulled;
 }
-
+/**
+ * add a POINT_ID and parse the geolocation for a dams
+ * @param {object} record The dam database record
+ * @returns {object} The record with a `position` prop with lat/lng array
+ */
 function damProcess(record) {
   const pulled = pullLatLng(record);
   pulled.POINT_ID = pulled.DAM_NAME;
@@ -43,7 +51,7 @@ function damProcess(record) {
 }
 
 /**
- * @param {object} record The waterpoint database record
+ * @param {object} record The population database record
  * @returns {object} The record with a `position` prop with lat/lng array
  */
 function toUppercase(record) {
@@ -121,7 +129,7 @@ const damsQ = {
     'ELEVATION_',
     'RESERVOIR_',
     'LONGITUDE',
-    'LATITUDE'
+    'LATITUDE',
   ],
 };
 
