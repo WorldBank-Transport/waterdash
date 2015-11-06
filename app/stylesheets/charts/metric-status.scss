@@ -42,7 +42,7 @@
   }
 
   .grouped {
-    background-color: none;
+    background-color: $bg-color;
     border-right: 1px solid $grey-light-detail;
     display: table-cell;
     float: left;
