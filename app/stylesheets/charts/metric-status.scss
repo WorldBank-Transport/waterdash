@@ -41,6 +41,49 @@
     background: $status-poor;
   }
 
+  .grouped {
+    background-color: none;
+    border-right: 1px solid $grey-light-detail;
+    display: table-cell;
+    float: left;
+    height: 255px;
+    margin-top: -280px;
+    padding: 0 $base-unit;
+    position: absolute;
+    text-align: center;
+    vertical-align: top;
+    width: $metric-status-width;
+    z-index: 9;
+
+    &.visible {
+      display: block;
+    }
+    &.hidden {
+      display: none;
+    }
+
+    .group-content {
+      border-bottom: 1px solid $grey-light-detail;
+      padding: $base-unit / 2 $base-unit / 2;    
+
+      .medium-number {
+        color: $theme-blue;
+        font-size: $medium-number;
+        line-height: $base-unit;
+
+        & > .number {
+          font-weight: bold;
+        }
+      }
+      .context {
+        color: $text-color;
+        font-size: $small-text;
+        font-weight: bold;
+      }
+    }
+    
+  }
+
   .content {
     display: block;
     float: left;
