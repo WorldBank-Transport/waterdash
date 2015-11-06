@@ -29,9 +29,29 @@ function pullLatLng(record) {
   pulled.position = [record.LATITUDE, record.LONGITUDE];
   return pulled;
 }
+/**
+ * add a POINT_ID and parse the geolocation for a waterpoint
+ * @param {object} record The waterpoint database record
+ * @returns {object} The record with a `position` prop with lat/lng array
+ */
+function waterpointProcess(record) {
+  const pulled = pullLatLng(record);
+  pulled.POINT_ID = pulled.WATER_POINT_CODE;
+  return pulled;
+}
+/**
+ * add a POINT_ID and parse the geolocation for a dams
+ * @param {object} record The dam database record
+ * @returns {object} The record with a `position` prop with lat/lng array
+ */
+function damProcess(record) {
+  const pulled = pullLatLng(record);
+  pulled.POINT_ID = pulled.DAM_NAME;
+  return pulled;
+}
 
 /**
- * @param {object} record The waterpoint database record
+ * @param {object} record The population database record
  * @returns {object} The record with a `position` prop with lat/lng array
  */
 function toUppercase(record) {
@@ -71,7 +91,7 @@ const waterpointsQ = {
 
 export const getWaterpoints = (onProgress) =>
   ckan.get(API_ROOT, 'a94b3653-55f4-4455-9bed-42b92d5c4370', waterpointsQ,
-    onProgress, eachRecord(pullLatLng));
+    onProgress, eachRecord(waterpointProcess));
 
 
 const boreholesQ = {
@@ -99,8 +119,22 @@ const boreholesQ = {
 export const getBoreholes = (onProgress) =>
   ckan.get(API_ROOT, '3b1d0344-1e83-4212-877e-428dd81cd802', boreholesQ, onProgress);
 
+const damsQ = {
+  fields: [
+    'REGION',
+    'DISTRICT',
+    'DAM_NAME',
+    'BASIN',
+    'DAM_HEIGHT',
+    'ELEVATION_',
+    'RESERVOIR_',
+    'LONGITUDE',
+    'LATITUDE',
+  ],
+};
+
 export const getDams = (onProgress) =>
-  ckan.get(API_ROOT, '5da4eb70-47a0-4694-b735-397bb3732b99', {}, onProgress, eachRecord(pullLatLng));
+  ckan.get(API_ROOT, '5da4eb70-47a0-4694-b735-397bb3732b99', damsQ, onProgress, eachRecord(damProcess));
 
 const populationQ = {
   fields: [

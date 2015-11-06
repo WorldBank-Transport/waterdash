@@ -92,7 +92,7 @@ const ClusteredPoints = React.createClass({
 
     // Existing markers: remove or keep
     this.props.points.forEach(point => {
-      const id = point.WATER_POINT_CODE;
+      const id = point.POINT_ID;
       if (typeof this.markerIdMap[id] !== 'undefined') {  // already have it
         nextMap[id] = this.markerIdMap[id];  // just copy the ref over
         delete this.markerIdMap[id];  // clear ref from old map
