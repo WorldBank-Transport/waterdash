@@ -171,7 +171,7 @@ function get(root, id, query = {}, notify = () => null, postprocess = v => v) {
     const { total } = firstResp.result;
     const first = convertChunk(firstResp);
     if (total <= chunk) {
-      return first;  // we have it all
+      return promiseConcat(postprocess, throttledNotify, first);  // we have it all
     } else {
       const chunkPromises = getOffsets(chunk, total)
         .map(offset => getChunk(offset).then(convertChunk));
