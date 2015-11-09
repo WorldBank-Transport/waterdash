@@ -45,14 +45,14 @@
     background-color: $bg-color;
     display: table-cell;
     float: left;
-    height: $metric-flyout-width;
+    height: $metric-flyout-height;
     margin-left: $metric-flyout-left-position;
     margin-top: $metric-flyout-top-position;
-    padding: 0 $base-unit;
+    padding: 0;
     position: absolute;
     text-align: center;
     vertical-align: top;
-    width: $metric-status-width;
+    width: $metric-status-width * 1.15;
     z-index: 9;
 
     &.visible {
@@ -63,8 +63,8 @@
     }
 
     .group-content {
-      border-bottom: 1px solid $grey-light-detail;
-      padding: $base-unit / 2 $base-unit / 2;
+      border-bottom: 3px solid #eee;
+      padding: $base-unit 0;
 
       .medium-number {
         color: $theme-blue;
