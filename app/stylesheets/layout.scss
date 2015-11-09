@@ -27,6 +27,10 @@ body {
     padding: $content-space-mobile 0;
     top: $content-space-mobile;
   }
+
+  &.secondary {
+    top: $secondary-content-position;
+  }
 }
 
 .footer {
