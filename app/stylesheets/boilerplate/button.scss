@@ -7,13 +7,42 @@
   @include border-radius(3px);
   background: $theme-blue;
   display: inline-block;
+  font-size: $btn-text-laptop;
   font-weight: $button-weight;
   margin: $button-link-vert 0;
   margin-right: $button-link-vert;
-  padding: $button-link-vert $button-link-horiz;
+  min-width: $dashboard-btn-width-laptop*2;
+  padding: $button-link-vert $button-link-horiz/2;
   text-align: center;
   text-transform: uppercase;
-  width: 100px;
+
+  @include up-to($tablet-landscape) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: $dashboard-btn-width-mobile;
+  }
+  @include up-to($laptop) {
+    margin-right: $button-mobile-margin-right;
+    padding-left: $button-link-vert;
+    padding-right: $button-link-vert;
+    width: $dashboard-btn-width-laptop;
+  }
+
+  @include up-to($tablet-landscape) {
+    margin-left: auto;
+    margin-right: auto;
+    width: $dashboard-btn-width-mobile;
+  }
+
+  @include up-to($tablet-portrait) {
+    width: $dashboard-btn-width-mobile;
+  }
+
+  @include up-to($phone) {
+    width: $dashboard-btn-width-mobile/2;
+  }
+
   a {
     color: $text-inverse;
     @include up-to($phone) {
