@@ -135,6 +135,9 @@
     list-style: none;
 
     li {
+      @include up-to($tablet-landscape) {
+        margin-right: $header-common-margin;
+      }
       float: left;
       margin-right: $data-source-margin;
       text-align: center;
