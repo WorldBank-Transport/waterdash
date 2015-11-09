@@ -55,6 +55,7 @@ $metric-stat-left-space: 25px;
 
 
 // static content
+$static-content-position: 70px;
 $static-content-width: 80%;
 $home-content-width: 40%;
 
@@ -76,8 +77,12 @@ $content-padding-vert: 10px;
 $content-padding-horiz: 100px;
 $content-space-mobile: 50px;
 
-$button-link-horiz: 100px;
+$button-link-horiz: 50px;
 $button-link-vert: 10px;
+$button-mobile-margin-right: 3px;
+
+$dashboard-btn-width-laptop: 45px;
+$dashboard-btn-width-mobile: 340px;
 
 $chart-container-padding: 60px;
 

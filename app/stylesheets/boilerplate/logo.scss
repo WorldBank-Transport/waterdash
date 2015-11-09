@@ -24,8 +24,6 @@
       margin-top: $header-mobile-space;
       width: $dash-title-width-mobile;
     }
-
-    color: $theme-blue-alt;
     display: inline-block;
     float: left;
     font-size: $dash-title;
@@ -34,5 +32,14 @@
     margin-top: $header-common-margin;
     text-transform: uppercase;
     width: $tab-label-width;
+
+    a {
+      color: $theme-blue-alt;
+      &:hover {
+        color: $status-good;
+        }
+      }
     }
+
+
 }
