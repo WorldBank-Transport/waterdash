@@ -67,12 +67,16 @@ const WaterpointStatusChart = React.createClass({
     }
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     const tooltipScatter = (x) => {
+      const total = Object.keys(dataRes).reduce((agg, key) => {
+        agg.value += dataRes[key][x];
+        return agg;
+      }, {value: 0}).value;
       const subItems = Object.keys(dataRes).map(key => {
-        const percentage = (dataRes[key][x] / dataRes[key].total * 100).toFixed(2);
+        const percentage = (dataRes[key][x] / total * 100).toFixed(2);
         return (<li>
                   <spam className="metric-title">{{key}}:</spam>
                   <div className="medium-number">
-                    <span className="number">{dataRes[key][x]}</span> of <span className="number">{dataRes[key].total}</span> (<span className="number">{percentage}</span> %)
+                    <span className="number">{dataRes[key][x]}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
                   </div>
                 </li>);
       });
