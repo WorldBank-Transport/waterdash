@@ -7,6 +7,7 @@
   $trans: 250ms ease;
   background: $grey-light;
   background-clip: content-box;  // don't extend background into spacer border
+  border-top: 2px solid $grey-light;
   bottom: 0;
   left: 0;
   max-height: 100%;
@@ -41,9 +42,9 @@
 // chart titles - apply to all 3 charts
 h3 {
   &.chart-title {
-    color: $theme-blue-alt;
+    color: $theme-blue;
     font-size: $chart-title;
-    font-weight: $static-content-weight;
+    font-weight: $chart-title-weight;
     margin-top: 0;
   }
 

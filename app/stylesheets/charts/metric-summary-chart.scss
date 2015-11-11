@@ -1,0 +1,47 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+
+.metric-summary {
+  margin-top: $metric-summary-top-space;
+
+  .chart-title {
+    font-size: $chart-title+4;
+  }
+
+  .summary {
+    background: $bg-color;
+    border: 1px solid $bg-color;
+    box-shadow: none;
+    display: table-cell;
+    overflow: hidden;
+    padding: 0 $chart-container-padding 0 0;
+    text-align: left;
+    vertical-align: top;
+
+    .group-content {
+      padding: 0 0 $base-unit / 2 $base-unit / 4;
+
+      .row {
+        display: inline-flex;
+      }
+
+      .medium-number {
+        color: $theme-blue;
+        font-size: $medium-number * 1.5;
+        line-height: $base-unit;
+
+        & > .number {
+          font-weight: bold;
+        }
+      }
+      .context {
+        color: $grey-medium;
+        font-size: $tab-text;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

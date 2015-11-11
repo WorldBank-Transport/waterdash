@@ -1,0 +1,86 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+.stack-bar-chart {
+  margin: 0;
+
+  .x {
+    text-align: left;
+    .tick text {
+      -webkit-transform: rotate(-75deg);
+      direction: rtl;
+      fill: $text-color;
+      font-size: $chart-axis-text;
+      overflow: hidden;
+      pointer-events: auto;
+      text-anchor: inherit;
+      text-overflow: ellipsis;
+      transform: rotate(-75deg);
+      white-space: nowrap;
+      width: 10px;
+      x: -20;
+      y: 5;
+    }
+  }
+
+  .y {
+    .tick text {
+      fill: $text-color;
+      font-size: $chart-axis-text;
+    }
+  }
+  .label {
+    fill: $text-color;
+    font-size: $chart-axis-text;
+  }
+  .tooltip {
+    align-items: center;
+    background-color: $bg-color;
+    border-right: 1px solid $grey-light-detail;
+    justify-content: center;
+    padding: 3px;
+
+    .tooltip-title {
+      fill: $text-color;
+    }
+
+    .chart-title {
+      color: $text-color;
+      font-size: $chart-title;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .metric-title {
+      color: $text-color;
+      font-size: $small-text;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    .medium-number {
+      color: $theme-blue;
+      font-size: $medium-number;
+      line-height: $base-unit;
+
+      .number {
+        font-weight: bold;
+      }
+    }
+    .context {
+      color: $text-color;
+      font-size: $small-text;
+      font-weight: bold;
+    }
+
+    .row {
+      border-bottom: 1px solid $grey-light-detail;
+      padding: $base-unit / 2 $base-unit / 2;
+    }
+  }
+
+  .chart-helptext {
+    color: $grey-medium;
+  }
+}
