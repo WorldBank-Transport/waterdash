@@ -21,7 +21,12 @@ const WaterpointsChart = React.createClass({
     const data = func.Result.countBy(this.props.data, 'HARDWARE_PROBLEM');
     const problems = Object.keys(data)
                   .filter(key => key !== 'NONE' && key !== 'total')
-                  .map(key => {return {name: key, value: data[key]}})
+                  .map(key => {
+                    return {
+                      name: key,
+                      value: data[key],
+                    };
+                  })
                   .sort((a, b) => b.value - a.value);
     return {
       values: problems,
@@ -40,7 +45,7 @@ const WaterpointsChart = React.createClass({
             </div>
           </div>
           <div className="col-right">
-            <MetricSummary metric={topProblems} title="chart.waterpoint.summary.top-problem" showPercentage={true}/>
+            <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem"/>
           </div>
           <div className="col-right">
             <WaterpointPopulationServeChart waterpoints={this.props.data}/>

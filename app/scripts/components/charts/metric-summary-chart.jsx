@@ -8,10 +8,10 @@ require('stylesheets/charts/metric-summary-chart');
 
 const MetricSummary = React.createClass({
   propTypes: {
-    metric: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
     icons: PropTypes.object,
+    metric: PropTypes.object.isRequired,
     showPercentage: PropTypes.bool,
+    title: PropTypes.string.isRequired,
   },
 
   getNumberValue(value) {
@@ -24,7 +24,7 @@ const MetricSummary = React.createClass({
     const summaryDiv = metric.values.map(item => {
       const value = this.getNumberValue(item.value);
       const icon = icons[item.name] ? (<Icon type={icons[item.name]}/>) : (<div />);
-      const perc = this.props.showPercentage ? (<div className="medium-number"> - <span className="number">{(value/metric.total*100).toFixed(2)}</span>%</div>) : (<div />);
+      const perc = this.props.showPercentage ? (<div className="medium-number"> - <span className="number">{(value / metric.total * 100).toFixed(2)}</span>%</div>) : (<div />);
       return (
         <div className="group-content">
           {icon}
@@ -39,7 +39,7 @@ const MetricSummary = React.createClass({
           </div>
         </div>);
     });
-    
+
     return (
       <div className="metric-summary">
         <h3 className="chart-title"><T k={this.props.title} /></h3>
