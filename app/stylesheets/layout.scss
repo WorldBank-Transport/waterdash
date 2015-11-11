@@ -16,17 +16,17 @@ body {
 }
 
 .main {
+  bottom: $footer-height;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: $static-content-position;
+
   @include up-to($tablet-portrait) {
     height: 100%;
     padding: $content-space-mobile 0;
     top: $content-space-mobile;
   }
-
-  bottom: $footer-height;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: $header-height+5;
 }
 
 .footer {
