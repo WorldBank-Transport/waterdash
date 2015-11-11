@@ -40,7 +40,7 @@
     border-right: 1px solid $grey-light-detail;
     justify-content: center;
     padding: 3px;
-
+    
     .tooltip-title {
       fill: $text-color;
     }
@@ -76,11 +76,9 @@
 
     .row {
       border-bottom: 1px solid $grey-light-detail;
-      padding: $base-unit / 2 $base-unit / 2;
+      padding: $base-unit / 2 $base-unit / 2;    
     }
   }
+    
 
-  .chart-helptext {
-    color: $grey-medium;
-  }
 }
