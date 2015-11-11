@@ -90,12 +90,12 @@
   .category-collapsable {
     @include link-transition(450ms, ease);
     background: $text-inverse;
-    border-bottom: 1px solid $grey-light;
+    border-bottom: 3px solid $grey-light;
     color: $theme-blue;
     cursor: pointer;
     font-size: 16px;
     font-weight: $button-weight;
-    padding: $subcategory-right-top-bottom $general-content-padding/2;
+    padding: $subcategory-right-top-bottom $general-content-padding $subcategory-right-top-bottom $general-content-padding/2;
     text-align: left;
 
     &:hover {
