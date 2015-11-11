@@ -1,0 +1,38 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+
+.metric-summary {
+  .summary {
+    background: $bg-color;
+    display: table-cell;
+    overflow: hidden;
+    padding: 0 $chart-container-padding 0 $chart-container-padding / 2;
+    text-align: left;
+    vertical-align: top;
+
+    .group-content {
+      padding: 0 0 $base-unit / 2 $base-unit / 4;    
+
+      .row {
+        display: inline-flex;
+      }
+
+      .medium-number {
+        color: $theme-blue;
+        font-size: $medium-number;
+        line-height: $base-unit;
+
+        & > .number {
+          font-weight: bold;
+        }
+      }
+      .context {
+        color: $text-color;
+        font-size: $medium-text;
+        font-weight: bold;
+      }
+    }
+  }
+}
