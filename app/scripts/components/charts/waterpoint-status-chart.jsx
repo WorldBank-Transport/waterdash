@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {BarChart} from 'react-d3-components';
+import ClickBarChart from './react-3d-component/click-bar-chart';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import * as c from '../../utils/colours';
@@ -61,6 +61,13 @@ const WaterpointStatusChart = React.createClass({
           }).sort(labelComparator);
   },
 
+  doubleClick(e, data, props) {
+    const doStuff = () => {
+
+    };
+    doStuff(e, data, props);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
@@ -93,11 +100,12 @@ const WaterpointStatusChart = React.createClass({
         <WaterpointstatusOptions />
         <div className="chart-container">
           <TSetChildProps>
-            <BarChart
+            <ClickBarChart
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
                 height={400}
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
+                onDoubleClick={this.doubleClick}
                 tooltipHtml={tooltipScatter}
                 tooltipMode="element"
                 width={this.state.size.width * 0.55}
