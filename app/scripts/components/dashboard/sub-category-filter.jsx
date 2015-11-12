@@ -49,8 +49,8 @@ const SubCategoryFilter = React.createClass({
       return false;
     }
     const listOfOptions = Object.keys(this.state.categories[this.props.type]).map(key => {
-      const checked = this.state.categories[this.props.type][key] ? 'checked' : '';
-      return (<li><Checkbox action={e => this.select(e, this.props.type, key)} checked={checked} label={`charts.sub-category.value.${key}`} /></li>);
+      const checked = this.state.categories[this.props.type][key];
+      return (<li key={key}><Checkbox action={e => this.select(e, this.props.type, key)} checked={checked} label={`charts.sub-category.value.${key}`} /></li>);
     });
     const visibleClass = this.state.open ? 'visible' : 'hidden';
     const direction = this.state.open ? 'up' : 'down';
