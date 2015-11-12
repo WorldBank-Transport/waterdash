@@ -27,6 +27,7 @@
   background: $bg-color;
   overflow: hidden;
   padding: $chart-container-padding/2 $chart-container-padding;
+  border-top: 2px solid $grey-light;
 
   .col-left {
     float: left;
