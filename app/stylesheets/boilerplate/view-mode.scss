@@ -8,6 +8,10 @@
   vertical-align: top;
   width: 100%;
 
+  &.empty {
+    background: $theme-blue;
+  }
+
   & > ul {
     @include list-unstyle();
     background: $theme-blue;

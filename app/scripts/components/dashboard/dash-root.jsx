@@ -170,7 +170,7 @@ const DashRoot = React.createClass({
               <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
             </MapNavPrimary>
           )}>
-            <ViewMode {...propsForChildren} />
+            <ViewMode openClosed={this.state.layout.charts} {...propsForChildren} />
           </MapNav>
           <OverviewBar {...propsForChildren} />
         </div>

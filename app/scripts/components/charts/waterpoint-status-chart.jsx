@@ -70,7 +70,7 @@ const WaterpointStatusChart = React.createClass({
     doStuff(e, data, props);
   },
 
-  tooltip(x) {
+  tooltip(x, dataRes) {
     const total = Object.keys(dataRes).reduce((agg, key) => {
       agg.value += dataRes[key][x];
       return agg;
@@ -110,8 +110,8 @@ const WaterpointStatusChart = React.createClass({
                 height={400}
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
                 onDoubleClick={this.doubleClick}
-                tooltipHtml={this.tooltip}
-                tooltipMode="element"
+                tooltipHtml={(x) => this.tooltip(x, dataRes)}
+                tooltipMode="fixed"
                 width={this.state.size.width * 0.55}
                 xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
                 yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
