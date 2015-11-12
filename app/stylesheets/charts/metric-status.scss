@@ -13,6 +13,13 @@
   vertical-align: top;
   width: $metric-status-width;
 
+  .fa {
+    bottom: $metric-stat-flyout-toggle-position;
+    color: $text-color;
+    font-size: $subcategory-icon-size;
+    position: absolute;
+  }
+
   & > .icon {
     border-radius: $metric-icon-size;
     color: $grey-light;
@@ -39,6 +46,48 @@
 
   &.poor > .icon {
     background: $status-poor;
+  }
+
+  .grouped {
+    background-color: $bg-color;
+    display: table-cell;
+    float: left;
+    height: $metric-stat-height;
+    margin-left: $metric-stat-flyout-left;
+    margin-top: $metric-stat-flyout-top;
+    position: absolute;
+    text-align: center;
+    vertical-align: top;
+    width: $metric-status-width+$general-content-padding;
+    z-index: 9;
+
+    &.visible {
+      display: block;
+    }
+    &.hidden {
+      display: none;
+    }
+
+    .group-content {
+      border-bottom: 3px solid $grey-light;
+      padding: $base-unit $base-unit / 2;
+
+      .medium-number {
+        color: $theme-blue;
+        font-size: $medium-number* 1.4;
+        line-height: $base-unit;
+
+        & > .number {
+          font-weight: bold;
+        }
+      }
+      .context {
+        color: $text-color;
+        font-size: $small-text;
+        font-weight: bold;
+      }
+    }
+
   }
 
   .content {

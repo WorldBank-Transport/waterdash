@@ -1,13 +1,62 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import T from '../misc/t';
+import isNumber from 'lodash/lang/isNumber';
+import isNaN from 'lodash/lang/isNaN';
+import { Icon } from 'react-font-awesome';
 
 require('stylesheets/charts/metric-status');
 
 const MetricStatus = React.createClass({
   propTypes: {
-    metric: React.PropTypes.string.isRequired,
-    sumProps: React.PropTypes.object.isRequired,
-    title: React.PropTypes.string.isRequired,
+    grouped: PropTypes.bool,
+    metric: PropTypes.string.isRequired,
+    sumProps: PropTypes.object.isRequired,
+    title: PropTypes.string.isRequired,
+  },
+
+  getInitialState() {
+    return {open: false};
+  },
+
+  toggle() {
+    const newState = {
+      ...this.state,
+      open: !this.state.open,
+    };
+    this.replaceState(newState);
+  },
+
+  getNumberValue(value) {
+    return (isNumber(value) && !isNaN(value)) ? value : 0;
+  },
+
+  renderGrouped() {
+    if (!this.props.grouped) {
+      return '';
+    }
+    const values = this.props.sumProps;
+    const metric = this.props.metric;
+    const groupedDiv = Object.keys(values).map(key => {
+      if (key.startsWith(metric)) {
+        const value = this.getNumberValue(values[key]);
+        const percent = (value / this.props.sumProps.total * 100).toFixed(2);
+        return (
+          <div className="group-content">
+            <div className="medium-number">
+              <span className="number">{percent}</span> %
+            </div>
+            <div className="context">
+              <T k={`chart.title.${key}`} /> - {value}
+            </div>
+          </div>);
+      }
+    });
+    const [visibleClass, direction] = this.state.open ? [ 'visible',  'down']  : ['hidden', 'up'];
+    return (
+      <div>
+        <Icon onClick={this.toggle} type={`chevron-circle-${direction}`}/>
+        <div className={`grouped ${visibleClass}`}>{groupedDiv}</div>
+      </div>);
   },
 
   render() {
@@ -22,9 +71,24 @@ const MetricStatus = React.createClass({
       className = 'poor';
       iconSymbol = '×';
     }
+    let value = 0;
+    let percent = 0;
     if (this.props.sumProps.total > 0) {
-      const percent = (this.props.sumProps[this.props.metric] / this.props.sumProps.total * 100).toFixed(2);
-      return (
+      if (this.props.grouped) {
+        const values = this.props.sumProps;
+        const metric = this.props.metric;
+        value = Object.keys(values).reduce((ret, key) => {
+          if (key.startsWith(metric)) {
+            ret.value = ret.value + this.getNumberValue(values[key]);
+          }
+          return ret;
+        }, {value: 0}).value;
+      } else {
+        value = this.getNumberValue(this.props.sumProps[this.props.metric]);
+      }
+      percent = (value / this.props.sumProps.total * 100).toFixed(2);
+    }
+    return (
       <div className={`metric-status ${className}`}>
         <div className="icon">
           {iconSymbol}
@@ -35,14 +99,12 @@ const MetricStatus = React.createClass({
             %
           </div>
           <div className="context">
-            <T k={this.props.title} /> - {this.props.sumProps[this.props.metric]}
+            <T k={this.props.title} /> - {value}
           </div>
         </div>
+        {this.renderGrouped()}
       </div>
-      );
-    } else {
-      return false;
-    }
+    );
   },
 });
 

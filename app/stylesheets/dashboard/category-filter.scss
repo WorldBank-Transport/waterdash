@@ -19,10 +19,10 @@
     @include link-transition(450ms, ease);
     @include border-radius(4px);
     background-color: $bg-color;
-    padding: 10px 30px 10px 15px;
+    margin-top: $button-link-vert/2;
+    padding: $button-link-vert $general-content-padding/2;
     text-align: left;
     width: $subcategory-flyout-dimensions;
-    margin-top: 5px;
 
     &:hover {
       background: $theme-blue;
@@ -32,12 +32,13 @@
     i.fa {
       float: right;
       font-size: $subcategory-icon-size;
+      margin-right: $general-content-padding/1.8;
     }
   }
 
   .flyout {
     background-color: none;
-    height: $subcategory-flyout-dimensions;
+    height: $subcategory-flyout-height;
     overflow: auto;
     position: relative;
     width: $subcategory-filter-tab;
@@ -68,10 +69,18 @@
 
     li {
       font-weight: $medium-font-weight;
+      line-height: $subcategory-filter-line-height;
       list-style: none;
+      margin-bottom: 5px;
       margin-left: $filter-list-left-margin;
       text-align: left;
-      text-transform: uppercase;
+      text-transform: capitalize;
+
+      &:first-child {
+        font-style: italic;
+        font-weight: $title-weight;
+      }
+
      }
   }
   .hidden {
@@ -81,7 +90,7 @@
   .category-collapsable {
     @include link-transition(450ms, ease);
     background: $text-inverse;
-    border-bottom: 1px solid $grey-light;
+    border-bottom: 3px solid $grey-light;
     color: $theme-blue;
     cursor: pointer;
     font-size: 16px;

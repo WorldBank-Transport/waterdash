@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import {BarChart} from 'react-d3-components';
+import ClickBarChart from './react-3d-component/click-bar-chart';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import * as c from '../../utils/colours';
@@ -8,7 +8,7 @@ import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
 
-require('stylesheets/charts/stack-bar-chart');
+require('stylesheets/charts/waterpoints-status-chart');
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
@@ -63,30 +63,59 @@ const WaterpointStatusChart = React.createClass({
           }).sort(labelComparator);
   },
 
+  doubleClick(e, data, props) {
+    const doStuff = () => {
+
+    };
+    doStuff(e, data, props);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
-    const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
+    const tooltipScatter = (x) => {
+      const total = Object.keys(dataRes).reduce((agg, key) => {
+        agg.value += dataRes[key][x];
+        return agg;
+      }, {value: 0}).value;
+      const subItems = Object.keys(dataRes).map(key => {
+        const percentage = (dataRes[key][x] / total * 100).toFixed(2);
+        return (<li>
+                  <spam className="metric-title">{{key}}:</spam>
+                  <div className="medium-number">
+                    <span className="number">{dataRes[key][x]}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
+                  </div>
+                </li>);
+      });
+      return (<div>
+                <h3 className="chart-title row">Region: {{x}}</h3>
+                <ul className="items row">
+                  {{subItems}}
+                </ul>
+              </div>);
+    };
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions />
         <div className="chart-container">
           <TSetChildProps>
-            <BarChart
+            <ClickBarChart
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
-                height={350}
-                margin={{top: 20, bottom: 100, left: 30, right: 20}}
-                width={this.state.size.width * 0.53}
-                xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
+                height={400}
+                margin={{top: 30, bottom: 100, left: 40, right: 20}}
+                onDoubleClick={this.doubleClick}
+                tooltipHtml={tooltipScatter}
+                tooltipMode="element"
+                width={this.state.size.width * 0.55}
+                xAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.x-axis'}}}
                 yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
             </TSetChildProps>
         </div>
       </div>
-
     );
   },
 });

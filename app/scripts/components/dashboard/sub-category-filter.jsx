@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import T from '../misc/t';
+import Checkbox from '../misc/checkbox';
 import CategoriesStore from '../../stores/categories';
 import { setSubcategory, setAllSubcategories} from '../../actions/filters';
 import { Icon } from 'react-font-awesome';
@@ -49,7 +50,7 @@ const SubCategoryFilter = React.createClass({
     }
     const listOfOptions = Object.keys(this.state.categories[this.props.type]).map(key => {
       const checked = this.state.categories[this.props.type][key] ? 'checked' : '';
-      return (<li><input checked={checked} onChange={e => this.select(e, this.props.type, key)} type="checkbox"/> <T k={`charts.sub-category.value.${key}`} /></li>);
+      return (<li><Checkbox action={e => this.select(e, this.props.type, key)} checked={checked} label={`charts.sub-category.value.${key}`} /></li>);
     });
     const visibleClass = this.state.open ? 'visible' : 'hidden';
     const direction = this.state.open ? 'up' : 'down';
@@ -59,7 +60,7 @@ const SubCategoryFilter = React.createClass({
           <T k={`charts.sub-category.${this.props.type}`} />&nbsp;<Icon type={`chevron-${direction}`}/>
         </div>
         <ul className={visibleClass}>
-          <li><input checked={this.state.all} onChange={this.selectAll} type="checkbox"/> <T k="charts.sub-category.all" /></li>
+          <li><Checkbox action={this.selectAll} checked={this.state.all} label="charts.sub-category.all" /></li>
           {listOfOptions}
         </ul>
       </div>

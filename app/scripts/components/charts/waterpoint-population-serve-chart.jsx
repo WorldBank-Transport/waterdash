@@ -27,17 +27,16 @@ const WaterpointPopulationServeChart = React.createClass({
     return {};
   },
 
-  parseData(waterpoints) {
+  parseData(waterpoints, population) {
     const response = {
       label: 'People Waterpoint Ratio',
       values: [],
     };
-    const population = this.state.population;
     const comparator = (a, b) => b.y - a.y;
     response.values = Object.keys(waterpoints)
                         .filter(key => key !== 'total')
                         .map(key => {
-                          const regPopulation = isUndefined(population[key]) ? 0 : population[key]; // if we don't have the population we show the real number
+                          const regPopulation = isUndefined(population[key]) ? 0 : population[key][0].TOTAL; // if we don't have the population we show the real number
                           return {
                             x: key,
                             y: (regPopulation / waterpoints[key]),
@@ -52,13 +51,14 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, drillDown);
+    const popAgg = func.Result.sumByGroupBy(this.state.population, 'REGION', ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">
         <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
             <BarChart
-                data={this.parseData(waterpointsRes)}
+                data={this.parseData(waterpointsRes, popAgg)}
                 height={180}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
                 width={this.state.size.width * 0.25}

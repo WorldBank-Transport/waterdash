@@ -13,11 +13,11 @@
   }
 }
 .charts-container-summary {
+  background: $grey-light;
   box-sizing: border-box;
   display: table;
   height: $charts-summary-height;
   padding: $base-unit 0;
   table-layout: fixed;
   width: 100%;
-  background: $grey-light;
 }

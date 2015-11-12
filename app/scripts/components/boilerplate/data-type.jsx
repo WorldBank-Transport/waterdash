@@ -10,22 +10,22 @@ const DataType = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass).isRequired,
   },
   render() {
-    const currentView = this.props.viewMode.toParam();
+    //const currentView = this.props.viewMode.toParam();
     return (
       <div className="data-type">
         <ul>
           <li>
-            <Link activeClassName="active" to={`/dash/${currentView}/waterpoints/`}>
+            <Link activeClassName="active" to="/dash/points/waterpoints/">
               <T k="data-type.waterpoints" />
             </Link>
           </li>
           <li>
-            <Link activeClassName="active" to={`/dash/${currentView}/boreholes/`}>
+            <Link activeClassName="active" to="/dash/regions/boreholes/">
               <T k="data-type.boreholes" />
             </Link>
           </li>
           <li>
-            <Link activeClassName="active" to={`/dash/${currentView}/dams/`}>
+            <Link activeClassName="active" to="/dash/points/dams/">
               <T k="data-type.dams" />
             </Link>
           </li>

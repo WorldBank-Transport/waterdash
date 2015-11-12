@@ -11,7 +11,6 @@ $nav-item-height: 20px;
 $top-nav-vert-pos-mobile: 65px;
 $top-nav-right-mobile: 7px;
 
-
 //NEW (TODO: cleanup)
 $map-nav-height: 41px;
 $overview-bar-height: 78px;
@@ -43,17 +42,23 @@ $main-chart-width: 63%;
 $sec-chart-width: 34%;
 $legend-icon-margin: 5px;
 $subcategory-filter-tab: 350px;
-$subcategory-flyout-dimensions: 300px;
-$metric-status-width: 230px;
-$filter-category-expand-position: -339px;
+$subcategory-flyout-dimensions: 340px;
+$subcategory-flyout-height: 295px;
+$metric-status-width: 260px;
+$filter-category-expand-position: -334px;
 $filter-list-left-margin: 20px;
-$subcategory-right-top-bottom: 26px;
+$subcategory-right-top-bottom: 25px;
 $subcategory-open-down-position: 97px;
-$subcategory-open-width: 346px;
+$subcategory-open-width: 370px;
+$subcategory-list-bottom-space: 7px;
 $metric-stat-left-space: 25px;
-
+$metric-stat-flyout-toggle-position: 30px;
+$metric-stat-flyout-left: -17px;
+$metric-stat-flyout-top: -397px;
+$metric-stat-height: 380px;
 
 // static content
+$static-content-position: 70px;
 $static-content-width: 80%;
 $home-content-width: 40%;
 
@@ -75,8 +80,12 @@ $content-padding-vert: 10px;
 $content-padding-horiz: 100px;
 $content-space-mobile: 50px;
 
-$button-link-horiz: 100px;
+$button-link-horiz: 50px;
 $button-link-vert: 10px;
+$button-mobile-margin-right: 3px;
+
+$dashboard-btn-width-laptop: 45px;
+$dashboard-btn-width-mobile: 340px;
 
 $chart-container-padding: 60px;
 
@@ -93,7 +102,8 @@ $iframe-left-tablet: -6%;
 $iframe-width-tablet: 110%;
 $iframe-width-desktop: 99%;
 
-
+// custom checkbox
+$checkbox-dimensions: 11px;
 
 // screen sizes
 $phone: 480px;

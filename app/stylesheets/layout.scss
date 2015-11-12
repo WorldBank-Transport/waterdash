@@ -20,7 +20,7 @@ body {
   left: 0;
   position: absolute;
   right: 0;
-  top: $header-height + $divider-height;
+  top: $static-content-position;
 
   @include up-to($tablet-portrait) {
     height: 100%;
