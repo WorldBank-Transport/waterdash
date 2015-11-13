@@ -70,11 +70,11 @@
 
     .group-content {
       border-bottom: 3px solid $grey-light;
-      padding: $base-unit $base-unit / 2;
+      padding: $base-unit/1.5 $base-unit / 2;
 
       .medium-number {
         color: $theme-blue;
-        font-size: $medium-number* 1.4;
+        font-size: $medium-number* 1.2;
         line-height: $base-unit;
 
         & > .number {
