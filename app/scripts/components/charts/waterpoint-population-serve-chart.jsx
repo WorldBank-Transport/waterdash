@@ -51,7 +51,7 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, drillDown);
-    const popAgg = func.Result.sumByGroupBy(this.state.population, 'REGION', ['TOTAL']);
+    const popAgg = func.Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">
         <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
