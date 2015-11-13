@@ -7,7 +7,7 @@ import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
-import { select } from '../../actions/select';
+import { chartDrilldown } from '../../actions/select';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -21,6 +21,12 @@ const WaterpointStatusChart = React.createClass({
 
   getInitialState() {
     return {};
+  },
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.viewMode !== nextProps.viewMode 
+        || this.props.waterpoints.length !== nextProps.waterpoints.length
+        || this.state.size.width !== nextState.size.width;
   },
 
   getRegionsOrderByFunctional(data) {
@@ -65,9 +71,8 @@ const WaterpointStatusChart = React.createClass({
   },
 
   doubleClick(e, data, props) {
-    debugger;
     const {x, y0, y} = data;
-    select(x);
+    chartDrilldown(x);
   },
 
   tooltip(x, dataRes) {
@@ -98,6 +103,7 @@ const WaterpointStatusChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
+    console.log(`waterpoints: ${this.props.waterpoints.length}, drillDown: ${drillDown} from ${this.props.viewMode}`);
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
