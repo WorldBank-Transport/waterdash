@@ -14,14 +14,17 @@
 import { createAction } from 'reflux';
 import history from '../history';
 import ViewStore from '../stores/view';
+import ViewModes from '../constants/view-modes';
 
 export const select = createAction();
 export const ensureSelect = createAction();  // alternate to avoid pushing extra history state
 export const deselect = createAction();
 
 const route = subPath => {
+  debugger;
   const { viewMode, dataType } = ViewStore.get();
-  return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${subPath || ''}`;
+  const newViewMode = ViewModes.drillDown(viewMode)
+  return `/dash/${newViewMode.toParam()}/${dataType.toParam()}/${subPath || ''}`;
 };
 
 /**

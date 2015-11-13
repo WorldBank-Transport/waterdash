@@ -40,6 +40,14 @@ const ViewModes = Union({
       Wards: () => 'VILLAGE',
     });
   },
+  drillDown(viewMode) {
+    return ViewModes.match(viewMode, {
+        Points: () => ViewModes.Points(),  // Could not drill down from points
+        Regions: () => ViewModes.Districts(),
+        Districts: () => ViewModes.Wards(),
+        Wards: () => ViewModes.Points(),
+      });
+  },
 });
 
 export default ViewModes;

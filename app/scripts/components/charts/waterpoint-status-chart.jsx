@@ -7,6 +7,7 @@ import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
+import { select } from '../../actions/select';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -64,10 +65,9 @@ const WaterpointStatusChart = React.createClass({
   },
 
   doubleClick(e, data, props) {
-    const doStuff = () => {
-
-    };
-    doStuff(e, data, props);
+    debugger;
+    const {x, y0, y} = data;
+    select(x);
   },
 
   tooltip(x, dataRes) {
