@@ -43,16 +43,16 @@ const ViewModes = Union({
       Points: () => 'REGION',
       Regions: () => 'REGION',
       Districts: () => 'DISTRICT',
-      Wards: () => 'WARDS',
+      Wards: () => 'WARD',
     });
   },
   drillDown(viewMode) {
     return ViewModes.match(viewMode, {
-        Points: () => ViewModes.Districts(),  // Could not drill down from points
-        Regions: () => ViewModes.Districts(),
-        Districts: () => ViewModes.Wards(),
-        Wards: () => ViewModes.Points(),
-      });
+      Points: () => ViewModes.Districts(),  // Could not drill down from points
+      Regions: () => ViewModes.Districts(),
+      Districts: () => ViewModes.Wards(),
+      Wards: () => ViewModes.Points(),
+    });
   },
 });
 

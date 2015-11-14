@@ -8,6 +8,7 @@ import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
 import { chartDrilldown } from '../../actions/select';
+import { getNumberOr0 } from '../../utils/number';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -24,7 +25,7 @@ const WaterpointStatusChart = React.createClass({
   },
 
   shouldComponentUpdate(nextProps, nextState) {
-    return this.props.viewMode !== nextProps.viewMode 
+    return this.props.viewMode !== nextProps.viewMode
         || this.props.waterpoints.length !== nextProps.waterpoints.length
         || this.state.size.width !== nextState.size.width;
   },
@@ -70,22 +71,21 @@ const WaterpointStatusChart = React.createClass({
           }).sort(labelComparator);
   },
 
-  doubleClick(e, data, props) {
-    const {x, y0, y} = data;
-    chartDrilldown(x);
+  doubleClick(e, data) {
+    chartDrilldown(data.x);
   },
 
   tooltip(x, dataRes) {
     const total = Object.keys(dataRes).reduce((agg, key) => {
-      agg.value += dataRes[key][x];
+      agg.value += getNumberOr0(dataRes[key][x]);
       return agg;
     }, {value: 0}).value;
     const subItems = Object.keys(dataRes).map(key => {
-      const percentage = (dataRes[key][x] / total * 100).toFixed(2);
+      const percentage = (getNumberOr0(dataRes[key][x]) / total * 100).toFixed(2);
       return (<li>
                 <spam className="metric-title">{{key}}:</spam>
                 <div className="medium-number">
-                  <span className="number">{dataRes[key][x]}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
+                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
                 </div>
               </li>);
     });
@@ -103,7 +103,6 @@ const WaterpointStatusChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
-    console.log(`waterpoints: ${this.props.waterpoints.length}, drillDown: ${drillDown} from ${this.props.viewMode}`);
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
