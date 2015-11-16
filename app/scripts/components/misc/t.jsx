@@ -78,6 +78,12 @@ const allTranslations = {
     'chart.boreholes.YIELD_METER_CUBED_PER_HOUR': 'Yield meter cubed per hour',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
+
+    'chart.title-dams': 'Dams Status',
+    'chart.title-dams-status-helptext': '',
+    'chart.dams.x-axis': 'Regions',
+    'chart.dams.y-axis': '#',
+
     'charts.category.filter.title': 'Choose a Subcategory',
     'charts.sub-category.HARDWARE_PROBLEM': 'Hardware Problem',
     'charts.sub-category.WATER_QUALITY': 'Water Quality',
