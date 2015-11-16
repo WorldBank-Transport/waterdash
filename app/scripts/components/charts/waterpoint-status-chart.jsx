@@ -81,15 +81,15 @@ const WaterpointStatusChart = React.createClass({
       const subItems = Object.keys(dataRes).map(key => {
         const percentage = (dataRes[key][x] / total * 100).toFixed(2);
         return (<li>
-                  <spam className="metric-title">{{key}}:</spam>
-                  <div className="medium-number">
-                    <span className="number">{dataRes[key][x]}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
+                  <spam className="metric-title">{{key}}</spam>
+                  <div className="waterpoint-tooltip-stat-wrapper">
+                    <span className="number">{dataRes[key][x]}</span> of <span className="number">{total}</span> <span className="percent-value-wrapper">(<span className="number">{percentage}</span> %)</span>
                   </div>
                 </li>);
       });
       return (<div>
                 <h3 className="chart-title row">Region: {{x}}</h3>
-                <ul className="items row">
+                <ul className="items">
                   {{subItems}}
                 </ul>
               </div>);

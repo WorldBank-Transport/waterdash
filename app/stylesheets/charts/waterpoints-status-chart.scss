@@ -1,6 +1,7 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .stack-bar-chart {
   margin: 0;
@@ -37,48 +38,129 @@
   .tooltip {
     align-items: center;
     background-color: $bg-color;
-    border-right: 1px solid $grey-light-detail;
+    border: 3px solid $grey-light;
+    height: 230px;
     justify-content: center;
-    padding: 3px;
-    
+    padding: $base-unit/2 $base-unit 0;
+    width: $tooltip-width;
+
+    ul {
+      @include list-unstyled();
+      margin-top: -10px;
+
+      li {
+        margin-bottom: $base-unit/2;
+        margin-right: $base-unit;
+        position: absolute;
+        }
+
+      // non-functional main stat
+      li:nth-child(2) {
+        @include waterpoints-tooltip-stats(50px, 17px);
+        .metric-title {
+          color: $status-poor;
+        }
+      }
+
+      // functional
+      li:nth-child(3) {
+        @include waterpoints-tooltip-stats(50px, 190px);
+        .metric-title {
+          color: $status-good;
+        }
+      }
+
+      // functional- needs repair
+      li:first-child {
+        @include waterpoints-tooltip-stats(50px, 352px);
+        .metric-title {
+          color: $status-medium;
+        }
+      }
+
+      li:first-child,
+      li:nth-child(3),
+      li:nth-child(2) {
+        width: $waterpoint-stat-wide;
+
+        .metric-title {
+          font-size: $metric-title-big;
+          font-weight: $title-weight;
+        }
+
+        .waterpoint-tooltip-stat-wrapper {
+          font-size: $big-number - 15;
+          line-height: $big-number - 15;
+        }
+
+      }
+
+      li:nth-child(4),
+      li:nth-child(5),
+      li:nth-child(6),
+      li:nth-child(7) {
+        width: $waterpoint-stat-narrow;
+
+        .metric-title {
+          color: $theme-blue;
+          font-size: $metric-title-small;
+          font-weight: $title-weight;
+        }
+
+        .waterpoint-tooltip-stat-wrapper {
+          font-size: $medium-number - 5;
+          line-height: $medium-number - 5;
+        }
+
+      }
+
+      // non-funcitonal <3m
+      li:nth-child(4) {
+        @include waterpoints-tooltip-stats(145px, 17px);
+      }
+
+      // non-functional >3m
+      li:nth-child(7) {
+        @include waterpoints-tooltip-stats(145px, 150px);
+      }
+
+      // non-fucntional <6m
+      li:nth-child(5) {
+        @include waterpoints-tooltip-stats(145px, 280px);
+      }
+
+      // non-fucntional >6m
+      li:nth-child(6) {
+        @include waterpoints-tooltip-stats(145px, 411px);
+      }
+  }
+
     .tooltip-title {
-      fill: $text-color;
+      fill: $grey-medium;
     }
 
     .chart-title {
-      color: $text-color;
-      font-size: $chart-title;
-      font-weight: bold;
-      text-transform: capitalize;
-    }
-
-    .metric-title {
-      color: $text-color;
-      font-size: $small-text;
-      font-weight: bold;
-      text-transform: capitalize;
-    }
-
-    .medium-number {
       color: $theme-blue;
-      font-size: $medium-number;
-      line-height: $base-unit;
-
-      .number {
-        font-weight: bold;
-      }
+      font-size: $chart-title;
+      font-weight: $title-weight;
+      text-transform: capitalize;
     }
-    .context {
+
+    .percent-value-wrapper {
+      display: block;
+      width: 100%;
+    }
+
+    .waterpoint-tooltip-stat-wrapper {
       color: $text-color;
-      font-size: $small-text;
-      font-weight: bold;
+      font-weight: $title-weight;
     }
 
     .row {
-      border-bottom: 1px solid $grey-light-detail;
-      padding: $base-unit / 2 $base-unit / 2;    
+      @include bottom-stat-border(3px, $grey-light);
+      padding: 0 $base-unit/2 $base-unit/2 0;
     }
   }
-    
+
 
 }
