@@ -51,10 +51,11 @@ h3 {
   &.main-chart-title {
     @extend .chart-title;  // lint warning here to use % but it affects the style
     font-size: $main-chart-title;
+    font-weight: $title-weight;
     }
 
   .chart-helptext {
-    color: $text-color;
+    color: $grey-medium;
     }
   }
 
