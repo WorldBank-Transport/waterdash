@@ -41,14 +41,14 @@ const WaterpointsChart = React.createClass({
         <div className="secondaryCharts">
           <div className="col-left">
             <div className="mainChart">
-              <WaterpointStatusChart waterpoints={this.props.data} />
+              <WaterpointStatusChart viewMode={this.props.viewMode} waterpoints={this.props.data} />
             </div>
           </div>
           <div className="col-right">
-            <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem"/>
+            <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
           </div>
           <div className="col-right">
-            <WaterpointPopulationServeChart waterpoints={this.props.data}/>
+            <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
         </div>
       </div>);
