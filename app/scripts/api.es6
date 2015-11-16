@@ -100,24 +100,19 @@ const boreholesQ = {
     'DISTRICT',
     'LOCATION',
     'BOREHOLE_NO',
-    'RIG_NO',
     'DIAMETER',
     'DEPTH_METER',
     'STATIC_WATER_LEVEL',
     'DYNAMIC_WATER_LEVEL_METER',
     'DRAW _DOWN_METER',
     'YIELD_METER_CUBED_PER_HOUR',
-    'DATE_OF_COMMENCEMENT',
-    'DATE_OF_COMPLETION',
     'ELECTRICAL_CONDUCTIVITY',
     'CONSULTANT',
-    'YEAR_FROM',
-    'YEAR_TO',
   ],
 };
 
 export const getBoreholes = (onProgress) =>
-  ckan.get(API_ROOT, '3b1d0344-1e83-4212-877e-428dd81cd802', boreholesQ, onProgress);
+  ckan.get(API_ROOT, '0fdb0d62-a9b6-48c5-8e87-27d58471b6dc', boreholesQ, onProgress);
 
 const damsQ = {
   fields: [
