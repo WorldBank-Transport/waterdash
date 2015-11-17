@@ -8,7 +8,9 @@ require('stylesheets/charts/metric-status');
 
 const MetricStatus = React.createClass({
   propTypes: {
+    className: PropTypes.string.isRequired,
     grouped: PropTypes.bool,
+    iconSymbol: PropTypes.string.isRequired,
     metric: PropTypes.string.isRequired,
     sumProps: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
@@ -60,17 +62,8 @@ const MetricStatus = React.createClass({
   },
 
   render() {
-    let className, iconSymbol;
-    if (this.props.metric === 'FUNCTIONAL') {  // some condition
-      className = 'good';
-      iconSymbol = '✓';
-    } else if (this.props.metric === 'FUNCTIONAL NEEDS REPAIR') {
-      className = 'medium';
-      iconSymbol = '-';
-    } else {
-      className = 'poor';
-      iconSymbol = '×';
-    }
+    const className = this.props.className;
+    const iconSymbol = this.props.iconSymbol;
     let value = 0;
     let percent = 0;
     if (this.props.sumProps.total > 0) {

@@ -4,6 +4,7 @@ import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
 import WaterpointsChart from './waterpoints-charts';
+import DamsChart from './dams-chart';
 
 require('stylesheets/charts/charts');
 
@@ -25,6 +26,7 @@ const Charts = React.createClass({
         <div className="charts">
           {DataTypes.match(this.props.dataType, {
             Waterpoints: () => (<WaterpointsChart {...this.props}/>),
+            Dams: () => (<DamsChart {...this.props}/>),
             [_]: this.renderOtherCharts,
           })}
         </div>
