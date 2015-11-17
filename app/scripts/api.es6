@@ -108,11 +108,13 @@ const boreholesQ = {
     'YIELD_METER_CUBED_PER_HOUR',
     'ELECTRICAL_CONDUCTIVITY',
     'CONSULTANT',
+    'YEAR_FROM',
+-   'YEAR_TO',
   ],
 };
 
 export const getBoreholes = (onProgress) =>
-  ckan.get(API_ROOT, '0fdb0d62-a9b6-48c5-8e87-27d58471b6dc', boreholesQ, onProgress);
+  ckan.get(API_ROOT, 'c9843a61-eca6-47bb-971d-70bf9c0fe942', boreholesQ, onProgress);
 
 const damsQ = {
   fields: [
