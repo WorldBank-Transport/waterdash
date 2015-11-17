@@ -109,7 +109,7 @@ const boreholesQ = {
     'ELECTRICAL_CONDUCTIVITY',
     'CONSULTANT',
     'YEAR_FROM',
--   'YEAR_TO',
+    'YEAR_TO',
   ],
 };
 
