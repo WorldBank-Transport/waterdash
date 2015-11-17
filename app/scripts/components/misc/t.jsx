@@ -84,6 +84,13 @@ const allTranslations = {
     'chart.dams.x-axis': 'Regions',
     'chart.dams.y-axis': '#',
 
+    'chart.option.DAM_HEIGHT': 'Height',
+    'chart.option.ELEVATION_': 'Elevation',
+    'chart.option.RESERVOIR_': 'Reservoir',
+    'chart.option.functional': 'Functional',
+    'chart.option.needrepair': 'Needs Repair',
+    'chart.option.nonfunctional': 'Non Functional',
+
     'charts.category.filter.title': 'Choose a Subcategory',
     'charts.sub-category.HARDWARE_PROBLEM': 'Hardware Problem',
     'charts.sub-category.WATER_QUALITY': 'Water Quality',

@@ -97,7 +97,7 @@ const DamsChart = React.createClass({
     return (
       <div className="dams-chart">
         <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
-        <WaterpointstatusOptions />
+        <WaterpointstatusOptions values={['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']}/>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart

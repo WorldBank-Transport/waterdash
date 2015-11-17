@@ -97,7 +97,7 @@ const WaterpointStatusChart = React.createClass({
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
-        <WaterpointstatusOptions />
+        <WaterpointstatusOptions values={['functional', 'needrepair', 'nonfunctional']}/>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
