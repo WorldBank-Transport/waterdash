@@ -84,14 +84,14 @@ const WaterpointStatusChart = React.createClass({
       const percentage = (getNumberOr0(dataRes[key][x]) / total * 100).toFixed(2);
       return (<li>
                 <spam className="metric-title">{{key}}:</spam>
-                <div className="medium-number">
-                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span> (<span className="number">{percentage}</span> %)
+                <div className="waterpoint-tooltip-stat-wrapper">
+                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span><span className="percent-value-wrapper">(<span className="number">{percentage}</span> %)</span>
                 </div>
               </li>);
     });
     return (<div>
               <h3 className="chart-title row">Region: {{x}}</h3>
-              <ul className="items row">
+                <ul className="items">
                 {{subItems}}
               </ul>
             </div>);
@@ -116,7 +116,7 @@ const WaterpointStatusChart = React.createClass({
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
                 onDoubleClick={this.doubleClick}
                 tooltipHtml={(x) => this.tooltip(x, dataRes)}
-                tooltipMode="fixed"
+                tooltipMode="element"
                 width={this.state.size.width * 0.55}
                 xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
                 yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />

@@ -88,9 +88,9 @@
   }
 
   .category-collapsable {
+    @include bottom-stat-border(3px, $grey-light);
     @include link-transition(450ms, ease);
     background: $text-inverse;
-    border-bottom: 3px solid $grey-light;
     color: $theme-blue;
     cursor: pointer;
     font-size: 16px;

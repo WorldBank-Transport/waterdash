@@ -1,6 +1,7 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 
 .metric-status {
@@ -69,7 +70,7 @@
     }
 
     .group-content {
-      border-bottom: 3px solid $grey-light;
+      @include bottom-stat-border(3px, $grey-light);
       padding: $base-unit/1.5 $base-unit / 2;
 
       .medium-number {
