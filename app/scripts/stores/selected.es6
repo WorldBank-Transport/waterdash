@@ -21,6 +21,7 @@ import ViewModes from '../constants/view-modes';
 
 import { setMapBounds, zoomToPoint } from '../actions/view';
 import { select, ensureSelect, deselect } from '../actions/select';
+import { setInclude, setExclude } from '../actions/filters';
 
 import DataStore from './data';
 import LoadingDataStore from './loading-data';
@@ -57,7 +58,25 @@ const SelectedStore = createStore({
 
   deselect() {
     this.__map_needs_zoom = false;  // eslint-disable-line
+    //this.deselectPolygon();
+    // TODO check if this is ok and how to unselect it
     this.setData(None());
+  },
+
+  deselectPolygon() {
+    const { dataType, viewMode } = ViewStore.get();
+    ViewModes.match(viewMode, {
+      Points: () => null,
+      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => setExclude(locProp, [])),
+    });
+  },
+
+  selectPolygon(id) {
+    const { dataType, viewMode } = ViewStore.get();
+    ViewModes.match(viewMode, {
+      Points: () => null,
+      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => setInclude(locProp, [id])),
+    });
   },
 
   selectById(id) {
@@ -74,6 +93,7 @@ const SelectedStore = createStore({
     if (shouldUpdate) {
       this.__map_needs_zoom = true;  // eslint-disable-line
       this.setData(Some(id));
+      //this.selectPolygon(id);
     }
   },
 

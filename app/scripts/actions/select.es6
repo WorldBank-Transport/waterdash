@@ -14,14 +14,21 @@
 import { createAction } from 'reflux';
 import history from '../history';
 import ViewStore from '../stores/view';
+import ViewModes from '../constants/view-modes';
+import { setInclude } from './filters';
 
 export const select = createAction();
 export const ensureSelect = createAction();  // alternate to avoid pushing extra history state
 export const deselect = createAction();
+export const chartDrilldown = createAction();
 
 const route = subPath => {
   const { viewMode, dataType } = ViewStore.get();
   return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${subPath || ''}`;
+};
+
+const drillDownRoute = (viewMode, dataType, id) => {
+  return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${id || ''}`;
 };
 
 /**
@@ -34,3 +41,16 @@ select.listen(id => history.pushState(null, route(id)));
  * Navigate the browser 1 level up when a popup is deselected
  */
 deselect.listen(() => history.pushState(null, route()));
+
+/**
+ * Navigate the browser to the URL for this selected id
+ */
+chartDrilldown.listen(id => {
+  const { viewMode, dataType } = ViewStore.get();
+  const tmpViewMode = viewMode.chartCorrection();
+  const ddViewMode = ViewModes.drillDown(tmpViewMode);
+  history.pushState(null, drillDownRoute(ddViewMode, dataType));
+  dataType.getLocationProp(tmpViewMode).andThen(locProp => {
+    setInclude(locProp, [id]);
+  });
+});

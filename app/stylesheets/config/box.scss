@@ -12,3 +12,19 @@
   box-shadow: 0 2px 5px $tab-expand-bg;
   padding: 0 $general-content-padding $general-content-padding;
 }
+
+@mixin list-unstyled() {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+@mixin bottom-stat-border($borderwidth, $bordercolor) {
+  border-bottom: solid;
+  border-color: $bordercolor;
+  border-width: $borderwidth;
+}
+@mixin waterpoints-tooltip-stats($top , $left) {
+  left: $left;
+  top: $top;
+}

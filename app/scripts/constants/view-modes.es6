@@ -1,4 +1,4 @@
-import { Union } from 'results';
+import { Union, _ } from 'results';
 
 const ViewModes = Union({
   Points: {},
@@ -17,6 +17,12 @@ const ViewModes = Union({
   toParam() {
     return this.name.toLowerCase();
   },
+  chartCorrection() {
+    return ViewModes.match(this, {
+      Points: () => ViewModes.Regions(),
+      [_]: () => this,
+    });
+  },
 }, {
   // ViewModes static methods
   fromParam(param) {
@@ -31,6 +37,22 @@ const ViewModes = Union({
     } else {
       throw new Error(`Could not get ViewModes type for param '${param}'`);
     }
+  },
+  getDrillDown(viewMode) {
+    return ViewModes.match(viewMode, {
+      Points: () => 'REGION',
+      Regions: () => 'REGION',
+      Districts: () => 'DISTRICT',
+      Wards: () => 'WARD',
+    });
+  },
+  drillDown(viewMode) {
+    return ViewModes.match(viewMode, {
+      Points: () => ViewModes.Districts(),  // Could not drill down from points
+      Regions: () => ViewModes.Districts(),
+      Districts: () => ViewModes.Wards(),
+      Wards: () => ViewModes.Points(),
+    });
   },
 });
 

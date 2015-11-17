@@ -43,7 +43,7 @@ const MetricStatus = React.createClass({
         const value = this.getNumberValue(values[key]);
         const percent = (value / this.props.sumProps.total * 100).toFixed(2);
         return (
-          <div className="group-content">
+          <div className="group-content" key={key} >
             <div className="medium-number">
               <span className="number">{percent}</span> %
             </div>
