@@ -72,3 +72,21 @@ Color.getWaterpointColor = (status) => {
   }
   return color;
 };
+
+Color.getDamsColor = (metric) => {
+  let color = null;
+  switch (metric) {
+  case 'DAM_HEIGHT':
+    color = '#94daf7';
+    break;
+  case 'ELEVATION_':
+    color = '#4cafd8';
+    break;
+  case 'RESERVOIR_':
+    color = '#3f7086';
+    break;
+  default:
+    throw Error(`there is no metric found, actual: ${metric}`);
+  }
+  return color;
+};

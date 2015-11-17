@@ -3,6 +3,7 @@ import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import T from '../misc/t';
 import WaterpointsOverviewBar from './waterpoints-overview-bar';
+import DamsOverviewBar from './dams-overview-bar';
 
 require('stylesheets/charts/overview-bar');
 
@@ -23,7 +24,7 @@ const OverviewBar = React.createClass({
     const typedOverviewBar = DataTypes.match(this.props.dataType, {
       Waterpoints: () => (<WaterpointsOverviewBar {...this.props}/>), //{...propsForChildren}
       Boreholes: () => defaultType,
-      Dams: () => defaultType,
+      Dams: () => (<DamsOverviewBar {...this.props}/>),
     });
     return typedOverviewBar;
   },

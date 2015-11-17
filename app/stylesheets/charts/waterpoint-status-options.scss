@@ -32,6 +32,15 @@
       &.nonfunctional {
         color: $status-poor;
       }
+      &.DAM_HEIGHT {
+        color: $dam-height-text-color;
+      }
+      &.ELEVATION_ {
+        color: $dam-elevation-text-color;
+      }
+      &.RESERVOIR_ {
+        color: $dam-reservoir-text-color;
+      }
     }
   }
 
