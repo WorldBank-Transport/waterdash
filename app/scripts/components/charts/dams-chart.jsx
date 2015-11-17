@@ -9,6 +9,7 @@ import Resize from '../../utils/resize-mixin';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
+import * as metricUtil from '../../utils/metrics';
 
 require('stylesheets/charts/dams-chart');
 
@@ -28,11 +29,7 @@ const DamsChart = React.createClass({
   },
 
   parseData(data) {
-    const metricCal = {
-      'DAM_HEIGHT': (value, total) => value / total,
-      'ELEVATION_': (value, total) => value / total,
-      'RESERVOIR_': (value) => value / 1000000,
-    };
+    const metricCal = metricUtil.metricCal;
     return Object.keys(metricCal)
           .map(metric => {
             return {
@@ -58,12 +55,12 @@ const DamsChart = React.createClass({
     doStuff(e, data, props);
   },
 
-  tooltipHtml(x, y0, y, dataRes){
+  tooltipHtml(x, y0, y, dataRes) {
     const totals = Object.keys(dataRes).reduce((agg, key) => {
       dataRes[key].forEach(metric => {
         Object.keys(metric).filter(m => m !== 'total').forEach(m => {
           agg[m] = (agg[m] || 0) + (metric[m] || 0);
-          if(key === x) {
+          if (key === x) {
             agg.selected = agg.selected || {};
             agg.selected[m] = (metric[m] || 0);
           }
@@ -101,9 +98,9 @@ const DamsChart = React.createClass({
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
-                groupedBars
                 colorScale={c.Color.getDamsColor}
                 data={this.parseData(dataRes)}
+                groupedBars={true}
                 height={400}
                 margin={{top: 30, bottom: 100, left: 100, right: 20}}
                 onDoubleClick={this.doubleClick}

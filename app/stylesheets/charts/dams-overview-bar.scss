@@ -1,0 +1,56 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+@import '../config/box';
+
+.charts-container-summary {
+
+  .metric-status {
+
+    border-right: 1px solid $grey-light-detail;
+    display: table-cell;
+    margin: 0;
+    padding: 0 $base-unit;
+    text-align: center;
+    vertical-align: top;
+    width: $metric-status-width;
+
+    .fa {
+      bottom: $metric-stat-flyout-toggle-position;
+      color: $text-color;
+      font-size: $subcategory-icon-size;
+      position: absolute;
+    }
+
+    & > .icon {
+      border-radius: $metric-icon-size;
+      color: $grey-light;
+      display: block;
+      float: left;
+      font-size: $metric-icon-size;
+      font-weight: bold;
+      height: $metric-icon-size;
+      line-height: $metric-icon-size;
+      margin-left: $metric-stat-left-space;
+      text-align: center;
+      width: $metric-icon-size;
+    }
+
+    &.dams-reservoir > .icon {
+      background: $dam-reservoir-text-color;
+      font-size: $good-status-font-size;
+    }
+
+    &.dams-height > .icon {
+      background: $dam-height-text-color;
+      line-height: $medium-status-line-height;
+      font-size: $good-status-font-size;
+    }
+
+    &.dams-elevation > .icon {
+      background: $dam-elevation-text-color;
+      font-size: $good-status-font-size;
+    }
+  }
+
+}

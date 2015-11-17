@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
 import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
+import * as m from '../../utils/metrics';
 
 require('stylesheets/charts/dams-overview-bar');
 
@@ -13,6 +14,8 @@ const DamsOverviewBar = React.createClass({
 
   renderMetrics(metrics) {
     return Object.keys(metrics).map(metric => {
+      const f = m.getDamsMetricCalc(metric);
+      const value = f(metrics[metric].data[metric], metrics[metric].data.total);
       return (
         <div className={`metric-status ${metrics[metric].className}`}>
           <div className="icon">
@@ -20,7 +23,7 @@ const DamsOverviewBar = React.createClass({
           </div>
           <div className="content">
             <div className="big-number">
-              <span className="number">{metrics[metric].data[metric]}</span>
+              <span className="number">{value.toFixed(2)} {m.getDamsMetricUnit(metric)}</span>
             </div>
             <div className="context">
               <T k={metrics[metric].title} />

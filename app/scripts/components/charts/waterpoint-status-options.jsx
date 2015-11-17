@@ -6,8 +6,8 @@ require('stylesheets/charts/waterpoint-status-options');
 
 const WaterpointStatusOptions = React.createClass({
   propTypes: {
-    values: PropTypes.array.require,
     onclick: PropTypes.func,
+    values: PropTypes.array.require,
   },
 
   render() {
