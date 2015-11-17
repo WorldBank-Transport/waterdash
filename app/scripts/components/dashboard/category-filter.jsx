@@ -2,12 +2,13 @@ import React, { PropTypes } from 'react';
 import T from '../misc/t';
 import SubCategoryFilter from './sub-category-filter';
 import { Icon } from 'react-font-awesome';
+import OpenClosed from '../../constants/open-closed';
 
 require('stylesheets/dashboard/category-filter');
 
 const CategoryFilter = React.createClass({
   propTypes: {
-    parentState: PropTypes.object.isRequired,
+    parentState: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
 
   getInitialState() {
