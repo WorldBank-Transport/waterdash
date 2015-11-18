@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
-import MetricStatus from './metric-status';
-import CategoryFilter from '../dashboard/category-filter';
+import YearSelector from '../dashboard/year-selector';
 import OpenClosed from '../../constants/open-closed';
+import T from '../misc/t';
 
 require('stylesheets/charts/borehole-overview-bar');
 
@@ -12,12 +12,27 @@ const BoreholeOverviewBar = React.createClass({
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
 
+  renderBoreholesNumber() {
+    return (
+      <div className="metric-status boreholes">
+        <div className="icon">B</div>
+        <div className="content">
+          <div className="big-number">
+            <span className="number">{this.props.data.length}</span>
+          </div>
+          <div className="context">
+            <T k="chart.title.number-boreholes" />
+          </div>
+        </div>
+      </div>);
+  },
+
   render() {
     const data = func.Result.sumBy(this.props.data, 'STATUS');
     return (
       <div className="charts-container-summary">
         <div>
-          <!--MetricStatus metric="FUNCTIONAL" sumProps={data} title="chart.title.functional" /-->
+          {this.renderBoreholesNumber()}
           <YearSelector data={this.props.data} field="YEAR_FROM"/>
         </div>
       </div>

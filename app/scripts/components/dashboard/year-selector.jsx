@@ -6,7 +6,7 @@ import { setSubcategory, setAllSubcategories} from '../../actions/filters';
 import * as func from '../../utils/functional';
 import { Icon } from 'react-font-awesome';
 
-//require('stylesheets/dashboard/category-filter');
+require('stylesheets/dashboard/year-selector');
 
 const YearSelector = React.createClass({
   propTypes: {
@@ -18,7 +18,7 @@ const YearSelector = React.createClass({
   ],
 
   getInitialState() {
-    return {open: false, all: true};
+    return {open: false, all: true, years: {}};
   },
 
   toggle() {
@@ -45,24 +45,23 @@ const YearSelector = React.createClass({
   },
 
   render() {
-    debugger;
     const years = func.Result.groupBy(this.props.data, this.props.field)
-    const listOfOptions = Object.keys(this.state.categories[this.props.type]).map(key => {
-      const checked = this.state.categories[this.props.type][key];
-      return (<li key={key}><Checkbox action={e => this.select(e, this.props.type, key)} checked={checked} label={`charts.sub-category.value.${key}`} /></li>);
+    const listOfOptions = Object.keys(years).map(key => {
+      const checked = this.state.years[key];
+      return (<li className="year-option" key={key}><Checkbox action={e => this.select(e, this.props.field, key)} checked={checked} label={`charts.years.${key}`} /></li>);
     });
+    const [openClass, direction] = [ 'open-up', this.state.open ? 'down' : 'up' ];
     const visibleClass = this.state.open ? 'visible' : 'hidden';
-    const direction = this.state.open ? 'up' : 'down';
     return (
-      <div className="category-filter">
-        <div className="category-filter-toggle" onClick={this.toggle}>
-          <T k="charts.category.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
+      <div className="year-selector">
+        <div className="year-selector-toggle" onClick={this.toggle}>
+          <T k="charts.years.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
         </div>
         <div className={`flyout ${openClass} ${visibleClass}`}>
           <ul className={visibleClass}>
-            <li><Checkbox action={this.selectAll} checked={this.state.all} label="charts.sub-category.all" /></li>
+            <li className="year-option" key="all"><Checkbox action={this.selectAll} checked={this.state.all} label="charts.years.all" /></li>
             {listOfOptions}
-        </ul>
+          </ul>
         </div>
       </div>);
   },

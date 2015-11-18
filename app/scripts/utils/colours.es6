@@ -90,3 +90,30 @@ Color.getDamsColor = (metric) => {
   }
   return color;
 };
+
+Color.getBoreholesColor = (metric) => {
+  let color = null;
+  switch (metric) {
+  case 'DIAMETER':
+    color = '#FA8072';
+    break;
+  case 'DEPTH_METER':
+    color = '#FF4500';
+    break;
+  case 'STATIC_WATER_LEVEL':
+    color = '#87CEEB';
+    break;
+  case 'DYNAMIC_WATER_LEVEL_METER':
+    color = '#DDA0DD';
+    break;
+  case 'DRAW _DOWN_METER':
+    color = '#000080';
+    break;
+  case 'YIELD_METER_CUBED_PER_HOUR':
+    color = '#4B0082';
+    break;
+  default:
+    throw Error(`there is no metric found, actual: ${metric}`);
+  }
+  return color;
+}
