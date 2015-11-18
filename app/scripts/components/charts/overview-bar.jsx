@@ -1,7 +1,6 @@
 import React, { PropTypes }from 'react';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
-import T from '../misc/t';
 import WaterpointsOverviewBar from './waterpoints-overview-bar';
 import DamsOverviewBar from './dams-overview-bar';
 import BoreholeOverviewBar from './boreholes-overview-bar';
@@ -17,11 +16,6 @@ const OverviewBar = React.createClass({
   },
 
   render() {
-    const defaultType = (
-      <div className="overview-bar">
-        <T k="overview-bar" />
-      </div>
-    );
     const typedOverviewBar = DataTypes.match(this.props.dataType, {
       Waterpoints: () => (<WaterpointsOverviewBar {...this.props}/>), //{...propsForChildren}
       Boreholes: () => (<BoreholeOverviewBar {...this.props}/>),

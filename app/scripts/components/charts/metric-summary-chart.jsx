@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 import T from '../misc/t';
-import isNumber from 'lodash/lang/isNumber';
-import isNaN from 'lodash/lang/isNaN';
 import { Icon } from 'react-font-awesome';
 import { getNumberOr0 } from '../../utils/number';
 

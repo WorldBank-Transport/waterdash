@@ -77,7 +77,7 @@ const BoreholesStatsChart = React.createClass({
     return (
       <div className="boreholes-stats-chart">
         <h3 className="chart-title"><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
-        <WaterpointstatusOptions values={Object.keys(this.state.metrics)} onclick={this.toogleMetric} state={this.state.metrics}/>
+        <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
         <div className="chart-container ">
           <TSetChildProps>
             <LineChart

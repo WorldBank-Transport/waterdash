@@ -50,7 +50,7 @@ const BoreholesCharts = React.createClass({
           </div>
         </div>
       </div>);
-  }
+  },
 });
 
 export default BoreholesCharts;

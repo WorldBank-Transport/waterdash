@@ -43,8 +43,8 @@
 
     &.dams-height > .icon {
       background: $dam-height-text-color;
-      line-height: $medium-status-line-height;
       font-size: $good-status-font-size;
+      line-height: $medium-status-line-height;
     }
 
     &.dams-elevation > .icon {

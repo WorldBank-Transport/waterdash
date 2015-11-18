@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { _ } from 'results';  // catch-all for match
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';

@@ -30,12 +30,12 @@
     list-style: none;
     margin-right: 20px;
 
-    &.DIAMETER { color: #FA8072; }
-    &.DEPTH_METER { color: #FF4500; }
-    &.STATIC_WATER_LEVEL {color: #87CEEB; }
-    &.DYNAMIC_WATER_LEVEL_METER {color: #000080; }
-    &.DRAW-_DOWN_METER {color: #DDA0DD; }
-    &.YIELD_METER_CUBED_PER_HOUR {color: #4B0082; }
+    &.DIAMETER { color: $diameter_color; }
+    &.DEPTH_METER { color: $depth_meter_color; }
+    &.STATIC_WATER_LEVEL {color: $static_water_level_color; }
+    &.DYNAMIC_WATER_LEVEL_METER {color: $dynamic_water_level_meter_color; }
+    &.DRAW-_DOWN_METER {color: $draw-_down_meter_color; }
+    &.YIELD_METER_CUBED_PER_HOUR {color: $yield_meter_cubed_per_hour_color; }
   }
 }
 

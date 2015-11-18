@@ -116,4 +116,4 @@ Color.getBoreholesColor = (metric) => {
     throw Error(`there is no metric found, actual: ${metric}`);
   }
   return color;
-}
+};

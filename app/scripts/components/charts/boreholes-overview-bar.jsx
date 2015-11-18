@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import * as func from '../../utils/functional';
 import YearSelector from '../dashboard/year-selector';
 import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
@@ -28,7 +27,6 @@ const BoreholeOverviewBar = React.createClass({
   },
 
   render() {
-    const data = func.Result.sumBy(this.props.data, 'STATUS');
     return (
       <div className="charts-container-summary">
         <div>

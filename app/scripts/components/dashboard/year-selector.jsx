@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'reflux';
 import T from '../misc/t';
 import Checkbox from '../misc/checkbox';
 import { setSubcategory, setAllSubcategories} from '../../actions/filters';
@@ -40,12 +39,12 @@ const YearSelector = React.createClass({
       ...this.state,
       all: !this.state.all,
     };
-    setAllSubcategories(this.props.type, !this.state.all);
+    setAllSubcategories(null, !this.state.all);
     this.replaceState(newState);
   },
 
   render() {
-    const years = func.Result.groupBy(this.props.data, this.props.field)
+    const years = func.Result.groupBy(this.props.data, this.props.field);
     const listOfOptions = Object.keys(years).map(key => {
       const checked = this.state.years[key];
       return (<li className="year-option" key={key}><Checkbox action={e => this.select(e, this.props.field, key)} checked={checked} label={`charts.years.${key}`} /></li>);
