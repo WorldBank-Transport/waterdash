@@ -24,7 +24,6 @@ const ShouldRenderMixin = {
   },
 
   shouldComponentUpdate(nextProps, nextState) {
-    debugger;
     const result = !this.shallowEqual(this.props, nextProps)
         || this.state !== nextState;
     return result;
