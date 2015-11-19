@@ -25,12 +25,19 @@ const DamsChart = React.createClass({
   mixins: [Resize],
 
   getInitialState() {
-    return {};
+    return {
+      metrics: {
+        DAM_HEIGHT: true,
+        ELEVATION_: true,
+        RESERVOIR_: true,
+      },
+    };
   },
 
   parseData(data) {
     const metricCal = metricUtil.metricCal;
     return Object.keys(metricCal)
+          .filter(metric => this.state.metrics[metric])
           .map(metric => {
             return {
               label: metric,
@@ -86,11 +93,22 @@ const DamsChart = React.createClass({
             </div>);
   },
 
+  toogleMetric(e, metric) {
+    const newState = {
+      ...this.state,
+      metrics: {
+        ...this.state.metrics,
+        [metric]: !this.state.metrics[metric],
+      },
+    };
+    this.replaceState(newState);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', ['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']);
+    const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', Object.keys(this.state.metrics));
     return (
       <div className="container">
         <div className="secondaryCharts">
@@ -98,7 +116,7 @@ const DamsChart = React.createClass({
             <div className="mainChart">
               <div className="dams-chart">
                 <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
-                <WaterpointstatusOptions values={['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']}/>
+                <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
                 <div className="chart-container">
                   <TSetChildProps>
                     <ClickBarChart

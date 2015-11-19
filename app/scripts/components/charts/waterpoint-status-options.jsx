@@ -19,7 +19,8 @@ const WaterpointStatusOptions = React.createClass({
 
   render() {
     const items = this.props.values.map(key => {
-      return (<li className={key}><Checkbox action={e => this.props.onclick(e, key)} checked={this.props.state[key]} label={`chart.option.${key}`}/></li>);
+      const classname = key.replace(/\s/g, '-').toLowerCase();
+      return (<li className={classname}><Checkbox action={e => this.props.onclick(e, key)} checked={this.props.state[key]} label={`chart.option.${key}`}/></li>);
     });
     return (
       <div className="waterpoints-chart-options-container">

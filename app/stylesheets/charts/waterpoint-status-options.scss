@@ -8,8 +8,16 @@
 .waterpoints-chart-options-container {
   @include border-radius(3px);
   background: $grey-light;
-  height: 50px;
-  padding: 3px 10px;
+  height: $waterpoint-options-height;
+  padding: $base-unit/2 0 $base-unit/3 0;
+
+  .checkbox {
+    .t {
+      display: inline-block;
+      float: left;
+      margin-top: - $checkbox-label-position;
+    }
+  }
 
   i {
     color: $text-inverse;
@@ -18,6 +26,7 @@
   }
 
   ul {
+    padding-left: $base-unit * 1.5;
     li {
       float: left;
       list-style: none;
@@ -26,19 +35,19 @@
       &.functional {
         color: $status-good;
       }
-      &.needrepair {
+      &.functional-needs-repair {
         color: $status-medium;
       }
-      &.nonfunctional {
+      &.non-functional {
         color: $status-poor;
       }
-      &.DAM_HEIGHT {
+      &.dam_height {
         color: $dam-height-text-color;
       }
-      &.ELEVATION_ {
+      &.elevation_ {
         color: $dam-elevation-text-color;
       }
-      &.RESERVOIR_ {
+      &.reservoir_ {
         color: $dam-reservoir-text-color;
       }
     }

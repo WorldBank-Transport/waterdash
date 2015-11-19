@@ -98,9 +98,9 @@ const allTranslations = {
     'chart.option.DAM_HEIGHT': 'Height',
     'chart.option.ELEVATION_': 'Elevation',
     'chart.option.RESERVOIR_': 'Reservoir',
-    'chart.option.functional': 'Functional',
-    'chart.option.needrepair': 'Needs Repair',
-    'chart.option.nonfunctional': 'Non Functional',
+    'chart.option.FUNCTIONAL': 'Functional',
+    'chart.option.FUNCTIONAL NEEDS REPAIR': 'Needs Repair',
+    'chart.option.NON FUNCTIONAL': 'Non Functional',
 
     'charts.category.filter.title': 'Choose a Subcategory',
     'charts.sub-category.HARDWARE_PROBLEM': 'Hardware Problem',
