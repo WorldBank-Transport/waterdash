@@ -3,6 +3,7 @@ import * as func from '../../utils/functional';
 import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
 import * as m from '../../utils/metrics';
+import { getNumberOr0 } from '../../utils/number';
 
 require('stylesheets/charts/dams-overview-bar');
 
@@ -15,7 +16,7 @@ const DamsOverviewBar = React.createClass({
   renderMetrics(metrics) {
     return Object.keys(metrics).map(metric => {
       const f = m.getDamsMetricCalc(metric);
-      const value = f(metrics[metric].data[metric], metrics[metric].data.total);
+      const value = f(getNumberOr0(metrics[metric].data[metric]), metrics[metric].data.total || 1);
       return (
         <div className={`metric-status ${metrics[metric].className}`}>
           <div className="icon">

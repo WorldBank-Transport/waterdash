@@ -26,19 +26,19 @@
       &.functional {
         color: $status-good;
       }
-      &.needrepair {
+      &.functional-needs-repair {
         color: $status-medium;
       }
-      &.nonfunctional {
+      &.non-functional {
         color: $status-poor;
       }
-      &.DAM_HEIGHT {
+      &.dam_height {
         color: $dam-height-text-color;
       }
-      &.ELEVATION_ {
+      &.elevation_ {
         color: $dam-elevation-text-color;
       }
-      &.RESERVOIR_ {
+      &.reservoir_ {
         color: $dam-reservoir-text-color;
       }
     }
