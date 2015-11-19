@@ -146,8 +146,9 @@ const WaterpointStatusChart = React.createClass({
                 height={400}
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
                 onDoubleClick={this.doubleClick}
+                tooltipContained="true"
                 tooltipHtml={(x) => this.tooltip(x, dataRes)}
-                tooltipMode="element"
+                tooltipMode="mouse"
                 width={this.state.size.width * 0.55}
                 xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
                 yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
