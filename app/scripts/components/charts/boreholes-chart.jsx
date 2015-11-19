@@ -2,12 +2,21 @@ import React, { PropTypes } from 'react';
 import {BarChart} from 'react-d3-components';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
+import Resize from '../../utils/resize-mixin';
 
-require('stylesheets/dashboard/charts/boreholes-chart');
+require('stylesheets/charts/boreholes-chart');
 
 const BoreholesChart = React.createClass({
   propTypes: {
     boreholes: PropTypes.array.isRequired,
+  },
+
+  mixins: [
+    Resize,
+  ],
+
+  getInitialState() {
+    return {};
   },
 
   parseData(data) {
@@ -35,9 +44,9 @@ const BoreholesChart = React.createClass({
         <TSetChildProps>
           <BarChart
               data={this.parseData(dataRes)}
-              height={200}
+              height={300}
               margin={{top: 10, bottom: 50, left: 50, right: 10}}
-              width={500}
+              width={this.state.size.width * 0.60}
               xAxis={{label: {k: 'chart.boreholes.x-axis' }}}
               yAxis={{label: {k: 'chart.boreholes.y-axis' }}} />
         </TSetChildProps>

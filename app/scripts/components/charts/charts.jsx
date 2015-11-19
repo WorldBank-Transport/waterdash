@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import { _ } from 'results';  // catch-all for match
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
 import WaterpointsChart from './waterpoints-charts';
 import DamsChart from './dams-chart';
+import BoreholesCharts from './boreholes-charts';
 
 require('stylesheets/charts/charts');
 
@@ -17,9 +17,6 @@ const Charts = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
-  renderOtherCharts() {
-    return 'other charts not yet implemented';
-  },
   render() {
     return OpenClosed.match(this.props.openClosed, {
       Open: () => (
@@ -27,7 +24,7 @@ const Charts = React.createClass({
           {DataTypes.match(this.props.dataType, {
             Waterpoints: () => (<WaterpointsChart {...this.props}/>),
             Dams: () => (<DamsChart {...this.props}/>),
-            [_]: this.renderOtherCharts,
+            Boreholes: () => (<BoreholesCharts {...this.props}/>),
           })}
         </div>
       ),

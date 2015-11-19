@@ -3,28 +3,37 @@ import {LineChart} from 'react-d3-components';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import T from '../misc/t';
+import Resize from '../../utils/resize-mixin';
+import WaterpointstatusOptions from './waterpoint-status-options';
+import * as c from '../../utils/colours';
 
-require('stylesheets/dashboard/charts/boreholes-stats-chart');
+require('stylesheets/charts/boreholes-stats-chart');
 
 const BoreholesStatsChart = React.createClass({
   propTypes: {
     boreholes: PropTypes.array.isRequired,
   },
 
+  mixins: [
+    Resize,
+  ],
+
   getInitialState() {
     return {
-      DIAMETER: {enabled: true, color: '#FA8072' },
-      DEPTH_METER: {enabled: true, color: '#FF4500' },
-      STATIC_WATER_LEVEL: {enabled: true, color: '#87CEEB' },
-      DYNAMIC_WATER_LEVEL_METER: {enabled: true, color: '#000080' },
-      'DRAW _DOWN_METER': {enabled: true, color: '#DDA0DD' },
-      YIELD_METER_CUBED_PER_HOUR: {enabled: true, color: '#4B0082' },
+      metrics: {
+        DIAMETER: true,
+        DEPTH_METER: true,
+        STATIC_WATER_LEVEL: true,
+        DYNAMIC_WATER_LEVEL_METER: true,
+        'DRAW _DOWN_METER': true,
+        YIELD_METER_CUBED_PER_HOUR: true,
+      },
     };
   },
 
   getActiveMetrics() {
-    return Object.keys(this.state)
-      .filter(metric => this.state[metric].enabled);
+    return Object.keys(this.state.metrics)
+      .filter(metric => this.state.metrics[metric]);
   },
 
   parseData(data) {
@@ -52,9 +61,9 @@ const BoreholesStatsChart = React.createClass({
   toogleMetric(e, metric) {
     const newState = {
       ...this.state,
-      [metric]: {
-        ...this.state[metric],
-        enabled: !this.state[metric].enabled,
+      metrics: {
+        ...this.state.metrics,
+        [metric]: !this.state.metrics[metric],
       },
     };
     this.replaceState(newState);
@@ -63,30 +72,23 @@ const BoreholesStatsChart = React.createClass({
   render() {
     const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', this.getActiveMetrics());
     const colorScale = (x) => {
-      return this.state[x].color;
+      return c.Color.getBoreholesColor(x);
     };
     return (
       <div className="boreholes-stats-chart">
         <h3 className="chart-title"><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
+        <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
         <div className="chart-container ">
           <TSetChildProps>
             <LineChart
                 colorScale={colorScale}
                 data={this.parseData(dataRes)}
-                height={200}
+                height={300}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={600}
+                width={this.state.size.width * 0.60}
                 xAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.x-axis'}}}
                 yAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.y-axis'}}} />
               </TSetChildProps>
-          <ul className="boreholes-options">
-            {Object.keys(this.state).map(metric =>
-            ( <li className="option" style={{color: this.state[metric].color}}>
-                <input checked={this.state[metric].enabled ? 'checked' : ''} id={`borehole-${metric}`} name={metric} onChange={e => this.toogleMetric(e, metric)} type="checkbox" />
-                <T k={`chart.boreholes.${metric}`} />
-              </li>)
-            )}
-          </ul>
         </div>
       </div>
     );

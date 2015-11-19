@@ -21,6 +21,7 @@ $text-inverse: #ffffff;
 $dam-height-text-color: #94daf7;
 $dam-elevation-text-color: #4cafd8;
 $dam-reservoir-text-color: #3f7086;
+$borehole-color: #3f7086;
 
 $bg-color: #ffffff;
 $background-img-overlay: hsla(0, 0%, 0%, 0.6);
@@ -35,3 +36,10 @@ $shadow-size: 8px;
 $shadow-color: hsla(0, 0%, 0%, 0.3);
 $shadow: 0 $shadow-size/1.5 $shadow-size $shadow-color;
 $shadow-inset: 0 $shadow-size $shadow-size (-$shadow-size) $shadow-color inset;
+
+$diameter_color: #fa8072;
+$depth_meter_color: #ff4500;
+$static_water_level_color: #87ceeb;
+$dynamic_water_level_meter_color: #000080;
+$draw-_down_meter_color: #dda0dd;
+$yield_meter_cubed_per_hour_color: #4b0082;

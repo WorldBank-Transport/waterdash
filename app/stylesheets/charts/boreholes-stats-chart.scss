@@ -4,6 +4,39 @@
 
 .boreholes-stats-chart {
   margin: $general-content-padding 0 0 0;
+
+  .x {
+    .tick text {
+      fill: $text-color;
+      font-size: 10px;
+      text-anchor: inherit;
+    }
+  }
+  .y {
+    .tick text {
+      fill: $text-color;
+      font-size: 10px;
+    }
+  }
+  .label {
+    fill: $text-color;
+    font-size: $chart-axis-text;
+  }
+}
+
+.waterpoints-chart-options-container {
+  ul li {
+    float: left;
+    list-style: none;
+    margin-right: 20px;
+
+    &.DIAMETER { color: $diameter_color; }
+    &.DEPTH_METER { color: $depth_meter_color; }
+    &.STATIC_WATER_LEVEL {color: $static_water_level_color; }
+    &.DYNAMIC_WATER_LEVEL_METER {color: $dynamic_water_level_meter_color; }
+    &.DRAW-_DOWN_METER {color: $draw-_down_meter_color; }
+    &.YIELD_METER_CUBED_PER_HOUR {color: $yield_meter_cubed_per_hour_color; }
+  }
 }
 
 ul.boreholes-options {
@@ -21,5 +54,4 @@ ul.boreholes-options {
     font-size: $chart-axis-text;
     width: 49%;
     }
-
 }
