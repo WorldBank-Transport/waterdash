@@ -1,18 +1,26 @@
 import React, { PropTypes } from 'react';
-import IconChart from '../boilerplate/icon-check';
-import T from '../misc/t';
+import Checkbox from '../misc/checkbox';
 
 require('stylesheets/charts/waterpoint-status-options');
 
 const WaterpointStatusOptions = React.createClass({
   propTypes: {
     onclick: PropTypes.func,
+    state: PropTypes.object,
     values: PropTypes.array.require,
+  },
+
+  getDefaultProps: function() {
+    return {
+      state: {},
+      values: [],
+    };
   },
 
   render() {
     const items = this.props.values.map(key => {
-      return (<li className={key}><IconChart /><T k={`chart.option.${key}`} /></li>);
+      const classname = key.replace(/\s/g, '-').toLowerCase();
+      return (<li className={classname}><Checkbox action={e => this.props.onclick(e, key)} checked={this.props.state[key]} label={`chart.option.${key}`}/></li>);
     });
     return (
       <div className="waterpoints-chart-options-container">

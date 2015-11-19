@@ -25,12 +25,19 @@ const DamsChart = React.createClass({
   mixins: [Resize],
 
   getInitialState() {
-    return {};
+    return {
+      metrics: {
+        DAM_HEIGHT: true,
+        ELEVATION_: true,
+        RESERVOIR_: true,
+      },
+    };
   },
 
   parseData(data) {
     const metricCal = metricUtil.metricCal;
     return Object.keys(metricCal)
+          .filter(metric => this.state.metrics[metric])
           .map(metric => {
             return {
               label: metric,
@@ -86,30 +93,49 @@ const DamsChart = React.createClass({
             </div>);
   },
 
+  toogleMetric(e, metric) {
+    const newState = {
+      ...this.state,
+      metrics: {
+        ...this.state.metrics,
+        [metric]: !this.state.metrics[metric],
+      },
+    };
+    this.replaceState(newState);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', ['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']);
+    const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', Object.keys(this.state.metrics));
     return (
-      <div className="dams-chart">
-        <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
-        <WaterpointstatusOptions values={['DAM_HEIGHT', 'ELEVATION_', 'RESERVOIR_']}/>
-        <div className="chart-container">
-          <TSetChildProps>
-            <ClickBarChart
-                colorScale={c.Color.getDamsColor}
-                data={this.parseData(dataRes)}
-                groupedBars={true}
-                height={400}
-                margin={{top: 30, bottom: 100, left: 100, right: 20}}
-                onDoubleClick={this.doubleClick}
-                tooltipHtml={(x, y0, y) => this.tooltipHtml(x, y0, y, dataRes)}
-                tooltipMode="element"
-                width={this.state.size.width * 0.80}
-                xAxis={{innerTickSize: 1, label: {k: 'chart.dams.x-axis'}}}
-                yAxis={{innerTickSize: 1, label: {k: 'chart.dams.y-axis'}}} />
-            </TSetChildProps>
+      <div className="container">
+        <div className="secondaryCharts">
+          <div className="dams-col-left">
+            <div className="mainChart">
+              <div className="dams-chart">
+                <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
+                <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
+                <div className="chart-container">
+                  <TSetChildProps>
+                    <ClickBarChart
+                        colorScale={c.Color.getDamsColor}
+                        data={this.parseData(dataRes)}
+                        groupedBars={true}
+                        height={400}
+                        margin={{top: 30, bottom: 100, left: 100, right: 20}}
+                        onDoubleClick={this.doubleClick}
+                        tooltipHtml={(x, y0, y) => this.tooltipHtml(x, y0, y, dataRes)}
+                        tooltipMode="element"
+                        width={this.state.size.width * 0.80}
+                        xAxis={{innerTickSize: 1, label: {k: 'chart.dams.x-axis'}}}
+                        yAxis={{innerTickSize: 1, label: {k: 'chart.dams.y-axis'}}} />
+                  </TSetChildProps>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );

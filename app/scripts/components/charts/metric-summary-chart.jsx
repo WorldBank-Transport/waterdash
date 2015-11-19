@@ -1,28 +1,24 @@
 import React, { PropTypes } from 'react';
 import T from '../misc/t';
-import isNumber from 'lodash/lang/isNumber';
-import isNaN from 'lodash/lang/isNaN';
 import { Icon } from 'react-font-awesome';
+import { getNumberOr0 } from '../../utils/number';
 
 require('stylesheets/charts/metric-summary-chart');
 
 const MetricSummary = React.createClass({
   propTypes: {
+    format: PropTypes.func,
     icons: PropTypes.object,
     metric: PropTypes.object.isRequired,
     showPercentage: PropTypes.bool,
     title: PropTypes.string.isRequired,
   },
 
-  getNumberValue(value) {
-    return (isNumber(value) && !isNaN(value)) ? value : 0;
-  },
-
   render() {
     const metric = this.props.metric;
     const icons = this.props.icons ? this.props.icons : {};
     const summaryDiv = metric.values.map(item => {
-      const value = this.getNumberValue(item.value);
+      const value = this.props.format ? this.props.format(getNumberOr0(item.value)) : getNumberOr0(item.value);
       const icon = icons[item.name] ? (<Icon type={icons[item.name]}/>) : (<div />);
       const perc = this.props.showPercentage ? (<div className="medium-number"> - <span className="number">{(value / metric.total * 100).toFixed(2)}</span>%</div>) : (<div />);
       return (
