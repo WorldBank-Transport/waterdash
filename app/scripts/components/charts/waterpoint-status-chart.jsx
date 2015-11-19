@@ -21,13 +21,19 @@ const WaterpointStatusChart = React.createClass({
   mixins: [Resize],
 
   getInitialState() {
-    return {};
+    return {
+      status: {
+        FUNCTIONAL: true,
+        'FUNCTIONAL NEEDS REPAIR': true,
+        'NON FUNCTIONAL': true,
+      },
+    };
   },
 
   shouldComponentUpdate(nextProps, nextState) {
     return this.props.viewMode !== nextProps.viewMode
         || this.props.waterpoints.length !== nextProps.waterpoints.length
-        || this.state.size.width !== nextState.size.width;
+        || this.state !== nextState;
   },
 
   getRegionsOrderByFunctional(data) {
@@ -57,14 +63,27 @@ const WaterpointStatusChart = React.createClass({
         return 0;
       }
     };
-    return Object.keys(data)
+    return Object.keys(this.state.status)
+          .filter(s => this.state.status[s])
           .map(status => {
             return {
               label: status,
               values: regions.map(region => {
+                let value = 0;
+                if (status === 'NON FUNCTIONAL') { // we need to group all non functional
+                  value = Object.keys(data)
+                            .filter(key => key.startsWith(status))
+                            .reduce((ret, key) => {
+                              ret.value += getNumberOr0(data[key][region]);
+                              return ret;
+                            }, {value: 0})
+                            .value;
+                } else {
+                  value = getNumberOr0(data[status][region]);
+                }
                 return {
                   x: region,
-                  y: data[status][region] ? data[status][region] : 0,
+                  y: value,
                 };
               }),
             };
@@ -97,6 +116,17 @@ const WaterpointStatusChart = React.createClass({
             </div>);
   },
 
+  toogleStatus(e, s) {
+    const newState = {
+      ...this.state,
+      status: {
+        ...this.state.status,
+        [s]: !this.state.status[s],
+      },
+    };
+    this.replaceState(newState);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
@@ -106,12 +136,13 @@ const WaterpointStatusChart = React.createClass({
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
-        <WaterpointstatusOptions values={['functional', 'needrepair', 'nonfunctional']}/>
+        <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
+                groupedBars={true}
                 height={400}
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
                 onDoubleClick={this.doubleClick}
