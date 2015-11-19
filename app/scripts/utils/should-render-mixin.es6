@@ -1,12 +1,10 @@
-import * as reactAll from 'react';
-
 const ShouldRenderMixin = {
 
   shallowEqual(objA, objB) {
     if (objA === objB) {
       return true;
     }
-    var key;
+    let key;
     // Test for A's keys different from B.
     for (key in objA) {
       if (objA.hasOwnProperty(key) &&
@@ -28,6 +26,6 @@ const ShouldRenderMixin = {
         || this.state !== nextState;
     return result;
   },
-}
+};
 
 export default ShouldRenderMixin;
