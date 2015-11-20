@@ -128,7 +128,7 @@ const WaterpointStatusChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
-    if(Object.keys(dataRes).length == 0) {
+    if (Object.keys(dataRes).length === 0) {
       return false;
     }
     return (

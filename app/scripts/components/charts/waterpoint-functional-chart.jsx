@@ -40,7 +40,7 @@ const WaterpointFunctionalChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, drillDown, 'STATUS');
-    if(Object.keys(waterpointsRes).length == 0) {
+    if (Object.keys(waterpointsRes).length === 0) {
       return false;
     }
     return (

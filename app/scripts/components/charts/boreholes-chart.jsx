@@ -41,7 +41,7 @@ const BoreholesChart = React.createClass({
 
   render() {
     const dataRes = func.Result.countBy(this.props.boreholes, 'REGION');
-    if(Object.keys(dataRes).length == 0) {
+    if (Object.keys(dataRes).length === 0) {
       return false;
     }
     return (

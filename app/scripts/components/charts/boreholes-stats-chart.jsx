@@ -73,7 +73,7 @@ const BoreholesStatsChart = React.createClass({
 
   render() {
     const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', this.getActiveMetrics());
-    if(Object.keys(dataRes).length == 0) {
+    if (Object.keys(dataRes).length === 0) {
       return false;
     }
     return (

@@ -16,7 +16,7 @@ const MetricSummary = React.createClass({
   },
 
   mixins: [ShouldRenderMixin],
-  
+
   render() {
     const metric = this.props.metric;
     const icons = this.props.icons ? this.props.icons : {};

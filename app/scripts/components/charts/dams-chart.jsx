@@ -109,7 +109,7 @@ const DamsChart = React.createClass({
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    if(this.props.data.length == 0 || !this.props.data[0].hasOwnProperty('DAM_NAME')) {
+    if (this.props.data.length === 0 || !this.props.data[0].hasOwnProperty('DAM_NAME')) {
       return false;
     }
     const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', Object.keys(this.state.metrics));

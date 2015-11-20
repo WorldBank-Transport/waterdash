@@ -53,7 +53,7 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, drillDown);
-    if(Object.keys(waterpointsRes).length == 0) {
+    if (Object.keys(waterpointsRes).length === 0) {
       return false;
     }
     const popAgg = func.Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
