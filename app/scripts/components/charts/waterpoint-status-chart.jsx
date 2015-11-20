@@ -9,6 +9,7 @@ import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
 import { chartDrilldown } from '../../actions/select';
 import { getNumberOr0 } from '../../utils/number';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -18,7 +19,7 @@ const WaterpointStatusChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
-  mixins: [Resize],
+  mixins: [Resize, ShouldRenderMixin],
 
   getInitialState() {
     return {
@@ -28,12 +29,6 @@ const WaterpointStatusChart = React.createClass({
         'NON FUNCTIONAL': true,
       },
     };
-  },
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.viewMode !== nextProps.viewMode
-        || this.props.waterpoints.length !== nextProps.waterpoints.length
-        || this.state !== nextState;
   },
 
   getRegionsOrderByFunctional(data) {
@@ -133,6 +128,9 @@ const WaterpointStatusChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
+    if(Object.keys(dataRes).length == 0) {
+      return false;
+    }
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
