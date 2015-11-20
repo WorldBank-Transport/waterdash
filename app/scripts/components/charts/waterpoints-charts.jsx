@@ -17,10 +17,10 @@ const WaterpointsChart = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
-  getTopProblems() {
-    const data = func.Result.countBy(this.props.data, 'HARDWARE_PROBLEM');
+  getAggregatedValues(field, filter) {
+    const data = func.Result.countBy(this.props.data, field);
     const problems = Object.keys(data)
-                  .filter(key => key !== 'NONE' && key !== 'total')
+                  .filter(filter)
                   .map(key => {
                     return {
                       name: key,
@@ -35,7 +35,10 @@ const WaterpointsChart = React.createClass({
   },
 
   render() {
-    const topProblems = this.getTopProblems();
+    const topProblems = this.getAggregatedValues('HARDWARE_PROBLEM', key => key !== 'NONE' && key !== 'total');
+    const waterQuality = this.getAggregatedValues('WATER_QUALITY', key => key !== 'total');
+    const waterQuantity = this.getAggregatedValues('WATER_QUANTITY', key => key !== 'total');
+    const sourceType = this.getAggregatedValues('SOURCE_TYPE', key => key !== 'total');
     return (
       <div className="container">
         <div className="secondaryCharts">
@@ -49,6 +52,15 @@ const WaterpointsChart = React.createClass({
           </div>
           <div className="col-right">
             <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
+          </div>
+          <div className="col-left">
+            <MetricSummary metric={waterQuality} showPercentage={true} title="chart.waterpoint.summary.water-quality" viewMode={this.props.viewMode} />
+          </div>
+          <div className="col-left">
+            <MetricSummary metric={waterQuantity} showPercentage={true} title="chart.waterpoint.summary.water-quantity" viewMode={this.props.viewMode} />
+          </div>
+          <div className="col-right">
+            <MetricSummary metric={sourceType} showPercentage={true} title="chart.waterpoint.summary.source-type" viewMode={this.props.viewMode} />
           </div>
         </div>
       </div>);
