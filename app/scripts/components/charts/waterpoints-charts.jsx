@@ -6,6 +6,7 @@ import WaterpointStatusChart from './waterpoint-status-chart';
 import MetricSummary from './metric-summary-chart';
 import WaterpointPopulationServeChart from './waterpoint-population-serve-chart';
 import * as func from '../../utils/functional';
+import WaterpointPieChart from './waterpoint-pie-chart';
 
 
 const WaterpointsChart = React.createClass({
@@ -54,13 +55,15 @@ const WaterpointsChart = React.createClass({
             <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
           <div className="col-left">
-            <MetricSummary metric={waterQuality} showPercentage={true} title="chart.waterpoint.summary.water-quality" viewMode={this.props.viewMode} />
+            <WaterpointPieChart data={this.props.data} column='WATER_QUALITY'/>
+
           </div>
           <div className="col-left">
-            <MetricSummary metric={waterQuantity} showPercentage={true} title="chart.waterpoint.summary.water-quantity" viewMode={this.props.viewMode} />
+            <WaterpointPieChart data={this.props.data} column='WATER_QUANTITY'/>
+            
           </div>
           <div className="col-right">
-            <MetricSummary metric={sourceType} showPercentage={true} title="chart.waterpoint.summary.source-type" viewMode={this.props.viewMode} />
+            <WaterpointPieChart data={this.props.data} column='SOURCE_TYPE'/>
           </div>
         </div>
       </div>);

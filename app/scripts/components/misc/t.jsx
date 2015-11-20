@@ -195,7 +195,9 @@ const allTranslations = {
     'chart.waterpoint.summary.HAND DTW': 'Hand DTW',
     'chart.waterpoint.summary.NONE': 'None',
     'chart.waterpoint.summary.MACHINE-DRILLED BOREHOLE': 'Machine-drilled Borehole',
-
+    'chart.pie.WATER_QUALITY': 'Water Quality',
+    'chart.pie.WATER_QUANTITY': 'Water Quantity',
+    'chart.pie.SOURCE_TYPE': 'Source Type',
 
 
     'filters.toggle.closed': 'Dashboard Filters',
