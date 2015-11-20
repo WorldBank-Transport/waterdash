@@ -5,6 +5,7 @@ import TSetChildProps from '../misc/t-set-child-props';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 
 require('stylesheets/charts/waterpoint-functional-chart');
 
@@ -14,7 +15,7 @@ const WaterpointFunctionalChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
-  mixins: [Resize],
+  mixins: [Resize, ShouldRenderMixin],
 
   getInitialState() {
     return {};
@@ -39,6 +40,9 @@ const WaterpointFunctionalChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countByGroupBy(this.props.waterpoints, drillDown, 'STATUS');
+    if (Object.keys(waterpointsRes).length === 0) {
+      return false;
+    }
     return (
       <div className="waterpoint-functional-chart">
         <h3 className="chart-title"><T k="chart.title-waterpoints-functional" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-functional-helptext" /></span></h3>

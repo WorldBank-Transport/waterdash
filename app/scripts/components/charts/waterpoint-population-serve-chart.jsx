@@ -8,6 +8,7 @@ import TSetChildProps from '../misc/t-set-child-props';
 import {load} from '../../actions/population';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/charts/waterpoint-population-serve-chart');
@@ -20,6 +21,7 @@ const WaterpointPopulationServeChart = React.createClass({
   mixins: [
     connect(PopulationStore, 'population'),
     Resize,
+    ShouldRenderMixin,
   ],
 
   getInitialState() {
@@ -51,6 +53,9 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpointsRes = func.Result.countBy(this.props.waterpoints, drillDown);
+    if (Object.keys(waterpointsRes).length === 0) {
+      return false;
+    }
     const popAgg = func.Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">

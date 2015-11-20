@@ -3,6 +3,7 @@ import {BarChart} from 'react-d3-components';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
 import Resize from '../../utils/resize-mixin';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 
 require('stylesheets/charts/boreholes-chart');
 
@@ -13,6 +14,7 @@ const BoreholesChart = React.createClass({
 
   mixins: [
     Resize,
+    ShouldRenderMixin,
   ],
 
   getInitialState() {
@@ -39,6 +41,9 @@ const BoreholesChart = React.createClass({
 
   render() {
     const dataRes = func.Result.countBy(this.props.boreholes, 'REGION');
+    if (Object.keys(dataRes).length === 0) {
+      return false;
+    }
     return (
       <div className="boreholes-chart">
         <TSetChildProps>

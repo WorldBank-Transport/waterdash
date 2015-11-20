@@ -36,9 +36,13 @@
       width: $metric-icon-size;
     }
 
-    &.dams-reservoir > .icon {
-      background: $dam-reservoir-text-color;
-      font-size: $good-status-font-size;
+    &.dams-reservoir {
+      width: $dams-metric-status-width;
+      
+      > .icon {
+        background: $dam-reservoir-text-color;
+        font-size: $good-status-font-size;
+      }
     }
 
     &.dams-height > .icon {
