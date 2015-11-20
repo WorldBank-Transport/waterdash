@@ -6,6 +6,7 @@ import * as c from '../../utils/colours';
 import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
@@ -22,7 +23,7 @@ const DamsChart = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
-  mixins: [Resize],
+  mixins: [Resize, ShouldRenderMixin],
 
   getInitialState() {
     return {
