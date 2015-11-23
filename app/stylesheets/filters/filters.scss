@@ -9,6 +9,14 @@
   left: 0;
   max-height: 100%;
   overflow-y: auto;
+  padding: $base-unit*2 $base-unit*2 $base-unit*2 $base-unit*3;
   position: absolute;
   right: 0;
+
+  h3 {
+    color: $theme-blue-alt;
+    font-size: $chart-title;
+    font-weight: $static-content-weight;
+    margin-top: 0;
+  }
 }

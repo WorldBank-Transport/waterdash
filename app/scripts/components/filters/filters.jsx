@@ -50,7 +50,7 @@ const Filters = React.createClass({
       Open: () => (
         <div className="filters">
           <div className="filters-title">
-            <h2><T k="filters.title" /></h2>
+            <h3><T k="filters.title" /></h3>
           </div>
           {DataTypes.match(this.props.dataType, {
             Waterpoints: this.renderWaterpoints,
