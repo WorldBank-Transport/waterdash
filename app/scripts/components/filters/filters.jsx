@@ -29,7 +29,7 @@ const Filters = React.createClass({
   renderWaterpoints() {
     return (
       <div>
-        <h4>pop served</h4>
+        <h4><T k="filters.population-served" /></h4>
         <Range
             defaultValue={[0, 10000]}
             max={10000}
