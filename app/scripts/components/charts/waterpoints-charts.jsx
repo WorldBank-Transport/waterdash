@@ -51,19 +51,19 @@ const WaterpointsChart = React.createClass({
           <div className="col-right">
             <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
           </div>
-          <div className="col-right">
+          <div className="col-left population">
             <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
-          <div className="col-left">
-            <WaterpointPieChart data={this.props.data} column='WATER_QUALITY'/>
-
-          </div>
-          <div className="col-left">
-            <WaterpointPieChart data={this.props.data} column='WATER_QUANTITY'/>
-            
-          </div>
-          <div className="col-right">
-            <WaterpointPieChart data={this.props.data} column='SOURCE_TYPE'/>
+          <div className="row-chart">
+            <div className="row-chart-left">
+              <WaterpointPieChart data={this.props.data} column='WATER_QUALITY'/>
+            </div>
+            <div className="row-chart-left">
+              <WaterpointPieChart data={this.props.data} column='WATER_QUANTITY'/>
+            </div>
+            <div className="row-chart-left">
+              <WaterpointPieChart data={this.props.data} column='SOURCE_TYPE'/>
+            </div>
           </div>
         </div>
       </div>);
