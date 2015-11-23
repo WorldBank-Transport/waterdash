@@ -29,7 +29,7 @@ const Filters = React.createClass({
   renderWaterpoints() {
     return (
       <div>
-        <h4>pop served</h4>
+        <h4><T k="filters.population-served" /></h4>
         <Range
             defaultValue={[0, 10000]}
             max={10000}
@@ -50,7 +50,7 @@ const Filters = React.createClass({
       Open: () => (
         <div className="filters">
           <div className="filters-title">
-            <h2><T k="filters.title" /></h2>
+            <h3><T k="filters.title" /></h3>
           </div>
           {DataTypes.match(this.props.dataType, {
             Waterpoints: this.renderWaterpoints,
