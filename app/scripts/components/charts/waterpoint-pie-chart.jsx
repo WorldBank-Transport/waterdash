@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
-import OpenClosed from '../../constants/open-closed';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import {PieChart} from 'react-d3-components';
 import T from '../misc/t';
@@ -9,8 +8,8 @@ require('stylesheets/charts/waterpoint-pie-chart');
 
 const WaterpointPieChart = React.createClass({
   propTypes: {
-    data: PropTypes.array,  // injected
     column: PropTypes.string,
+    data: PropTypes.array,  // injected
   },
 
   mixins: [ShouldRenderMixin],
@@ -28,7 +27,7 @@ const WaterpointPieChart = React.createClass({
     return {
       label: 'Some Label',
       values: values,
-    }
+    };
   },
 
   render() {
@@ -38,7 +37,7 @@ const WaterpointPieChart = React.createClass({
         <PieChart
             data={this.parseData()}
             height={300}
-            margin={{top: 10, bottom: 50, left: 50, right: 10}}              
+            margin={{top: 10, bottom: 50, left: 50, right: 10}}
             width={400}/>
       </div>
     );

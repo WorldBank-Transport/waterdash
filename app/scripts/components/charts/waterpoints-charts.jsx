@@ -37,9 +37,6 @@ const WaterpointsChart = React.createClass({
 
   render() {
     const topProblems = this.getAggregatedValues('HARDWARE_PROBLEM', key => key !== 'NONE' && key !== 'total');
-    const waterQuality = this.getAggregatedValues('WATER_QUALITY', key => key !== 'total');
-    const waterQuantity = this.getAggregatedValues('WATER_QUANTITY', key => key !== 'total');
-    const sourceType = this.getAggregatedValues('SOURCE_TYPE', key => key !== 'total');
     return (
       <div className="container">
         <div className="secondaryCharts">
@@ -56,13 +53,13 @@ const WaterpointsChart = React.createClass({
           </div>
           <div className="row-chart">
             <div className="row-chart-left">
-              <WaterpointPieChart data={this.props.data} column='WATER_QUALITY'/>
+              <WaterpointPieChart column="WATER_QUALITY" data={this.props.data}/>
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart data={this.props.data} column='WATER_QUANTITY'/>
+              <WaterpointPieChart column="WATER_QUANTITY" data={this.props.data}/>
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart data={this.props.data} column='SOURCE_TYPE'/>
+              <WaterpointPieChart column="SOURCE_TYPE" data={this.props.data}/>
             </div>
           </div>
         </div>
