@@ -2,6 +2,7 @@ import pick from 'lodash/object/pick';
 import { Maybe } from 'results';
 import React, { PropTypes } from 'react';
 import { Map } from 'leaflet';
+import Popup from '../../components/dashboard/popup';
 
 import colours, { polygon as polyColour } from '../../utils/colours';
 import DataTypes from '../../constants/data-types';
@@ -17,6 +18,7 @@ const PolygonsMap = React.createClass({
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
     deselect: PropTypes.func,  // injected
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
+    mapDrillDown: PropTypes.func,  // injected
     polygonsData: PropTypes.array,  // injected
     select: PropTypes.func,  // injected
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
@@ -24,19 +26,23 @@ const PolygonsMap = React.createClass({
   },
 
   handleClickFor(feature) {
-    return () => this.props.select(feature.id);
+    return () => this.props.mapDrillDown(feature.id);
   },
 
   handleMouseoutFor(feature) {
     const colour = this.getFeatureColor(feature);
     return e => {
+      this.props.deselect();
       e.target.setStyle(polyColour.normal(colour));
     };
   },
 
-  handleMouseover(e) {
-    e.target.bringToFront();
-    e.target.setStyle(polyColour.hovered);
+  handleMouseover(feature) {
+    return e => {
+      //e.target.bringToFront();
+      e.target.setStyle(polyColour.hovered);
+      this.props.select(feature.id);
+    };
   },
 
   getFeatureColor(feature) {
@@ -58,23 +64,24 @@ const PolygonsMap = React.createClass({
           map={this.props.map}
           onLeafletClick={this.handleClickFor(feature)}
           onLeafletMouseout={this.handleMouseoutFor(feature)}
-          onLeafletMouseover={this.handleMouseover}
+          onLeafletMouseover={this.handleMouseover(feature)}
           {...pathStyle} />
     );
   },
 
-  render() {
+  renderPopup() {
     const propsForPopup = pick(this.props,
-      [ 'data', 'dataType', 'deselect', 'selected', 'viewMode' ]);
-    const popup = this.props.children ?
-      React.cloneElement(this.props.children, propsForPopup) : null;
+      [ 'data', 'dataType', 'deselect', 'selected', 'viewMode']);
+    return (<Popup {...propsForPopup}/>);
+  },
 
+  render() {
     return (
       <div>
         {this.props.polygonsData.map(this.renderFeature)}
 
         {/* popup overlay for polygon */}
-        {popup}
+        {this.renderPopup()}
       </div>
     );
   },

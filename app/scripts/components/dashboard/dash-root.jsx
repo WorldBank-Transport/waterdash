@@ -16,7 +16,7 @@ import ViewStore from '../../stores/view';
 
 // Actions
 import { load } from '../../actions/data';
-import { select, deselect } from '../../actions/select';
+import { select, deselect, mapDrillDown } from '../../actions/select';
 import { setMapBounds } from '../../actions/view';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
 import { clear, setRange, setInclude } from '../../actions/filters';
@@ -123,6 +123,7 @@ const DashRoot = React.createClass({
       polygonsData: this.state.polygonsData,
       selected: this.state.selected,
       deselect,
+      mapDrillDown,
       select,
     });
 
