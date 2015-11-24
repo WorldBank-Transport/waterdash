@@ -72,9 +72,7 @@ React.render((
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
           <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
-        <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView}>
-          <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
-        </Route>
+        <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView} />
       </Route>
 
       <Route component={StaticLayout}>
