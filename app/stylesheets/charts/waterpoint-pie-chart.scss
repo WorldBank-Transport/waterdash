@@ -1,10 +1,47 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .waterpoint-pie-chart {
   text {
     fill: $text-color;
     font-size: 10px;
+  }
+
+  .tooltip {
+    align-items: center;
+    background-color: $bg-color;
+    border: 3px solid $grey-light;
+    height: 50px;
+    justify-content: center;
+    padding: $base-unit/2 $base-unit 0;
+    width: 130px;
+
+    ul {
+      @include list-unstyled();
+      margin-top: -10px;
+
+      li {
+        margin-bottom: $base-unit/2;
+        margin-right: $base-unit;
+        position: absolute;
+
+        .metric-title {
+          color: $theme-blue;
+          font-size: $metric-title-small;
+          font-weight: $title-weight;
+        }
+
+        .waterpoint-tooltip-stat-wrapper {
+          font-size: $medium-number - 5;
+          line-height: $medium-number - 5;
+        }
+
+        .percent-value-wrapper {
+          padding-left: 5px;
+        }
+      }
+    }
   }
 }
