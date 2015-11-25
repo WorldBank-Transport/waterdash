@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { _ } from 'results';  // catch-all for match
 
 import DataTypes from '../../constants/data-types';
 import OpenClosed from  '../../constants/open-closed';
@@ -105,7 +104,6 @@ const Filters = React.createClass({
     return (<MultipleFilters clear={this.props.clear} dataType={this.props.dataType} filterData={damsFilters} setRange={this.props.setRange}/>);
   },
   render() {
-    
     return OpenClosed.match(this.props.openClosed, {
       Open: () => (
         <div className="filters">

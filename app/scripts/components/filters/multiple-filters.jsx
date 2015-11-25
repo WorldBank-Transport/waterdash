@@ -1,10 +1,5 @@
 import React, { PropTypes } from 'react';
-import { _ } from 'results';  // catch-all for match
-
 import DataTypes from '../../constants/data-types';
-import OpenClosed from  '../../constants/open-closed';
-import ViewModes from '../../constants/view-modes';
-
 
 import T from '../misc/t';
 import Range from './range';
@@ -33,7 +28,7 @@ const MultipleFilters = React.createClass({
                   defaultValue={filter.defaultValue}
                   max={filter.max}
                   min={filter.min}
-                  onChange={range => this.props.setRange(key, range)} 
+                  onChange={range => this.props.setRange(key, range)}
                   step={filter.step}/>
             </div>);
     });
