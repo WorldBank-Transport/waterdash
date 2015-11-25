@@ -57,7 +57,7 @@ const SelectedStore = createStore({
   },
 
   deselect() {
-    this.__map_needs_zoom = false;  // eslint-disable-line
+    //this.__map_needs_zoom = false;  // eslint-disable-line
     //this.deselectPolygon();
     // TODO check if this is ok and how to unselect it
     this.setData(None());
@@ -91,7 +91,6 @@ const SelectedStore = createStore({
       },
     });
     if (shouldUpdate) {
-      this.__map_needs_zoom = true;  // eslint-disable-line
       this.setData(Some(id));
       //this.selectPolygon(id);
     }
@@ -136,7 +135,7 @@ const SelectedStore = createStore({
     const featuresWithData = PolygonsDataStore.get();
     const detail = find(featuresWithData, {id: id});
     if (!isUndefined(detail)) {
-      this.maybeZoomToPoly(detail);
+      //this.maybeZoomToPoly(detail);
       return Some(detail);
     } else {
       return None();

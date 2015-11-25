@@ -1,26 +1,22 @@
 @import '../config/colours';
-@import '../config/dimensions';
 @import '../config/pseudo';
+@import '../config/type';
+@import '../config/box';
+@import '../config/dimensions';
 
 .range {
-  $track-height: 10px;
-  $track-width: 200px;
-  $handle-height: 24px;
-  $handle-width: 21px;
-  $handle-radius: 2px;
-  $grabby-height: 11px;
-  $grabby-width: 1px;
-  $grabby-center-off: 2px;
-
   .number {
     display: inline-block;
-    width: 50px;
+    font-size: $medium-number;
+    font-weight: bold;
+    margin: 0;
   }
 
   .slider {
-    background: $grey-light;
+    background: $map-bg;
     display: inline-block;
     height: $track-height;
+    margin: 0 $general-content-padding/2;
     width: $track-width;
 
     .bar-1 {
@@ -42,6 +38,7 @@
         @include pseudo-position();
         background: $theme-blue-light;
         height: $grabby-height;
+        left: 40%;
         margin-top: -$grabby-height / 2;
         top: 50%;
         width: $grabby-width;
@@ -53,7 +50,7 @@
       }
 
       &:after {
-        left: 50%;
+        left: 45%;
         margin-left: $grabby-center-off;
       }
     }
