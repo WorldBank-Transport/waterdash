@@ -21,7 +21,7 @@ import ViewModes from '../constants/view-modes';
 
 import { setMapBounds, zoomToPoint } from '../actions/view';
 import { select, ensureSelect, deselect } from '../actions/select';
-import { setInclude, setExclude } from '../actions/filters';
+import { setExclude } from '../actions/filters';
 
 import DataStore from './data';
 import LoadingDataStore from './loading-data';
