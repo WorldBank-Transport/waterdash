@@ -1,5 +1,6 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
+import 'babel-core/polyfill'
 import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
