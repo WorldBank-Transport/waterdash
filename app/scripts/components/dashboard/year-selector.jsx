@@ -1,23 +1,26 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'reflux';
 import T from '../misc/t';
 import Checkbox from '../misc/checkbox';
-import { setSubcategory, setAllSubcategories} from '../../actions/filters';
+import { selectYear, selectAllYears} from '../../actions/filters';
 import * as func from '../../utils/functional';
 import { Icon } from 'react-font-awesome';
+import OpenClosed from '../../constants/open-closed';
+import YearStore from '../../stores/year';
 
 require('stylesheets/dashboard/year-selector');
 
 const YearSelector = React.createClass({
   propTypes: {
-    data: PropTypes.array.isRequired,
-    field: PropTypes.string.isRequired,
+    parentState: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
 
   mixins: [
+    connect(YearStore, 'years'),
   ],
 
   getInitialState() {
-    return {open: false, all: true, years: {}};
+    return {open: false, all: true};
   },
 
   toggle() {
@@ -28,9 +31,9 @@ const YearSelector = React.createClass({
     this.replaceState(newState);
   },
 
-  select(e, metric, value) {
+  select(e, year) {
     e.preventDefault();
-    setSubcategory(metric, value);
+    selectYear(year);
   },
 
   selectAll(e) {
@@ -39,15 +42,14 @@ const YearSelector = React.createClass({
       ...this.state,
       all: !this.state.all,
     };
-    setAllSubcategories(null, !this.state.all);
+    selectAllYears(!this.state.all);
     this.replaceState(newState);
   },
 
   render() {
-    const years = func.Result.groupBy(this.props.data, this.props.field);
-    const listOfOptions = Object.keys(years).map(key => {
+    const listOfOptions = Object.keys(this.state.years).map(key => {
       const checked = this.state.years[key];
-      return (<li className="year-option" key={key}><Checkbox action={e => this.select(e, this.props.field, key)} checked={checked} label={`charts.years.${key}`} /></li>);
+      return (<li className="year-option" key={key}><Checkbox action={e => this.select(e, key)} checked={checked} label={`charts.years.${key}`} /></li>);
     });
     const [openClass, direction] = [ 'open-up', this.state.open ? 'down' : 'up' ];
     const visibleClass = this.state.open ? 'visible' : 'hidden';
