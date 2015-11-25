@@ -60,7 +60,7 @@ const BoreholesChart = React.createClass({
   toogleMetric(e, metric) {
     const allFalse = Object.keys(this.state.metrics)
           .reduce((agg, m) => {
-            agg[m] = false; 
+            agg[m] = false;
             return agg;
           }, {});
     const newState = {
@@ -76,7 +76,7 @@ const BoreholesChart = React.createClass({
   render() {
     const selected = Object.keys(this.state.metrics).filter(m => this.state.metrics[m])[0];
     const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'REGION', [selected]);
-    if (Object.keys(dataRes).length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length != 1)) {
+    if (Object.keys(dataRes).length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length !== 1)) {
       return false;
     }
     return (

@@ -21,6 +21,6 @@ export default {
   setPopulationServed,
   setSubcategory,
   setAllSubcategories,
-  selectYear, 
+  selectYear,
   selectAllYears,
 };

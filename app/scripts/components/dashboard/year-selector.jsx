@@ -3,7 +3,6 @@ import { connect } from 'reflux';
 import T from '../misc/t';
 import Checkbox from '../misc/checkbox';
 import { selectYear, selectAllYears} from '../../actions/filters';
-import * as func from '../../utils/functional';
 import { Icon } from 'react-font-awesome';
 import OpenClosed from '../../constants/open-closed';
 import YearStore from '../../stores/year';
