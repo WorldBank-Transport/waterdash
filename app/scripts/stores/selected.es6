@@ -29,6 +29,8 @@ import LoadingPolygonsStore from './loading-polygons';
 import PolygonsDataStore from './polygons-with-data';
 import ViewStore from './view';
 
+import history from '../history';
+
 
 /**
  * The data stored is **just** Maybe(selected ID).
@@ -61,6 +63,7 @@ const SelectedStore = createStore({
     //this.deselectPolygon();
     // TODO check if this is ok and how to unselect it
     this.setData(None());
+    this.selectRoute();
   },
 
   deselectPolygon() {
@@ -71,11 +74,15 @@ const SelectedStore = createStore({
     });
   },
 
-  selectPolygon(id) {
+  route(viewMode, dataType, id) {
+    return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${id || ''}`;
+  },
+
+  selectRoute(id) {
     const { dataType, viewMode } = ViewStore.get();
     ViewModes.match(viewMode, {
-      Points: () => null,
-      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => setInclude(locProp, [id])),
+      Points: () => history.pushState(null, this.route(viewMode, dataType, id)),
+      [_]: () => null, //dataType.getLocationProp(viewMode).andThen(locProp => setInclude(locProp, [id])),
     });
   },
 
@@ -92,7 +99,7 @@ const SelectedStore = createStore({
     });
     if (shouldUpdate) {
       this.setData(Some(id));
-      //this.selectPolygon(id);
+      this.selectRoute(id);
     }
   },
 
@@ -118,8 +125,8 @@ const SelectedStore = createStore({
   },
 
   getPointDetail(id) {
-    const pointsData = DataStore.get();
     const { dataType } = ViewStore.get();
+    const pointsData = DataStore.get()[dataType.toParam()];
     const idField = dataType.getIdColumn();
     const q = {[idField]: id};
     const detail = find(pointsData, q);
