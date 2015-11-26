@@ -45,13 +45,13 @@ const Popup = React.createClass({
 
   renderPolygonsPopup(details) {
     return Maybe.match(details.properties.data, {
-            None: () => this.renderNotFound(details.id),
-            Some: data => DataTypes.match(this.props.dataType, {
-              Waterpoints: () => (<WaterpointPolygonPopup data={data} viewMode={this.props.viewMode}/>),
-              Boreholes: () => (<BoreholePolygonPopup data={data} viewMode={this.props.viewMode}/>),
-              Dams: () => (<DamPolygonPopup data={data} viewMode={this.props.viewMode}/>),
-            }),
-          });
+      None: () => this.renderNotFound(details.id),
+      Some: data => DataTypes.match(this.props.dataType, {
+        Waterpoints: () => (<WaterpointPolygonPopup data={data} viewMode={this.props.viewMode}/>),
+        Boreholes: () => (<BoreholePolygonPopup data={data} viewMode={this.props.viewMode}/>),
+        Dams: () => (<DamPolygonPopup data={data} viewMode={this.props.viewMode}/>),
+      }),
+    });
   },
 
   render() {

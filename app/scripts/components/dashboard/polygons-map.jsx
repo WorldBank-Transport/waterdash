@@ -32,7 +32,7 @@ const PolygonsMap = React.createClass({
   handleMouseoutFor(feature) {
     const colour = this.getFeatureColor(feature);
     return e => {
-      //this.props.deselect();
+      this.props.deselect();
       e.target.setStyle(polyColour.normal(colour));
     };
   },

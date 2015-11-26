@@ -11,7 +11,7 @@ const BoreholePolygonPopup = React.createClass({
 
   propTypes: {
     data: PropTypes.object.require,
-    viewMode: PropTypes.instanceOf(ViewModes.OptionClass)
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
 
   metricSummary() {
