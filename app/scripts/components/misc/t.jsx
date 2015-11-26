@@ -30,6 +30,16 @@ const allTranslations = {
 
     'filters.title': 'Dashboard Filters',
     'filters.population-served': 'Population Served',
+    'filters.DIAMETER': 'Diameter',
+    'filters.DEPTH_METER': 'Depth',
+    'filters.STATIC_WATER_LEVEL': 'Static Level',
+    'filters.DYNAMIC_WATER_LEVEL_METER': 'Dynamic Level',
+    'filters.DRAW _DOWN_METER': 'Draw Down',
+    'filters.YIELD_METER_CUBED_PER_HOUR': 'Yield Cubed per Hour',
+    'filters.DAM_HEIGHT': 'Height',
+    'filters.ELEVATION_': 'Elevation',
+    'filters.RESERVOIR_': 'Reservoir',
+
     'filters.population-served.unit': 'Number of people',
     'filters.filter-two': 'Filter Two',
     'filters.filter-three': 'Filter Three',
