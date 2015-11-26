@@ -6,6 +6,11 @@ import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import TSetChildProps from '../misc/t-set-child-props';
 import WaterpointPopup from './waterpoint-popup';
+import WaterpointPolygonPopup from './waterpoint-polygon-popup';
+import DamPopup from './dam-popup';
+import DamPolygonPopup from './dam-polygon-popup';
+import BoreholePolygonPopup from './borehole-polygon-popup';
+
 
 require('stylesheets/dashboard/popup');
 
@@ -34,21 +39,19 @@ const Popup = React.createClass({
     return DataTypes.match(this.props.dataType, {
       Waterpoints: () => (<WaterpointPopup waterpoint={details}/>),
       Boreholes: () => (<h3>There should not be a point of borehole!!</h3>),
-      Dams: () => (<div>
-                     <h3>I'm a points popup type: {this.props.dataType}!</h3>
-                     <p>{JSON.stringify(details)}</p>
-                   </div>),
+      Dams: () => (<DamPopup dam={details}/>),
     });
   },
 
   renderPolygonsPopup(details) {
-    // TODO: move this to a new component base on the types
-    return (
-      <div>
-        <h3>I'm a polygons popup!</h3>
-        <p>{JSON.stringify(details)}</p>
-      </div>
-    );
+    return Maybe.match(details.properties.data, {
+            None: () => this.renderNotFound(details.id),
+            Some: data => DataTypes.match(this.props.dataType, {
+              Waterpoints: () => (<WaterpointPolygonPopup data={data} viewMode={this.props.viewMode}/>),
+              Boreholes: () => (<BoreholePolygonPopup data={data} viewMode={this.props.viewMode}/>),
+              Dams: () => (<DamPolygonPopup data={data} viewMode={this.props.viewMode}/>),
+            }),
+          });
   },
 
   render() {
