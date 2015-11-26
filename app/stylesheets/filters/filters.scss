@@ -25,4 +25,13 @@
   h4 {
     margin: $base-unit 0;
   }
+
+  .filterContainter {
+    display: table-cell;
+
+    .filter {
+      float: left;
+      padding-right: 10px;
+    }
+  }
 }
