@@ -1,5 +1,6 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
+import 'babel-core/polyfill';
 import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
@@ -72,9 +73,7 @@ React.render((
         <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
           <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
-        <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView}>
-          <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
-        </Route>
+        <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView} />
       </Route>
 
       <Route component={StaticLayout}>

@@ -3,6 +3,7 @@ import * as func from '../../utils/functional';
 import MetricStatus from './metric-status';
 import CategoryFilter from '../dashboard/category-filter';
 import OpenClosed from '../../constants/open-closed';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 
 require('stylesheets/charts/waterpoint-overview-bar');
 
@@ -11,6 +12,8 @@ const WaterpointsOverviewBar = React.createClass({
     data: PropTypes.array,  // injected
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
+
+  mixins: [ShouldRenderMixin],
 
   render() {
     const data = func.Result.countBy(this.props.data, 'STATUS');

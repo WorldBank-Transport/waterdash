@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'reflux';
 import {LineChart} from 'react-d3-components';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
@@ -6,6 +7,8 @@ import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import * as c from '../../utils/colours';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
+import YearStore from '../../stores/year';
 
 require('stylesheets/charts/boreholes-stats-chart');
 
@@ -16,6 +19,8 @@ const BoreholesStatsChart = React.createClass({
 
   mixins: [
     Resize,
+    ShouldRenderMixin,
+    connect(YearStore, 'years'),
   ],
 
   getInitialState() {
@@ -71,9 +76,9 @@ const BoreholesStatsChart = React.createClass({
 
   render() {
     const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', this.getActiveMetrics());
-    const colorScale = (x) => {
-      return c.Color.getBoreholesColor(x);
-    };
+    if (Object.keys(dataRes).length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length < 2)) {
+      return false;
+    }
     return (
       <div className="boreholes-stats-chart">
         <h3 className="chart-title"><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
@@ -81,7 +86,7 @@ const BoreholesStatsChart = React.createClass({
         <div className="chart-container ">
           <TSetChildProps>
             <LineChart
-                colorScale={colorScale}
+                colorScale={c.Color.getBoreholesColor}
                 data={this.parseData(dataRes)}
                 height={300}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}

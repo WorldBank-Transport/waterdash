@@ -1,0 +1,10 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+.waterpoint-pie-chart {
+  text {
+    fill: $text-color;
+    font-size: 10px;
+  }
+}

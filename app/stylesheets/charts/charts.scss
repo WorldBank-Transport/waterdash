@@ -32,6 +32,10 @@
   .col-left {
     float: left;
     width: $main-chart-width;
+
+    &.population {
+      padding-top: $chart-container-padding/2;  
+    }
   }
   .dams-col-left {
     float: left;
@@ -40,6 +44,14 @@
   .col-right {
     float: right;
     width: $sec-chart-width;
+  }
+  .row-chart {
+    display: table-cell;
+    padding-top: $chart-container-padding/2;
+    .row-chart-left {
+      float: left;
+      width: $pie-chart-width;
+    }
   }
 }
 

@@ -21,13 +21,15 @@ import ViewModes from '../constants/view-modes';
 
 import { setMapBounds, zoomToPoint } from '../actions/view';
 import { select, ensureSelect, deselect } from '../actions/select';
-import { setInclude, setExclude } from '../actions/filters';
+import { setExclude } from '../actions/filters';
 
 import DataStore from './data';
 import LoadingDataStore from './loading-data';
 import LoadingPolygonsStore from './loading-polygons';
 import PolygonsDataStore from './polygons-with-data';
 import ViewStore from './view';
+
+import history from '../history';
 
 
 /**
@@ -57,10 +59,11 @@ const SelectedStore = createStore({
   },
 
   deselect() {
-    this.__map_needs_zoom = false;  // eslint-disable-line
+    //this.__map_needs_zoom = false;  // eslint-disable-line
     //this.deselectPolygon();
     // TODO check if this is ok and how to unselect it
     this.setData(None());
+    this.selectRoute();
   },
 
   deselectPolygon() {
@@ -71,11 +74,15 @@ const SelectedStore = createStore({
     });
   },
 
-  selectPolygon(id) {
+  route(viewMode, dataType, id) {
+    return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${id || ''}`;
+  },
+
+  selectRoute(id) {
     const { dataType, viewMode } = ViewStore.get();
     ViewModes.match(viewMode, {
-      Points: () => null,
-      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => setInclude(locProp, [id])),
+      Points: () => history.pushState(null, this.route(viewMode, dataType, id)),
+      [_]: () => null, //dataType.getLocationProp(viewMode).andThen(locProp => setInclude(locProp, [id])),
     });
   },
 
@@ -91,9 +98,8 @@ const SelectedStore = createStore({
       },
     });
     if (shouldUpdate) {
-      this.__map_needs_zoom = true;  // eslint-disable-line
       this.setData(Some(id));
-      //this.selectPolygon(id);
+      this.selectRoute(id);
     }
   },
 
@@ -119,8 +125,8 @@ const SelectedStore = createStore({
   },
 
   getPointDetail(id) {
-    const pointsData = DataStore.get();
     const { dataType } = ViewStore.get();
+    const pointsData = DataStore.get()[dataType.toParam()];
     const idField = dataType.getIdColumn();
     const q = {[idField]: id};
     const detail = find(pointsData, q);
@@ -136,7 +142,7 @@ const SelectedStore = createStore({
     const featuresWithData = PolygonsDataStore.get();
     const detail = find(featuresWithData, {id: id});
     if (!isUndefined(detail)) {
-      this.maybeZoomToPoly(detail);
+      //this.maybeZoomToPoly(detail);
       return Some(detail);
     } else {
       return None();

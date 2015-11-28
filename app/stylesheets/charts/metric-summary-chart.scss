@@ -6,6 +6,10 @@
 .metric-summary {
   padding-left: $general-content-padding;
 
+  .padding {
+    padding-right: 5px;
+  }
+
   h3.chart-title {
     font-weight: $title-weight;
   }

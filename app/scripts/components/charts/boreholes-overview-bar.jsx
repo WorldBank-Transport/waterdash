@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import YearSelector from '../dashboard/year-selector';
 import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 
 require('stylesheets/charts/borehole-overview-bar');
 
@@ -10,6 +11,8 @@ const BoreholeOverviewBar = React.createClass({
     data: PropTypes.array,  // injected
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
+
+  mixins: [ShouldRenderMixin],
 
   renderBoreholesNumber() {
     return (

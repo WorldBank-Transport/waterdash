@@ -6,6 +6,7 @@ import * as c from '../../utils/colours';
 import T from '../misc/t';
 import WaterpointstatusOptions from './waterpoint-status-options';
 import Resize from '../../utils/resize-mixin';
+import ShouldRenderMixin from '../../utils/should-render-mixin';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
@@ -22,7 +23,7 @@ const DamsChart = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
-  mixins: [Resize],
+  mixins: [Resize, ShouldRenderMixin],
 
   getInitialState() {
     return {
@@ -107,6 +108,9 @@ const DamsChart = React.createClass({
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
+    }
+    if (this.props.data.length === 0 || !this.props.data[0].hasOwnProperty('DAM_NAME')) {
+      return false;
     }
     const dataRes = func.Result.sumByGroupBy(this.props.data, 'REGION', Object.keys(this.state.metrics));
     return (
