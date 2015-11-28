@@ -2,7 +2,7 @@
 
 .popup {
   background: $background-map-overlay;
-  border: 1px solid $grey-light-detail;
+  border: 2px solid $grey-light;
   bottom: 10%;  // TODO
   box-shadow: $shadow;
   left: 60%;  // TODO
@@ -13,20 +13,23 @@
   z-index: 1;  // needs to be specified >=1 to go above the map
 
   .close-button {
-    border: 1px solid $grey-light-detail;
+    background: $grey-light;
     color: $theme-blue;
     display: inline-block;
     font-weight: bold;
-    height: 1.5em;
-    line-height: 1.5em;
+    height: 1.3em;
+    line-height: 1.3em;
     position: absolute;
     right: 1em;
     text-align: center;
     top: 1em;
-    width: 1.5em;
+    width: 1.3em;
+    font-size: 15px;
 
     &:hover {
       cursor: pointer;
+      background: $grey-medium;
+      color: #ffffff;
     }
   }
 

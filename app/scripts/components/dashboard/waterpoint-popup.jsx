@@ -28,7 +28,7 @@ const WaterpointPopup = React.createClass({
     const [className, iconSymbol] = this.getIcon();
     return (
       <div className="waterpoint-popup">
-        <div className="row header">
+        <div className="popup-header">
           <div className={`waterpoint-icon ${className}`}>
             <div className="icon">
               {iconSymbol}

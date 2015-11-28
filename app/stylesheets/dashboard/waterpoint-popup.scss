@@ -1,8 +1,10 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .waterpoint-popup {
+  cursor: default;
   margin: 0;
   padding: 0 $base-unit;
 
@@ -15,6 +17,8 @@
 
     & > div {
       display: table-cell;
+      padding-right: $general-content-padding/2;
+
     }
     & > h3 {
       display: table-cell;
@@ -47,25 +51,56 @@
     }
   }
 
+
+
+  .header {
+    border-bottom: 1px solid $grey-light-detail;
+    height: 50px;
+  }
+  h3.main-header {
+    color: $theme-blue;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+}
+
+.waterpoint-icon {
+  width: $popup-icon-width;
+}
+
+.popup-header {
+  @include bottom-stat-border(3px, $grey-light);
+  margin-bottom:12px;
+  overflow: hidden;
+  padding-bottom: 12px;
+
+  h3 {
+    float: left;
+    margin-right: 12px;
+    padding-top: 12px;
+  }
+
   .secondary-text {
-    color: $grey-medium;
+    color: $text-color;
+    float: left;
     font-weight: $title-weight;
-    padding-right: 20px;
     text-align: right;
-    width: 45%;
   }
 
   .icon {
     border-radius: $metric-icon-size;
-    color: $grey-light;
-    display: table-cell;
-    font-size: $metric-icon-size * 0.9;
+    color: $text-inverse;
+    float: left;
+    font-size: $metric-icon-size * 0.6;
     font-weight: bold;
     height: $metric-icon-size;
     line-height: $metric-icon-size;
+    margin-right: 15px;
     text-align: center;
     width: $metric-icon-size;
-    border: 1px solid #333;
+
   }
 
   .good > .icon {
@@ -78,17 +113,7 @@
 
   .poor > .icon {
     background: $status-poor;
+    font-size: $metric-icon-size * 0.9;
+    line-height: 32px;
   }
-
-  .header {
-    border-bottom: 1px solid $grey-light-detail;
-    height: 50px;
-  }
-  .main-header {
-    color: $theme-blue;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
 }
