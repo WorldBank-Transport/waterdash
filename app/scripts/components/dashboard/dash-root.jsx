@@ -37,7 +37,7 @@ import { TileLayer } from 'react-leaflet';
 import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
-import DrillDownViewer from './drill-down-viewer'
+import DrillDownViewer from './drill-down-viewer';
 // below map
 import ViewMode from '../boilerplate/view-mode';
 import OverviewBar from '../charts/overview-bar';

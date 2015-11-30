@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import T from '../misc/t';
-import { disableDrillDown } from '../../actions/select';
+import { disableDrillDown } from '..././actions/select';
 
 require('stylesheets/dashboard/drill-down-viewer');
 
@@ -11,8 +11,8 @@ require('stylesheets/dashboard/drill-down-viewer');
 const DrillDownViewer = React.createClass({
   propTypes: {
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
-    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
     drillDown: PropTypes.object.isRequired,
+    viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
   renderDrillDownViewer() {
@@ -27,7 +27,7 @@ const DrillDownViewer = React.createClass({
   },
 
   render() {
-    if(this.props.drillDown.enable) {
+    if (this.props.drillDown.enable) {
       return this.renderDrillDownViewer();
     } else {
       return (<div style={{display: 'none'}}></div>);

@@ -61,8 +61,8 @@ chartDrilldown.listen(id => {
   });
 });
 
-disableDrillDown.listen(id => {
-  const { viewMode, dataType } = ViewStore.get();
+disableDrillDown.listen(() => {
+  const { dataType } = ViewStore.get();
   setExclude('REGION', []);
   setExclude('DISTRICT', []);
   setExclude('WARD', []);
