@@ -252,7 +252,6 @@ const allTranslations = {
     'loading.districts': 'Loading districts...',
     'loading.wards': 'Loading wards...',
     'loading.points': 'If you see this message, there is likely an error in the application.',
-
     'popup.waterpoint.code': 'Code #',
     'popup.waterpoint.source-type': 'Water point Source Type',
     'popup.waterpoint.population-served': 'Population Served',
@@ -298,7 +297,7 @@ const allTranslations = {
     'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
     'error.api.postprocess': 'An error occurred while the application was processing data',
     'error.api.static.postprocess': 'An error occurred while the application was procesing boundary data',
-    },
+  },
   'sw-tz': {
     'site-name': 'Water Dashboard',
     'site.flag': 'Flag of Tanzania',
@@ -555,7 +554,7 @@ const allTranslations = {
     'error.api.ckan.record-missing-field': i => `A record from the CKAN data server was missing the field '${i[0]}'`,
     'error.api.postprocess': 'An error occurred while the application was processing data',
     'error.api.static.postprocess': 'An error occurred while the application was processing boundary data',
-    },
+  },
 };
 
 
