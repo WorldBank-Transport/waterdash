@@ -288,6 +288,12 @@ const allTranslations = {
     'popup.dams-poly.quantity': 'Number of Dams',
     'popup.dams-poly.basin': 'Top Basin',
 
+    'drilldown.regions': 'Region',
+    'drilldown.districts': 'District',
+    'drilldown.wards': 'Ward',
+    'drilldown.points': 'Point',
+    'drilldown.back': 'Back To National',
+
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
     'error.api.pre-request': 'An error occurred when the application was preparing to fetch data',
