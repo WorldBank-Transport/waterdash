@@ -44,7 +44,7 @@ const DataTypes = Union({
     return DataTypes.match(this, {
       Waterpoints: () => 'WATER_POINT_CODE',
       Boreholes: () => '_id',  // TODO: _id is generated from ckan. need a stable, unique id for all boreholes.
-      Dams: () => '_id',  // TODO: _id is generated from ckan. need a stable, unique id for all dams.
+      Dams: () => 'POINT_ID',
     });
   },
   toParam() {
