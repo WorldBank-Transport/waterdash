@@ -63,7 +63,7 @@ const WaterpointPopup = React.createClass({
           </div>
         </div>
 
-        <div className="row">
+        <div className="row bordered">
           <div className="popup-col">
             <h3><T k="popup.waterpoint.quantity" /></h3>
             <span className="big-number">{this.props.waterpoint.WATER_QUANTITY}</span>

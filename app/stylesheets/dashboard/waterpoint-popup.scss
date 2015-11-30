@@ -15,6 +15,12 @@
     table-layout: fixed;
     width: 100%;
 
+    &.bordered {
+      @include bottom-stat-border(3px, $grey-light);
+      padding-bottom: $popup-space;
+      margin-bottom: $popup-space;
+    }
+
     .popup-col {
       float: left;
       width: 50%;
@@ -47,6 +53,7 @@
       .big-number {
         float: left;
         font-size: $popup-population-number;
+        font-weight: $title-weight;
         margin-right: $popup-space;
       }
     }
@@ -56,10 +63,6 @@
   .waterpoint-icon {
     width: $popup-icon-width;
   }
-
-
-
-
 
   .popup-header {
     @include bottom-stat-border(3px, $grey-light);

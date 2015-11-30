@@ -6,29 +6,28 @@
   border: 2px solid $grey-light;
   bottom: 10%;  // TODO
   box-shadow: $shadow;
+  height: $popup-width + 40;
   left: 60%;  // TODO
-  padding: 1em;  // TODO
+  overflow: hidden;
+  padding: $base-unit;  // TODO
   position: absolute;  // TODO
   right: 15%;  // TODO
   top: 10%;  // TODO
+  width: $popup-width;
   z-index: 1;  // needs to be specified >=1 to go above the map
-  overflow:hidden;
-  height:420px;
-  width:410px;
 
   .close-button {
     background: $grey-light;
-	  color: $theme-blue;
-	  display: inline-block;
-	  font-size: 15px;
-	  font-weight: bold;
-	  height: 1.3em;
-	  line-height: 1.3em;
+    color: $theme-blue;
+    display: inline-block;
+    font-weight: bold;
+    height: $base-unit + 0.3;
+    line-height: $base-unit + 0.2;
     position: absolute;
-    right: 1em;
-	  text-align: center;
-	  top: 1em;
-	  width: 1.3em;
+    right: $base-unit;
+    text-align: center;
+    top: $base-unit;
+    width: $base-unit + 0.3;
 
     &:hover {
       background: $grey-medium;
