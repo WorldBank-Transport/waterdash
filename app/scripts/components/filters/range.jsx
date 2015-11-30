@@ -9,6 +9,7 @@ const Range = React.createClass({
     max: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
+    step: PropTypes.number,
   },
   getInitialState() {
     const [ low, high ] = this.props.defaultValue;
@@ -30,6 +31,7 @@ const Range = React.createClass({
             max={this.props.max}
             min={this.props.min}
             onChange={this.change}
+            step={this.props.step}
             withBars={true} />
         <span className="number high">{this.state.high}</span>
       </div>

@@ -8,6 +8,8 @@ const setExclude = createAction();
 const setPopulationServed = createAction();
 const setSubcategory = createAction();
 const setAllSubcategories = createAction();
+const selectYear = createAction();
+const selectAllYears = createAction();
 
 
 export default {
@@ -19,4 +21,6 @@ export default {
   setPopulationServed,
   setSubcategory,
   setAllSubcategories,
+  selectYear,
+  selectAllYears,
 };
