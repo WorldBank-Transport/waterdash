@@ -17,45 +17,9 @@
 
     &.bordered {
       @include bottom-stat-border(3px, $grey-light);
-      padding-bottom: $popup-space;
       margin-bottom: $popup-space;
+      padding-bottom: $popup-space;
     }
-
-    .popup-col {
-      float: left;
-      width: 50%;
-    }
-    .left {
-      float: left;
-    }
-
-<<<<<<< HEAD
-    p {
-      font-size: $popup-default-text;
-      margin: 0;
-=======
-    .big-number {
-      color: $text-color;
-      font-size: $big-number;
-      font-weight: bold;
-      line-height: 1em;
->>>>>>> master
-
-      &.source-label {
-        color: $grey-deep;
-        font-size: $popup-source-label;
-      }
-    }
-
-    .highlight {
-      font-weight: $title-weight;
-      text-transform: uppercase;
-    }
-
-    .popup-stat-container {
-      margin-top: 0;
-    }
-
 
     &.population-ratio {
       h3 {
@@ -68,35 +32,36 @@
         margin-right: $popup-space;
       }
     }
-<<<<<<< HEAD
-    // population ratio ends
-=======
 
-    .metric-status {
-      .content {
-        display: block;
-        float: left;
-        padding-left: $base-unit / 2;
-
-        .big-number {
-          color: $theme-blue;
-          font-size: $tab-text;
-          line-height: $base-unit;
-
-          & > .number {
-            font-weight: bold;
-          }
-        }
-
-        .context {
-          color: $text-color;
-          font-size: $small-text;
-          font-weight: bold;
-        }
-      }
+    .popup-col {
+      float: left;
+      width: 50%;
     }
->>>>>>> master
+    .left {
+      float: left;
+    }
+
+    p {
+      font-size: $popup-default-text;
+      margin: 0;
+
+      &.source-label {
+        color: $grey-deep;
+        font-size: $popup-source-label;
+     }
+
+      .highlight {
+       font-weight: $title-weight;
+        text-transform: uppercase;
+     }
+    }
+    // p ends
   }
+  // row ends
+
+  .popup-stat-container {
+    margin-top: 0;
+   }
 
   .waterpoint-icon {
     width: $popup-icon-width;
@@ -139,26 +104,16 @@
     .good > .icon {
       background: $status-good;
     }
-
     .medium > .icon {
       background: $status-medium;
     }
-
     .poor > .icon {
       background: $status-poor;
       font-size: $metric-icon-size * 0.9;
       line-height: $popup-icon-line-height;
     }
   }
+  // popup header end
 
-  .population {
-    background-image: url("/images/waterdash-sprite.png");
-    border: 1px dotted #f00;
-    display: block;
-    float: left;
-    height: $popup-population-height;
-    margin-top: $popup-space+3;
-    width: $popup-population-width;
-  }
 
 }
