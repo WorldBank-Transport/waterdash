@@ -25,12 +25,17 @@
       h3 {
         display: block;
       }
-      .big-number {
-        float: left;
-        font-size: $popup-population-number;
-        font-weight: $title-weight;
-        margin-right: $popup-space;
+
+      .popup-stat-container {
+        .big-number {
+          display: block;
+          float: left;
+          font-size: $popup-population-number;
+          font-weight: $title-weight;
+          margin-right: $popup-space;
+        }
       }
+
     }
 
     .popup-col {
@@ -58,10 +63,6 @@
     // p ends
   }
   // row ends
-
-  .popup-stat-container {
-    margin-top: 0;
-   }
 
   .waterpoint-icon {
     width: $popup-icon-width;
@@ -115,5 +116,34 @@
   }
   // popup header end
 
+  .popup-stat {
+    font-size: $popup-default-text;
+    font-weight: $title-weight;
+  }
+
+  .stat-symbol {
+    float: left;
+
+    img {
+      width: 100%;
+    }
+
+    &.population-big {
+      margin-top: 17px;
+      width: $popup-population-width;
+    }
+
+    &.population-small {
+      margin-right: $popup-space/2;
+      width: $popup-small-icon;
+    }
+  }
+
+  .fa {
+    color: $theme-blue;
+    display: inline;
+    font-size: $popup-default-text;
+    margin-right: $popup-space/2;
+  }
 
 }
