@@ -1,4 +1,5 @@
 @import '../config/colours';
+@import '../config/dimensions';
 
 .popup {
   background: $background-map-overlay;
@@ -11,29 +12,36 @@
   right: 15%;  // TODO
   top: 10%;  // TODO
   z-index: 1;  // needs to be specified >=1 to go above the map
+  overflow:hidden;
+  height:420px;
+  width:410px;
 
   .close-button {
     background: $grey-light;
-    color: $theme-blue;
-    display: inline-block;
-    font-weight: bold;
-    height: 1.3em;
-    line-height: 1.3em;
+	  color: $theme-blue;
+	  display: inline-block;
+	  font-size: 15px;
+	  font-weight: bold;
+	  height: 1.3em;
+	  line-height: 1.3em;
     position: absolute;
     right: 1em;
-    text-align: center;
-    top: 1em;
-    width: 1.3em;
-    font-size: 15px;
+	  text-align: center;
+	  top: 1em;
+	  width: 1.3em;
 
     &:hover {
-      cursor: pointer;
       background: $grey-medium;
-      color: #ffffff;
+      color: $text-inverse;
+      cursor: pointer;
     }
   }
 
   h3 {
-    margin-top: 0;
+    color: $theme-blue;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 0;
+    text-transform: uppercase;
   }
 }

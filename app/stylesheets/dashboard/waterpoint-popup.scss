@@ -11,57 +11,51 @@
   .row {
     box-sizing: border-box;
     display: table;
-    padding: 0.5em 0;
+    padding: 0.3em 0;
     table-layout: fixed;
     width: 100%;
 
-    & > div {
-      display: table-cell;
-      padding-right: $general-content-padding/2;
-
-    }
-    & > h3 {
-      display: table-cell;
-      margin-bottom: 0;
-    }
-    & > p {
-      display: table-cell;
+    .popup-col {
+      float: left;
+      width: 50%;
     }
 
-    .big-number {
-      color: $text-color;
-      font-size: 17px;
-      font-weight: bold;
+    p {
+      font-size: 14px;
+      margin: 0;
 
-      & > .number {
-        font-weight: $title-weight;
+      &.source-label {
+        color: $grey-deep;
+        font-size: 16px;
       }
     }
-    .second-header {
-      color: $text-color;
-      font-size: $popup-label-text;
+
+    .highlight {
       font-weight: $title-weight;
       text-transform: uppercase;
     }
-    .location-text {
-      color: $theme-blue;
-      font-size: 16px;
-      font-weight: $title-weight;
 
+    .popup-stat-container {
+      margin-top: 0;
     }
+
+    &.population-ratio {
+      h3 {
+        display: block;
+      }
+      .big-number {
+        float: left;
+        font-size: 50px;
+        margin-right: 20px;
+      }
+    }
+    // population ratio ends
+
   }
-
-
 
   .header {
     border-bottom: 1px solid $grey-light-detail;
-    height: 50px;
-  }
-  h3.main-header {
-    color: $theme-blue;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
+    height: 40px;
   }
 
 }
@@ -72,13 +66,13 @@
 
 .popup-header {
   @include bottom-stat-border(3px, $grey-light);
-  margin-bottom:12px;
+  margin-bottom: 7px;
   overflow: hidden;
-  padding-bottom: 12px;
+  padding-bottom: 7px;
 
   h3 {
     float: left;
-    margin-right: 12px;
+    font-size: 14px;
     padding-top: 12px;
   }
 
@@ -86,7 +80,9 @@
     color: $text-color;
     float: left;
     font-weight: $title-weight;
+    margin-left: 12px;
     text-align: right;
+    padding-top: 2px;
   }
 
   .icon {
@@ -116,4 +112,14 @@
     font-size: $metric-icon-size * 0.9;
     line-height: 32px;
   }
+}
+
+.population {
+  background-image: url(/images/waterdash-sprite.png);
+  border: 1px dotted #f00;
+  display: block;
+  float: left;
+  height: 44px;
+  margin-top: 15px;
+  width: 36px;
 }
