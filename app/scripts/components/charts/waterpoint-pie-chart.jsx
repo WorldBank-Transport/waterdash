@@ -19,8 +19,7 @@ const WaterpointPieChart = React.createClass({
     return {};
   },
 
-  parseData() {
-    const data = func.Result.countBy(this.props.data, this.props.column);
+  parseData(data) {
     const values = Object.keys(data)
                     .filter(key => key !== 'total')
                     .map(key => {
@@ -35,9 +34,10 @@ const WaterpointPieChart = React.createClass({
     };
   },
 
-  renderTooltip(x, y) {
+  renderTooltip(x, y, data) {
+    const perc = (y / data.total * 100).toFixed(2);
     return (<div>
-              <h3 className="chart-title">{{x}}: {{y}}</h3>
+              <h3 className="chart-title">{x}: {y} - {perc} %</h3>
             </div>);
   },
 
@@ -46,15 +46,16 @@ const WaterpointPieChart = React.createClass({
       return (<div>empty</div>);
     }
     const sort = () => 1;
+    const data = func.Result.countBy(this.props.data, this.props.column);
     return (
       <div className="waterpoint-pie-chart">
         <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
         <PieChart
-            data={this.parseData()}
+            data={this.parseData(data)}
             height={this.state.size.width * 0.20}
-            margin={{top: 5, bottom: 5, left: 100, right: 100}}
+            margin={{top: 0, bottom: 5, left: 80, right: 80}}
             sort={sort}
-            tooltipHtml={this.renderTooltip}
+            tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
             tooltipMode="mouse"
             tooltipOffset={{top: -100, left: 0}}
             width={this.state.size.width * 0.30}/>
