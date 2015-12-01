@@ -1,126 +1,153 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .waterpoint-popup {
-  $icon-size: 30px;
-
-  display: table-cell;
+  cursor: default;
   margin: 0;
   padding: 0 $base-unit;
-  vertical-align: top;
 
   .row {
     box-sizing: border-box;
     display: table;
-    padding: 1em 0;
+    padding: $base-unit/3 0;
     table-layout: fixed;
     width: 100%;
 
-    & > div {
-      display: table-cell;
+    &.bordered {
+      @include bottom-stat-border(3px, $grey-light);
+      margin-bottom: $popup-space;
+      padding-bottom: $popup-space;
     }
-    & > h3 {
-      display: table-cell;
-      margin-bottom: 0;
+
+    &.population-ratio {
+      h3 {
+        display: block;
+        &.left {
+          float: left;
+        }
+      }
+
+      .popup-stat-container {
+        .big-number {
+          display: block;
+          float: left;
+          font-size: $popup-population-number;
+          font-weight: $title-weight;
+          margin-right: $popup-space;
+        }
+      }
+
     }
-    & > p {
-      display: table-cell;
+
+    .popup-col {
+      float: left;
+      width: 50%;
     }
     .left {
       float: left;
     }
 
-    .big-number {
-      color: $text-color;
-      font-size: $big-number;
-      font-weight: bold;
-      line-height: 1em;
+    p {
+      font-size: $popup-default-text;
+      margin: 0;
 
-      & > .number {
-        font-weight: bold;
-      }
+      &.source-label {
+        color: $grey-deep;
+        font-size: $popup-source-label;
+     }
+
+      .highlight {
+       font-weight: $title-weight;
+        text-transform: uppercase;
+     }
     }
-    .second-header {
-      color: $text-color;
-      font-size: 12px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .location-text {
-      color: $theme-blue;
-      font-size: $tab-text;
-      font-weight: bold;
-      line-height: 1em;
-    }
-
-    .metric-status {
-      .content {
-        display: block;
-        float: left;
-        padding-left: $base-unit / 2;
-
-        .big-number {
-          color: $theme-blue;
-          font-size: $tab-text;
-          line-height: $base-unit;
-
-          & > .number {
-            font-weight: bold;
-          }
-        }
-
-        .context {
-          color: $text-color;
-          font-size: $small-text;
-          font-weight: bold;
-        }
-      }
-    }
+    // p ends
   }
+  // row ends
 
   .waterpoint-icon {
-    width: 15%;
-  }
-  .secondary-text {
-    vertical-align: top;
-    width: 25%;
+    width: $popup-icon-width;
   }
 
-  .icon {
-    border-radius: $icon-size;
-    color: $grey-light;
-    display: table-cell;
-    font-size: $icon-size * 0.9;
-    font-weight: bold;
-    height: $icon-size;
-    line-height: $icon-size;
-    text-align: center;
-    vertical-align: middle;
-    width: $icon-size;
+  .popup-header {
+    @include bottom-stat-border(3px, $grey-light);
+    margin-bottom: $popup-space / 2;
+    overflow: hidden;
+    padding-bottom: $popup-space / 2;
+
+    h3 {
+      float: left;
+      font-size: $popup-default-text;
+      padding-top: $popup-space;
+    }
+
+    .secondary-text {
+      color: $text-color;
+      float: left;
+      font-weight: $title-weight;
+      margin-left: $popup-space;
+      padding-top: $popup-sec-text-position;
+      text-align: right;
+    }
+
+    .icon {
+      border-radius: $metric-icon-size;
+      color: $text-inverse;
+      float: left;
+      font-size: $metric-icon-size * 0.6;
+      font-weight: bold;
+      height: $metric-icon-size;
+      line-height: $metric-icon-size;
+      margin-right: $popup-space + 3;
+      text-align: center;
+      width: $metric-icon-size;
+    }
+
+    .good > .icon {
+      background: $status-good;
+    }
+    .medium > .icon {
+      background: $status-medium;
+    }
+    .poor > .icon {
+      background: $status-poor;
+      font-size: $metric-icon-size * 0.9;
+      line-height: $popup-icon-line-height;
+    }
+  }
+  // popup header end
+
+  .popup-stat {
+    font-size: $popup-default-text;
+    font-weight: $title-weight;
+    margin-left: $popup-space + 3;
   }
 
-  .good > .icon {
-    background: $status-good;
+  .stat-symbol {
+    float: left;
+
+    img {
+      width: 100%;
+    }
+
+    &.population-big {
+      margin-top: $popup-space + 2;
+      width: $popup-population-width;
+    }
+
+    &.population-small {
+      margin-right: $popup-space/2;
+      width: $popup-small-icon;
+    }
   }
 
-  .medium > .icon {
-    background: $status-medium;
-  }
-
-  .poor > .icon {
-    background: $status-poor;
-  }
-
-  .header {
-    border-bottom: 1px solid $grey-light-detail;
-    height: 50px;
-  }
-  .main-header {
+  .fa {
     color: $theme-blue;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
+    display: inline;
+    font-size: $popup-default-text;
+    margin-right: $popup-space/2;
   }
 
 }
