@@ -76,6 +76,7 @@ const waterpointsQ = {
     'WATER_POINT_CODE',
     'WATER_POINT_NAME',
     'STATUS',
+    'STATUS_GROUP',
     'REGION',
     'DISTRICT',
     'WARD',

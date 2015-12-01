@@ -263,6 +263,7 @@ const allTranslations = {
     'popup.waterpoint.region': 'Region',
     'popup.waterpoint.district': 'District',
     'popup.waterpoint.ward': 'Ward',
+    'popup.waterpoint.status-group': 'Status Group',
     'popup.poly.REGION': 'Region',
     'popup.poly.DISTRICT': 'District',
     'popup.poly.WARD': 'Ward',

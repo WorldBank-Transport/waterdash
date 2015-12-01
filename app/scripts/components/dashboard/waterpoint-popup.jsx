@@ -39,9 +39,9 @@ const WaterpointPopup = React.createClass({
         </div>
 
         <div className="row population-ratio">
-            <h3>WATERPOINT TO POPULATION RATIO</h3>
+            <h3><T k="popup.waterpoint.population-served" /></h3>
             <div className="popup-stat-container">
-              <span className="big-number">45,000</span>
+              <span className="big-number">{this.props.waterpoint['POPULATION SERVED']}</span>
               <span className="stat-symbol population-big">
                 <img src="images/population-icon.png"/>
               </span>
@@ -50,18 +50,10 @@ const WaterpointPopup = React.createClass({
 
         <div className="row">
           <p className="source-label"><T k="popup.waterpoint.source-type" />: {this.props.waterpoint.SOURCE_TYPE}</p>
-          <p><span className="highlight">Status group:</span> lorem ipsum</p>
+          <p><span className="highlight"><T k="popup.waterpoint.status-group" />:</span> {this.props.waterpoint.STATUS_GROUP}</p>
         </div>
 
         <div className="row">
-          <div className="popup-col">
-            <h3>
-            <span className="stat-symbol population-small">
-              <img src="images/population-icon.png"/>
-            </span>
-            <T k="popup.waterpoint.population-served" /></h3>
-            <span className="popup-stat">{this.props.waterpoint['POPULATION SERVED']}</span>
-          </div>
           <div className="popup-col">
             <h3><span className="fa fa-wrench"></span><T k="popup.waterpoint.hardware-problem" /></h3>
             <span className="popup-stat">{this.props.waterpoint.HARDWARE_PROBLEM}</span>
