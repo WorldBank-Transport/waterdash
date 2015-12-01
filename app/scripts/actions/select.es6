@@ -15,13 +15,14 @@ import { createAction } from 'reflux';
 import history from '../history';
 import ViewStore from '../stores/view';
 import ViewModes from '../constants/view-modes';
-import { setInclude } from './filters';
+import { setInclude, setExclude } from './filters';
 
 export const select = createAction();
 export const ensureSelect = createAction();  // alternate to avoid pushing extra history state
 export const deselect = createAction();
 export const chartDrilldown = createAction();
 export const mapDrillDown = createAction();
+export const disableDrillDown = createAction();
 
 const drillDownRoute = (viewMode, dataType, id) => {
   return `/dash/${viewMode.toParam()}/${dataType.toParam()}/${id || ''}`;
@@ -58,4 +59,12 @@ chartDrilldown.listen(id => {
   dataType.getLocationProp(tmpViewMode).andThen(locProp => {
     setInclude(locProp, [id]);
   });
+});
+
+disableDrillDown.listen(() => {
+  const { dataType } = ViewStore.get();
+  setExclude('REGION', []);
+  setExclude('DISTRICT', []);
+  setExclude('WARD', []);
+  history.pushState(null, `/dash/points/${dataType.toParam()}/`);
 });
