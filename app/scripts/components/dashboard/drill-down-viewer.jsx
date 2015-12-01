@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import T from '../misc/t';
-import { disableDrillDown } from '..././actions/select';
+import { disableDrillDown } from '../../actions/select';
 
 require('stylesheets/dashboard/drill-down-viewer');
 
