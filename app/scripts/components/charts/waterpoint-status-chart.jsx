@@ -10,6 +10,7 @@ import ViewModes from '../../constants/view-modes';
 import { chartDrilldown } from '../../actions/select';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
+import Checkbox from '../misc/checkbox';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -28,6 +29,7 @@ const WaterpointStatusChart = React.createClass({
         'FUNCTIONAL NEEDS REPAIR': true,
         'NON FUNCTIONAL': true,
       },
+      groupedBars: true,
     };
   },
 
@@ -122,6 +124,14 @@ const WaterpointStatusChart = React.createClass({
     this.replaceState(newState);
   },
 
+  toogleGrouped(e) {
+    const newState = {
+      ...this.state,
+      groupedBars: !this.state.groupedBars,
+    };
+    this.replaceState(newState);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
@@ -135,12 +145,13 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
+        <div><p>Double click on the bar to drill down</p><p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label='chart.grouped'/></p></div>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
-                groupedBars={true}
+                groupedBars={this.state.groupedBars}
                 height={400}
                 margin={{top: 30, bottom: 100, left: 40, right: 20}}
                 onDoubleClick={this.doubleClick}

@@ -31,6 +31,7 @@ const WaterpointPieChart = React.createClass({
   },
 
   render() {
+    const sort = () => 1;
     return (
       <div className="waterpoint-pie-chart">
         <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
@@ -38,6 +39,7 @@ const WaterpointPieChart = React.createClass({
             data={this.parseData()}
             height={300}
             margin={{top: 10, bottom: 50, left: 50, right: 10}}
+            sort={sort}
             width={400}/>
       </div>
     );

@@ -20,8 +20,7 @@
       transform: rotate(-75deg);
       white-space: nowrap;
       width: 10px;
-      x: -20;
-      y: 5;
+      dominant-baseline: text-after-edge;
     }
   }
 
