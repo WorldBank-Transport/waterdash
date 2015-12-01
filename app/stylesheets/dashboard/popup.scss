@@ -4,15 +4,15 @@
 .popup {
   background: $background-map-overlay;
   border: 2px solid $grey-light;
-  bottom: 10%;  // TODO
+  bottom: 1%;  // TODO
   box-shadow: $shadow;
-  height: $popup-width + 40;
-  left: 60%;  // TODO
+  height: $popup-width + 55;
+  left: 60%;  // TsODO
   overflow: hidden;
   padding: $base-unit;  // TODO
   position: absolute;  // TODO
   right: 15%;  // TODO
-  top: 10%;  // TODO
+  top: 1%;  // TODO
   width: $popup-width;
   z-index: 1;  // needs to be specified >=1 to go above the map
 

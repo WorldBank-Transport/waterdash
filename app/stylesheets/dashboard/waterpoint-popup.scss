@@ -24,6 +24,9 @@
     &.population-ratio {
       h3 {
         display: block;
+        &.left {
+          float: left;
+        }
       }
 
       .popup-stat-container {
@@ -119,6 +122,7 @@
   .popup-stat {
     font-size: $popup-default-text;
     font-weight: $title-weight;
+    margin-left: $popup-space + 3;
   }
 
   .stat-symbol {
@@ -129,7 +133,7 @@
     }
 
     &.population-big {
-      margin-top: 17px;
+      margin-top: $popup-space + 2;
       width: $popup-population-width;
     }
 

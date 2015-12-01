@@ -48,14 +48,14 @@ const WaterpointPopup = React.createClass({
             </div>
         </div>
 
-        <div className="row">
+        <div className="row bordered">
           <p className="source-label"><T k="popup.waterpoint.source-type" />: {this.props.waterpoint.SOURCE_TYPE}</p>
           <p><span className="highlight"><T k="popup.waterpoint.status-group" />:</span> {this.props.waterpoint.STATUS_GROUP}</p>
         </div>
 
-        <div className="row">
-          <div className="popup-col">
-            <h3><span className="fa fa-wrench"></span><T k="popup.waterpoint.hardware-problem" /></h3>
+        <div className="row bordered">
+          <div>
+            <h3 className="left"><span className="fa fa-wrench"></span><T k="popup.waterpoint.hardware-problem" /></h3>
             <span className="popup-stat">{this.props.waterpoint.HARDWARE_PROBLEM}</span>
           </div>
         </div>
