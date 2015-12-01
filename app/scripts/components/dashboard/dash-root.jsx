@@ -6,6 +6,7 @@ import ViewModes from '../../constants/view-modes';
 import tzBounds from '../../constants/tz-bounds';
 
 // Stores
+import DrillDownStore from '../../stores/drill-down';
 import FilteredDataStore from '../../stores/filtered-data';
 import LayoutStore from '../../stores/layout';
 import LoadingDataStore from '../../stores/loading-data';
@@ -36,6 +37,7 @@ import { TileLayer } from 'react-leaflet';
 import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
+import DrillDownViewer from './drill-down-viewer';
 // below map
 import ViewMode from '../boilerplate/view-mode';
 import OverviewBar from '../charts/overview-bar';
@@ -52,6 +54,7 @@ const DashRoot = React.createClass({
 
   // Hook up all the data
   mixins: [
+    connect(DrillDownStore, 'drillDown'),
     connect(FilteredDataStore, 'data'),
     connect(LayoutStore, 'layout'),
     connect(LoadingDataStore, 'loadingData'),
@@ -153,6 +156,7 @@ const DashRoot = React.createClass({
 
           {/* Overlays that can cover the map: */}
           <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
+          <DrillDownViewer drillDown={this.state.drillDown}  {...propsForChildren} />
           <Filters
               clear={clear}
               openClosed={this.state.layout.filters}
