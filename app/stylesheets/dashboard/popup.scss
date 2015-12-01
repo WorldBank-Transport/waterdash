@@ -1,36 +1,46 @@
 @import '../config/colours';
+@import '../config/dimensions';
 
 .popup {
   background: $background-map-overlay;
-  border: 1px solid $grey-light-detail;
-  bottom: 10%;  // TODO
+  border: 2px solid $grey-light;
+  bottom: 1%;  // TODO
   box-shadow: $shadow;
-  left: 60%;  // TODO
-  padding: 1em;  // TODO
+  height: $popup-width + 55;
+  left: 60%;  // TsODO
+  overflow: hidden;
+  padding: $base-unit;  // TODO
   position: absolute;  // TODO
   right: 15%;  // TODO
-  top: 10%;  // TODO
+  top: 1%;  // TODO
+  width: $popup-width;
   z-index: 1;  // needs to be specified >=1 to go above the map
 
   .close-button {
-    border: 1px solid $grey-light-detail;
+    background: $grey-light;
     color: $theme-blue;
     display: inline-block;
     font-weight: bold;
-    height: 1.5em;
-    line-height: 1.5em;
+    height: $base-unit + 0.3;
+    line-height: $base-unit + 0.2;
     position: absolute;
-    right: 1em;
+    right: $base-unit;
     text-align: center;
-    top: 1em;
-    width: 1.5em;
+    top: $base-unit;
+    width: $base-unit + 0.3;
 
     &:hover {
+      background: $grey-medium;
+      color: $text-inverse;
       cursor: pointer;
     }
   }
 
   h3 {
-    margin-top: 0;
+    color: $theme-blue;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 0;
+    text-transform: uppercase;
   }
 }
