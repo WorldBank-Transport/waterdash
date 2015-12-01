@@ -153,7 +153,7 @@ const WaterpointStatusChart = React.createClass({
                 data={this.parseData(dataRes)}
                 groupedBars={this.state.groupedBars}
                 height={400}
-                margin={{top: 30, bottom: 100, left: 40, right: 20}}
+                margin={{top: 20, bottom: 100, left: 40, right: 10}}
                 onDoubleClick={this.doubleClick}
                 tooltipContained="true"
                 tooltipHtml={(x) => this.tooltip(x, dataRes)}

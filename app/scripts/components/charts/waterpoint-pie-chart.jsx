@@ -3,6 +3,7 @@ import * as func from '../../utils/functional';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import {PieChart} from 'react-d3-components';
 import T from '../misc/t';
+import Resize from '../../utils/resize-mixin';
 
 require('stylesheets/charts/waterpoint-pie-chart');
 
@@ -12,7 +13,11 @@ const WaterpointPieChart = React.createClass({
     data: PropTypes.array,  // injected
   },
 
-  mixins: [ShouldRenderMixin],
+  mixins: [Resize, ShouldRenderMixin],
+
+  getInitialState() {
+    return {};
+  },
 
   parseData() {
     const data = func.Result.countBy(this.props.data, this.props.column);
@@ -30,17 +35,29 @@ const WaterpointPieChart = React.createClass({
     };
   },
 
+  renderTooltip(x, y) {
+    return (<div>
+              <h3 className="chart-title">{{x}}: {{y}}</h3>
+            </div>);
+  },
+
   render() {
+    if (!this.state.size) {
+      return (<div>empty</div>);
+    }
     const sort = () => 1;
     return (
       <div className="waterpoint-pie-chart">
         <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
         <PieChart
             data={this.parseData()}
-            height={300}
-            margin={{top: 10, bottom: 50, left: 50, right: 10}}
+            height={this.state.size.width * 0.20}
+            margin={{top: 5, bottom: 5, left: 100, right: 100}}
             sort={sort}
-            width={400}/>
+            tooltipHtml={this.renderTooltip}
+            tooltipMode="mouse"
+            tooltipOffset={{top: -100, left: 0}}
+            width={this.state.size.width * 0.30}/>
       </div>
     );
   },
