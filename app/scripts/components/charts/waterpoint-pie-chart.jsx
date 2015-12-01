@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
-import {PieChart} from 'react-d3-components';
+import PieChart from './react-3d-component/pie-chart';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
 
