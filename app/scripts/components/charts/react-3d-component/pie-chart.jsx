@@ -99,22 +99,22 @@ const DataSet = React.createClass({
           d: d,
           onMouseEnter: onMouseEnter,
           onMouseLeave: onMouseLeave,
-        }),
-        React.createElement('polyline', {
-          opacity: opacity,
-          strokeWidth: strokeWidth,
-          stroke: stroke,
-          fill: fill,
-          points: [arc.centroid(e), outerArc.centroid(e), linePos],
-        }),
-        React.createElement(
-          'text',
-          {
-            dy: '5',
-            textAnchor: 'start',
-            transform: transform },
-          x(e.data)
-        )
+        })
+        // React.createElement('polyline', {
+        //   opacity: opacity,
+        //   strokeWidth: strokeWidth,
+        //   stroke: stroke,
+        //   fill: fill,
+        //   points: [arc.centroid(e), outerArc.centroid(e), linePos],
+        // }),
+        // React.createElement(
+        //   'text',
+        //   {
+        //     dy: '5',
+        //     textAnchor: 'start',
+        //     transform: transform },
+        //   x(e.data)
+        // )
       );
     });
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
+import * as c from '../../utils/colours';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import PieChart from './react-3d-component/pie-chart';
 import T from '../misc/t';
@@ -16,7 +17,13 @@ const WaterpointPieChart = React.createClass({
   mixins: [Resize, ShouldRenderMixin],
 
   getInitialState() {
-    return {};
+    const allValues = Object.keys(c.Color[this.props.column]).reduce((agg, k) => {
+      agg[k] = true;
+      return agg;
+    }, {});
+    return {
+      values: allValues,
+    };
   },
 
   parseData(data) {
@@ -41,24 +48,44 @@ const WaterpointPieChart = React.createClass({
             </div>);
   },
 
+  renderLegend(data) {
+    const children = Object.keys(data).filter(key => key !== 'total').map(key => {
+      return (
+        <li>
+          <div className="checkbox">
+            <div className="selectable" style={{background: c.Color[this.props.column][key]}}></div>
+            <T k={`chart.option.${key}`} />
+          </div>
+        </li>);
+    });
+    return (
+      <div className="legend-container">
+        <ul>
+          {children}
+        </ul>
+      </div>);
+  },
+
   render() {
     if (!this.state.size) {
       return (<div>empty</div>);
     }
-    const sort = () => 1;
     const data = func.Result.countBy(this.props.data, this.props.column);
     return (
       <div className="waterpoint-pie-chart">
         <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
-        <PieChart
-            data={this.parseData(data)}
-            height={this.state.size.width * 0.20}
-            margin={{top: 50, bottom: 50, left: 80, right: 80}}
-            sort={sort}
-            tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
-            tooltipMode="mouse"
-            tooltipOffset={{top: -100, left: 0}}
-            width={this.state.size.width * 0.30}/>
+        {this.renderLegend(data)}
+        <div className="chart-container">
+          <PieChart
+              colorScale={(x) => c.Color[this.props.column][x]}
+              data={this.parseData(data)}
+              height={this.state.size.width * 0.20}
+              margin={{top: 50, bottom: 0, left: 50, right: 50}}
+              tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
+              tooltipMode="mouse"
+              tooltipOffset={{top: -100, left: 0}}
+              width={this.state.size.width * 0.30}/>
+        </div>
       </div>
     );
   },
