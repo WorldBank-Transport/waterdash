@@ -26,7 +26,6 @@
     color: $grey-light;
     display: block;
     float: left;
-    font-size: $metric-icon-size;
     font-weight: bold;
     height: $metric-icon-size;
     line-height: $metric-icon-size;
@@ -42,11 +41,13 @@
 
   &.medium > .icon {
     background: $status-medium;
-    line-height: $medium-status-line-height;
+    font-size: $metric-icon-size;
+    line-height: $metric-icon-size - 6;
   }
 
   &.poor > .icon {
     background: $status-poor;
+    font-size: $metric-icon-size;
   }
 
   .grouped {
