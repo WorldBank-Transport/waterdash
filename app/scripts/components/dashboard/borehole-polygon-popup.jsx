@@ -10,7 +10,7 @@ require('stylesheets/dashboard/borehole-popup');
 const BoreholePolygonPopup = React.createClass({
 
   propTypes: {
-    data: PropTypes.object.require,
+    data: PropTypes.array.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
 
