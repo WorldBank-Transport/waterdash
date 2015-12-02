@@ -5,10 +5,12 @@
 @import '../config/dimensions';
 
 .range {
+  margin-bottom: $base-unit;
+
   .number {
     display: inline-block;
-    font-size: $medium-number;
-    font-weight: bold;
+    font-size: $medium-number - 4;
+    font-weight: normal;
     margin: 0;
   }
 
@@ -16,7 +18,7 @@
     background: $map-bg;
     display: inline-block;
     height: $track-height;
-    margin: 0 $general-content-padding/2;
+    margin: 0 $general-content-padding/6;
     width: $track-width;
 
     .bar-1 {

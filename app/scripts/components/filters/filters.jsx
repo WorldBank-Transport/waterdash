@@ -28,7 +28,7 @@ const Filters = React.createClass({
   },
   renderWaterpoints() {
     return (
-      <div>
+      <div className="waterpoint-filter">
         <h4><T k="filters.population-served" /></h4>
         <Range
             defaultValue={[0, 10000]}
