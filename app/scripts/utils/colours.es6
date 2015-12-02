@@ -117,3 +117,39 @@ Color.getBoreholesColor = (metric) => {
   }
   return color;
 };
+
+Color.WATER_QUALITY = {
+  COLOURED: '#fff7fb',
+  FLUORIDE: '#ece7f2',
+  'FLUORIDE ABANDONED': '#d0d1e6',
+  GOOD: '#a6bddb',
+  MILKY: '#74a9cf',
+  SALTY: '#3690c0',
+  'SALTY ABANDONED': '#0570b0',
+  SOFT: '#045a8d',
+  UNKNOWN: '#023858',
+};
+
+Color.WATER_QUANTITY = {
+  DRY: '#f1eef6',
+  ENOUGH: '#d0d1e6',
+  INSUFFICIENT: '#a6bddb',
+  OTHER: '#74a9cf',
+  SEASONAL: '#2b8cbe',
+  UNKNOWN: '#045a8d',
+};
+
+
+Color.SOURCE_TYPE = {
+  DAM: '#67001f',
+  'HAND DTW': '#b2182b',
+  LAKE: '#d6604d',
+  'MACHINE DBH': '#f4a582',
+  'MACHINE-DRILLED BOREHOLE': '#fddbc7',
+  OTHER: '#f7f7f7',
+  'RAINWATER HARVESTING': '#d1e5f0',
+  RIVER: '#92c5de',
+  'SHALLOW WELL': '#4393c3',
+  SPRING: '#2166ac',
+  UNKNOWN: '#053061',
+};

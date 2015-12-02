@@ -64,7 +64,7 @@ const DataSet = React.createClass({
     const arc = _props.arc;
     const outerArc = _props.outerArc;
     const colorScale = _props.colorScale;
-    //const radius = _props.radius;
+    const radius = _props.radius;
     const strokeWidth = _props.strokeWidth;
     const stroke = _props.stroke;
     const fill = _props.fill;
@@ -76,6 +76,7 @@ const DataSet = React.createClass({
 
     const wedges = pie.map((e, index) => {
       const midAngle = (d) => d.startAngle + (d.endAngle - d.startAngle) / 2;
+      const textAngle = (d) => (180 / Math.PI * (d.startAngle + d.endAngle) / 2 - 90);
 
       const d = arc(e);
 
@@ -86,7 +87,9 @@ const DataSet = React.createClass({
 
       const linePos = outerArc.centroid(e);
       //linePos[0] = radius * 0.95 * (midAngle(e) < Math.PI ? 1 : -1);
-
+      const pos = d3.svg.arc().innerRadius(radius + 2).outerRadius(radius + 2)
+      const transform = `translate(${pos.centroid(e)}) rotate(${textAngle(e)})`;
+      //const transform = `rotate(${textAngle(e)})`;
       return React.createElement(
         'g',
         { key: `${x(e.data)}.${y(e.data)}.${index}`, className: 'arc' },
@@ -96,23 +99,22 @@ const DataSet = React.createClass({
           d: d,
           onMouseEnter: onMouseEnter,
           onMouseLeave: onMouseLeave,
-        }),
-        React.createElement('polyline', {
-          opacity: opacity,
-          strokeWidth: strokeWidth,
-          stroke: stroke,
-          fill: fill,
-          points: [arc.centroid(e), outerArc.centroid(e), linePos],
-        }),
-        React.createElement(
-          'text',
-          {
-            dy: '.35em',
-            x: labelPos[0],
-            y: labelPos[1],
-            textAnchor: textAnchor },
-          x(e.data)
-        )
+        })
+        // React.createElement('polyline', {
+        //   opacity: opacity,
+        //   strokeWidth: strokeWidth,
+        //   stroke: stroke,
+        //   fill: fill,
+        //   points: [arc.centroid(e), outerArc.centroid(e), linePos],
+        // }),
+        // React.createElement(
+        //   'text',
+        //   {
+        //     dy: '5',
+        //     textAnchor: 'start',
+        //     transform: transform },
+        //   x(e.data)
+        // )
       );
     });
 

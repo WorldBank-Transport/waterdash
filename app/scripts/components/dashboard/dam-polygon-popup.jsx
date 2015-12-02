@@ -10,7 +10,7 @@ require('stylesheets/dashboard/dam-popup');
 const DamPolygonPopup = React.createClass({
 
   propTypes: {
-    data: PropTypes.object.require,
+    data: PropTypes.array.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
 

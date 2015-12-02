@@ -3,6 +3,16 @@
 @import '../config/type';
 
 .waterpoint-pie-chart {
+
+  h3 {
+    &.chart-title {
+      color: $theme-blue-alt;
+      font-size: $chart-title;
+      font-weight: $static-content-weight;
+      margin-top: 10px;
+    }
+  }
+
   text {
     fill: $text-color;
     font-size: 10px;
@@ -20,9 +30,50 @@
 
     .chart-title {
       color: $theme-blue;
-      font-size: $chart-title;
+      font-size: 15px;
       font-weight: $title-weight;
       text-transform: capitalize;
     }
+  }
+
+  .legend-container {
+    background-clip: padding-box;
+    border-radius: 3px;
+    background: #e8e7e9;
+    height: 90px;
+    padding: 0.3em 0 0.33333em 0;
+
+    ul {
+      padding-left: $base-unit * 1.5;
+      li {
+        float: left;
+        list-style: none;
+        margin-right: $chart-legend-margin;
+
+        span {
+          &.t {
+            font-size: 10px;
+            font-weight: 700;
+            margin-top: 1px;
+          }
+        }
+
+        .selectable {
+          background-clip: padding-box;
+          border-radius: 1px;
+          background: #ffffff;
+          border: 1px solid #1da3da;
+          float: left;
+          height: 8px;
+          margin-right: 8px;
+          margin-top: 8px;
+          width: 8px;
+
+          &.selected {
+            background: #1da3da;
+          }
+        }
+      }
+    }  
   }
 }
