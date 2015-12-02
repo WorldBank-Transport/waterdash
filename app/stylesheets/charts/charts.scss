@@ -37,6 +37,13 @@
       padding-top: $chart-container-padding/2;  
     }
   }
+  .col-all {
+    float: left;
+
+    .row-chart-left {
+      float: left;
+    }
+  }
   .dams-col-left {
     float: left;
     width: $dams-main-chart-width; 
@@ -44,14 +51,6 @@
   .col-right {
     float: right;
     width: $sec-chart-width;
-  }
-  .row-chart {
-    display: table-cell;
-    padding-top: $chart-container-padding/2;
-    .row-chart-left {
-      float: left;
-      width: $pie-chart-width;
-    }
   }
 }
 

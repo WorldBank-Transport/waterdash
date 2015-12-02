@@ -64,9 +64,9 @@ const WaterpointPopulationServeChart = React.createClass({
           <TSetChildProps>
             <BarChart
                 data={this.parseData(waterpointsRes, popAgg)}
-                height={200}
-                margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={this.state.size.width * 0.50}
+                height={350}
+                margin={{top: 20, bottom: 100, left: 40, right: 10}}
+                width={this.state.size.width * 0.55}
                 xAxis={{label: {k: `chart.waterpoints-people-ratio.x-axis-${drillDown}`}}}
                 yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
           </TSetChildProps>

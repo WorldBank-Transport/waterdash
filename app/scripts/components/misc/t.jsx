@@ -220,7 +220,7 @@ const allTranslations = {
     'chart.pie.WATER_QUALITY': 'Water Quality',
     'chart.pie.WATER_QUANTITY': 'Water Quantity',
     'chart.pie.SOURCE_TYPE': 'Source Type',
-
+    'chart.grouped': 'Grouped Bar Chart',
 
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',

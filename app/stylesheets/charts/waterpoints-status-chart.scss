@@ -11,8 +11,10 @@
     .tick text {
       -webkit-transform: rotate(-75deg);
       direction: rtl;
+      dominant-baseline: text-after-edge;
       fill: $text-color;
       font-size: $chart-axis-text;
+      font-weight: 600;
       overflow: hidden;
       pointer-events: auto;
       text-anchor: inherit;
@@ -20,8 +22,6 @@
       transform: rotate(-75deg);
       white-space: nowrap;
       width: 10px;
-      x: -20;
-      y: 5;
     }
   }
 
@@ -29,11 +29,13 @@
     .tick text {
       fill: $text-color;
       font-size: $chart-axis-text;
+      font-weight: 600;
     }
   }
   .label {
     fill: $text-color;
     font-size: $chart-axis-text;
+    font-weight: bold;
   }
   .tooltip {
     align-items: center;
