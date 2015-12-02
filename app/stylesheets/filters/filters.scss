@@ -23,15 +23,26 @@
     padding: 0;
   }
   h4 {
-    margin: $base-unit 0;
+    margin: $base-unit 0 $base-unit/3 0;
   }
 
   .filterContainter {
-    display: table-cell;
 
     .filter {
       float: left;
-      padding-right: 10px;
+      padding-right: 0;
+      width: 30%;
     }
   }
+}
+
+.waterpoint-filter {
+  width: 35%;
+
+  .range {
+    .slider {
+      width: 60%;
+    }
+  }
+
 }
