@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React from 'react';
 import Chart from 'react-d3-components/lib/Chart';
 import Tooltip from 'react-d3-components/lib/Tooltip';
