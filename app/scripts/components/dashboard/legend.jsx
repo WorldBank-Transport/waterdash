@@ -3,7 +3,7 @@ import T from '../misc/t';
 
 require('../../../stylesheets/dashboard/legend.scss');
 
-const legend = React.createClass({
+const Legend = React.createClass({
   render() {
     return (
         <div className="legend">
@@ -29,5 +29,5 @@ const legend = React.createClass({
   },
 });
 
-export default legend;
+export default Legend;
 
