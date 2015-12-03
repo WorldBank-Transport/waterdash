@@ -1,6 +1,6 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import { loadCompleted, loadPolygons } from '../actions/polygons';
+import { loadCompleted, loadPolygons, loadProgress, loadFailed } from '../actions/polygons';
 import ViewModes from '../constants/view-modes';
 import { getRegions, getDistricts, getWards } from '../api';
 
@@ -34,7 +34,8 @@ const PolygonsStore = createStore({
   },
   mixins: [SaneStore],
   init() {
-    this.listenTo(loadCompleted, 'loadCompleted');
+    this.listenTo(loadProgress, 'loadPoly');
+    this.listenTo(loadCompleted, 'loadPoly');
     this.listenTo(loadPolygons, 'loadIfNeeded');
   },
 
@@ -53,7 +54,7 @@ const PolygonsStore = createStore({
       .catch(proxier(loadFailed));
   },
 
-  loadCompleted(features, type) {
+  loadPoly(features, type) {
     const tmp = {
       ...this.get(),
       [type.toParam()]: features,
@@ -70,7 +71,7 @@ const PolygonsStore = createStore({
   },
 
   getPolygon(type) {
-    this.get()[type.toParam()];
+    return this.get()[type.toParam()];
   },
 });
 
