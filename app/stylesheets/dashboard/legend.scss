@@ -1,0 +1,54 @@
+@import '../config/colours';
+
+.legend {
+    display: inline-block;
+    width:120px;
+    font-size: 0.85em;
+    background: $background-map-overlay;
+    border: 1px solid $grey-light-detail;
+    bottom: 10%;      // TODO
+    box-shadow: $shadow;
+    left: 10%;  // TODO
+    padding: 1em;  // TODO
+    position: absolute;  // TODO
+    right: 15%;  // TODO
+    top: 60%;  // TODO
+    height: 120px;
+    z-index: 1;  // needs to be specified >=1 to go above the map
+
+.legend-block {
+    border: 1px solid #555555;
+    display: block;
+    float: left;
+    height: 12px;
+    margin-right: .2cm;
+    width: 20px;
+}
+.title {
+    color: #1da3da;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px
+}
+h1 {
+    color:#B5B1B1;
+    text-shadow: #fff 2px 2px 0px;
+    text-align: center;margin:2em 0;
+}
+h2 {
+    color:#A2A3F2;
+    text-shadow: #fff 2px 2px 0px;margin:2em 0 1em 0;
+}
+h3 {
+    color:#555;font-size: .9em
+}
+hr {
+    height: 1px;
+    margin: -0.5em 0;
+    padding: 0;
+    color: #ddd;
+    background-color: #ddd;
+    border: 0;
+    }
+}
