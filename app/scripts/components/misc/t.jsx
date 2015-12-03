@@ -288,6 +288,12 @@ const allTranslations = {
     'popup.dams-poly.quantity': 'Number of Dams',
     'popup.dams-poly.basin': 'Top Basin',
 
+    'legend.title': 'legend',
+    'legend.lessthan50': '< 50',
+    'legend.greaterhan50': '> 50',
+    'legend.greaterhan75': '> 75',
+    'legend.nodata': 'No Data',
+
     'drilldown.regions': 'Region',
     'drilldown.districts': 'District',
     'drilldown.wards': 'Ward',
