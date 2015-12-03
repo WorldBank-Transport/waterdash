@@ -20,7 +20,7 @@ import AsyncState from '../constants/async';
 import ViewModes from '../constants/view-modes';
 
 import { setMapBounds, zoomToPoint } from '../actions/view';
-import { select, ensureSelect, deselect } from '../actions/select';
+import { select, ensureSelect, deselect, mapDrillDown } from '../actions/select';
 import { setExclude } from '../actions/filters';
 
 import DataStore from './data';
@@ -48,6 +48,7 @@ const SelectedStore = createStore({
     this.listenTo(deselect, 'deselect');
     this.listenTo(select, 'selectById');
     this.listenTo(ensureSelect, 'selectById');
+    this.listenTo(mapDrillDown, 'selectMap');
 
     // update when any dependencies change
     // this._emit comes from SaneStoreMixin
@@ -101,6 +102,17 @@ const SelectedStore = createStore({
       this.setData(Some(id));
       this.selectRoute(id);
     }
+  },
+
+  selectMap(id) {
+    const shouldUpdate = Maybe.match(this.getPolyDetail(id), {
+      None: () => null,  // always update if store id was None
+      Some: details => {
+        this.__map_needs_zoom = true;
+        this.maybeZoomToPoly(details);
+      },
+    });
+
   },
 
   /**
