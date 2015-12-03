@@ -50,11 +50,11 @@ const PolygonsDataStore = createStore({
           .andThen(injectDataIntoFeatures(features))
           .unwrapOr(this.initialData);
 
-        this.setData(dataFeatures);    
+        this.setData(dataFeatures);
       },
       Points: () => null,
     });
-    
+
   },
 });
 
