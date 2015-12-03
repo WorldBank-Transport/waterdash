@@ -1,11 +1,12 @@
 import isUndefined from 'lodash/lang/isUndefined';
-import { Some, None, Ok } from 'results';
+import { _, Some, None, Ok } from 'results';
 import { createStore } from 'reflux';
 import { Result } from '../utils/functional';
 import SaneStore from '../utils/sane-store-mixin';
 import FilteredDataStore from './filtered-data';
 import PolygonsStore from './polygons';
 import ViewStore from './view';
+import ViewModes from '../constants/view-modes';
 
 
 export const injectData = dataByLoc => polygon => {
@@ -38,16 +39,22 @@ const PolygonsDataStore = createStore({
     // don't need to listen to ViewStore: PolygonsStore will update when view changes
   },
   recompute() {
-    const data = FilteredDataStore.get();
-    const features = PolygonsStore.get();
     const { viewMode, dataType } = ViewStore.get();
+    ViewModes.match(viewMode, {
+      [_]: () => {
+        const data = FilteredDataStore.get();
+        const features = PolygonsStore.getPolygon(viewMode);
 
-    const dataFeatures = dataType.getLocationProp(viewMode)
-      .andThen(groupByLoc(data))
-      .andThen(injectDataIntoFeatures(features))
-      .unwrapOr(this.initialData);
+        const dataFeatures = dataType.getLocationProp(viewMode)
+          .andThen(groupByLoc(data))
+          .andThen(injectDataIntoFeatures(features))
+          .unwrapOr(this.initialData);
 
-    this.setData(dataFeatures);
+        this.setData(dataFeatures);    
+      },
+      Points: () => null,
+    });
+    
   },
 });
 
