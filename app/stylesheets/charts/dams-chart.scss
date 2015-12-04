@@ -12,6 +12,7 @@
       direction: rtl;
       fill: $text-color;
       font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
       overflow: hidden;
       pointer-events: auto;
       text-anchor: inherit;
@@ -28,6 +29,7 @@
     .tick text {
       fill: $text-color;
       font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
     }
   }
   .label {

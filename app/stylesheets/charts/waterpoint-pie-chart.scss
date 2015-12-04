@@ -52,8 +52,8 @@
 
         span {
           &.t {
-            font-size: 10px;
-            font-weight: 700;
+              font-size: $chart-axis-text;
+              font-weight: $chart-axis-text-weight;
             margin-top: 1px;
           }
         }
