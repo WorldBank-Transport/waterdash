@@ -18,13 +18,13 @@ const DamsOverviewBar = React.createClass({
       const f = m.getDamsMetricCalc(metric);
       const value = f(getNumberOr0(metrics[metric].data[metric]), metrics[metric].data.total || 1);
       return (
-        <div className={`metric-status ${metrics[metric].className}`}>
-          <div className="icon">
-            {metrics[metric].iconSymbol}
-          </div>
+        <div className={`metric-status dams ${metrics[metric].className}`}>
           <div className="content">
             <div className="big-number">
-              <span className="number">{value.toFixed(2)} {m.getDamsMetricUnit(metric)}</span>
+            <img className="dams-dr" src="images/dams.png"/>
+
+            <span className="number">
+              {value.toFixed(2)} <span className="unit">{m.getDamsMetricUnit(metric)}</span></span>
             </div>
             <div className="context">
               <T k={metrics[metric].title} />
@@ -39,19 +39,16 @@ const DamsOverviewBar = React.createClass({
       RESERVOIR_: {
         className: 'dams-reservoir',
         data: func.Result.sumBy(this.props.data, 'RESERVOIR_'),
-        iconSymbol: 'R',
         title: 'chart.title.reservoir',
       },
       DAM_HEIGHT: {
         className: 'dams-height',
         data: func.Result.sumBy(this.props.data, 'DAM_HEIGHT'),
-        iconSymbol: 'H',
         title: 'chart.title.height',
       },
       ELEVATION_: {
         className: 'dams-elevation',
         data: func.Result.sumBy(this.props.data, 'ELEVATION_'),
-        iconSymbol: 'E',
         title: 'chart.title.elevation',
       },
     };
