@@ -91,7 +91,7 @@ const WaterpointStatusChart = React.createClass({
     chartDrilldown(data.x);
   },
 
-  tooltip(x, dataRes) {
+  tooltip(x, dataRes, drilldown) {
     const total = Object.keys(dataRes).reduce((agg, key) => {
       agg.value += getNumberOr0(dataRes[key][x]);
       return agg;
@@ -106,7 +106,7 @@ const WaterpointStatusChart = React.createClass({
               </li>);
     });
     return (<div>
-              <h3 className="chart-title row">Region: {{x}}</h3>
+              <h3 className="chart-title row"><T k={`chart.tooltip.title.${drilldown}`} />: {{x}}</h3>
                 <ul className="items">
                 {{subItems}}
               </ul>
@@ -145,7 +145,7 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
-        <div><p>Double click on the bar to drill down</p><p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
+        <div><p><T k="chart.doubleClick.help" /></p><p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
@@ -156,7 +156,7 @@ const WaterpointStatusChart = React.createClass({
                 margin={{top: 20, bottom: 120, left: 40, right: 10}}
                 onDoubleClick={this.doubleClick}
                 tooltipContained="true"
-                tooltipHtml={(x) => this.tooltip(x, dataRes)}
+                tooltipHtml={(x) => this.tooltip(x, dataRes, drillDown)}
                 tooltipMode="mouse"
                 tooltipOffset={{top: -300, left: 0}}
                 width={this.state.size.width * 0.55}
