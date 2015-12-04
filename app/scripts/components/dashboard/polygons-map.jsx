@@ -9,7 +9,7 @@ import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
 import { GeoJson } from 'react-leaflet';
-
+import Legend from './legend';
 
 const PolygonsMap = React.createClass({
   propTypes: {
@@ -82,6 +82,7 @@ const PolygonsMap = React.createClass({
 
         {/* popup overlay for polygon */}
         {this.renderPopup()}
+        <Legend/>
       </div>
     );
   },
