@@ -105,14 +105,13 @@ const SelectedStore = createStore({
   },
 
   selectMap(id) {
-    const shouldUpdate = Maybe.match(this.getPolyDetail(id), {
+    Maybe.match(this.getPolyDetail(id), {
       None: () => null,  // always update if store id was None
       Some: details => {
-        this.__map_needs_zoom = true;
+        this.__map_needs_zoom = true; // eslint-disable-line
         this.maybeZoomToPoly(details);
       },
     });
-
   },
 
   /**
@@ -192,7 +191,7 @@ const SelectedStore = createStore({
 
   // side-effect methods
   maybeZoomToPoint(detail) {
-    if (this.__map_needs_zoom) {
+    if (this.__map_needs_zoom) { // eslint-disable-line
       const { dataType } = ViewStore.get();
       dataType.getLocationProp(ViewModes.Points())
         .andThen(locProp => detail[locProp])
