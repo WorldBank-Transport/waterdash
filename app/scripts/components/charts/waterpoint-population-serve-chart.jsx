@@ -1,7 +1,7 @@
 import isUndefined from 'lodash/lang/isUndefined';
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
-import {BarChart} from 'react-d3-components';
+import ClickBarChart from './react-3d-component/click-bar-chart';
 import PopulationStore from '../../stores/population';
 import * as func from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
@@ -10,6 +10,7 @@ import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
+import { chartDrilldown } from '../../actions/select';
 
 require('stylesheets/charts/waterpoint-population-serve-chart');
 
@@ -47,6 +48,17 @@ const WaterpointPopulationServeChart = React.createClass({
     return response;
   },
 
+  doubleClick(e, data) {
+    chartDrilldown(data.x);
+  },
+
+  tooltip(x, y0, y, drilldown) {
+    return (<div>
+              <h3 className="chart-title">
+                <T k={`chart.tooltip.title.${drilldown}`} /> {x}: {(y).toFixed(2)} <T k="chart.tooltip.sufix.population-served" /></h3>
+            </div>);
+  },
+
   render() {
     if (isUndefined(this.state.size)) {
       return (<div>empty</div>);
@@ -62,10 +74,15 @@ const WaterpointPopulationServeChart = React.createClass({
         <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
-            <BarChart
+            <ClickBarChart
                 data={this.parseData(waterpointsRes, popAgg)}
-                height={350}
-                margin={{top: 20, bottom: 100, left: 40, right: 10}}
+                height={360}
+                margin={{top: 20, bottom: 120, left: 45, right: 10}}
+                onDoubleClick={this.doubleClick}
+                tooltipContained="true"
+                tooltipHtml={(x, y0, y) => this.tooltip(x, y0, y, drillDown)}
+                tooltipMode="mouse"
+                tooltipOffset={{top: -100, left: 0}}
                 width={this.state.size.width * 0.55}
                 xAxis={{label: {k: `chart.waterpoints-people-ratio.x-axis-${drillDown}`}}}
                 yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />

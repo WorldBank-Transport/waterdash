@@ -86,6 +86,10 @@ const allTranslations = {
     'chart.waterpoints-people-ratio.x-axis-DISTRICT': 'Districts',
     'chart.waterpoints-people-ratio.x-axis-WARD': 'Wards',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
+    'chart.tooltip.title.REGION': 'Region',
+    'chart.tooltip.title.DISTRICT': 'District',
+    'chart.tooltip.title.WARD': 'Ward',
+    'chart.tooltip.sufix.population-served': 'people per waterpoint',
 
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',

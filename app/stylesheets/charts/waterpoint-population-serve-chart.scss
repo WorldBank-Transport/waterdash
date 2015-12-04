@@ -1,4 +1,5 @@
 @import '../config/colours';
+@import '../config/dimensions';
 @import '../config/type';
 
 .waterpoint-population-serve-chart {
@@ -26,5 +27,21 @@
     fill: $text-color;
     font-size: $chart-axis-text;
     font-weight: bold;
+  }
+  .tooltip {
+    align-items: center;
+    background-color: $bg-color;
+    border: 3px solid $grey-light;
+    height: 60px;
+    justify-content: center;
+    padding: $base-unit/2 $base-unit 0;
+    width: $tooltip-width/3;
+
+    .chart-title {
+      color: $theme-blue;
+      font-size: 15px;
+      font-weight: $title-weight;
+      text-transform: capitalize;
+    }
   }
 }

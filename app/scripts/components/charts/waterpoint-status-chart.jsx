@@ -29,7 +29,7 @@ const WaterpointStatusChart = React.createClass({
         'FUNCTIONAL NEEDS REPAIR': true,
         'NON FUNCTIONAL': true,
       },
-      groupedBars: true,
+      groupedBars: false,
     };
   },
 
@@ -152,8 +152,8 @@ const WaterpointStatusChart = React.createClass({
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
                 groupedBars={this.state.groupedBars}
-                height={400}
-                margin={{top: 20, bottom: 100, left: 40, right: 10}}
+                height={420}
+                margin={{top: 20, bottom: 120, left: 40, right: 10}}
                 onDoubleClick={this.doubleClick}
                 tooltipContained="true"
                 tooltipHtml={(x) => this.tooltip(x, dataRes)}
