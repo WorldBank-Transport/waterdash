@@ -8,19 +8,22 @@
   .x {
     .tick text {
       fill: $text-color;
-      font-size: 10px;
+      font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
       text-anchor: inherit;
     }
   }
   .y {
     .tick text {
       fill: $text-color;
-      font-size: 10px;
+      font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
     }
   }
   .label {
     fill: $text-color;
     font-size: $chart-axis-text;
+    font-weight: bold;
   }
 }
 

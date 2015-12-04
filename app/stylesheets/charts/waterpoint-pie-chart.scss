@@ -37,9 +37,9 @@
   }
 
   .legend-container {
+    background: #e8e7e9;
     background-clip: padding-box;
     border-radius: 3px;
-    background: #e8e7e9;
     height: 90px;
     padding: 0.3em 0 0.33333em 0;
 
@@ -52,17 +52,17 @@
 
         span {
           &.t {
-            font-size: 10px;
-            font-weight: 700;
+            font-size: $chart-axis-text;
+            font-weight: $chart-axis-text-weight;
             margin-top: 1px;
           }
         }
 
         .selectable {
-          background-clip: padding-box;
-          border-radius: 1px;
           background: #ffffff;
+          background-clip: padding-box;
           border: 1px solid #1da3da;
+          border-radius: 1px;
           float: left;
           height: 8px;
           margin-right: 8px;
