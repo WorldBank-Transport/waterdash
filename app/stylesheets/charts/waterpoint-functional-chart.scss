@@ -9,7 +9,8 @@
       -webkit-transform: rotate(-75deg);
       direction: rtl;
       fill: $text-color;
-      font-size: 10px;     
+      font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
       text-anchor: inherit;
       transform: rotate(-75deg);
     }
@@ -17,7 +18,8 @@
   .y {
     .tick text {
       fill: $text-color;
-      font-size: 10px;
+      font-size: $chart-axis-text;
+      font-weight: $chart-axis-text-weight;
     }
   }
   .label {
