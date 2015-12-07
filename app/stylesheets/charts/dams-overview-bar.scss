@@ -7,52 +7,41 @@
 
   .metric-status {
 
-    border-right: 1px solid $grey-light-detail;
-    display: table-cell;
-    margin: 0;
-    padding: 0 $base-unit;
-    text-align: center;
-    vertical-align: top;
-    width: $metric-status-width;
-
-    .fa {
-      bottom: $metric-stat-flyout-toggle-position;
-      color: $text-color;
-      font-size: $subcategory-icon-size;
-      position: absolute;
-    }
-
-    & > .icon {
-      border-radius: $metric-icon-size;
-      color: $grey-light;
-      display: block;
-      float: left;
-      font-weight: bold;
-      height: $metric-icon-size;
-      margin-left: $metric-stat-left-space;
+    &.dams {
+      border-right: 1px solid $grey-light-detail;
+      display: table-cell;
       text-align: center;
-      width: $metric-icon-size;
-    }
-
-    &.dams-reservoir {
       width: $dams-metric-status-width;
 
-      > .icon {
-        background: $dam-reservoir-text-color;
-        font-size: $good-status-font-size;
+      .content {
+        margin-top: $dams-content-top-space;
+        width: 100%;
+
+        .big-number {
+          margin-top: $base-unit / 8;
+          position: relative;
+
+          .dams-dr {
+            position: absolute;
+            width: $dam-icon-width;
+          }
+          .number {
+            margin-left: $dams-metric-number-left;
+
+            .unit {
+              font-size: $medium-text;
+            }
+          }
       }
+
+        .context {
+          clear: both;
+        }
+
+      }
+
     }
 
-    &.dams-height > .icon {
-      background: $dam-height-text-color;
-      font-size: $good-status-font-size;
-      line-height: $medium-status-line-height;
-    }
-
-    &.dams-elevation > .icon {
-      background: $dam-elevation-text-color;
-      font-size: $good-status-font-size;
-    }
   }
 
-}
+} //charte container summary

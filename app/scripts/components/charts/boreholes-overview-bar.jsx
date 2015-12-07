@@ -17,10 +17,9 @@ const BoreholeOverviewBar = React.createClass({
   renderBoreholesNumber() {
     return (
       <div className="metric-status boreholes">
-        <div className="icon">B</div>
         <div className="content">
           <div className="big-number">
-            <span className="number">{this.props.data.length}</span>
+            <span className="number"><div className="icon"><img src="images/borehole.png"/></div>{this.props.data.length}</span>
           </div>
           <div className="context">
             <T k="chart.title.number-boreholes" />
