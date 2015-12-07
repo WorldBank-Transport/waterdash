@@ -12,9 +12,11 @@ const allTranslations = {
     'site-name': 'Water Dashboard',
     'site.flag': 'Flag of Tanzania',
 
+    'home.title': 'Locate water projects throughout the country, your region, your district, or your ward. Use the Water Dashboard to examine water resources to make a difference in your community',
     'home.waterpoints': 'Waterpoints',
     'home.boreholes': 'Boreholes',
     'home.dams': 'Dams',
+    'home.text': 'This Water Dashboard is a public open data portal to view the latest national water resource data and monitor the information that is important to you. You can also use the menu options above to see original data and speak out about missing or wrong data.',
 
     'nav.home': 'Home',
     'nav.data': 'Data',
@@ -342,9 +344,11 @@ const allTranslations = {
   'sw-tz': {
     'site-name': 'Water Dashboard',
     'site.flag': 'Flag of Tanzania',
+    'home.title': 'Chunguza miradi ya maji katika taifa, mikoa, wilaya au kata. Tumia Dashibodi ya Maji kuchunguza ili kuleta mabadiliko katika jamii.',
     'home.waterpoints': 'Vituo vya maji safi na salama',
     'home.boreholes': 'Visima',
     'home.dams': 'Mabwawa',
+    'home.text': 'Dashibodi hii ya maji ni tovuti ya takwimu huria zinazoorodhesha data katika sekta ya maji, ya kitaifa ya hivi karibuni na habari nyingine muhimu kwako. Tumia orodha iliyo juu kutazama takwimu asili na wasiliana nasi kuhusu takwimu zisizokuwepo au zenye makosa',
 
     'nav.home': 'Mwanzo',
     'nav.data': 'Data',
