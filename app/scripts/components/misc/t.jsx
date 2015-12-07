@@ -244,6 +244,9 @@ const allTranslations = {
     'chart.pie.WATER_QUANTITY': 'Water Quantity',
     'chart.pie.SOURCE_TYPE': 'Source Type',
     'chart.grouped': 'Grouped Bar Chart',
+    'chart.waterpoint-total-servedpopulation': 'Total Served Population',
+    'chart.waterpoint-total-servedpopulation.percenatge': 'Percentage',
+    'chart.waterpoint-total-servedpopulation-helptext': 'Percentage Of Population Served By Year',
 
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',
