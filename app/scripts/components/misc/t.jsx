@@ -52,6 +52,7 @@ const allTranslations = {
 
     'charts.toggle.closed': 'View Charts',
     'charts.toggle.opened': 'Hide Charts',
+    'chart.doubleClick.help': 'Double Click on any bar to drilldown',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
     'chart.title.repair': 'Needs Repair',
@@ -86,6 +87,10 @@ const allTranslations = {
     'chart.waterpoints-people-ratio.x-axis-DISTRICT': 'Districts',
     'chart.waterpoints-people-ratio.x-axis-WARD': 'Wards',
     'chart.waterpoints-people-ratio.y-axis': 'Ratio',
+    'chart.tooltip.title.REGION': 'Region',
+    'chart.tooltip.title.DISTRICT': 'District',
+    'chart.tooltip.title.WARD': 'Ward',
+    'chart.tooltip.sufix.population-served': 'people per waterpoint',
 
     'chart.boreholes.title': 'Boreholes',
     'chart.boreholes.x-axis': 'Regions',
