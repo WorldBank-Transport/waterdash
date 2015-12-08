@@ -50,35 +50,42 @@ const WaterpointPolygonPopup = React.createClass({
     const status = func.Result.countBy(this.props.data, 'STATUS');
     const topProblem = this.getTopProblem();
     return (
-      <div className="waterpoint-popup">
-        <div className="row header">
-          <h3 className="main-header"><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
+      <div className="waterpoint-popup polygon">
+      <div className="popup-header">
+        <h3 className="main-header"><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
+      </div>
+
+      <div className="row population-ratio bordered">
+        <h3><T k="popup.waterpoint-poly.population-waterpoint-ratio" /></h3>
+        <div className="popup-stat-container">
+          <span className="big-number">
+            {pwRatio}
+          </span>
+          <span className="stat-symbol population-big">
+            <img src="images/population-icon.png"/>
+          </span>
         </div>
-        <div className="row header">
-          <div className="left">
-            <h3 className="main-header"><T k="popup.waterpoint-poly.population-waterpoint-ratio" /></h3>
-            <span className="big-number">{pwRatio}</span>
-          </div>
+      </div>
+      <div className="row bordered">
+        <div className="popup-col-third">
+          <MetricStatus className="good" iconSymbol="✓" metric="FUNCTIONAL" sumProps={status} title="chart.title.functional" />
         </div>
-        <div className="row header">
-          <div className="left">
-            <MetricStatus className="good" iconSymbol="✓" metric="FUNCTIONAL" sumProps={status} title="chart.title.functional" />
-            <MetricStatus className="medium" iconSymbol="-" metric="FUNCTIONAL NEEDS REPAIR" sumProps={status} title="chart.title.repair"/>
-            <MetricStatus className="poor" grouped={true} iconSymbol="×" metric="NON FUNCTIONAL" sumProps={status} title="chart.title.non-functional"/>
-          </div>
+        <div className="popup-col-third">
+          <MetricStatus className="medium" iconSymbol="-" metric="FUNCTIONAL NEEDS REPAIR" sumProps={status} title="chart.title.repair"/>
         </div>
-        <div className="row header">
-          <div className="left">
-            <h3 className="main-header"><T k="popup.waterpoint-poly.waterpoints" /></h3>
-            <span className="big-number">{this.props.data.length}</span>
-          </div>
+        <div className="popup-col-third">
+          <MetricStatus className="poor" grouped={true} iconSymbol="×" metric="NON FUNCTIONAL" sumProps={status} title="chart.title.non-functional"/>
         </div>
-        <div className="row header">
-          <div className="left">
-            <h3 className="second-header"><T k="popup.waterpoint-poly.top-problem" /></h3>
-            <span className="location-text">{topProblem}</span>
-          </div>
-        </div>
+      </div>
+
+      <div className="row">
+        <h3 className="left"><span className="fa fa-tint"></span><T k="popup.waterpoint-poly.waterpoints" /></h3>
+        <span className="popup-stat left">{this.props.data.length}</span>
+      </div>
+      <div className="row">
+        <h3 className="left"><span className="fa fa-wrench"></span><T k="popup.waterpoint-poly.top-problem" /></h3>
+        <span className="popup-stat left">{topProblem}</span>
+      </div>
       </div>
     );
   },

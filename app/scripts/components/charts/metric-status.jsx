@@ -55,7 +55,7 @@ const MetricStatus = React.createClass({
     });
     const [visibleClass, direction] = this.state.open ? [ 'visible',  'down']  : ['hidden', 'up'];
     return (
-      <div>
+      <div className="non-functional-toggle">
         <Icon onClick={this.toggle} type={`chevron-circle-${direction}`}/>
         <div className={`grouped ${visibleClass}`}>{groupedDiv}</div>
       </div>);
