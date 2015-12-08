@@ -45,6 +45,30 @@
       float: left;
       width: 50%;
     }
+    //regional popup metric status
+    .popup-col-third {
+      float: left;
+      width: 33%;
+      .metric-status {
+        border-right: 0;
+        .big-number {
+          color: $theme-blue;
+          font-size: $big-number/1.2;
+          line-height: $base-unit;
+          margin-top: $base-unit/3;
+        }
+        &.poor > .icon {
+          background: $status-poor;
+          font-size: $metric-icon-size;
+          line-height: $metric-icon-size - 7;
+        }
+      }
+      .context {
+        font-size: $small-text;
+      }
+
+    }
+
     .left {
       float: left;
     }
@@ -148,6 +172,15 @@
     display: inline;
     font-size: $popup-default-text;
     margin-right: $popup-space/2;
+  }
+
+  &.polygon {
+    .non-functional-toggle {
+      display: none;
+    }
+    .row {
+      margin-bottom: $polygon-row-space;
+    }
   }
 
 }
