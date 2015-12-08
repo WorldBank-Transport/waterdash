@@ -1,54 +1,58 @@
 @import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
 
 .legend {
-    display: inline-block;
-    width:120px;
-    font-size: 0.85em;
-    background: $background-map-overlay;
-    border: 1px solid $grey-light-detail;
-    bottom: 10%;      // TODO
-    box-shadow: $shadow;
-    left: 10%;  // TODO
-    padding: 1em;  // TODO
-    position: absolute;  // TODO
-    right: 15%;  // TODO
-    top: 60%;  // TODO
-    height: 120px;
-    z-index: 1;  // needs to be specified >=1 to go above the map
+  background: $background-map-overlay;
+  border: 3px solid $grey-light;
+  bottom: 10%;      // TODO
+  box-shadow: $shadow;
+  display: inline-block;
+  font-size: $medium-text;
+  height: $legend-dimensions;
+  left: 2%;
+  padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
+  position: absolute;  // TODO
+  top: 68%;
+  width: $legend-dimensions;
+  z-index: 1;  // needs to be specified >=1 to go above the map
 
-.legend-block {
-    border: 1px solid #555555;
+  .legend-block {
+    border: 2px solid $grey-light-alt;
     display: block;
     float: left;
-    height: 12px;
-    margin-right: .2cm;
-    width: 20px;
+    height: $legend-block-height;
+    margin-right: $legend-margin;
+    margin-top: $legend-margin;
+    width: $legend-block-width;
 }
-.title {
+  .title {
     color: #1da3da;
-    font-size: 12px;
-    font-weight: 700;
+    font-size: $legend-title;
+    font-weight: $title-weight;
+    margin-bottom: 5px;
     text-transform: uppercase;
-    margin-bottom: 5px
 }
-h1 {
-    color:#B5B1B1;
-    text-shadow: #fff 2px 2px 0px;
-    text-align: center;margin:2em 0;
+  h1 {
+    color: #B5B1B1;
+    margin: 2em 0;
+    text-shadow: #fff 2px 2px 0
 }
-h2 {
-    color:#A2A3F2;
-    text-shadow: #fff 2px 2px 0px;margin:2em 0 1em 0;
+  h2 {
+    color: #A2A3F2;
+    margin: 2em 0 1em 0;
+    text-shadow: #fff 2px 2px 0;
 }
-h3 {
-    color:#555;font-size: .9em
+  h3 {
+    color: #555;
+    font-size: 0.9em
 }
-hr {
+  hr {
+    background-color: #ddd;
+    border: 0;
+    color: #ddd;
     height: 1px;
     margin: -0.5em 0;
     padding: 0;
-    color: #ddd;
-    background-color: #ddd;
-    border: 0;
     }
 }
