@@ -1,12 +1,27 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .dam-popup {
-  display: table-cell;
-  margin: 0;
   padding: 0 $base-unit;
-  vertical-align: top;
+
+  .fa {
+    color: $theme-blue;
+    display: inline;
+    font-size: $popup-default-text;
+    margin-right: $popup-space/2;
+  }
+
+  .dam-popup-icon {
+    float: left;
+    margin-right: $base-unit;
+    width: $dam-popup-icon-width;
+    &.small {
+      margin-right: $base-unit / 3;
+      width: $dam-popup-icon-width - 25;
+    }
+  }
 
   .row {
     box-sizing: border-box;
@@ -15,56 +30,39 @@
     table-layout: fixed;
     width: 100%;
 
-    & > div {
-      display: table-cell;
+    &.bordered {
+      @include bottom-stat-border(3px, $grey-light);
+      margin-bottom: $popup-space;
+      padding-bottom: $popup-space;
     }
-    & > h3 {
-      display: table-cell;
-      margin-bottom: 0;
-    }
-    & > p {
-      display: table-cell;
-    }
-    .left {
+
+    .popup-col {
       float: left;
+      width: 50%;
     }
-  }
-  .medum-number {
-    color: $text-color;
-    font-size: $medium-number;
-    font-weight: bold;
-    line-height: 1em;
 
-    & > .number {
-      font-weight: bold;
+  }
+  //  row ends
+
+  .popup-stat {
+    font-size: $popup-default-text;
+    font-weight: $title-weight;
+    margin-left: $popup-space + 3;
+  }
+
+  .popup-header {
+    @include bottom-stat-border(3px, $grey-light);
+    margin-bottom: $popup-space / 2;
+    overflow: hidden;
+    padding-bottom: $popup-space * 1.5;
+
+    .secondary-text {
+      color: $text-color;
+      float: left;
+      font-weight: $title-weight;
+      padding-top: $popup-sec-text-position;
     }
-  }
 
-  .secondary-text {
-    vertical-align: top;
-    width: 25%;
   }
-
-  .header {
-    border-bottom: 1px solid $grey-light-detail;
-    height: 50px;
-  }
-  .main-header {
-    color: $theme-blue;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .second-header {
-    color: $text-color;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  .location-text {
-    color: $theme-blue;
-    font-size: $tab-text;
-    font-weight: bold;
-    line-height: 1em;
-  }
+  // header ends
 }
