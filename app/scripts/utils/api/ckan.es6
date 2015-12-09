@@ -157,7 +157,7 @@ const promiseConcat = (postprocess, notify, ...promises) => new Promise((resolve
  * @returns {Promise<array<object>>} The converted data
  */
 function get(root, id, query = {}, notify = () => null, postprocess = v => v) {
-  const chunk = 6000;
+  const chunk = 1500;
   const throttledNotify = throttle(notify, 1000, {leading: true, trailing: false});
 
   const getChunk = (offset) => {
