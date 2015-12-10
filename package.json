@@ -97,6 +97,7 @@
     "reflux": "0.2.12",
     "results": "0.9.0",
     "topojson": "1.6.19",
-    "whatwg-fetch": "0.9.0"
+    "whatwg-fetch": "0.9.0",
+    "isomorphic-fetch": "2.2.0"
   }
 }
