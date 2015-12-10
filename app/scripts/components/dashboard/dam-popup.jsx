@@ -18,7 +18,7 @@ const DamPopup = React.createClass({
           <span className="secondary-text"><T k="popup.dam.basin" />: {this.props.dam.BASIN}</span>
         </div>
 
-        <div className="row">
+        <div className="row bordered">
           <div className="popup-col">
             <h3><img className="dam-popup-icon small" src="images/dams-blue.png"/><T k="popup.dam.elevation" /></h3>
             <span className="popup-stat">{this.props.dam.ELEVATION_}</span>
@@ -29,7 +29,7 @@ const DamPopup = React.createClass({
           </div>
         </div>
 
-        <div className="row">
+        <div className="row bordered">
           <div className="popup-col">
             <h3><span className="fa fa-tint"></span><T k="popup.dam.reservoir" /></h3>
             <span className="popup-stat">{this.props.dam.RESERVOIR_}</span>

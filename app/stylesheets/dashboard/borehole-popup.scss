@@ -1,12 +1,72 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .borehole-popup {
   display: table-cell;
   margin: 0;
   padding: 0 $base-unit;
   vertical-align: top;
+
+  .popup-header {
+    @include bottom-stat-border(3px, $grey-light);
+    margin-bottom: $popup-space / 2;
+    overflow: hidden;
+    padding-bottom: $popup-space / 2;
+
+    h3 {
+      float: left;
+      font-size: $popup-default-text;
+      padding-top: $popup-space;
+    }
+  }
+
+  .popup-col {
+    @include bottom-stat-border(3px, $grey-light);
+    float: left;
+    width: 50%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+
+    h3 {
+      line-height: 120%;
+      width: 80%;
+    }
+  }
+
+  .popup-stat {
+    font-size: $medium-number;
+    font-weight: $title-weight;
+  }
+
+  .popup-stat-container {
+    .big-number {
+      display: block;
+      float: left;
+      font-size: $popup-population-number;
+      font-weight: $title-weight;
+      margin-right: $popup-space;
+    }
+  }
+
+  .stat-symbol {
+    float: left;
+
+    img {
+      width: 100%;
+    }
+
+    &.borehole-big {
+      margin-top: $popup-space / 4;
+      width: $popup-population-width - 5;
+    }
+
+    &.borehole-small {
+      margin-right: $popup-space/2;
+      width: $popup-small-icon;
+    }
+  }
 
   .row {
     box-sizing: border-box;
@@ -15,18 +75,10 @@
     table-layout: fixed;
     width: 100%;
 
-    & > div {
-      display: table-cell;
-    }
-    & > h3 {
-      display: table-cell;
-      margin-bottom: 0;
-    }
-    & > p {
-      display: table-cell;
-    }
-    .left {
-      float: left;
+    &.bordered {
+      @include bottom-stat-border(3px, $grey-light);
+      margin-bottom: $popup-space;
+      padding-bottom: $popup-space;
     }
 
     .big-number {
@@ -39,44 +91,10 @@
         font-weight: bold;
       }
     }
-    .second-header {
-      color: $text-color;
-      font-size: 12px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-
-    &.small {
-      padding: 0.25em 0;
-
-      .medum-number {
-        color: $text-color;
-        font-size: $medium-number;
-        font-weight: bold;
-        line-height: 1em;
-
-        & > .number {
-          font-weight: bold;
-        }
-      }
-    }
+    // big number ends
   }
+  // row ends
 
-  .secondary-text {
-    vertical-align: top;
-    width: 25%;
-  }
 
-  .header {
-    border-bottom: 1px solid $grey-light-detail;
-    height: 50px;
-  }
-  .main-header {
-    color: $theme-blue;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
 
 }
-
