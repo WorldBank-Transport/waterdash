@@ -19,7 +19,7 @@ const SpinnerModal = React.createClass({
         <div className="spinner-modal">
           <div className="spinner">
             <TChildProps>
-              <img alt={{k: 'loading'}} src="/images/loading-icon.gif" />
+              <img alt={{k: 'loading'}} src="images/loading-icon.gif" />
             </TChildProps>
             <p>{this.props.message}</p>
           </div>

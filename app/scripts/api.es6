@@ -160,13 +160,13 @@ export const getServedPopulation = (onProgress) =>
   ckan.get(API_ROOT, 'c267883f-ffcf-4f9c-a7f1-887451236134', servedPopulationQ, onProgress);
 
 export const getRegions = () =>
-  staticData.getPolygons('/layers/tz_regions.json', 'tz_Regions');
+  staticData.getPolygons('layers/tz_regions.json', 'tz_Regions');
 
 export const getDistricts = () =>
-  staticData.getPolygons('/layers/tz_districts.json', 'tz_districts');
+  staticData.getPolygons('layers/tz_districts.json', 'tz_districts');
 
 export const getWards = () =>
-  staticData.getPolygons('/layers/tz_wards.json', 'TzWards');
+  staticData.getPolygons('layers/tz_wards.json', 'TzWards');
 
 export const getWaterPointsStatic = () =>
-  staticData.getWithPostProcess('/data/waterpoints.json', eachRecord(waterpointProcess));
+  staticData.getWithPostProcess('data/waterpoints.json', eachRecord(waterpointProcess));
