@@ -18,7 +18,8 @@
     "start": "node server.js",
     "test": "npm run test-only",
     "posttest": "npm run lint",
-    "test-only": "jest"
+    "test-only": "jest",
+    "deploy" : "gulp deploy"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
