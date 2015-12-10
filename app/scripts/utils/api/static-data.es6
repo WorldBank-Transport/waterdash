@@ -43,3 +43,8 @@ export const getPolygons = (path, topoKey) =>
   getJson(path)
     .then(pullFeatures(topoKey))
     .then(mapNamePropsAsIds);
+
+export const getWithPostProcess = (path, postprocess) =>
+  getJson(path)
+    .then(postprocess)
+    

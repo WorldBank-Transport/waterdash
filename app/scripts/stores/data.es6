@@ -2,7 +2,7 @@ import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import { load, loadProgress, loadCompleted, loadFailed } from '../actions/data';
 import DataTypes from '../constants/data-types';
-import { getWaterpoints, getBoreholes, getDams } from '../api';
+import { getWaterPointsStatic, getBoreholes, getDams } from '../api';
 
 const DUMMY = [];
 
@@ -51,7 +51,7 @@ const DataStore = createStore({
   getDataFromApi(type) {
     const proxier = getNextProxier(type);
     const apiFn = DataTypes.match(type, {
-      Waterpoints: () => getWaterpoints,
+      Waterpoints: () => getWaterPointsStatic,
       Boreholes: () => getBoreholes,
       Dams: () => getDams,
     });
