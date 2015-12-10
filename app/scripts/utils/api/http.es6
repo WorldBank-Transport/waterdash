@@ -1,5 +1,6 @@
 import warn from '../warn';
-
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 /**
  * @param {object} err The HTTP error
