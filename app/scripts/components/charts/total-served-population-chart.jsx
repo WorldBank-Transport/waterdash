@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import {BarChart} from 'react-d3-components';
-import ServedservedpopulationStore from '../../stores/servedpopulation';
+import ServedPulationStore from '../../stores/servedpopulation';
 import TSetChildProps from '../misc/t-set-child-props';
 import {load} from '../../actions/servedpopulation';
 import T from '../misc/t';
@@ -11,13 +11,13 @@ import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/charts/total-served-population-chart');
 
-const TotalServedservedpopulationChart = React.createClass({
+const TotalServedPulationChart = React.createClass({
   propTypes: {
     data: PropTypes.array.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
   mixins: [
-    connect(ServedservedpopulationStore, 'servedpopulation'),
+    connect(ServedPulationStore, 'servedpopulation'),
     Resize,
     ShouldRenderMixin,
   ],
@@ -67,4 +67,4 @@ const TotalServedservedpopulationChart = React.createClass({
   },
 });
 
-export default TotalServedservedpopulationChart;
+export default TotalServedPulationChart;
