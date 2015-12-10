@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sassLint = require('gulp-sass-lint');
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
+const ghPages = require('gulp-gh-pages');
 
 gulp.task('lint-styles', function() {
   gulp.src([
@@ -47,4 +48,9 @@ gulp.task('slack-notify', function() {
       icon_emoji: ':sweat_drops:',
       text: 'http://maji.takwimu.org/'
     });
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });
