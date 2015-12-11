@@ -4,6 +4,7 @@ import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
 import WaterpointStatusChart from './waterpoint-status-chart';
 import MetricSummary from './metric-summary-chart';
+import TotalServedPopulationChart from './total-served-population-chart';
 import WaterpointPopulationServeChart from './waterpoint-population-serve-chart';
 import * as func from '../../utils/functional';
 import WaterpointPieChart from './waterpoint-pie-chart';
@@ -50,6 +51,9 @@ const WaterpointsChart = React.createClass({
           </div>
           <div className="col-left population">
             <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
+          </div>
+          <div className="col-left population">
+            <TotalServedPopulationChart viewMode={this.props.viewMode}/>
           </div>
           <div className="col-all">
             <div className="row-chart-left">

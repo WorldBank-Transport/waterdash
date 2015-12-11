@@ -1,0 +1,29 @@
+@import '../config/colours';
+@import '../config/type';
+
+.total-servedpopulation-chart {
+  .x {
+    .tick text {
+      -webkit-transform: rotate(-75deg);
+      direction: rtl;
+      fill: $text-color;
+      font-size: $chart-axis-text;
+      font-weight: 600;
+      text-anchor: inherit;
+      transform: rotate(-75deg);
+    }
+  }
+  .y {
+    .tick text {
+      dominant-baseline: text-after-edge;
+      fill: $text-color;
+      font-size: $chart-axis-text;
+      font-weight: 600;
+    }
+  }
+  .label {
+    fill: $text-color;
+    font-size: $chart-axis-text;
+    font-weight: bold;
+  }
+}
