@@ -1,37 +1,40 @@
 @import '../config/colours';
 @import '../config/dimensions';
 
-.popup {
-  background: $background-map-overlay;
-  border: 2px solid $grey-light;
-  box-shadow: $shadow;
-  height: $popup-width + 55;
-  left: 60%;  // TsODO
-  overflow: hidden;
-  padding: $base-unit;  // TODO
-  position: absolute;  // TODO
-  right: 15%;  // TODO
-  top: 1%;  // TODO
-  width: $popup-width;
-  z-index: 1;  // needs to be specified >=1 to go above the map
+.popup-wrapper {
+  left: 55%;
+  position: absolute;
+  right: 10%;
+  top: 2%;
 
-  .close-button {
-    background: $grey-light;
-    color: $theme-blue;
-    display: inline-block;
-    font-weight: bold;
-    height: $base-unit + 0.3;
-    line-height: $base-unit + 0.2;
-    position: absolute;
-    right: $base-unit;
-    text-align: center;
-    top: $base-unit;
-    width: $base-unit + 0.3;
+  .popup {
+    background: $background-map-overlay;
+    border: 3px solid $grey-light;
+    box-shadow: $shadow;
+    // height: $popup-width + 50;
+    overflow: hidden;
+    padding: $base-unit;
+    position: relative;
+    width: $popup-width;
+    z-index: 1;  // needs to be specified >=1 to go above the map
 
-    &:hover {
-      background: $grey-medium;
-      color: $text-inverse;
-      cursor: pointer;
+    .close-button {
+      background: $grey-light;
+      color: $theme-blue;
+      display: inline-block;
+      font-weight: bold;
+      height: $base-unit + 0.3;
+      line-height: $base-unit + 0.2;
+      position: absolute;
+      right: $base-unit;
+      text-align: center;
+      top: $base-unit;
+      width: $base-unit + 0.3;
+
+      &:hover {
+        background: $grey-medium;
+        color: $text-inverse;
+        cursor: pointer;
     }
   }
 
@@ -41,5 +44,6 @@
     margin: 0;
     padding-bottom: 0;
     text-transform: uppercase;
+    }
   }
 }
