@@ -18,7 +18,7 @@ gulp.task('copy:index', function() {
   const cssStream = gulp
     .src('style.css', {read: false, cwd: __dirname + '/dist/'});
   gulp.src('app/index.html')
-    .pipe(inject(cssStream, {removeTags: true}))
+    .pipe(inject(cssStream, {addRootSlash: false}))
     .pipe(gulp.dest('dist/'));
 });
 

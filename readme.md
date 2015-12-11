@@ -47,3 +47,8 @@ $ npm run lint
 ```bash
 $ npm run test-only
 ```
+
+Push changes to gh-pages branch
+```Deploy
+$ npm run deploy
+```
