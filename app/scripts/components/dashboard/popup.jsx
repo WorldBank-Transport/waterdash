@@ -60,6 +60,7 @@ const Popup = React.createClass({
         <div style={{display: 'none'}}></div>
       ),
       Some: selected => (
+      <div className="popup-wrapper">
         <div className="popup">
           <TSetChildProps>
             <div
@@ -80,6 +81,7 @@ const Popup = React.createClass({
             [_]: this.renderLoading,
           })}
         </div>
+      </div>
       ),
     });
   },
