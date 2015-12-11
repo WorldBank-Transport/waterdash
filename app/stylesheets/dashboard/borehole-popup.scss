@@ -25,9 +25,9 @@
   .popup-col {
     @include bottom-stat-border(3px, $grey-light);
     float: left;
-    width: 50%;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    width: 50%;
 
     h3 {
       line-height: 120%;

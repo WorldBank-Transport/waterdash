@@ -39,14 +39,24 @@
       float: left;
       width: 50%;
     }
-
   }
   //  row ends
 
+  .popup-col-third {
+    float: left;
+    width: 33%;
+  }
+
   .popup-stat {
-    font-size: $popup-default-text;
+    font-size: $medium-number;
     font-weight: $title-weight;
     margin-left: $popup-space + 3;
+    &.polygon-stat {
+      margin-left: 0;
+    }
+    .metric-unit {
+      font-size: $medium-text;
+    }
   }
 
   .popup-header {
@@ -54,6 +64,10 @@
     margin-bottom: $popup-space / 2;
     overflow: hidden;
     padding-bottom: $popup-space * 1.5;
+
+    &.polygon-dam-header {
+      padding-bottom: $popup-space;
+    }
 
     .secondary-text {
       color: $text-color;
@@ -64,4 +78,29 @@
 
   }
   // header ends
+
+  .stat-symbol {
+    float: left;
+
+    img {
+      width: 100%;
+    }
+    &.dam-big {
+      margin-top: $base-unit / 3;
+      width: $popup-population-width + 6;
+    }
+
+  }
+
+  .popup-stat-container {
+    .big-number {
+      color: $text-color;
+      display: block;
+      float: left;
+      font-size: $big-number;
+      font-weight: $title-weight;
+      margin-right: $popup-space;
+    }
+  }
+
 }

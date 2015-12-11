@@ -13,7 +13,6 @@ const DamPopup = React.createClass({
     return (
       <div className="dam-popup">
         <div className="popup-header">
-          <img className="dam-popup-icon" src="images/dams.png"/>
           <h3><T k="popup.dam.name" />: {this.props.dam.DAM_NAME}</h3>
           <span className="secondary-text"><T k="popup.dam.basin" />: {this.props.dam.BASIN}</span>
         </div>
