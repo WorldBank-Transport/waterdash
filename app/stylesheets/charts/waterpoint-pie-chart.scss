@@ -37,7 +37,7 @@
   }
 
   .legend-container {
-    background: #e8e7e9;
+    background: $grey-light;
     background-clip: padding-box;
     border-radius: 3px;
     height: 90px;
@@ -59,9 +59,9 @@
         }
 
         .selectable {
-          background: #ffffff;
+          background: $bg-color;
           background-clip: padding-box;
-          border: 1px solid #1da3da;
+          border: 1px solid $theme-blue;
           border-radius: 1px;
           float: left;
           height: 8px;
@@ -70,10 +70,10 @@
           width: 8px;
 
           &.selected {
-            background: #1da3da;
+            background: $theme-blue;
           }
         }
       }
-    }  
+    }
   }
 }
