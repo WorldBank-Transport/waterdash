@@ -49,7 +49,7 @@ ul.open-data-nav {
   }
 
   float: left;
-  margin: $footer-text-top-position 0;
+  margin: $footer-text-top-position+3 0;
 
   ul.open-data-nav {
     @include up-to($tablet-landscape) {
