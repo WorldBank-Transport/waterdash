@@ -170,3 +170,12 @@ export const getWards = () =>
 
 export const getWaterPointsStatic = () =>
   staticData.getWithPostProcess('/data/ckan-waterpoints.json', eachRecord(waterpointProcess));
+
+export const getBoreholesStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-boreholes.json');
+
+export const getDamsStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-dams.json', eachRecord(damProcess));
+
+export const getPopulationStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-population.json', eachRecord(toUppercase));

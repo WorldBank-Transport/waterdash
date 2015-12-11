@@ -1,5 +1,5 @@
 import { createActions } from 'reflux';
-import { getPopulation } from '../api';
+import { getPopulationStatic } from '../api';
 
 const populationActions = createActions({
   load: {},
@@ -9,7 +9,7 @@ const populationActions = createActions({
 
 // SIDE-EFFECT: xhr request is triggered on populationActions.load()
 populationActions.load.listen(() => {
-  getPopulation()
+  getPopulationStatic()
     .then(populationActions.loadCompleted)
     .catch(populationActions.loadFailed);
 });
