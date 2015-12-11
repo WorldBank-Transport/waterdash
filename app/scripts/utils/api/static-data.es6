@@ -46,5 +46,6 @@ export const getPolygons = (path, topoKey) =>
 
 export const getWithPostProcess = (path, postprocess) =>
   getJson(path)
+    .then(jsonResp => jsonResp.result.records)
     .then(postprocess)
     

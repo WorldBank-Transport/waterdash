@@ -169,4 +169,4 @@ export const getWards = () =>
   staticData.getPolygons('/layers/tz_wards.json', 'TzWards');
 
 export const getWaterPointsStatic = () =>
-  staticData.getWithPostProcess('/data/waterpoints.json', eachRecord(waterpointProcess));
+  staticData.getWithPostProcess('/data/ckan-waterpoint.json', eachRecord(waterpointProcess));
