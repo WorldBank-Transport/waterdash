@@ -60,8 +60,8 @@
         list-style: none;
         list-style-position: inside;
         margin-right: $chart-legend-margin;
-        width: 42%;
         position: relative;
+        width: 42%;
 
         span {
           &.t {
@@ -72,18 +72,18 @@
         }
 
         .selectable {
-          background: #ffffff;
+          background: $bg-color;
           background-clip: padding-box;
-          border: 1px solid #1da3da;
+          border: 1px solid $theme-blue;
           float: left;
           height: $pie-chart-checkbox-size;
           margin-right: $pie-chart-checkbox-margin-top * 2;
           margin-top: $pie-chart-checkbox-margin-top;
-          width: $pie-chart-checkbox-size;
           position: absolute;
+          width: $pie-chart-checkbox-size;
 
           &.selected {
-            background: #1da3da;
+            background: $theme-blue;
           }
         }
       }
