@@ -3,6 +3,11 @@
 @import '../config/type';
 @import '../config/box';
 
+.mainChart {
+  @include chart-row();
+  width: 100%;
+}
+
 .stack-bar-chart {
   margin: 0;
 

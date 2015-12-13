@@ -32,3 +32,9 @@
   left: $left;
   top: $top;
 }
+
+@mixin chart-row() {
+  border-bottom: 3px solid $grey-light;
+  margin-bottom: $general-content-padding;
+  padding-bottom: $general-content-padding;
+}

@@ -20,6 +20,7 @@ $legend-dimensions: 120px;
 $legend-block-width: 30px;
 $legend-block-height: 15px;
 $legend-margin: 5px;
+$legend-container-height: 170px;
 
 //tabs
 $charts-nav-height: 41px;
@@ -68,6 +69,10 @@ $metric-stat-flyout-toggle-position: 30px;
 $metric-stat-flyout-left: -17px;
 $metric-stat-flyout-top: -325px;
 $metric-stat-height: 310px;
+$pie-chart-title-top-space: 10px;
+$pie-chart-checkbox-size: 12px;
+$pie-chart-tooltip-width: 250px;
+$pie-chart-checkbox-margin-top: 4px;
 
 // static content
 $static-content-position: 70px;
@@ -110,7 +115,8 @@ $waterpoint-stat-wide: 35%;
 $waterpoint-stat-narrow: 25%;
 $tooltip-width: 520px;
 $tooltip-height: 230px;
-$waterpoint-options-height: 50px;
+$waterpoint-options-height: 30px;
+$pie-chart-tooltip-height: 50px;
 
 //location popup
 $popup-width: 410px;

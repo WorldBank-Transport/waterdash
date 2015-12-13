@@ -51,7 +51,7 @@ const TotalServedPulationChart = React.createClass({
     }
     return (
       <div className="total-servedpopulation-chart">
-        <h3 className="chart-title"><T k="chart.waterpoint-total-servedpopulation" /> - <span className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></span></h3>
+        <h3><T k="chart.waterpoint-total-servedpopulation" /> - <span className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
             <BarChart

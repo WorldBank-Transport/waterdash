@@ -71,7 +71,7 @@ const WaterpointPopulationServeChart = React.createClass({
     const popAgg = func.Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">
-        <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
+        <h3><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
         <div><p><T k="chart.doubleClick.help" /></p></div>
         <div className="chart-container ">
           <TSetChildProps>

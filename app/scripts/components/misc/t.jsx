@@ -83,7 +83,7 @@ const allTranslations = {
     'chart.title-boreholes-stats': 'Metric Evolution',
     'chart.title-boreholes-stats-helptext': 'Average through the years',
     'chart.title-population-served': 'Population',
-    'chart.title-title-population-served-helptext': 'People-Waterpoint ratio',
+    'chart.title-title-population-served-helptext': 'People-Waterpoint Ratio',
     'chart.title.number-boreholes': 'Total Number of Boreholes',
     'chart.waterpoints-people-ratio.x-axis-REGION': 'Regions',
     'chart.waterpoints-people-ratio.x-axis-DISTRICT': 'Districts',

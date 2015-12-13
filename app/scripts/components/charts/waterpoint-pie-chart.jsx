@@ -60,9 +60,11 @@ const WaterpointPieChart = React.createClass({
     });
     return (
       <div className="legend-container">
-        <ul>
-          {children}
-        </ul>
+        <div clasName="pie-legend-position">
+          <ul>
+            {children}
+          </ul>
+        </div>
       </div>);
   },
 
@@ -73,7 +75,7 @@ const WaterpointPieChart = React.createClass({
     const data = func.Result.countBy(this.props.data, this.props.column);
     return (
       <div className="waterpoint-pie-chart">
-        <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
+      <h3><T k={`chart.pie.${this.props.column}`} /></h3>
         {this.renderLegend(data)}
         <div className="chart-container">
           <PieChart

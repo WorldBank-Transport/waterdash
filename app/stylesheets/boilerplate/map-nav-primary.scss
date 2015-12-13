@@ -21,6 +21,10 @@
   &.charts-toggle {
     background: $grey-light;
     font-weight: bold;
+    &:hover {
+      background: $theme-blue;
+      color: $text-inverse;
+    }
   }
   &.filters-toggle {
     background: $theme-blue;
