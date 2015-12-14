@@ -58,7 +58,7 @@ const TotalServedPulationChart = React.createClass({
                 data={this.parseData(this.state.servedpopulation)}
                 height={350}
                 margin={{top: 20, bottom: 100, left: 40, right: 10}}
-                width={this.state.size.width * 0.55}
+                width={this.state.size.width * 0.80}
                 xAxis={{label: {k: 'chart.boreholes-stats.x-axis'}}}
                 yAxis={{label: {k: 'chart.waterpoint-total-servedpopulation.percenatge'}}} />
           </TSetChildProps>

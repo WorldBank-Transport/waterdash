@@ -84,7 +84,7 @@ const WaterpointPopulationServeChart = React.createClass({
                 tooltipHtml={(x, y0, y) => this.tooltip(x, y0, y, drillDown)}
                 tooltipMode="mouse"
                 tooltipOffset={{top: -100, left: 0}}
-                width={this.state.size.width * 0.55}
+                width={this.state.size.width * 0.80}
                 xAxis={{label: {k: `chart.waterpoints-people-ratio.x-axis-${drillDown}`}}}
                 yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
           </TSetChildProps>

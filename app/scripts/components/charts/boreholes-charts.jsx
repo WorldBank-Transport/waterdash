@@ -39,13 +39,13 @@ const BoreholesCharts = React.createClass({
     return (
       <div className="container">
         <div className="secondaryCharts">
-          <div className="col-left">
+          <div className="row">
             <div className="mainChart">
               <BoreholesStatsChart boreholes={this.props.data} />
               <BoreholesChart boreholes={this.props.data} />
             </div>
           </div>
-          <div className="col-right">
+          <div className="row">
             <MetricSummary format={(value) => value.toFixed(2)} metric={metricSumary} title="chart.boreholes.summary" viewMode={this.props.viewMode} />
           </div>
         </div>

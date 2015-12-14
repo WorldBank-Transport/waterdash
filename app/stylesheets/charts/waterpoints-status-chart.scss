@@ -4,7 +4,7 @@
 @import '../config/box';
 
 .mainChart {
-  @include chart-row();
+  margin-bottom: $general-content-padding;
   width: 100%;
 }
 

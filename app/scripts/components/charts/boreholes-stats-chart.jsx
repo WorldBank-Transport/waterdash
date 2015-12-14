@@ -81,16 +81,16 @@ const BoreholesStatsChart = React.createClass({
     }
     return (
       <div className="boreholes-stats-chart">
-        <h3 className="chart-title"><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
+        <h3><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
-        <div className="chart-container ">
+        <div className="chart-container">
           <TSetChildProps>
             <LineChart
                 colorScale={c.Color.getBoreholesColor}
                 data={this.parseData(dataRes)}
                 height={300}
                 margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={this.state.size.width * 0.60}
+                width={this.state.size.width * 0.90}
                 xAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.x-axis'}}}
                 yAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.y-axis'}}} />
               </TSetChildProps>
