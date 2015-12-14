@@ -145,7 +145,8 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
-        <div><p><T k="chart.doubleClick.help" /></p><p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
+        <div><p><T k="chart.doubleClick.help" /></p>
+        <p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
@@ -159,7 +160,7 @@ const WaterpointStatusChart = React.createClass({
                 tooltipHtml={(x) => this.tooltip(x, dataRes, drillDown)}
                 tooltipMode="mouse"
                 tooltipOffset={{top: -300, left: 0}}
-                width={this.state.size.width * 0.55}
+                width={this.state.size.width * 0.80}
                 xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
                 yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
             </TSetChildProps>

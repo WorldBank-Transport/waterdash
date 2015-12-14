@@ -1,9 +1,26 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .boreholes-stats-chart {
   margin: $general-content-padding 0 0 0;
+  @include chart-row();
+  width: 100%;
+
+  .waterpoints-chart-options-container {
+    margin-bottom: $general-content-padding;
+  }
+
+  .mainChart {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+  h3 {
+    color: $theme-blue;
+    font-weight: $title-weight;
+  }
 
   .x {
     .tick text {

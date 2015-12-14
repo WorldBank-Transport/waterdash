@@ -9,6 +9,7 @@ import WaterpointPopulationServeChart from './waterpoint-population-serve-chart'
 import * as func from '../../utils/functional';
 import WaterpointPieChart from './waterpoint-pie-chart';
 
+require('stylesheets/charts/charts');
 
 const WaterpointsChart = React.createClass({
   propTypes: {
@@ -41,18 +42,18 @@ const WaterpointsChart = React.createClass({
     return (
       <div className="container">
         <div className="secondaryCharts">
-          <div className="col-left">
+          <div className="row">
             <div className="mainChart">
               <WaterpointStatusChart viewMode={this.props.viewMode} waterpoints={this.props.data} />
             </div>
           </div>
-          <div className="col-right">
+          <div className="row">
             <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
           </div>
-          <div className="col-left population">
+          <div className="row">
             <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
-          <div className="col-left population">
+          <div className="row">
             <TotalServedPopulationChart viewMode={this.props.viewMode}/>
           </div>
           <div className="col-all">

@@ -1,8 +1,16 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 .waterpoint-population-serve-chart {
+  @include chart-row();
+  width: 100%;
+
+  h3 {
+    color: $theme-blue;
+    font-weight: $title-weight;
+  }
   .x {
     .tick text {
       -webkit-transform: rotate(-75deg);
@@ -36,12 +44,5 @@
     justify-content: center;
     padding: $base-unit/2 $base-unit 0;
     width: $tooltip-width/3;
-
-    .chart-title {
-      color: $theme-blue;
-      font-size: 15px;
-      font-weight: $title-weight;
-      text-transform: capitalize;
-    }
   }
 }

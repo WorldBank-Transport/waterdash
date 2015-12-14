@@ -3,6 +3,11 @@
 @import '../config/type';
 @import '../config/box';
 
+.mainChart {
+  margin-bottom: $general-content-padding;
+  width: 100%;
+}
+
 .stack-bar-chart {
   margin: 0;
 

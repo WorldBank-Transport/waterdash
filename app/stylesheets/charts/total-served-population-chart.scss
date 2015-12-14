@@ -1,7 +1,15 @@
 @import '../config/colours';
 @import '../config/type';
+@import '../config/box';
 
 .total-servedpopulation-chart {
+  @include chart-row();
+
+  h3{
+    color: $theme-blue;
+    font-weight: $title-weight;
+  }
+
   .x {
     .tick text {
       -webkit-transform: rotate(-75deg);
@@ -18,7 +26,7 @@
       dominant-baseline: text-after-edge;
       fill: $text-color;
       font-size: $chart-axis-text;
-      font-weight: 600;
+      font-weight: $title-weight;
     }
   }
   .label {

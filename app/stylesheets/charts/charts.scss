@@ -34,7 +34,7 @@
     width: $main-chart-width;
 
     &.population {
-      padding-top: $chart-container-padding/2;  
+      padding-top: $chart-container-padding/2;
     }
   }
   .col-all {
@@ -43,11 +43,14 @@
     .row-chart-left {
       float: left;
       width: 33%;
+      &.right-border {
+        border-right: 3px solid $grey-light;
+      }
     }
   }
   .dams-col-left {
     float: left;
-    width: $dams-main-chart-width; 
+    width: $dams-main-chart-width;
   }
   .col-right {
     float: right;
@@ -74,9 +77,3 @@ h3 {
     color: $grey-medium;
     }
   }
-
-// chart containers
-.chart-container {
-  @include border-radius(4px);
-  @include chart-border();
-}
