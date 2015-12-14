@@ -25,11 +25,9 @@ const BoreholePolygonPopup = React.createClass({
     };
     return Object.keys(metrics).map(key => {
       const f = m.boreholesMetricCal[key];
-      return (<div className="row small">
-          <div className="left">
-            <h3 className="main-header"><T k={`popup.borehole.${key}`} /></h3>
-            <span className="medum-number">{f(getNumberOr0(metrics[key][key]), metrics[key].total).toFixed(2)}</span>
-          </div>
+      return (<div className="popup-col">
+            <h3><T k={`popup.borehole.${key}`} /></h3>
+            <span className="popup-stat">{f(getNumberOr0(metrics[key][key]), metrics[key].total).toFixed(2)}</span>
         </div>);
     });
   },
@@ -39,16 +37,21 @@ const BoreholePolygonPopup = React.createClass({
     const polyName = this.props.data[0][polyType];
     return (
       <div className="borehole-popup">
-        <div className="row header">
-          <h3 className="main-header"><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
+        <div className="popup-header">
+          <h3><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
         </div>
         <div className="row">
-          <div className="left">
-            <h3 className="main-header"><T k="popup.borehole.quantity" /></h3>
-            <span className="big-number">{this.props.data.length}</span>
-          </div>
+            <h3><T k="popup.borehole.quantity" /></h3>
+            <div className="popup-stat-container">
+              <span className="big-number">{this.props.data.length}</span>
+              <span className="stat-symbol borehole-big">
+                <img src="images/borehole.png"/>
+              </span>
+            </div>
         </div>
-        {this.metricSummary()}
+        <div className="row">
+          {this.metricSummary()}
+        </div>
       </div>
     );
   },

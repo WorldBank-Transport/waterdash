@@ -30,6 +30,8 @@
       }
 
       .popup-stat-container {
+        margin-top: -$base-unit;
+
         .big-number {
           display: block;
           float: left;
@@ -39,12 +41,17 @@
         }
       }
 
+      .location-text {
+        line-height: 5px;
+      }
+
     }
 
     .popup-col {
       float: left;
       width: 50%;
     }
+
     //regional popup metric status
     .popup-col-third {
       float: left;
@@ -80,6 +87,7 @@
       &.source-label {
         color: $grey-deep;
         font-size: $popup-source-label;
+        margin-top: - $base-unit;
      }
 
       .highlight {
@@ -102,18 +110,15 @@
     padding-bottom: $popup-space / 2;
 
     h3 {
-      float: left;
       font-size: $popup-default-text;
-      padding-top: $popup-space;
     }
 
     .secondary-text {
       color: $text-color;
       float: left;
       font-weight: $title-weight;
-      margin-left: $popup-space;
-      padding-top: $popup-sec-text-position;
-      text-align: right;
+      margin-top: 0;
+      padding-top: 0;
     }
 
     .icon {

@@ -89,7 +89,7 @@ const WaterpointPopup = React.createClass({
           </div>
           <div className="popup-col">
             <h3><span className="fa fa-map-marker"></span><T k="popup.waterpoint.ward" /></h3>
-            <span>{this.props.waterpoint.WARD} / {this.props.waterpoint.VILLAGE} / {this.props.waterpoint.SUB_VILLAGE}</span>
+            <span className="location-text">{this.props.waterpoint.WARD} / {this.props.waterpoint.VILLAGE} / {this.props.waterpoint.SUB_VILLAGE}</span>
           </div>
         </div>
         </div>

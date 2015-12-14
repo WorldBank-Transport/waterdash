@@ -34,23 +34,24 @@ const DamPolygonPopup = React.createClass({
         data: func.Result.sumBy(this.props.data, 'RESERVOIR_'),
         title: 'popup.dam.reservoir',
       },
-      DAM_HEIGHT: {
-        data: func.Result.sumBy(this.props.data, 'DAM_HEIGHT'),
-        title: 'popup.dam.height',
-      },
       ELEVATION_: {
         data: func.Result.sumBy(this.props.data, 'ELEVATION_'),
         title: 'popup.dam.elevation',
+      },
+      DAM_HEIGHT: {
+        data: func.Result.sumBy(this.props.data, 'DAM_HEIGHT'),
+        title: 'popup.dam.height',
       },
     };
     return Object.keys(metrics).map(metric => {
       const f = m.getDamsMetricCalc(metric);
       const value = f(getNumberOr0(metrics[metric].data[metric]), metrics[metric].data.total || 1);
       return (
-        <div className="row">
-          <h3 className="main-header"><T k={metrics[metric].title} /></h3>
-          <span className="medium-number">{value.toFixed(2)} {m.getDamsMetricUnit(metric)}</span>
-        </div>);
+        <div className="popup-col-third">
+          <h3><T k={metrics[metric].title} /></h3>
+          <span className="popup-stat polygon-stat">{value.toFixed(2)} <span className="metric-unit">{m.getDamsMetricUnit(metric)}</span></span>
+        </div>
+        );
     });
   },
 
@@ -60,23 +61,25 @@ const DamPolygonPopup = React.createClass({
     const basin = this.getTopBasin();
     return (
       <div className="dam-popup">
-        <div className="row header">
-          <h3 className="main-header"><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
+        <div className="popup-header polygon-dam-header">
+          <h3><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
         </div>
-        <div className="row header">
-          <div className="left">
-            <h3 className="main-header"><T k="popup.dams-poly.quantity" /></h3>
+        <div className="row bordered">
+          <h3><T k="popup.dams-poly.quantity" /></h3>
+          <div className="popup-stat-container">
             <span className="big-number">{this.props.data.length}</span>
+            <span className="stat-symbol dam-big">
+              <img src="images/dams.png"/>
+            </span>
           </div>
         </div>
-        <div className="row header">
+
+        <div className="row bordered">
           {this.renderMetrics()}
         </div>
-        <div className="row header">
-          <div className="left">
-            <h3 className="main-header"><T k="popup.dams-poly.basin" /></h3>
-            <span className="big-number">{basin}</span>
-          </div>
+        <div className="row">
+            <h3><T k="popup.dams-poly.basin" /></h3>
+            <span className="popup-stat polygon-stat">{basin}</span>
         </div>
       </div>
     );

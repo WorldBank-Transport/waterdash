@@ -13,8 +13,16 @@
   left: 2%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
   position: absolute;
+  top: 68%;
   width: $legend-dimensions;
   z-index: 1;  // needs to be specified >=1 to go above the map
+
+  .row {
+    box-sizing: border-box;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
 
   .legend-block {
     border: 2px solid $grey-light-alt;
@@ -33,4 +41,4 @@
     text-transform: uppercase;
 }
 
-}
+  }
