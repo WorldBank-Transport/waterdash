@@ -12,17 +12,17 @@ require('stylesheets/boilerplate/button');
 
 const SearchPanel = React.createClass({
   propTypes: {
+    clear: PropTypes.func.isRequired,
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    setInclude: PropTypes.func.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
-    clear: PropTypes.func,
-    setInclude: PropTypes.func,
   },
   getInitialState() {
     return {
       open: false,
       filters: {},
-    }
+    };
   },
   close() {
     this.props.clear();
@@ -44,7 +44,7 @@ const SearchPanel = React.createClass({
       return value.length > 2 && (
         state[key].toLowerCase().indexOf(value.toLowerCase()) !== -1
       );
-    }
+    };
   },
   sortStates(key) {
     return (a, b, value) => {
@@ -52,11 +52,11 @@ const SearchPanel = React.createClass({
         a[key].toLowerCase().indexOf(value.toLowerCase()) >
         b[key].toLowerCase().indexOf(value.toLowerCase()) ? 1 : -1
       );
-    }
+    };
   },
   search() {
     const filters = Object.keys(this.state.filters);
-    if(filters.length > 0) {
+    if (filters.length > 0) {
       filters.forEach(key => {
         this.props.setInclude(key, [this.state.filters[key]]); // TODO validate filters
       });
@@ -68,16 +68,8 @@ const SearchPanel = React.createClass({
       return (<div className="search-field">
         <T k={`search.field.${key}`} />
         <Autocomplete
-            items={getSearchItems(this.props.data, key)}
             getItemValue={(item) => item[key]}
-            shouldItemRender={this.matchStateToTerm(key)}
-            sortItems={this.sortStates(key)}
-            renderItem={(item, isHighlighted) => (
-              <div
-                style={isHighlighted ? styles.highlightedItem : styles.item}
-                key={item[key]}
-              >{item[key]}</div>
-            )}
+            items={getSearchItems(this.props.data, key)}
             onSelect={(value, item) => {
               const newState = {
                 ...this.state,
@@ -88,21 +80,26 @@ const SearchPanel = React.createClass({
               };
               this.replaceState(newState);
             }}
-          />
-      </div>)
+            renderItem={(item, isHighlighted) => (
+              <div
+                  key={item[key]}
+                  style={isHighlighted ? styles.highlightedItem : styles.item}>{item[key]}</div>
+            )}
+            shouldItemRender={this.matchStateToTerm(key)}
+            sortItems={this.sortStates(key)} />
+      </div>);
     });
   },
 
   render() {
-    let allField = getSearchField(this.props.dataType);
     if (this.state.open) {
       return (
         <div className="search-panel">
           <TSetChildProps>
             <div
-              className="close-button"
-              onClick={this.close}
-              title={{k: 'popup.close'}}>
+                className="close-button"
+                onClick={this.close}
+                title={{k: 'popup.close'}}>
               &times;
             </div>
           </TSetChildProps>
@@ -119,5 +116,3 @@ const SearchPanel = React.createClass({
 });
 
 export default SearchPanel;
-
-    
