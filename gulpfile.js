@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sassLint = require('gulp-sass-lint');
 const inject = require('gulp-inject');
 const clean = require('gulp-clean');
+const ghPages = require('gulp-gh-pages');
 
 gulp.task('lint-styles', function() {
   gulp.src([
@@ -17,7 +18,7 @@ gulp.task('copy:index', function() {
   const cssStream = gulp
     .src('style.css', {read: false, cwd: __dirname + '/dist/'});
   gulp.src('app/index.html')
-    .pipe(inject(cssStream, {removeTags: true}))
+    .pipe(inject(cssStream, {addRootSlash: false}))
     .pipe(gulp.dest('dist/'));
 });
 
@@ -30,6 +31,7 @@ gulp.task('copy:static', function() {
   gulp.src(['app/images/**/*']).pipe(gulp.dest('dist/images'));
   gulp.src(['app/favicon.ico']).pipe(gulp.dest('dist'));
   gulp.src(['app/layers/**/*']).pipe(gulp.dest('dist/layers'));
+  gulp.src(['app/data/**/*']).pipe(gulp.dest('dist/data'));
  });
 
 gulp.task('slack-notify', function() {
@@ -46,4 +48,9 @@ gulp.task('slack-notify', function() {
       icon_emoji: ':sweat_drops:',
       text: 'http://maji.takwimu.org/'
     });
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });

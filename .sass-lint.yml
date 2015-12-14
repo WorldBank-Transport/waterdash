@@ -2,7 +2,7 @@
 ## Sample Sass Lint File
 #########################
 options:
-  merge-default-rules: true
+  merge-default-rules: false
   formatter: stylish
 files:
   include: 'app/**/*.scss'

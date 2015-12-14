@@ -278,9 +278,9 @@ const allTranslations = {
     'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
     'loading': 'Loading',
-    'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
-    'loading.boreholes': i => `${i[0]} boreholes loaded...`,
-    'loading.dams': i => `${i[0]} dams loaded...`,
+    'loading.waterpoints': 'Loading waterpoints...',
+    'loading.boreholes': 'Loading boreholes...',
+    'loading.dams': 'Loading dams...',
     'loading.regions': 'Loading regions...',
     'loading.districts': 'Loading districts...',
     'loading.wards': 'Loading wards...',
