@@ -145,7 +145,7 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
-        <div><p><T k="chart.doubleClick.help" />kkkkkk</p>
+        <div><p><T k="chart.doubleClick.help" /></p>
         <p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
         <div className="chart-container">
           <TSetChildProps>
