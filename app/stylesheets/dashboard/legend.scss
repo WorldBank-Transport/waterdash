@@ -5,17 +5,22 @@
 .legend {
   background: $background-map-overlay;
   border: 3px solid $grey-light;
-  bottom: 10%;      // TODO
+  bottom: 3%;
   box-shadow: $shadow;
   display: inline-block;
   font-size: $medium-text;
   height: $legend-dimensions;
   left: 2%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
-  position: absolute;  // TODO
-  top: 68%;
   width: $legend-dimensions;
   z-index: 1;  // needs to be specified >=1 to go above the map
+
+  .row {
+    box-sizing: border-box;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
 
   .legend-block {
     border: 2px solid $grey-light-alt;
@@ -27,32 +32,11 @@
     width: $legend-block-width;
 }
   .title {
-    color: #1da3da;
+    color: $theme-blue;
     font-size: $legend-title;
     font-weight: $title-weight;
-    margin-bottom: 5px;
+    margin-bottom: $legend-margin;
     text-transform: uppercase;
 }
-  h1 {
-    color: #B5B1B1;
-    margin: 2em 0;
-    text-shadow: #fff 2px 2px 0
-}
-  h2 {
-    color: #A2A3F2;
-    margin: 2em 0 1em 0;
-    text-shadow: #fff 2px 2px 0;
-}
-  h3 {
-    color: #555;
-    font-size: 0.9em
-}
-  hr {
-    background-color: #ddd;
-    border: 0;
-    color: #ddd;
-    height: 1px;
-    margin: -0.5em 0;
-    padding: 0;
-    }
-}
+
+  }

@@ -4,6 +4,7 @@ import { Ok, Err } from 'results';
 import warn from '../warn';
 import { Result } from '../functional';
 import { fetchAndCheck } from './http';
+import * as ckan from './ckan';
 
 
 export const pullFeatures = topoKey => data => {
@@ -43,3 +44,9 @@ export const getPolygons = (path, topoKey) =>
   getJson(path)
     .then(pullFeatures(topoKey))
     .then(mapNamePropsAsIds);
+
+export const getWithPostProcess = (path, postprocess = v => v) =>
+  getJson(path)
+    .then(ckan.rejectIfNotSuccess)
+    .then(jsonResp => ckan.convertCkanResp(jsonResp).promise())
+    .then(postprocess);

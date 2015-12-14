@@ -116,7 +116,7 @@ const DamsChart = React.createClass({
     return (
       <div className="container">
         <div className="secondaryCharts">
-          <div className="dams-col-left">
+          <div className="row">
             <div className="mainChart">
               <div className="dams-chart">
                 <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>

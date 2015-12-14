@@ -1,79 +1,104 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
+
 
 .waterpoint-pie-chart {
 
-  h3 {
-    &.chart-title {
-      color: $theme-blue-alt;
-      font-size: $chart-title;
-      font-weight: $static-content-weight;
-      margin-top: 10px;
+  .pie-chart-container {
+    height: 300px;
+    .pie-chart {
+      svg {
+        -moz-transform: translate(-350px, 0); /* Firefox */
+        -ms-transform: translate(-350px, 0); /* IE 9 */
+        -o-transform: translate(-350px, 0); /* Opera */
+        -webkit-transform: translate(-350px, 0); /* Safari and Chrome */
+        transform: translate(-350px, 0);
+      }
     }
+  }
+
+  h3 {
+    color: $theme-blue-alt;
+    font-size: $chart-title;
+    font-weight: $title-weight;
+    margin-bottom: 0;
+    margin-top: $pie-chart-title-top-space;
   }
 
   text {
     fill: $text-color;
-    font-size: 10px;
-    font-weight: 600;
+    font-size: $small-text;
+    font-weight: $title-weight;
   }
 
   .tooltip {
     align-items: center;
     background-color: $bg-color;
     border: 3px solid $grey-light;
-    height: 50px;
-    justify-content: center;
-    padding: $base-unit/2 $base-unit 0;
-    width: $tooltip-width/3;
+    padding: $base-unit/2;
+    text-align: center;
+    width: $pie-chart-tooltip-width;
 
     .chart-title {
       color: $theme-blue;
-      font-size: 15px;
+      font-size: $medium-text;
       font-weight: $title-weight;
       text-transform: capitalize;
     }
   }
 
   .legend-container {
-    background: #e8e7e9;
-    background-clip: padding-box;
-    border-radius: 3px;
-    height: 90px;
-    padding: 0.3em 0 0.33333em 0;
+    height: 170px;
+    min-height: 170px;
+    overflow: hidden;
+    padding: 0 0 $base-unit 0;
+    position: relative;
+
+    .pie-legend-position {
+      position: absolute;
+    }
 
     ul {
-      padding-left: $base-unit * 1.5;
+      display: block;
+      list-style-position: inside;
+      margin-left: 0;
+      padding-left: 0;
+      width: 100%;
+
       li {
         float: left;
         list-style: none;
+        list-style-position: inside;
         margin-right: $chart-legend-margin;
+        position: relative;
+        width: 42%;
 
         span {
           &.t {
-            font-size: $chart-axis-text;
+            font-size: $pie-chart-option;
             font-weight: $chart-axis-text-weight;
-            margin-top: 1px;
+            margin-left: $pie-chart-checkbox-size + 6;
           }
         }
 
         .selectable {
-          background: #ffffff;
+          background: $bg-color;
           background-clip: padding-box;
-          border: 1px solid #1da3da;
-          border-radius: 1px;
+          border: 1px solid $theme-blue;
           float: left;
-          height: 8px;
-          margin-right: 8px;
-          margin-top: 8px;
-          width: 8px;
+          height: $pie-chart-checkbox-size;
+          margin-right: $pie-chart-checkbox-margin-top * 2;
+          margin-top: $pie-chart-checkbox-margin-top;
+          position: absolute;
+          width: $pie-chart-checkbox-size;
 
           &.selected {
-            background: #1da3da;
+            background: $theme-blue;
           }
         }
       }
-    }  
+    }
   }
 }

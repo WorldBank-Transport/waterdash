@@ -51,14 +51,14 @@ const TotalServedPulationChart = React.createClass({
     }
     return (
       <div className="total-servedpopulation-chart">
-        <h3 className="chart-title"><T k="chart.waterpoint-total-servedpopulation" /> - <span className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></span></h3>
+        <h3><T k="chart.waterpoint-total-servedpopulation" /> - <span className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></span></h3>
         <div className="chart-container ">
           <TSetChildProps>
             <BarChart
                 data={this.parseData(this.state.servedpopulation)}
                 height={350}
                 margin={{top: 20, bottom: 100, left: 40, right: 10}}
-                width={this.state.size.width * 0.55}
+                width={this.state.size.width * 0.80}
                 xAxis={{label: {k: 'chart.boreholes-stats.x-axis'}}}
                 yAxis={{label: {k: 'chart.waterpoint-total-servedpopulation.percenatge'}}} />
           </TSetChildProps>

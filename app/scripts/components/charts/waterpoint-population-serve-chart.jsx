@@ -71,7 +71,7 @@ const WaterpointPopulationServeChart = React.createClass({
     const popAgg = func.Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">
-        <h3 className="chart-title"><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
+        <h3><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
         <div><p><T k="chart.doubleClick.help" /></p></div>
         <div className="chart-container ">
           <TSetChildProps>
@@ -84,7 +84,7 @@ const WaterpointPopulationServeChart = React.createClass({
                 tooltipHtml={(x, y0, y) => this.tooltip(x, y0, y, drillDown)}
                 tooltipMode="mouse"
                 tooltipOffset={{top: -100, left: 0}}
-                width={this.state.size.width * 0.55}
+                width={this.state.size.width * 0.80}
                 xAxis={{label: {k: `chart.waterpoints-people-ratio.x-axis-${drillDown}`}}}
                 yAxis={{label: {k: 'chart.waterpoints-people-ratio.y-axis'}}} />
           </TSetChildProps>

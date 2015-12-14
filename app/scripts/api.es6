@@ -160,10 +160,22 @@ export const getServedPopulation = (onProgress) =>
   ckan.get(API_ROOT, 'c267883f-ffcf-4f9c-a7f1-887451236134', servedPopulationQ, onProgress);
 
 export const getRegions = () =>
-  staticData.getPolygons('/layers/tz_regions.json', 'tz_Regions');
+  staticData.getPolygons('layers/tz_regions.json', 'tz_Regions');
 
 export const getDistricts = () =>
-  staticData.getPolygons('/layers/tz_districts.json', 'tz_districts');
+  staticData.getPolygons('layers/tz_districts.json', 'tz_districts');
 
 export const getWards = () =>
-  staticData.getPolygons('/layers/tz_wards.json', 'TzWards');
+  staticData.getPolygons('layers/tz_wards.json', 'TzWards');
+
+export const getWaterPointsStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-waterpoints.json', eachRecord(waterpointProcess));
+
+export const getBoreholesStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-boreholes.json');
+
+export const getDamsStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-dams.json', eachRecord(damProcess));
+
+export const getPopulationStatic = () =>
+  staticData.getWithPostProcess('/data/ckan-population.json', eachRecord(toUppercase));

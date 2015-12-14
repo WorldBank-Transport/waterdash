@@ -1,10 +1,12 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 
 .metric-summary {
-  padding-left: $general-content-padding;
+  @include chart-row();
+
 
   .padding {
     padding-right: 5px;
@@ -28,7 +30,9 @@
     }
 
     .group-content {
+      float: left;
       padding: 0 0 $base-unit / 2 0;
+      width: 23%;
 
       .row {
         display: inline-flex;

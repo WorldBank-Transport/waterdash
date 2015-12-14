@@ -16,10 +16,11 @@ $map-nav-height: 41px;
 $overview-bar-height: 78px;
 
 // legend
-$legend-dimensions: 120px;
+$legend-dimensions: 113px;
 $legend-block-width: 30px;
 $legend-block-height: 15px;
 $legend-margin: 5px;
+$legend-container-height: 170px;
 
 $search-height: 180px;
 $search-width: 380px;
@@ -44,7 +45,7 @@ $homecontent-padding: 20px;
 $copy-width-large: 680px;
 $copy-width-med: 450px;
 $divider-height: 6px;
-$footer-height: 70px;
+$footer-height: 50px;
 
 // charts
 $main-chart-width: 70%;
@@ -71,6 +72,10 @@ $metric-stat-flyout-toggle-position: 30px;
 $metric-stat-flyout-left: -17px;
 $metric-stat-flyout-top: -325px;
 $metric-stat-height: 310px;
+$pie-chart-title-top-space: 10px;
+$pie-chart-checkbox-size: 12px;
+$pie-chart-tooltip-width: 250px;
+$pie-chart-checkbox-margin-top: 4px;
 
 // static content
 $static-content-position: 70px;
@@ -84,7 +89,7 @@ $nav-top-position: 30px;
 $nav-top-position-mobile: 15px;
 
 $footer-nav-top-position: 35px;
-$footer-text-top-position: 20px;
+$footer-text-top-position: 10px;
 $header-footer-padding: 35px;
 $header-mobile-space: 20px;
 $lang-item-mobile-padding: 12px;
@@ -113,7 +118,8 @@ $waterpoint-stat-wide: 35%;
 $waterpoint-stat-narrow: 25%;
 $tooltip-width: 520px;
 $tooltip-height: 230px;
-$waterpoint-options-height: 50px;
+$waterpoint-options-height: 30px;
+$pie-chart-tooltip-height: 50px;
 
 //location popup
 $popup-width: 410px;
@@ -123,6 +129,7 @@ $popup-sec-text-position: 2px;
 $popup-population-width: 37px;
 $popup-small-icon: 12px;
 $polygon-row-space: 20px;
+$dam-popup-icon-width: 45px;
 
 
 // google form / iframe responsive size variables

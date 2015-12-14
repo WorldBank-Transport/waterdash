@@ -60,9 +60,11 @@ const WaterpointPieChart = React.createClass({
     });
     return (
       <div className="legend-container">
-        <ul>
-          {children}
-        </ul>
+        <div clasName="pie-legend-position">
+          <ul>
+            {children}
+          </ul>
+        </div>
       </div>);
   },
 
@@ -73,19 +75,21 @@ const WaterpointPieChart = React.createClass({
     const data = func.Result.countBy(this.props.data, this.props.column);
     return (
       <div className="waterpoint-pie-chart">
-        <h3 className="chart-title"><T k={`chart.pie.${this.props.column}`} /></h3>
+      <h3><T k={`chart.pie.${this.props.column}`} /></h3>
         {this.renderLegend(data)}
-        <div className="chart-container">
-          <PieChart
-              colorScale={(x) => c.Color[this.props.column][x]}
-              data={this.parseData(data)}
-              height={this.state.size.width * 0.20}
-              margin={{top: 50, bottom: 0, left: 50, right: 50}}
-              tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
-              tooltipMode="mouse"
-              tooltipOffset={{top: -100, left: 0}}
-              width={this.state.size.width * 0.30}/>
-        </div>
+        <div className="pie-chart-container">
+          <div className="pie-chart">
+            <PieChart
+                colorScale={(x) => c.Color[this.props.column][x]}
+                data={this.parseData(data)}
+                height={this.state.size.width * 0.20}
+                margin={{top: 0, bottom: 0, left: 0, right: 0}}
+                tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
+                tooltipMode="mouse"
+                tooltipOffset={{top: -100, left: 0}}
+                width={this.state.size.width * 0.70}/>
+            </div>
+            </div>
       </div>
     );
   },
