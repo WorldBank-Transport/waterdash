@@ -1,78 +1,120 @@
 import React, { PropTypes } from 'react';
 import T from '../misc/t';
+import TSetChildProps from '../misc/t-set-child-props';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import Autocomplete from 'react-autocomplete';
-import { getSearchField } from '../../utils/searchUtil';
+import { getSearchField, getSearchItems, styles } from '../../utils/searchUtil';
+import { Icon } from 'react-font-awesome';
 
 require('stylesheets/filters/search-panel');
-
-const styles = {
-  item: {
-    padding: '2px 6px',
-    cursor: 'default'
-  },
-
-  highlightedItem: {
-    color: 'white',
-    background: 'hsl(200, 50%, 50%)',
-    padding: '2px 6px',
-    cursor: 'default'
-  },
-
-  menu: {
-    border: 'solid 1px #ccc'
-  }
-};
+require('stylesheets/boilerplate/button');
 
 const SearchPanel = React.createClass({
   propTypes: {
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
+    clear: PropTypes.func,
+    setInclude: PropTypes.func,
   },
   getInitialState() {
     return {
       open: false,
+      filters: {},
     }
+  },
+  close() {
+    this.props.clear();
+    this.replaceState({
+      ...this.state,
+      open: false,
+      filters: {},
+    });
   },
   toggle(e) {
     e.preventDefault();
-    this.replaceState({open: !this.state.open});
+    this.replaceState({
+      ...this.state,
+      open: !this.state.open,
+    });
   },
-  getStates() {
-    return this.props.data;
+  matchStateToTerm(key) {
+    return (state, value) => {
+      return value.length > 2 && (
+        state[key].toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    }
   },
-  matchStateToTerm(state, value) {
-    return value.length > 3 && (
-      state.WATER_POINT_CODE.toLowerCase().indexOf(value.toLowerCase()) !== -1
-    );
+  sortStates(key) {
+    return (a, b, value) => {
+      return (
+        a[key].toLowerCase().indexOf(value.toLowerCase()) >
+        b[key].toLowerCase().indexOf(value.toLowerCase()) ? 1 : -1
+      );
+    }
   },
-  sortStates(a, b, value) {
-    return (
-      a.WATER_POINT_NAME.toLowerCase().indexOf(value.toLowerCase()) >
-      b.WATER_POINT_NAME.toLowerCase().indexOf(value.toLowerCase()) ? 1 : -1
-    );
+  search() {
+    const filters = Object.keys(this.state.filters);
+    if(filters.length > 0) {
+      filters.forEach(key => {
+        this.props.setInclude(key, [this.state.filters[key]]); // TODO validate filters
+      });
+    }
   },
+  renderSearchFields() {
+    const allField = getSearchField(this.props.dataType);
+    return allField.map(key => {
+      return (<div className="search-field">
+        <T k={`search.field.${key}`} />
+        <Autocomplete
+            items={getSearchItems(this.props.data, key)}
+            getItemValue={(item) => item[key]}
+            shouldItemRender={this.matchStateToTerm(key)}
+            sortItems={this.sortStates(key)}
+            renderItem={(item, isHighlighted) => (
+              <div
+                style={isHighlighted ? styles.highlightedItem : styles.item}
+                key={item[key]}
+              >{item[key]}</div>
+            )}
+            onSelect={(value, item) => {
+              const newState = {
+                ...this.state,
+                filters: {
+                  ...this.state.filters,
+                  [key]: item[key],
+                },
+              };
+              this.replaceState(newState);
+            }}
+          />
+      </div>)
+    });
+  },
+
   render() {
     let allField = getSearchField(this.props.dataType);
-    return (
-      <div className="search-panel">
-        search
-        <Autocomplete
-          items={this.props.data}
-          getItemValue={(item) => item.WATER_POINT_NAME}
-          shouldItemRender={this.matchStateToTerm}
-          sortItems={this.sortStates}
-          renderItem={(item, isHighlighted) => (
+    if (this.state.open) {
+      return (
+        <div className="search-panel">
+          <TSetChildProps>
             <div
-              style={isHighlighted ? styles.highlightedItem : styles.item}
-              key={item.WATER_POINT_CODE}
-            >{item.WATER_POINT_NAME}</div>
-          )}
-        />
-      </div>
-    );
+              className="close-button"
+              onClick={this.close}
+              title={{k: 'popup.close'}}>
+              &times;
+            </div>
+          </TSetChildProps>
+          {this.renderSearchFields()}
+          <div className="button" onClick={this.search}>
+            <T k="search.button" />
+          </div>
+        </div>
+      );
+    } else {
+      return (<Icon className="search-icon" onClick={this.toggle} type="search-plus"/>);
+    }
   },
 });
 

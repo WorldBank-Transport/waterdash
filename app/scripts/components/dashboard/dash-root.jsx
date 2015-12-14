@@ -158,7 +158,9 @@ const DashRoot = React.createClass({
           {/* Overlays that can cover the map: */}
           <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
           <DrillDownViewer drillDown={this.state.drillDown}  {...propsForChildren} />
-          <SearchPanel {...propsForChildren}/>
+          <SearchPanel clear={clear}
+              setInclude={setInclude}
+              {...propsForChildren} />
           <Filters
               clear={clear}
               openClosed={this.state.layout.filters}
