@@ -38,6 +38,7 @@ import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
 import DrillDownViewer from './drill-down-viewer';
+import SearchPanel from '../filters/search-panel';
 // below map
 import ViewMode from '../boilerplate/view-mode';
 import OverviewBar from '../charts/overview-bar';
@@ -157,6 +158,7 @@ const DashRoot = React.createClass({
           {/* Overlays that can cover the map: */}
           <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
           <DrillDownViewer drillDown={this.state.drillDown}  {...propsForChildren} />
+          <SearchPanel {...propsForChildren}/>
           <Filters
               clear={clear}
               openClosed={this.state.layout.filters}

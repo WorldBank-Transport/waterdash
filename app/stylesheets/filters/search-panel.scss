@@ -1,0 +1,20 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+
+.search-panel {
+  background: $background-map-overlay;
+  border: 3px solid $grey-light;
+  bottom: 60%;      // TODO
+  box-shadow: $shadow;
+  display: inline-block;
+  font-size: $medium-text;
+  height: $legend-dimensions;
+  left: 4%;
+  padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
+  position: absolute;  // TODO
+  top: 2%;
+  width: $legend-dimensions;
+  z-index: 10;  // needs to be specified >=1 to go above the map  
+}
