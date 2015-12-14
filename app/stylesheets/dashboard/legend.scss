@@ -5,7 +5,11 @@
 .legend {
   background: $background-map-overlay;
   border: 3px solid $grey-light;
+<<<<<<< HEAD
   bottom: 3%;
+=======
+  bottom: 10%;
+>>>>>>> master
   box-shadow: $shadow;
   display: inline-block;
   font-size: $medium-text;
@@ -13,6 +17,10 @@
   left: 2%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
   position: absolute;
+<<<<<<< HEAD
+=======
+  top: 68%;
+>>>>>>> master
   width: $legend-dimensions;
   z-index: 1;  // needs to be specified >=1 to go above the map
 
@@ -36,8 +44,14 @@
     color: $theme-blue;
     font-size: $legend-title;
     font-weight: $title-weight;
+<<<<<<< HEAD
     margin-bottom: $legend-margin;
     text-transform: uppercase;
 }
 
   }
+=======
+    text-transform: uppercase;
+  }
+}
+>>>>>>> master

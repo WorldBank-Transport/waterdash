@@ -38,6 +38,7 @@
   }
 
   .legend-container {
+<<<<<<< HEAD
     height: 170px;
     min-height: 170px;
     overflow: hidden;
@@ -48,6 +49,13 @@
       position: absolute;
     }
 
+=======
+    background: $grey-light;
+    background-clip: padding-box;
+    border-radius: 3px;
+    height: 90px;
+    padding: 0.3em 0 0.33333em 0;
+>>>>>>> master
 
     ul {
       display: block;
@@ -76,6 +84,10 @@
           background: $bg-color;
           background-clip: padding-box;
           border: 1px solid $theme-blue;
+<<<<<<< HEAD
+=======
+          border-radius: 1px;
+>>>>>>> master
           float: left;
           height: $pie-chart-checkbox-size;
           margin-right: $pie-chart-checkbox-margin-top * 2;
