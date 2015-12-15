@@ -1,0 +1,50 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/type';
+
+
+.search-panel {
+  background: $background-map-overlay;
+  border: 3px solid $grey-light;
+  bottom: 60%;      // TODO
+  box-shadow: $shadow;
+  display: inline-block;
+  font-size: $medium-text;
+  height: $search-height;
+  left: 4%;
+  padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
+  position: absolute;  // TODO
+  top: 2%;
+  width: $search-width;
+  z-index: 10;  // needs to be specified >=1 to go above the map
+
+  .close-button {
+    background: $grey-light;
+    color: $theme-blue;
+    display: inline-block;
+    font-weight: bold;
+    height: $base-unit + 0.3;
+    line-height: $base-unit + 0.2;
+    position: absolute;
+    right: $base-unit;
+    text-align: center;
+    top: $base-unit;
+    width: $base-unit + 0.3;
+
+    &:hover {
+      background: $grey-medium;
+      color: $text-inverse;
+      cursor: pointer;
+    }
+  }
+}
+
+.search-icon {
+  background: $background-map-overlay;
+  border: 3px solid $grey-light;
+  display: inline-block;
+  left: 4%;
+  position: absolute;  // TODO
+  top: 2%;
+  z-index: 10;  // needs to be specified >=1 to go above the map
+}

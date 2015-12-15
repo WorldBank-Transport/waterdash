@@ -333,6 +333,16 @@ const allTranslations = {
     'drilldown.points': 'Point',
     'drilldown.back': 'Back To National',
 
+    'search.field.WATER_POINT_CODE': 'Water Point Code',
+    'search.field.WATER_POINT_NAME': 'Water Point Name',
+    'search.field.BOREHOLE_NO': 'Borehole Number',
+    'search.field.DAM_NAME': 'Dam Name',
+    'search.field.REGION': 'Region',
+    'search.field.DISTRICT': 'District',
+    'search.field.WARD': 'Ward',
+    'search.field.BASIN': 'Basin',
+    'search.button': 'Search',
+
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
     'error.api.pre-request': 'An error occurred when the application was preparing to fetch data',
