@@ -7,14 +7,13 @@
 .waterpoint-pie-chart {
 
   .pie-chart-container {
-    height: 300px;
     .pie-chart {
       svg {
-        -moz-transform: translate(-350px, 0); /* Firefox */
-        -ms-transform: translate(-350px, 0); /* IE 9 */
-        -o-transform: translate(-350px, 0); /* Opera */
-        -webkit-transform: translate(-350px, 0); /* Safari and Chrome */
-        transform: translate(-350px, 0);
+        -moz-transform: translate(-390px, 0); /* Firefox */
+        -ms-transform: translate(-390px, 0); /* IE 9 */
+        -o-transform: translate(-390px, 0); /* Opera */
+        -webkit-transform: translate(-390px, 0); /* Safari and Chrome */
+        transform: translate(-390px, 0);
       }
     }
   }

@@ -1,9 +1,39 @@
 @import '../config/colours';
+@import '../config/type';
+@import '../config/dimensions';
+
 
 .drill-down-viewer {
-  border: 2px solid $grey-light-detail;
+  font-weight: $title-weight;
+  margin-top: $point-name-top-margin;
   position: fixed;
-  right: 13px;
-  top: 145px;
+  right: $point-name-right-position;
+  text-align: right;
+  top: $point-name-top-position;
+  width: $point-name-width;
   z-index: 1000;
+
+  .display-name {
+    clear: both;
+    width: 100%;
+  }
+
+  a {
+    color: $theme-blue;
+    cursor: pointer;
+    display: block;
+    font-weight: $title-weight;
+    position: relative;
+
+    &:hover {
+      color: $status-good;
+    }
+
+    &:before {
+      content: '\f100';
+      font-family: FontAwesome;
+      margin-right: 5px;
+    }
+
+  }
 }
