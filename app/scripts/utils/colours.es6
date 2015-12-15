@@ -120,36 +120,36 @@ Color.getBoreholesColor = (metric) => {
 
 Color.WATER_QUALITY = {
   COLOURED: '#fff7fb',
-  FLUORIDE: '#ece7f2',
+  FLUORIDE: '#8cd1ed',
   'FLUORIDE ABANDONED': '#d0d1e6',
   GOOD: '#a6bddb',
   MILKY: '#74a9cf',
-  SALTY: '#3690c0',
-  'SALTY ABANDONED': '#0570b0',
-  SOFT: '#045a8d',
-  UNKNOWN: '#023858',
+  SALTY: '#1da3da',
+  'SALTY ABANDONED': '#3690c0',
+  SOFT: '#b5d3df',
+  UNKNOWN: '#cccccc',
 };
 
 Color.WATER_QUANTITY = {
-  DRY: '#f1eef6',
-  ENOUGH: '#d0d1e6',
-  INSUFFICIENT: '#a6bddb',
+  DRY: '#d8e2e6',
+  ENOUGH: '#b5d3df',
+  INSUFFICIENT: '#1da3da',
   OTHER: '#74a9cf',
   SEASONAL: '#2b8cbe',
-  UNKNOWN: '#045a8d',
+  UNKNOWN: '#cccccc',
 };
 
 
 Color.SOURCE_TYPE = {
-  DAM: '#67001f',
-  'HAND DTW': '#b2182b',
-  LAKE: '#d6604d',
-  'MACHINE DBH': '#f4a582',
-  'MACHINE-DRILLED BOREHOLE': '#fddbc7',
-  OTHER: '#f7f7f7',
-  'RAINWATER HARVESTING': '#d1e5f0',
-  RIVER: '#92c5de',
-  'SHALLOW WELL': '#4393c3',
-  SPRING: '#2166ac',
-  UNKNOWN: '#053061',
+  DAM: '#cfdde4',
+  'HAND DTW': '#a0a7a9',
+  LAKE: '#1f597a',
+  'MACHINE DBH': '#bde6fa',
+  'MACHINE-DRILLED BOREHOLE': '#d0d1e6',
+  OTHER: '#a6bddb',
+  'RAINWATER HARVESTING': '#74a9cf',
+  RIVER: '#d6e9f5',
+  'SHALLOW WELL': '#1da3da',
+  SPRING: '#0e7aaf',
+  UNKNOWN: '#cccccc',
 };
