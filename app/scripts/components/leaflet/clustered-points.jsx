@@ -89,30 +89,16 @@ const ClusteredPoints = React.createClass({
   },
   updateCluster() {
     const nextMap = {};
-
+    this.pruneCluster.RemoveMarkers();
     // Existing markers: remove or keep
     this.props.points.forEach(point => {
       const id = point.POINT_ID;
-      if (typeof this.markerIdMap[id] !== 'undefined') {  // already have it
-        nextMap[id] = this.markerIdMap[id];  // just copy the ref over
-        delete this.markerIdMap[id];  // clear ref from old map
-      } else {
-        const marker = new PruneCluster.Marker(...point.position);
-        marker.data.id = id;
-        marker.category = statuses.indexOf(point.STATUS);
-        nextMap[id] = marker;
-        this.pruneCluster.RegisterMarker(marker);
-      }
+      const marker = new PruneCluster.Marker(...point.position);
+      marker.data.id = id;
+      marker.category = statuses.indexOf(point.STATUS);
+      nextMap[id] = marker;
+      this.pruneCluster.RegisterMarker(marker);
     });
-
-    // remove what's left
-    const toRemove = [];
-    for (const id in this.markerIdMap) {
-      if (this.markerIdMap.hasOwnProperty(id)) {
-        toRemove.push(this.markerIdMap[id]);
-      }
-    }
-    this.pruneCluster.RemoveMarkers(toRemove);
 
     // save the new map
     this.markerIdMap = nextMap;
