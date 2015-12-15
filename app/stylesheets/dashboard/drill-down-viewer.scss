@@ -20,10 +20,10 @@
 
   a {
     color: $theme-blue;
+    cursor: pointer;
     display: block;
     font-weight: $title-weight;
     position: relative;
-    cursor: pointer;
 
     &:hover {
       color: $status-good;
