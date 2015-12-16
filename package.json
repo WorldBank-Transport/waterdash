@@ -8,6 +8,7 @@
     "build": "npm run _clean-dist && webpack && npm run _copy-stuff && npm run _notify",
     "_clean-dist": "gulp clean:dist",
     "_copy-index": "gulp copy:index",
+    "_download": "gulp download",
     "_copy-static": "gulp copy:static",
     "_copy-stuff": "npm run _copy-index && npm run _copy-static",
     "lint": "npm run lint-scripts && npm run lint-styles",
@@ -19,7 +20,7 @@
     "test": "npm run test-only",
     "posttest": "npm run lint",
     "test-only": "jest",
-    "deploy" : "gulp deploy"
+    "deploy": "gulp deploy"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/jest-preprocessor.js",
@@ -61,18 +62,20 @@
   },
   "devDependencies": {
     "babel-core": "5.8.24",
+    "babel-es6-polyfill": "1.0.1 ",
     "babel-eslint": "4.1.3",
     "babel-jest": "5.3.0",
     "babel-loader": "5.3.2",
-    "babel-es6-polyfill": "1.0.1 ",
     "css-loader": "0.18.0",
     "eslint": "1.5.0",
     "eslint-plugin-react": "3.4.2",
     "extract-text-webpack-plugin": "0.8.2",
     "gulp": "3.9.0",
+    "gulp-clean": "0.3.1",
+    "gulp-exec": "2.1.2",
+    "gulp-gh-pages": "0.5.4",
     "gulp-inject": "3.0.0",
     "gulp-sass-lint": "1.1.0",
-    "gulp-clean": "0.3.1",
     "jest-cli": "0.5.10",
     "node-sass": "3.3.2",
     "react-hot-loader": "1.3.0",
@@ -80,8 +83,7 @@
     "slack-notify": "0.1.4",
     "style-loader": "0.12.4",
     "webpack": "1.12.1",
-    "webpack-dev-server": "1.11.0",
-    "gulp-gh-pages": "0.5.4"
+    "webpack-dev-server": "1.11.0"
   },
   "dependencies": {
     "classnames": "2.1.3",
