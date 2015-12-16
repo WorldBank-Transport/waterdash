@@ -254,6 +254,7 @@ const allTranslations = {
     'chart.waterpoint-total-servedpopulation': 'Total Served Population',
     'chart.waterpoint-total-servedpopulation.percenatge': 'Percentage',
     'chart.waterpoint-total-servedpopulation-helptext': 'Percentage Of Population Served By Year',
+    'chart.tooltip.totalserved.title': 'Served Population ',
 
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',

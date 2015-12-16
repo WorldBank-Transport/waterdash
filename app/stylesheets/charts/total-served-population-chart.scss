@@ -5,7 +5,7 @@
 .total-servedpopulation-chart {
   @include chart-row();
 
-  h3{
+  h3 {
     color: $theme-blue;
     font-weight: $title-weight;
   }
@@ -33,5 +33,14 @@
     fill: $text-color;
     font-size: $chart-axis-text;
     font-weight: bold;
+  }
+  .tooltip {
+    align-items: center;
+    background-color: $bg-color;
+    border: 3px solid $grey-light;
+    height: 60px;
+    justify-content: center;
+    padding: $base-unit/2 $base-unit 0;
+    width: $tooltip-width/3;
   }
 }

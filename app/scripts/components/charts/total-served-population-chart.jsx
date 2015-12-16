@@ -45,6 +45,14 @@ const TotalServedPulationChart = React.createClass({
     return response;
   },
 
+  tooltip(x, y0, y) {
+    return (<div>
+              <h3 className="chart-title">
+                 <T k={'chart.tooltip.totalserved.title'} />{x}: {(y).toFixed(2)} %
+              </h3>
+            </div>);
+  },
+
   render() {
     if (this.state.servedpopulation.length === 0) {
       return (<div>empty</div>);
@@ -58,6 +66,10 @@ const TotalServedPulationChart = React.createClass({
                 data={this.parseData(this.state.servedpopulation)}
                 height={350}
                 margin={{top: 20, bottom: 100, left: 40, right: 10}}
+                tooltipContained="true"
+                tooltipHtml={(x, y0, y) => this.tooltip(x, y0, y)}
+                tooltipMode="mouse"
+                tooltipOffset={{top: -100, left: 0}}
                 width={this.state.size.width * 0.80}
                 xAxis={{label: {k: 'chart.boreholes-stats.x-axis'}}}
                 yAxis={{label: {k: 'chart.waterpoint-total-servedpopulation.percenatge'}}} />
