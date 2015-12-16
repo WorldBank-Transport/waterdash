@@ -21,7 +21,7 @@ import ViewModes from '../constants/view-modes';
 
 import { setMapBounds, zoomToPoint } from '../actions/view';
 import { select, ensureSelect, deselect, mapDrillDown } from '../actions/select';
-import { setExclude } from '../actions/filters';
+import { clearFilter } from '../actions/filters';
 
 import DataStore from './data';
 import LoadingDataStore from './loading-data';
@@ -71,7 +71,7 @@ const SelectedStore = createStore({
     const { dataType, viewMode } = ViewStore.get();
     ViewModes.match(viewMode, {
       Points: () => null,
-      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => setExclude(locProp, [])),
+      [_]: () => dataType.getLocationProp(viewMode).andThen(locProp => clearFilter(locProp)),
     });
   },
 

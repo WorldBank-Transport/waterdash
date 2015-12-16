@@ -15,7 +15,7 @@ import { createAction } from 'reflux';
 import history from '../history';
 import ViewStore from '../stores/view';
 import ViewModes from '../constants/view-modes';
-import { setInclude, setExclude } from './filters';
+import { setInclude, clearFilter } from './filters';
 
 export const select = createAction();
 export const ensureSelect = createAction();  // alternate to avoid pushing extra history state
@@ -63,8 +63,8 @@ chartDrilldown.listen(id => {
 
 disableDrillDown.listen(() => {
   const { dataType } = ViewStore.get();
-  setExclude('REGION', []);
-  setExclude('DISTRICT', []);
-  setExclude('WARD', []);
+  clearFilter('REGION');
+  clearFilter('DISTRICT');
+  clearFilter('WARD');
   history.pushState(null, `/dash/points/${dataType.toParam()}/`);
 });

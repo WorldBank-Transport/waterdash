@@ -87,7 +87,7 @@ const WaterpointPieChart = React.createClass({
                 tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
                 tooltipMode="mouse"
                 tooltipOffset={{top: -100, left: 0}}
-                width={this.state.size.width * 0.70}/>
+                width={this.state.size.width * 0.30}/>
             </div>
             </div>
       </div>
