@@ -42,7 +42,11 @@
 
     .row-chart-left {
       float: left;
-      width: 33%;
+      height: $pie-charts-container-height;
+      padding-left: $general-content-padding;
+      padding-right: $general-content-padding;
+      width: 28%;
+
       &.right-border {
         border-right: 3px solid $grey-light;
       }

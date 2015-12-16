@@ -23,7 +23,7 @@ const MetricSummary = React.createClass({
     const summaryDiv = metric.values.map(item => {
       const value = this.props.format ? this.props.format(getNumberOr0(item.value)) : getNumberOr0(item.value);
       const icon = icons[item.name] ? (<Icon type={icons[item.name]}/>) : (<div />);
-      const perc = this.props.showPercentage ? (<div className="medium-number">- <span className="number">{(value / metric.total * 100).toFixed(2)}</span>%</div>) : (<div />);
+      const perc = this.props.showPercentage ? (<div className="medium-number"> / <span className="number">{(value / metric.total * 100).toFixed(2)}</span>%</div>) : (<div />);
       return (
         <div className="group-content">
           {icon}
