@@ -44,27 +44,27 @@ const WaterpointsChart = React.createClass({
         <div className="secondaryCharts">
           <div className="row">
             <div className="mainChart">
-              <WaterpointStatusChart viewMode={this.props.viewMode} waterpoints={this.props.data} />
+              <span className="fa fa-cog"></span><WaterpointStatusChart viewMode={this.props.viewMode} waterpoints={this.props.data} />
             </div>
           </div>
           <div className="row">
-            <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
+            <span className="fa fa-wrench"></span><MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
           </div>
           <div className="row">
-            <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
+            <img className="population-icon" src="images/population-icon.png"/><WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
           <div className="row">
-            <TotalServedPopulationChart viewMode={this.props.viewMode}/>
+            <img className="population-icon" src="images/population-icon.png"/><TotalServedPopulationChart viewMode={this.props.viewMode}/>
           </div>
           <div className="col-all">
             <div className="row-chart-left right-border">
-              <WaterpointPieChart column="WATER_QUALITY" data={this.props.data}/>
+              <span className="fa fa-tint"></span><WaterpointPieChart column="WATER_QUALITY" data={this.props.data}/>
             </div>
             <div className="row-chart-left right-border">
-              <WaterpointPieChart column="WATER_QUANTITY" data={this.props.data}/>
+              <span className="fa fa-tint"></span><WaterpointPieChart column="WATER_QUANTITY" data={this.props.data}/>
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart column="SOURCE_TYPE" data={this.props.data}/>
+              <span className="fa fa-tint"></span><WaterpointPieChart column="SOURCE_TYPE" data={this.props.data}/>
             </div>
           </div>
         </div>

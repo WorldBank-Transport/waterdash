@@ -52,6 +52,25 @@
       }
     }
   }
+  .fa {
+    color: $theme-blue;
+    float: left;
+    font-size: $medium-number;
+    margin-right: $chart-icon-right-margin;
+    margin-top: $chart-icon-top-position;
+    &.fa-tint {
+      margin-top:  $chart-icon-top-position + 10;
+    }
+    &.fa-cog {
+      margin-top:  $chart-icon-top-position + 5;
+    }
+  }
+  .population-icon {
+    float: left;
+    margin-right: $chart-icon-right-margin;
+    margin-top: $chart-icon-top-position + 1;
+    width: $medium-number;
+  }
   .dams-col-left {
     float: left;
     width: $dams-main-chart-width;
