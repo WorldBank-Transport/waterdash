@@ -390,6 +390,7 @@ const allTranslations = {
 
     'charts.toggle.closed': 'Tazama Chati',
     'charts.toggle.opened': 'Ficha Chati',
+    'chart.doubleClick.help': 'Bonyeza chati mara mbili kuchunguza zaidi',
     'chart.title.functional': 'Kituo kinachofanya kazi',
     'chart.title.non-functional': 'Kituo hakifanyi kazi',
     'chart.title.repair': 'Kituo kinachohitaji kurekebishwa',
