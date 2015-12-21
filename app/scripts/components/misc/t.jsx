@@ -16,7 +16,7 @@ const allTranslations = {
     'home.waterpoints': 'Waterpoints',
     'home.boreholes': 'Boreholes',
     'home.dams': 'Dams',
-    'home.text': 'This Water Dashboard is a public open data portal to view the latest national water resource data and monitor the information that is important to you. You can also use the menu options above to see original data and speak out about missing or wrong data.',
+    'home.text': 'This Water Dashboard visualizes key information from Tanzania\'s open data portal. You can also use the menu options above to see original data and speak out about missing or wrong data.',
 
     'nav.home': 'Home',
     'nav.data': 'Data',
@@ -276,7 +276,7 @@ const allTranslations = {
 
     'overview-bar': 'Overview stuff',
 
-    'footer.copy': 'The content of this website is published under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
+    'footer.copy': 'The source code of this website is published under a under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
     'loading': 'Loading',
     'loading.waterpoints': 'Loading waterpoints...',
@@ -390,6 +390,7 @@ const allTranslations = {
 
     'charts.toggle.closed': 'Tazama Chati',
     'charts.toggle.opened': 'Ficha Chati',
+    'chart.doubleClick.help': 'Bonyeza chati mara mbili kuchunguza zaidi',
     'chart.title.functional': 'Kituo kinachofanya kazi',
     'chart.title.non-functional': 'Kituo hakifanyi kazi',
     'chart.title.repair': 'Kituo kinachohitaji kurekebishwa',
