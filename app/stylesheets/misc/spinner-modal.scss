@@ -18,9 +18,8 @@
   & > .spinner {
     $w: 13em;  // TODO: move to dimensions
 
-    background: $background-map-overlay;
-    border-radius: 0.5em;
-    box-shadow: $shadow;
+    background: rgba(255,255,255,0.9);
+    border-radius: 0.3em;
     box-sizing: border-box;
     left: 50%;
     margin-left: -$w/2;
