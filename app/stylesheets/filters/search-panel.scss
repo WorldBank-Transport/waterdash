@@ -7,7 +7,6 @@
 .search-panel {
   background: $background-map-overlay;
   border: 3px solid $grey-light;
-  bottom: 60%;      // TODO
   box-shadow: $shadow;
   display: inline-block;
   font-size: $medium-text;
@@ -24,23 +23,26 @@
       display: block;
       float: left;
       font-size: $popup-label-text;
-      margin-right: $base-unit * 2.4;
+      margin-right: $base-unit * 1.7;
       padding-top: $search-button-padding+1;
       text-align: right;
-      width: 32%;
+      width: $search-label-widht;
     }
   }
 
   .button {
     float: right;
     margin-right: $search-button-right-margin;
-    width: 31%;
+    width: $search-submit-btn-width;
   }
 
   input {
     border: 1px solid $grey-light;
+    margin-bottom: $search-input-top /2;
+    margin-top: $search-input-top;
     outline: none;
     padding: $search-button-padding;
+    width: 100%;
     &:hover {
       border: 1px solid $theme-blue;
     }
@@ -72,10 +74,10 @@
   background: $bg-color;
   border: 2px solid $bg-color;
   display: inline-block;
-  left: 4%;
+  left: $search-icon-top-position;
   padding: $search-button-padding;
   position: absolute;  // TODO
-  top: 2%;
+  top: $search-icon-top-position;
   z-index: 10;  // needs to be specified >=1 to go above the map
   &:hover {
     background: $theme-blue;
