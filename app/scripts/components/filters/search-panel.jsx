@@ -66,7 +66,7 @@ const SearchPanel = React.createClass({
     const allField = getSearchField(this.props.dataType);
     return allField.map(key => {
       return (<div className="search-field">
-        <T k={`search.field.${key}`} />
+        <div className="search-form-label"><T k={`search.field.${key}`} /></div>
         <Autocomplete
             getItemValue={(item) => item[key]}
             items={getSearchItems(this.props.data, key)}
@@ -110,7 +110,7 @@ const SearchPanel = React.createClass({
         </div>
       );
     } else {
-      return (<Icon className="search-icon" onClick={this.toggle} type="search-plus"/>);
+      return (<Icon className="search-icon" onClick={this.toggle} type="search"/>);
     }
   },
 });

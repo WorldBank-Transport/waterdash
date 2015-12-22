@@ -6,6 +6,7 @@
 .button {
   @include border-radius(3px);
   background: $theme-blue;
+  color: $text-inverse;
   display: inline-block;
   font-size: $btn-text-laptop;
   font-weight: $button-weight;

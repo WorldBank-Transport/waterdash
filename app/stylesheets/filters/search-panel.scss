@@ -1,6 +1,7 @@
 @import '../config/colours';
 @import '../config/dimensions';
 @import '../config/type';
+@import '../config/box';
 
 
 .search-panel {
@@ -12,11 +13,38 @@
   font-size: $medium-text;
   height: $search-height;
   left: 4%;
-  padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
+  padding: $base-unit $base-unit * 1.2 $base-unit * 1.8 $base-unit * 1.2;
   position: absolute;  // TODO
   top: 2%;
   width: $search-width;
   z-index: 10;  // needs to be specified >=1 to go above the map
+
+  .search-field {
+    .search-form-label {
+      display: block;
+      float: left;
+      font-size: $popup-label-text;
+      margin-right: $base-unit * 2.4;
+      padding-top: $search-button-padding+1;
+      text-align: right;
+      width: 32%;
+    }
+  }
+
+  .button {
+    float: right;
+    margin-right: $search-button-right-margin;
+    width: 31%;
+  }
+
+  input {
+    border: 1px solid $grey-light;
+    outline: none;
+    padding: $search-button-padding;
+    &:hover {
+      border: 1px solid $theme-blue;
+    }
+  }
 
   .close-button {
     background: $grey-light;
@@ -28,7 +56,7 @@
     position: absolute;
     right: $base-unit;
     text-align: center;
-    top: $base-unit;
+    top: $base-unit * 1.2;
     width: $base-unit + 0.3;
 
     &:hover {
@@ -40,11 +68,19 @@
 }
 
 .search-icon {
-  background: $background-map-overlay;
-  border: 3px solid $grey-light;
+  @include border-radius(4px);
+  background: $bg-color;
+  border: 2px solid $bg-color;
   display: inline-block;
   left: 4%;
+  padding: $search-button-padding;
   position: absolute;  // TODO
   top: 2%;
   z-index: 10;  // needs to be specified >=1 to go above the map
+  &:hover {
+    background: $theme-blue;
+    border: 2px solid $theme-blue;
+    color: $text-inverse;
+  }
+
 }
