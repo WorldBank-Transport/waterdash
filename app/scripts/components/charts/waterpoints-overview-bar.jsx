@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
 import MetricStatus from './metric-status';
+import Share from '../dashboard/share';
 import CategoryFilter from '../dashboard/category-filter';
 import OpenClosed from '../../constants/open-closed';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
@@ -24,6 +25,7 @@ const WaterpointsOverviewBar = React.createClass({
           <MetricStatus className="medium" iconSymbol="-" metric="FUNCTIONAL NEEDS REPAIR" sumProps={data} title="chart.title.repair"/>
           <MetricStatus className="poor" grouped={true} iconSymbol="×" metric="NON FUNCTIONAL" sumProps={data} title="chart.title.non-functional"/>
           <CategoryFilter parentState={this.props.openClosed}/>
+          <Share />
         </div>
       </div>
     );
