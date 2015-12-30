@@ -14,6 +14,7 @@
   min-width: $subcategory-filter-tab;
   padding: 0 $filter-list-left-margin;
   text-align: center;
+  vertical-align: top;
 
   .category-filter-toggle {
     @include link-transition(450ms, ease);

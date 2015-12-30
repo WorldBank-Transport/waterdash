@@ -1,4 +1,5 @@
 $base-unit: 1em;
+$full-width: 100%;
 
 // widths and heights
 
@@ -169,6 +170,11 @@ $handle-radius: 2px;
 $grabby-height: 11px;
 $grabby-width: 2px;
 $grabby-center-off: 2px;
+
+// share section
+$icon-height: 20px;
+$icon-list-space: 10px;
+$icon-bottom-space: 5px;
 
 // screen sizes
 $phone: 480px;

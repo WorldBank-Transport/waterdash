@@ -1,0 +1,44 @@
+@import '../config/colours';
+@import '../config/dimensions';
+@import '../config/box';
+@import '../config/type';
+
+.share-wrapper {
+  display: table-cell;
+  vertical-align: top;
+  width: 16%;
+
+  ul {
+    @include list-unstyled();
+    margin-left: $full-width  / 10;
+    margin-right: $full-width  / 10;
+    margin-top: $base-unit / 2;
+    width: $full-width - 10;
+
+    li {
+      @include transparency(1);
+      color: $text-color;
+      display: block;
+      float: left;
+      font-size: $small-text;
+      margin-right: $icon-list-space;
+      text-align: center;
+      width: 28%;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        @include transparency(0.8);
+      }
+
+      img {
+        display: block;
+        height: $icon-height;
+        margin: 0 auto $icon-bottom-space auto;
+        }
+      }
+    }
+
+  }
