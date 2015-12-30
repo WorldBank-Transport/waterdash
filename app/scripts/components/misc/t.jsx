@@ -275,6 +275,10 @@ const allTranslations = {
     'data-type.dams': 'Dams',
 
     'overview-bar': 'Overview stuff',
+    'share.share': 'Share',
+    'share.feedback': 'Feedback',
+    'share.print': 'Print',
+
 
     'footer.copy': 'The source code of this website is published under a under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
@@ -580,6 +584,9 @@ const allTranslations = {
     'data-type.dams': 'Mabwawa',
 
     'overview-bar': 'Maelezo ya joomla',
+    'share.share': 'Shirikisha Mwenzako',
+    'share.feedback': 'Maoni',
+    'share.print': 'Chapa',
 
     'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya CC BY NC SA 3.0. Programu imeandikwa na kuchapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana.',
 
