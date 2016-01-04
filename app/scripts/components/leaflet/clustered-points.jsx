@@ -14,12 +14,14 @@ const statuses = [
   'FUNCTIONAL',  // 0
   'FUNCTIONAL NEEDS REPAIR',  // 1
   'NON FUNCTIONAL',  // 2
+  'UNKNOWN',
 ];
 
 const statusCategory = {
   'FUNCTIONAL': 'good',
   'FUNCTIONAL NEEDS REPAIR': 'medium',
   'NON FUNCTIONAL': 'poor',
+  'UNKNOWN': 'unknown',
 };
 
 const statusCatColours = statuses.map(status => colours[statusCategory[status]]);

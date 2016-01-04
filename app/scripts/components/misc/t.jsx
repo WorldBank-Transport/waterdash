@@ -331,6 +331,11 @@ const allTranslations = {
     'legend.greaterhan50': '> 50',
     'legend.greaterhan75': '> 75',
     'legend.nodata': 'No Data',
+    'legend.FUNCTIONAL': '% Functional',
+    'legend.FUNCTIONAL NEEDS REPAIR': '% Needs Repair',
+    'legend.NON FUNCTIONAL': '% Non Functional',
+    'legend.UNKNOWN': '% Unknown',
+    'legend.points': 'Number of points',
 
     'drilldown.regions': 'Region',
     'drilldown.districts': 'District',
