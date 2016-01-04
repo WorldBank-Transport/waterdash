@@ -8,8 +8,8 @@
   bottom: 3%;
   box-shadow: $shadow;
   display: inline-block;
-  font-size: $medium-text;
-  height: $legend-dimensions;
+  font-size: $small-text;
+  font-weight: $medium-font-weight;
   left: 2%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
   position: absolute;
@@ -19,8 +19,14 @@
   .row {
     box-sizing: border-box;
     display: table;
+    position: relative;
     table-layout: fixed;
     width: 100%;
+
+    span {
+      position: absolute;
+      top: 40%;
+    }
   }
 
   .legend-block {
@@ -31,13 +37,27 @@
     margin-right: $legend-margin;
     margin-top: $legend-margin;
     width: $legend-block-width;
-}
+  }
+
+  .legend-mark {
+    border: 3px solid $grey-light-alt;
+    border-radius: $legend-block-width;
+    display: block;
+    float: left;
+    height: $legend-block-width;
+    line-height: 30px;
+    margin-right: $legend-margin;
+    margin-top: $legend-margin;
+    text-align: center;
+    vertical-align: middle;
+    width: $legend-block-width;
+  }
+
   .title {
     color: $theme-blue;
     font-size: $legend-title;
     font-weight: $title-weight;
     margin-bottom: $legend-margin;
     text-transform: uppercase;
-}
-
   }
+}

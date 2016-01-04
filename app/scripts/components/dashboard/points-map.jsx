@@ -7,7 +7,7 @@ import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
 import ClusteredWaterpoints from '../leaflet/clustered-points';
-
+import ClusterLegend from './cluster-legend';
 
 const PointsMap = React.createClass({
   propTypes: {
@@ -35,7 +35,7 @@ const PointsMap = React.createClass({
 
         {/* A point popup, if a point is selected */}
         {popup}
-
+        <ClusterLegend />
       </div>
     );
   },

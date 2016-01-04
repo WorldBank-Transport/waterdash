@@ -14,7 +14,7 @@ const statuses = [
   'FUNCTIONAL',  // 0
   'FUNCTIONAL NEEDS REPAIR',  // 1
   'NON FUNCTIONAL',  // 2
-  'UNKNOWN'
+  'UNKNOWN',
 ];
 
 const statusCategory = {
