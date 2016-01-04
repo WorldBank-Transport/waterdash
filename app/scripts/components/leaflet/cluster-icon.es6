@@ -51,6 +51,14 @@ const ClusterIcon = Icon.extend({
         start = end;
         canvas.fill();
         canvas.closePath();
+      } else {
+        canvas.beginPath();
+        canvas.moveTo(radius, radius);
+        canvas.fillStyle = colour;
+        const end = Math.PI * 2;
+        canvas.arc(radius, radius, radius, start, end);
+        canvas.fill();
+        canvas.closePath();
       }
     }
 
