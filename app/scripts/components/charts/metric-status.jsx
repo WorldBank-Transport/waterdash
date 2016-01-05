@@ -12,8 +12,15 @@ const MetricStatus = React.createClass({
     grouped: PropTypes.bool,
     iconSymbol: PropTypes.string.isRequired,
     metric: PropTypes.string.isRequired,
+    select: PropTypes.func,
     sumProps: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
+  },
+
+  getDefaultProps() {
+    return {
+      select: () => null,
+    };
   },
 
   getInitialState() {
@@ -83,7 +90,7 @@ const MetricStatus = React.createClass({
     }
     return (
       <div className={`metric-status ${className}`}>
-        <div className="icon">
+        <div className="icon" onClick={this.props.select} style={{cursor: 'pointer'}}>
           {iconSymbol}
         </div>
         <div className="content">

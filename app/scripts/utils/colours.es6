@@ -10,8 +10,10 @@ const colours = {
   theme: '#05a2dc',
 
   // Scale colours
-  many: '#3f7086',  // TODO: I picked these from the polygons mockup
-  few: '#4cafd8',  // ... but we probably need more colours
+  many: '#3f7086',
+  middleMany: '#3690c0',
+  middleFew: '#1da3da',
+  few: '#b5d3df',
 
   // Ranking colours
   good: '#82c675',

@@ -50,6 +50,11 @@
     font-size: $metric-icon-size;
   }
 
+  &.dissable > .icon {
+    background: $status-unknown;
+    font-size: $metric-icon-size;
+  }
+
   .grouped {
     background-color: $bg-color;
     display: table-cell;
