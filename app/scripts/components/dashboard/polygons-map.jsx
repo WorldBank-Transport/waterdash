@@ -47,7 +47,7 @@ const PolygonsMap = React.createClass({
   },
 
   colorize(d) {
-    const found = this.props.ranges.filter(r => d.length > r.min && d.length < r.max);
+    const found = this.props.ranges.filter(r => d.length >= r.min && d.length <= r.max);
       if (found.length > 0) {
         return found[0].color;
       } else {
