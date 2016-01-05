@@ -26,7 +26,7 @@ const WaterpointPolygonPopup = React.createClass({
   getRatio(polyType, polyName) {
     const popAgg = func.Result.sumByGroupBy(this.state.population, polyType, ['TOTAL']);
     const popPoly = popAgg[polyName] || [{TOTAL: 0}];
-    return (popPoly[0].TOTAL / this.props.data.length).toFixed(2);
+    return Math.round(popPoly[0].TOTAL / this.props.data.length);
   },
 
   getTopProblem() {
