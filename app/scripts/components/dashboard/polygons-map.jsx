@@ -48,16 +48,14 @@ const PolygonsMap = React.createClass({
 
   colorize(d) {
     const found = this.props.ranges.filter(r => d.length >= r.min && d.length <= r.max);
-      if (found.length > 0) {
-        return found[0].color;
-      } else {
-        return colours.unknown;
-      }
+    if (found.length > 0) {
+      return found[0].color;
+    } else {
+      return colours.unknown;
+    }
   },
 
   getFeatureColor(feature) {
-    // compute average per polygon
-    const avg = this.props.data.length / this.props.polygonsData.length;
     return feature.properties.data
       .andThen(this.colorize)
       .unwrapOr(colours.unknown);

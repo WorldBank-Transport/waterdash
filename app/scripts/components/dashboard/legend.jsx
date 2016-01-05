@@ -6,7 +6,7 @@ import { MAX_VALUE, MIN_VALUE} from '../../stores/polygons-with-data';
 require('../../../stylesheets/dashboard/legend.scss');
 
 const Legend = React.createClass({
-  
+
   propTypes: {
     ranges: PropTypes.array.isRequired,
   },
@@ -40,7 +40,7 @@ const Legend = React.createClass({
                     <div className="legend-block" style={{'background': r.color}}></div>
                     <span className="t">{legendText}</span>
                   </div>
-                )
+                );
               })
             }
           </div>
