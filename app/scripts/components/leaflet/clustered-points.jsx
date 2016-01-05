@@ -8,12 +8,16 @@ import { Map, CircleMarker } from 'leaflet';
 import { PruneCluster, PruneClusterForLeaflet } from './prune-cluster';
 import React, { PropTypes } from 'react';
 import ClusterIcon from './cluster-icon';
-import colours from '../../utils/colours';
+import colours, { polygon as polyColour } from '../../utils/colours';
 
 const statuses = [
   'FUNCTIONAL',  // 0
   'FUNCTIONAL NEEDS REPAIR',  // 1
   'NON FUNCTIONAL',  // 2
+  'NON FUNCTIONAL < 6M', // 3
+  'NON FUNCTIONAL < 3M', // 4
+  'NON FUNCTIONAL > 6M', // 5
+  'NON FUNCTIONAL > 3M', // 6
   'UNKNOWN',
 ];
 
@@ -21,6 +25,10 @@ const statusCategory = {
   'FUNCTIONAL': 'good',
   'FUNCTIONAL NEEDS REPAIR': 'medium',
   'NON FUNCTIONAL': 'poor',
+  'NON FUNCTIONAL < 6M': 'poor',
+  'NON FUNCTIONAL < 3M': 'poor',
+  'NON FUNCTIONAL > 6M': 'poor',
+  'NON FUNCTIONAL > 3M': 'poor',
   'UNKNOWN': 'unknown',
 };
 
@@ -44,17 +52,20 @@ const ClusteredPoints = React.createClass({
       });
     };
     this.pruneCluster.BuildLeafletMarker = (marker, position) => {
+      const pointColor = colours[statusCategory[statuses[marker.category]]] || colours.unknown;
       const m = new CircleMarker(position, {
         radius: 8,
         color: '#fff',
         opacity: 0.75,
         weight: 1,
         fillOpacity: 1,
-        fillColor: colours[statusCategory[statuses[marker.category]]] || colours.unknown,
+        fillColor: pointColor,
       });
       m.setOpacity = () => null;  // PruneCluster tries to call this
       m.on('click', this.handleMarkerClickFor(marker.data.id));  // TODO: does this callback ever get cleaned up when the marker is removed?
                                                                  // ... not sure how to hook into pruneCluster's marker removal to call .off()
+      m.on('mouseout', this.handleMarkerMouseoutFor(pointColor));
+      m.on('mouseover', this.handleMarkerMouseoverFor);
       return m;
     };
     const originalProcessView = this.pruneCluster.ProcessView;
@@ -110,6 +121,16 @@ const ClusteredPoints = React.createClass({
 
   handleMarkerClickFor(id) {
     return () => this.props.select(id);
+  },
+
+  handleMarkerMouseoverFor(e) {
+    e.target.setStyle(polyColour.hovered);
+  },
+
+  handleMarkerMouseoutFor(color) {
+    return (e) => {
+      e.target.setStyle(polyColour.normal(color));
+    };
   },
 
   render() {
