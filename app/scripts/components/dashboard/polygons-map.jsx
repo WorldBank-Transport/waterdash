@@ -20,6 +20,7 @@ const PolygonsMap = React.createClass({
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     mapDrillDown: PropTypes.func,  // injected
     polygonsData: PropTypes.array,  // injected
+    ranges: PropTypes.array,
     select: PropTypes.func,  // injected
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
@@ -45,11 +46,20 @@ const PolygonsMap = React.createClass({
     };
   },
 
+  colorize(d) {
+    const found = this.props.ranges.filter(r => d.length > r.min && d.length < r.max);
+      if (found.length > 0) {
+        return found[0].color;
+      } else {
+        return colours.unknown;
+      }
+  },
+
   getFeatureColor(feature) {
     // compute average per polygon
     const avg = this.props.data.length / this.props.polygonsData.length;
     return feature.properties.data
-      .andThen(d => (d.length > avg) ? colours.many : colours.few)
+      .andThen(this.colorize)
       .unwrapOr(colours.unknown);
   },
 
@@ -82,7 +92,7 @@ const PolygonsMap = React.createClass({
 
         {/* popup overlay for polygon */}
         {this.renderPopup()}
-        <Legend/>
+        <Legend ranges={this.props.ranges} />
       </div>
     );
   },

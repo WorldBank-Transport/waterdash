@@ -11,7 +11,7 @@ import FilteredDataStore from '../../stores/filtered-data';
 import LayoutStore from '../../stores/layout';
 import LoadingDataStore from '../../stores/loading-data';
 import LoadingPolygonsStore from '../../stores/loading-polygons';
-import PolygonsDataStore from '../../stores/polygons-with-data';
+import PolygonsDataStore, { ranges } from '../../stores/polygons-with-data';
 import SelectedStore from '../../stores/selected';
 import ViewStore from '../../stores/view';
 
@@ -129,6 +129,7 @@ const DashRoot = React.createClass({
       deselect,
       mapDrillDown,
       select,
+      ranges: ranges(this.state.view.dataType, this.state.view.viewMode),
     });
 
     return (
