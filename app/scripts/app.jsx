@@ -6,7 +6,7 @@ import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
 import tzBounds from './constants/tz-bounds';
-import { setView, setMapBounds } from './actions/view';
+import { setView } from './actions/view';
 import { ensureSelect, deselect } from './actions/select';
 
 // Route components
@@ -34,8 +34,6 @@ function setPointsView(nextState) {
     dataType: DataTypes.fromParam(nextState.params.dataType),
     mapBounds: bounds,
   });
-  
-  //setMapBounds(bounds);  // reset bounds change data type of view mode
 }
 
 /**
