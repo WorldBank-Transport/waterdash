@@ -9,6 +9,7 @@ import { PruneCluster, PruneClusterForLeaflet } from './prune-cluster';
 import React, { PropTypes } from 'react';
 import ClusterIcon from './cluster-icon';
 import colours, { polygon as polyColour } from '../../utils/colours';
+import DataTypes from '../../constants/data-types';
 
 const statuses = [
   'FUNCTIONAL',  // 0
@@ -32,10 +33,13 @@ const statusCategory = {
   'UNKNOWN': 'unknown',
 };
 
+const damsCategories = [colours.blue];
+
 const statusCatColours = statuses.map(status => colours[statusCategory[status]]);
 
 const ClusteredPoints = React.createClass({
   propTypes: {
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass),
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
     points: PropTypes.array.isRequired,
     select: PropTypes.func.isRequired,
@@ -43,8 +47,13 @@ const ClusteredPoints = React.createClass({
   componentWillMount() {
     this.pruneCluster = new PruneClusterForLeaflet();
     this.pruneCluster.BuildLeafletClusterIcon = cluster => {
+      const categories = DataTypes.match(this.props.dataType, {
+        Waterpoints: () => statusCatColours,
+        Dams: () => damsCategories,
+        Boreholes: () => [],
+      });
       return new ClusterIcon({
-        categories: statusCatColours,
+        categories: categories,
         stats: cluster.stats,
         population: cluster.population,
         textColor: colours.textColor,
@@ -52,7 +61,11 @@ const ClusteredPoints = React.createClass({
       });
     };
     this.pruneCluster.BuildLeafletMarker = (marker, position) => {
-      const pointColor = colours[statusCategory[statuses[marker.category]]] || colours.unknown;
+      const pointColor = DataTypes.match(this.props.dataType, {
+        Waterpoints: () => colours[statusCategory[statuses[marker.category]]] || colours.unknown,
+        Dams: () => colours.blue,
+        Boreholes: () => [],
+      });
       const m = new CircleMarker(position, {
         radius: 8,
         color: '#fff',
