@@ -55,7 +55,7 @@ const WaterpointPopulationServeChart = React.createClass({
   tooltip(x, y0, y, drilldown) {
     return (<div>
               <h3 className="chart-title">
-                <T k={`chart.tooltip.title.${drilldown}`} /> {x}: {(y).toFixed(2)} <T k="chart.tooltip.sufix.population-served" /></h3>
+                <T k={`chart.tooltip.title.${drilldown}`} /> {x}: {Math.round(y)} <T k="chart.tooltip.sufix.population-served" /></h3>
             </div>);
   },
 
