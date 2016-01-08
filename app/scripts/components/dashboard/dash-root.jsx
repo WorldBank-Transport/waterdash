@@ -3,7 +3,6 @@ import { connect } from 'reflux';
 import { _ } from 'results';  // catch-all for match
 import AsyncState from '../../constants/async';
 import ViewModes from '../../constants/view-modes';
-import tzBounds from '../../constants/tz-bounds';
 
 // Stores
 import DrillDownStore from '../../stores/drill-down';
@@ -18,7 +17,6 @@ import ViewStore from '../../stores/view';
 // Actions
 import { load } from '../../actions/data';
 import { select, deselect, mapDrillDown } from '../../actions/select';
-import { setMapBounds } from '../../actions/view';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
 import { clear, setRange, setInclude } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
@@ -67,7 +65,6 @@ const DashRoot = React.createClass({
 
   // Reset bounds and load any required data
   componentDidMount() {
-    setMapBounds(tzBounds);  // reset bounds (eg. if we went to a static page and came back)
     load(this.state.view.dataType);
     this.loadPolygons();
   },
