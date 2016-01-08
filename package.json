@@ -88,21 +88,22 @@
   "dependencies": {
     "classnames": "2.1.3",
     "es6-promise": "3.0.2",
+    "highcharts": "4.2.1",
     "history": "1.12.5",
+    "isomorphic-fetch": "2.2.0",
     "leaflet": "0.7.5",
     "lodash": "3.10.1",
     "object-assign": "4.0.1",
     "react": "0.13.3",
-    "react-d3-components": "0.5.2",
+    "react-autocomplete": "0.1.4",
+    "react-d3-components": "0.6.0",
     "react-font-awesome": "https://github.com/janmyler/react-font-awesome/tarball/261c1719581e9125a544f8b5b9efc2e27073d970",
     "react-leaflet": "0.7.0",
     "react-router": "1.0.0-rc1",
     "react-slider": "0.5.1",
-    "react-autocomplete": "0.1.4",
     "reflux": "0.2.12",
     "results": "0.9.0",
     "topojson": "1.6.19",
-    "whatwg-fetch": "0.9.0",
-    "isomorphic-fetch": "2.2.0"
+    "whatwg-fetch": "0.9.0"
   }
 }
