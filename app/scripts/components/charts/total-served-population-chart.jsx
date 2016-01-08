@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
-import {BarChart} from 'react-d3-components';
 import ServedPulationStore from '../../stores/servedpopulation';
-import TSetChildProps from '../misc/t-set-child-props';
-import {load} from '../../actions/servedpopulation';
+import { load } from '../../actions/servedpopulation';
 import T from '../misc/t';
 import Resize from '../../utils/resize-mixin';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
+import HighCharts from 'highcharts';
 
+require('highcharts/modules/exporting')(HighCharts);
 require('stylesheets/charts/total-served-population-chart');
 
 const TotalServedPulationChart = React.createClass({
@@ -27,30 +27,84 @@ const TotalServedPulationChart = React.createClass({
     return {};
   },
 
-  parseData(data) {
+  componentDidUpdate() {
+    this.getChart();
+  },
+
+  parseData(data, type) {
     const response = {
       label: 'Total Population Served',
       values: [],
     };
-
-    const comparator = (a, b) => b.y - a.y;
+    const comparator = (a, b) => {
+      if (a > b) {
+        return 1;
+      } else if (b > a) {
+        return -1;
+      } else {
+        return 0;
+      }};
     response.values = Object.keys(data).map(key => {
       const served = data;
       const item = served[key];
-      return {
-        x: item.YEAR.toString(),
-        y: item.PERCENTAGE,
-      };
+      if (type === 'years') {
+        return item.YEAR.toString();
+      }
+      return item.PERCENTAGE;
     }).sort(comparator);
     return response;
   },
 
   tooltip(x, y0, y) {
     return (<div>
-              <h3 className="chart-title">
-                 <T k={'chart.tooltip.totalserved.title'} />{x}: {(y).toFixed(2)} %
-              </h3>
-            </div>);
+      <h3 className="chart-title">
+      <T k={'chart.tooltip.totalserved.title'} />{x}: {(y).toFixed(2)} %
+      </h3>
+      </div>);
+  },
+
+  getChart() {
+   // needs translations
+    const chart = new HighCharts.Chart({
+      chart: {
+        height: 400,
+        type: 'spline',
+        renderTo: 'container-1',
+      },
+
+      title: {
+        text: '',
+      },
+
+      xAxis: {
+        categories: this.parseData(this.state.servedpopulation, 'years').values,
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true,
+      },
+
+      plotOptions: {
+        spline: {
+          marker: {
+            radius: 4,
+            lineColor: '#666666',
+            lineWidth: 1,
+          },
+        },
+      },
+
+      series: [{
+        name: 'Population Served in %',
+        data: this.parseData(this.state.servedpopulation, null).values,
+      }],
+    });
+    return chart;
   },
 
   render() {
@@ -60,21 +114,7 @@ const TotalServedPulationChart = React.createClass({
     return (
       <div className="total-servedpopulation-chart">
         <h3><T k="chart.waterpoint-total-servedpopulation" /> - <span className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></span></h3>
-        <div className="chart-container ">
-          <TSetChildProps>
-            <BarChart
-                data={this.parseData(this.state.servedpopulation)}
-                height={350}
-                margin={{top: 20, bottom: 100, left: 40, right: 10}}
-                tooltipContained="true"
-                tooltipHtml={(x, y0, y) => this.tooltip(x, y0, y)}
-                tooltipMode="mouse"
-                tooltipOffset={{top: -100, left: 0}}
-                width={this.state.size.width * 0.80}
-                xAxis={{label: {k: 'chart.boreholes-stats.x-axis'}}}
-                yAxis={{label: {k: 'chart.waterpoint-total-servedpopulation.percenatge'}}} />
-          </TSetChildProps>
-        </div>
+        <div className="chart-container" id="container-1"></div>
       </div>);
   },
 });
