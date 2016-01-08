@@ -21,6 +21,7 @@ const colours = {
   poor: '#f05e55',
 
   unknown: '#7d7d7d',
+  blue: '#1da3da',
 };
 export default colours;
 

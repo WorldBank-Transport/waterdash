@@ -29,13 +29,14 @@ const PointsMap = React.createClass({
     return (
       <div>
         <ClusteredWaterpoints
+            dataType={this.props.dataType}
             map={this.props.map}
             points={this.props.data}
             select={this.props.select} />
 
         {/* A point popup, if a point is selected */}
         {popup}
-        <ClusterLegend />
+        <ClusterLegend dataType={this.props.dataType}/>
       </div>
     );
   },

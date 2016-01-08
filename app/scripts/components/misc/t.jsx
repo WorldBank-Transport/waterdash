@@ -336,6 +336,7 @@ const allTranslations = {
     'legend.NON FUNCTIONAL': '% Non Functional',
     'legend.UNKNOWN': '% Unknown',
     'legend.points': 'Number of points',
+    'legend.simple-points': 'Dam',
 
     'drilldown.regions': 'Region',
     'drilldown.districts': 'District',
