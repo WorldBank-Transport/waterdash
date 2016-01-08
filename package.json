@@ -96,7 +96,7 @@
     "object-assign": "4.0.1",
     "react": "0.13.3",
     "react-autocomplete": "0.1.4",
-    "react-d3-components": "0.6.0",
+    "react-d3-components": "0.5.2",
     "react-font-awesome": "https://github.com/janmyler/react-font-awesome/tarball/261c1719581e9125a544f8b5b9efc2e27073d970",
     "react-leaflet": "0.7.0",
     "react-router": "1.0.0-rc1",
