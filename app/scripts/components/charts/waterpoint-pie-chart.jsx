@@ -50,9 +50,6 @@ const WaterpointPieChart = React.createClass({
     const chart = new HighCharts.Chart({
       chart: {
         renderTo: this.props.id,
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
         type: 'pie',
       },
       title: {
