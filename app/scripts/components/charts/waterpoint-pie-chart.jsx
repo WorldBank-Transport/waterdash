@@ -2,9 +2,8 @@ import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
 import * as c from '../../utils/colours';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
-import PieChart from './react-3d-component/pie-chart';
 import T from '../misc/t';
-import Resize from '../../utils/resize-mixin';
+import HighCharts from 'highcharts';
 
 require('stylesheets/charts/waterpoint-pie-chart');
 
@@ -12,9 +11,10 @@ const WaterpointPieChart = React.createClass({
   propTypes: {
     column: PropTypes.string,
     data: PropTypes.array,  // injected
+    id: PropTypes.string,
   },
 
-  mixins: [Resize, ShouldRenderMixin],
+  mixins: [ShouldRenderMixin],
 
   getInitialState() {
     const allValues = Object.keys(c.Color[this.props.column]).reduce((agg, k) => {
@@ -26,70 +26,61 @@ const WaterpointPieChart = React.createClass({
     };
   },
 
+  componentDidMount() {
+    this.getChart();
+  },
+
   parseData(data) {
+    const seriedata = { name: 'Water',  colorByPoint: true, id: 'Water'};
     const values = Object.keys(data)
                     .filter(key => key !== 'total')
                     .map(key => {
                       return {
-                        x: key,
+                        name: key,
                         y: data[key],
                       };
                     });
-    return {
-      label: 'Some Label',
-      values: values,
-    };
+    seriedata.data = values;
+    return seriedata;
   },
 
-  renderTooltip(x, y, data) {
-    const perc = (y / data.total * 100).toFixed(2);
-    return (<div>
-              <h3 className="chart-title">{x}: {y} - {perc} %</h3>
-            </div>);
-  },
-
-  renderLegend(data) {
-    const children = Object.keys(data).filter(key => key !== 'total').map(key => {
-      return (
-        <li>
-          <div className="checkbox">
-            <div className="selectable" style={{background: c.Color[this.props.column][key]}}></div>
-            <T k={`chart.option.${key}`} />
-          </div>
-        </li>);
+  getChart() {
+   // needs translations
+    const data = func.Result.countBy(this.props.data, this.props.column);
+    const chart = new HighCharts.Chart({
+      chart: {
+        renderTo: this.props.id,
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie',
+      },
+      title: {
+        text: this.props.column,
+      },
+      tooltip: {
+        pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>',
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          },
+        },
+      },
+      series: [this.parseData(data)],
     });
-    return (
-      <div className="legend-container">
-        <div clasName="pie-legend-position">
-          <ul>
-            {children}
-          </ul>
-        </div>
-      </div>);
+    return chart;
   },
 
   render() {
-    if (!this.state.size) {
-      return (<div>empty</div>);
-    }
-    const data = func.Result.countBy(this.props.data, this.props.column);
     return (
       <div className="waterpoint-pie-chart">
       <h3><T k={`chart.pie.${this.props.column}`} /></h3>
-        {this.renderLegend(data)}
-        <div className="pie-chart-container">
-          <div className="pie-chart">
-            <PieChart
-                colorScale={(x) => c.Color[this.props.column][x]}
-                data={this.parseData(data)}
-                height={this.state.size.width * 0.20}
-                margin={{top: 0, bottom: 0, left: 0, right: 0}}
-                tooltipHtml={(x, y) => this.renderTooltip(x, y, data)}
-                tooltipMode="mouse"
-                tooltipOffset={{top: -100, left: 0}}
-                width={this.state.size.width * 0.30}/>
-            </div>
-            </div>
+        <div className="chart-container" id={this.props.id}></div>
       </div>
     );
   },
