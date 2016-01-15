@@ -1,100 +1,102 @@
 import React, { PropTypes } from 'react';
-import { connect } from 'reflux';
-import {LineChart} from 'react-d3-components';
-import * as func from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
+import { Result } from '../../utils/functional';
 import T from '../misc/t';
-import Resize from '../../utils/resize-mixin';
-import WaterpointstatusOptions from './waterpoint-status-options';
-import * as c from '../../utils/colours';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
-import YearStore from '../../stores/year';
+import HighCharts from 'highcharts';
 
 require('stylesheets/charts/boreholes-stats-chart');
 
 const BoreholesStatsChart = React.createClass({
   propTypes: {
     boreholes: PropTypes.array.isRequired,
+    years: PropTypes.object.isRequired,
   },
 
   mixins: [
-    Resize,
     ShouldRenderMixin,
-    connect(YearStore, 'years'),
   ],
 
-  getInitialState() {
-    return {
-      metrics: {
-        DIAMETER: true,
-        DEPTH_METER: true,
-        STATIC_WATER_LEVEL: true,
-        DYNAMIC_WATER_LEVEL_METER: true,
-        'DRAW _DOWN_METER': true,
-        YIELD_METER_CUBED_PER_HOUR: true,
-      },
-    };
+  componentDidMount() {
+    this.getChart();
   },
 
-  getActiveMetrics() {
-    return Object.keys(this.state.metrics)
-      .filter(metric => this.state.metrics[metric]);
+  componentDidUpdate() {
+    this.getChart();
   },
 
-  parseData(data) {
-    return this.getActiveMetrics().map(key => {
+  parseData(metrics, data) {
+    return metrics.map(key => {
       return {
-        label: key,
-        values: Object.keys(data)
-                  .filter(year => data[year])
-                  .map(year => {
-                    return {
-                      x: year,
-                      y: data[year].reduce((res, metric) => {
-                        if (metric[key]) {
-                          res.value = metric[key];
-                        }
-                        return res;
-                      }, {value: 0}).value,
-                      y0: 0,
-                    };
-                  }),
+        name: key,
+        data: Object.keys(data)
+          .filter(year => data[year])
+          .map(year => {
+            return {
+              name: year,
+              y: data[year].reduce((res, metric) => {
+                if (metric[key]) {
+                  res.value = metric[key];
+                }
+                return res;
+              }, {value: 0}).value,
+            };
+          }),
       };
     });
   },
 
-  toogleMetric(e, metric) {
-    const newState = {
-      ...this.state,
-      metrics: {
-        ...this.state.metrics,
-        [metric]: !this.state.metrics[metric],
+  getChart() {
+    if (this.props.boreholes.length === 0 || (Object.keys(this.props.years).filter(year => this.props.years[year]).length < 2)) {
+      return false;
+    }
+    const metrics = ['DIAMETER', 'DEPTH_METER', 'STATIC_WATER_LEVEL', 'DYNAMIC_WATER_LEVEL_METER', 'DRAW _DOWN_METER', 'YIELD_METER_CUBED_PER_HOUR'];
+    const dataRes = Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', metrics);
+    return new HighCharts.Chart({
+      chart: {
+        height: 400,
+        type: 'spline',
+        renderTo: 'boreholes-time',
       },
-    };
-    this.replaceState(newState);
+
+      title: {
+        text: '',
+      },
+
+      xAxis: {
+        type: 'category',
+      },
+
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true,
+      },
+
+      plotOptions: {
+        spline: {
+          marker: {
+            radius: 4,
+            lineColor: '#666666',
+            lineWidth: 1,
+          },
+        },
+      },
+
+      series: this.parseData(metrics, dataRes),
+    });
   },
 
   render() {
-    const dataRes = func.Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', this.getActiveMetrics());
-    if (Object.keys(dataRes).length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length < 2)) {
+    if (this.props.boreholes.length === 0 || (Object.keys(this.props.years).filter(year => this.props.years[year]).length < 2)) {
       return false;
     }
     return (
       <div className="boreholes-stats-chart">
         <h3><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
-        <WaterpointstatusOptions onclick={this.toogleMetric} state={this.state.metrics} values={Object.keys(this.state.metrics)}/>
-        <div className="chart-container">
-          <TSetChildProps>
-            <LineChart
-                colorScale={c.Color.getBoreholesColor}
-                data={this.parseData(dataRes)}
-                height={300}
-                margin={{top: 10, bottom: 50, left: 50, right: 10}}
-                width={this.state.size.width * 0.90}
-                xAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.x-axis'}}}
-                yAxis={{innerTickSize: 6, label: {k: 'chart.boreholes-stats.y-axis'}}} />
-              </TSetChildProps>
-        </div>
+        <div className="chart-container" id="boreholes-time"></div>
       </div>
     );
   },

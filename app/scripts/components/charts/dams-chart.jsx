@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Result } from '../../utils/functional';
 import TSetChildProps from '../misc/t-set-child-props';
-import * as c from '../../utils/colours';
 import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import { metricCal } from '../../utils/metrics';
@@ -26,19 +25,19 @@ const DamsChart = React.createClass({
 
   parseData(data, metrics) {
     return metrics.map(metric => {
-            return {
-              name: metric,
-              data: Object.keys(data).map(poly => {
-                const f = metricCal[metric];
-                const m = data[poly].filter(item => item.hasOwnProperty(metric));
-                const y = f(m[0][metric], m[0].total);
-                return {
-                  name: poly,
-                  y: y,
-                };
-              }),
-            };
-          });
+      return {
+        name: metric,
+        data: Object.keys(data).map(poly => {
+          const f = metricCal[metric];
+          const m = data[poly].filter(item => item.hasOwnProperty(metric));
+          const y = f(m[0][metric], m[0].total);
+          return {
+            name: poly,
+            y: y,
+          };
+        }),
+      };
+    });
   },
 
   getChart() {

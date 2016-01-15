@@ -119,9 +119,13 @@ const allTranslations = {
     'chart.title-boreholes-metric-helptext.DRAW _DOWN_METER': 'Average in Meters',
     'chart.title-boreholes-metric.YIELD_METER_CUBED_PER_HOUR': 'Yield Cubed',
     'chart.title-boreholes-metric-helptext.YIELD_METER_CUBED_PER_HOUR': 'Average meter per Hour',
+    'chart.borehole-size.title': 'Boreholes Size',
+    'chart.borehole-level.title': 'Boreholes Level',
+    'chart.borehole-draw.title': 'Boreholes Draw Down',
+    'chart.borehole-yield.title': 'Boreholes Yield Meter Cubed Per Hour',
 
     'chart.title-dams': 'Dams Status',
-    'chart.title-dams-status-helptext': '',
+    'chart.title-dams-status-helptext': 'by Region',
     'chart.dams.x-axis': 'Regions',
     'chart.dams.y-axis': '#',
 
