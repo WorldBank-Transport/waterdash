@@ -3,43 +3,88 @@
 @import '../config/box';
 @import '../config/type';
 
-.share-wrapper {
+.share-selector {
+  background: $theme-blue;
   display: table-cell;
-  vertical-align: top;
-  width: 16%;
+  font-size: $category-filter-text;
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  width: $full-width / 5;
 
-  ul {
-    @include list-unstyled();
-    margin-left: $full-width  / 10;
-    margin-right: $full-width  / 10;
-    margin-top: $base-unit / 2;
-    width: $full-width - 10;
+  .menu-item {
+    border-left: 1px solid $tab-expand-bg;
 
-    li {
-      @include transparency(1);
-      color: $text-color;
+    a {
+      color: $text-inverse;
       display: block;
-      float: left;
-      font-size: $small-text;
-      line-height: $small-text;
-      margin-right: $icon-list-space;
+      font-size: $tab-text;
+      font-weight: bold;
+      padding-bottom: $base-unit * 1.1;
+      padding-top: $base-unit - 0.1;
       text-align: center;
-      width: 28%;
+      width: $full-width;
 
-      &:last-child {
-        margin-right: 0;
+      .fa {
+        display: inline-block;
+        margin-left: $base-unit / 2;
       }
 
-      &:hover {
-        @include transparency(0.8);
+      &:hover,
+      &.active {
+        background: $theme-blue;
+        color: $bg-color;
       }
+    }
+  }
 
-      img {
+  .floating-div {
+    background: $theme-blue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    top: $map-nav-height;
+    vertical-align: top;
+    z-index: 1000;
+  }
+
+  .share-wrapper {
+    display: table-cell;
+    vertical-align: top;
+    width: 16%;
+
+    ul {
+      @include list-unstyled();
+      margin-left: $full-width  / 10;
+      margin-right: $full-width  / 10;
+      margin-top: $base-unit / 2;
+      width: $full-width - 10;
+
+      li {
+        @include transparency(1);
+        color: $text-color;
         display: block;
-        height: $icon-height;
-        margin: 0 auto $icon-bottom-space auto;
+        float: left;
+        font-size: $small-text;
+        line-height: $small-text;
+        margin-right: $icon-list-space;
+        padding-left: 10px;
+        text-align: center;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &:hover {
+          @include transparency(0.8);
+        }
+
+        img {
+          display: block;
+          height: $icon-height;
+          margin: 0 auto $icon-bottom-space auto;
         }
       }
     }
-
   }
+}
