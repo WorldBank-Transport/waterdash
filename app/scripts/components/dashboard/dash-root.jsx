@@ -26,6 +26,7 @@ import React, { PropTypes } from 'react';
 import T from '../misc/t';
 import TSetChildProps from '../misc/t-set-child-props';
 import MapNavPrimary from '../boilerplate/map-nav-primary';
+import Share from './share';
 // above map:
 import MapNav from '../boilerplate/map-nav';
 import DataType from '../boilerplate/data-type';
@@ -142,6 +143,7 @@ const DashRoot = React.createClass({
             </MapNavPrimary>
           )}>
             <DataType {...propsForChildren} />
+            <Share />
           </MapNav>
         </div>
 
