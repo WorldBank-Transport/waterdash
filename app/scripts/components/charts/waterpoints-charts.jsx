@@ -58,13 +58,13 @@ const WaterpointsChart = React.createClass({
           </div>
           <div className="col-all">
             <div className="row-chart-left right-border">
-              <WaterpointPieChart column="WATER_QUALITY" data={this.props.data}/>
+              <WaterpointPieChart column="WATER_QUALITY" data={this.props.data} id= "container-pie-1" />
             </div>
             <div className="row-chart-left right-border">
-              <WaterpointPieChart column="WATER_QUANTITY" data={this.props.data}/>
+              <WaterpointPieChart column="WATER_QUANTITY" data={this.props.data} id= "container-pie-2" />
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart column="SOURCE_TYPE" data={this.props.data}/>
+              <WaterpointPieChart column="SOURCE_TYPE" data={this.props.data} id= "container-pie-3" />
             </div>
           </div>
         </div>

@@ -55,14 +55,6 @@ const TotalServedPulationChart = React.createClass({
     return response;
   },
 
-  tooltip(x, y0, y) {
-    return (<div>
-      <h3 className="chart-title">
-      <T k={'chart.tooltip.totalserved.title'} />{x}: {(y).toFixed(2)} %
-      </h3>
-      </div>);
-  },
-
   getChart() {
    // needs translations
     const chart = new HighCharts.Chart({
