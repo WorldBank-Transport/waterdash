@@ -5,7 +5,6 @@ import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
-import tzBounds from './constants/tz-bounds';
 import { setView } from './actions/view';
 import { ensureSelect, deselect } from './actions/select';
 
@@ -28,11 +27,9 @@ import Popup from './components/dashboard/popup';
  * @returns {void}
  */
 function setPointsView(nextState) {
-  const bounds = tzBounds;
   setView({
     viewMode: ViewModes.Points(),
     dataType: DataTypes.fromParam(nextState.params.dataType),
-    mapBounds: bounds,
   });
 }
 
@@ -44,7 +41,6 @@ function setPolysView(nextState) {
   setView({
     viewMode: ViewModes.fromParam(nextState.params.polyType),
     dataType: DataTypes.fromParam(nextState.params.dataType),
-    mapBounds: tzBounds,
   });
 }
 
