@@ -32,11 +32,12 @@ export default class BoundsMap extends LeafletMap {
   }
 
   shouldUpdateBounds(next, prev) {
-    //if (!prev) {
+    if (!prev) {
       return true;
-    //}
-    //const nextLLB = Leaflet.latLngBounds(next);
-    //const prevLLB = Leaflet.latLngBounds(prev);
-    //return !nextLLB.equals(prevLLB);
+    }
+    const nextLLB = Leaflet.latLngBounds(next);
+    const prevLLB = Leaflet.latLngBounds(prev);
+    !nextLLB.equals(prevLLB);
+    return true;
   }
 }

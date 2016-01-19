@@ -5,7 +5,6 @@ import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
-import tzBounds from './constants/tz-bounds';
 import { setView } from './actions/view';
 import { ensureSelect, deselect } from './actions/select';
 
