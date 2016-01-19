@@ -28,11 +28,9 @@ import Popup from './components/dashboard/popup';
  * @returns {void}
  */
 function setPointsView(nextState) {
-  const bounds = tzBounds;
   setView({
     viewMode: ViewModes.Points(),
     dataType: DataTypes.fromParam(nextState.params.dataType),
-    mapBounds: bounds,
   });
 }
 
@@ -44,7 +42,6 @@ function setPolysView(nextState) {
   setView({
     viewMode: ViewModes.fromParam(nextState.params.polyType),
     dataType: DataTypes.fromParam(nextState.params.dataType),
-    mapBounds: tzBounds,
   });
 }
 
