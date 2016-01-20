@@ -45,6 +45,7 @@
     position: absolute;
     top: $map-nav-height;
     vertical-align: top;
+    width: 15%;
     z-index: 1000;
   }
 
@@ -55,19 +56,21 @@
 
     ul {
       @include list-unstyled();
-      margin-left: $full-width  / 10;
+      display: block;
+      margin-left: $full-width  / 6;
       margin-right: $full-width  / 10;
-      margin-top: $base-unit / 2;
+      margin-top: $base-unit / 3.5;
+      overflow: hidden;
       width: $full-width - 10;
 
       li {
         @include transparency(1);
-        color: $text-color;
+        color: $text-inverse;
         display: block;
         float: left;
         font-size: $small-text;
         line-height: $small-text;
-        margin-right: $icon-list-space;
+        margin-right: $share-icon-space;
         padding-left: 10px;
         text-align: center;
 
@@ -79,10 +82,17 @@
           @include transparency(0.8);
         }
 
-        img {
+        .fa {
+          clear: both;
+          color: $bg-color;
           display: block;
-          height: $icon-height;
-          margin: 0 auto $icon-bottom-space auto;
+          font-size: $share-icon-size;
+          margin-bottom: $share-icon-space;
+
+          &.fa-file-pdf-o {
+            height: $share-icon-size / 2;
+            margin-bottom: $share-icon-space * 2;
+          }
         }
       }
     }

@@ -37,9 +37,9 @@ const Share = React.createClass({
               <div className="floating-div">
                 <div className="share-wrapper">
                   <ul>
-                    <li className="share"><img src="images/icon-share.png"/><T k="share.share" /></li>
-                    <li className="feedback"><img src="images/icon-feedback.png"/><T k="share.feedback" /></li>
-                    <li className="print"><img src="images/icon-print.png"/><T k="share.print" /></li>
+                    <li className="share"><Icon type={`link`}/><T k="share.share" /></li>
+                    <li className="feedback"><Icon type={`comments-o`}/><T k="share.feedback" /></li>
+                    <li className="print"><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
                 </div>
               </div>),
