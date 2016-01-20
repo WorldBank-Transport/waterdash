@@ -42,14 +42,14 @@
     font-size: $chart-axis-text;
     font-weight: bold;
   }
-  .tooltip {
+  .highcharts-tooltip {
     align-items: center;
     background-color: $bg-color;
     border: 3px solid $grey-light;
-    height: 230px;
+    height: 110px;
     justify-content: center;
     padding: $base-unit/2 $base-unit 0;
-    width: $tooltip-width;
+    width: $tooltip-width - 50;
 
     ul {
       @include list-unstyled();
@@ -61,27 +61,27 @@
         position: absolute;
         }
 
-      // non-functional main stat
-      li:nth-child(2) {
-        @include waterpoints-tooltip-stats(50px, 17px);
-        .metric-title {
-          color: $status-poor;
-        }
-      }
-
       // functional
       li:nth-child(3) {
-        @include waterpoints-tooltip-stats(50px, 190px);
+        @include waterpoints-tooltip-stats(50px, 17px);
         .metric-title {
           color: $status-good;
         }
       }
 
       // functional- needs repair
+      li:nth-child(2) {
+        @include waterpoints-tooltip-stats(50px, 150px);
+        .metric-title {
+          color: $status-medium;
+        }
+      }
+
+      // non-functional main stat
       li:first-child {
         @include waterpoints-tooltip-stats(50px, 352px);
         .metric-title {
-          color: $status-medium;
+          color: $status-poor;
         }
       }
 
@@ -100,45 +100,6 @@
           line-height: $big-number - 15;
         }
 
-      }
-
-      li:nth-child(4),
-      li:nth-child(5),
-      li:nth-child(6),
-      li:nth-child(7) {
-        width: $waterpoint-stat-narrow;
-
-        .metric-title {
-          color: $theme-blue;
-          font-size: $metric-title-small;
-          font-weight: $title-weight;
-        }
-
-        .waterpoint-tooltip-stat-wrapper {
-          font-size: $medium-number - 5;
-          line-height: $medium-number - 5;
-        }
-
-      }
-
-      // non-funcitonal <3m
-      li:nth-child(4) {
-        @include waterpoints-tooltip-stats(145px, 17px);
-      }
-
-      // non-functional >3m
-      li:nth-child(7) {
-        @include waterpoints-tooltip-stats(145px, 150px);
-      }
-
-      // non-fucntional <6m
-      li:nth-child(5) {
-        @include waterpoints-tooltip-stats(145px, 280px);
-      }
-
-      // non-fucntional >6m
-      li:nth-child(6) {
-        @include waterpoints-tooltip-stats(145px, 411px);
       }
   }
 
