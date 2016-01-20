@@ -6,33 +6,33 @@
 
 // homepage
 .homebanner {
-  @include up-to($tablet-landscape) {
-    min-width: 100%;
-    position: absolute;
-}
-
+  bottom: 0;
+  display: flex;
   float: left;
   height: 100%;
-  max-width: 50%;
+  left: 0;
+  max-width: 45%;
+  min-height: 100%;
   overflow: hidden;
-}
+  position: absolute;
+  top: 0;
 
-.homebanner img {
-  display: block;
-  height: 100%;
-  width: auto;
-
-  @include up-to($tablet-landscape) {
-    height: auto;
+  img {
+    flex-shrink: 0;
     min-height: 100%;
-    width: auto;
-}
+    min-width: 100%;
 
-  @include up-to($tablet-portrait) {
-    height: 100%;
-    min-height: 100%;
+    @include up-to($tablet-landscape) {
+      height: auto;
+      min-height: 100%;
+      width: auto;
+    }
+
+    @include up-to($tablet-portrait) {
+      height: 100%;
+      min-height: 100%;
+    }
   }
-
 }
 
 .homecontent  {
@@ -78,7 +78,6 @@
     }
   }
 }
-
 .static-content {
   margin: 0 auto;
   width: $static-content-width;

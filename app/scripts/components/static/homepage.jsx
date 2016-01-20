@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../boilerplate/button';
+import Footer from '../boilerplate/footer';
 import T from '../misc/t';
 
 require('stylesheets/boilerplate/static-content');
@@ -26,6 +27,7 @@ const Homepage = React.createClass({
             <T k="home.text" />
           </p>
         </div>
+        <Footer />
       </div>
     );
   },

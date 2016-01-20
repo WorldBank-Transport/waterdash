@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import Footer from '../boilerplate/footer';
+
 
 const StaticLayout = React.createClass({
   propTypes: {

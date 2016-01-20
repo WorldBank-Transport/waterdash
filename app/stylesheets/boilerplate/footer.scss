@@ -9,6 +9,11 @@
   padding-left: $header-common-margin;
   padding-right: $header-common-margin;
 
+  &.footer-static {
+    clear: both;
+    position: relative;
+  }
+
   a {
     color: $bg-color;
   }

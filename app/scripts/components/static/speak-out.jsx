@@ -1,4 +1,5 @@
 import React from 'react';
+import FooterStatic from '../boilerplate/footer-static';
 import T from '../misc/t';
 
 require('stylesheets/boilerplate/static-content');
@@ -14,6 +15,7 @@ const SpeakOut = React.createClass({
             <iframe className="feedback-form" src="https://docs.google.com/forms/d/1Do2Se6uzp_MIQF_K6DIUslzu2MXashHdN0YOGCeRXPk/viewform?embedded=true"></iframe>
           </div>
         </div>
+        <FooterStatic/>
       </div>
     );
   },
