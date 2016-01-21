@@ -4,8 +4,8 @@
 @import '../config/box';
 
 .boreholes-stats-chart {
-  margin: $general-content-padding 0 0 0;
   @include chart-row();
+  margin-top: -$charts-section-space;
   width: 100%;
 
   .waterpoints-chart-options-container {
@@ -19,6 +19,7 @@
 
   h3 {
     color: $theme-blue;
+    font-size: $main-chart-title;
     font-weight: $title-weight;
   }
 

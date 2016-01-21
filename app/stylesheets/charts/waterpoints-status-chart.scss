@@ -8,6 +8,15 @@
   width: 100%;
 }
 
+.group-option {
+  .selectable {
+    margin-top: $charts-section-space - 7;
+  }
+  span {
+    float: left;
+    margin-right: $charts-section-space / 2;
+  }
+}
 .stack-bar-chart {
   margin: 0;
 
@@ -93,10 +102,12 @@
         .metric-title {
           font-size: $metric-title-big;
           font-weight: $title-weight;
+          line-height: 110%;
         }
 
         .waterpoint-tooltip-stat-wrapper {
-          font-size: $big-number - 15;
+          color: $grey-medium;
+          font-size: $big-number - 20;
           line-height: $big-number - 15;
         }
 
@@ -110,12 +121,15 @@
 
         .metric-title {
           color: $theme-blue;
+          display: block;
           font-size: $metric-title-small;
           font-weight: $title-weight;
+          padding-bottom: $charts-section-space / 2;
         }
 
         .waterpoint-tooltip-stat-wrapper {
-          font-size: $medium-number - 5;
+          color: $grey-medium;
+          font-size: $medium-number - 8;
           line-height: $medium-number - 5;
         }
 
@@ -156,6 +170,9 @@
     .percent-value-wrapper {
       display: block;
       width: 100%;
+      .number {
+        font-size: 23px;
+      }
     }
 
     .waterpoint-tooltip-stat-wrapper {
@@ -164,7 +181,7 @@
     }
 
     .row {
-      @include bottom-stat-border(3px, $grey-light);
+      @include bottom-stat-border(2px, $grey-light);
       padding: 0 $base-unit/2 $base-unit/2 0;
     }
   }

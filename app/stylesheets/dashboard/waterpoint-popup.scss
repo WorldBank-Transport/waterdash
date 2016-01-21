@@ -6,6 +6,7 @@
 .waterpoint-popup {
   cursor: default;
   margin: 0;
+  overflow-y: auto;
   padding: 0 $base-unit;
 
   .row {
@@ -16,9 +17,9 @@
     width: 100%;
 
     &.bordered {
-      @include bottom-stat-border(3px, $grey-light);
-      margin-bottom: $popup-space;
-      padding-bottom: $popup-space;
+      @include bottom-stat-border(2px, $grey-light);
+      margin-bottom: $popup-space / 2;
+      padding-bottom: $popup-space / 1.3;
     }
 
     &.population-ratio {
@@ -44,7 +45,6 @@
       .location-text {
         line-height: 5px;
       }
-
     }
 
     .popup-col {
@@ -104,7 +104,7 @@
   }
 
   .popup-header {
-    @include bottom-stat-border(3px, $grey-light);
+    @include bottom-stat-border(2px, $grey-light);
     margin-bottom: $popup-space / 2;
     overflow: hidden;
     padding-bottom: $popup-space / 2;

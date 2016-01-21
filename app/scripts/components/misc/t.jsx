@@ -54,7 +54,7 @@ const allTranslations = {
 
     'charts.toggle.closed': 'View Charts',
     'charts.toggle.opened': 'Hide Charts',
-    'chart.doubleClick.help': 'Double Click on any bar to drilldown',
+    'chart.doubleClick.help': 'double click on any bar to drilldown',
     'chart.click.help': 'Click on any bar to drilldown',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',
@@ -106,7 +106,7 @@ const allTranslations = {
     'chart.option.YIELD_METER_CUBED_PER_HOUR': 'Yield cubed',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
-    'chart.boreholes.summary': 'Metrics summary',
+    'chart.boreholes.summary': 'Metrics Summary',
     'chart.title-boreholes-metric.DIAMETER': 'Diameter',
     'chart.title-boreholes-metric-helptext.DIAMETER': 'Average size in Meters',
     'chart.title-boreholes-metric.DEPTH_METER': 'Depth',
@@ -285,7 +285,7 @@ const allTranslations = {
     'share.print': 'Print',
 
 
-    'footer.copy': 'The source code of this website is published under a under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
+    'footer.copy': 'The source code of this website is published under a under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
     'loading': 'Loading',
     'loading.waterpoints': 'Loading waterpoints...',

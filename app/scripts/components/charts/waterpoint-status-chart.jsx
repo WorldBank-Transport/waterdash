@@ -101,7 +101,8 @@ const WaterpointStatusChart = React.createClass({
       return (<li>
                 <spam className="metric-title">{{key}}:</spam>
                 <div className="waterpoint-tooltip-stat-wrapper">
-                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span><span className="percent-value-wrapper">(<span className="number">{percentage}</span> %)</span>
+                <span className="percent-value-wrapper"><span className="number">{percentage}</span> %</span>
+                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span>
                 </div>
               </li>);
     });
@@ -145,15 +146,14 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
         <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
-        <div><p><T k="chart.doubleClick.help" /></p>
-        <p><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></p></div>
+        <div className="group-option"><span><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></span><span>(<T k="chart.doubleClick.help" />)</span></div>
         <div className="chart-container">
           <TSetChildProps>
             <ClickBarChart
                 colorScale={c.Color.getWaterpointColor}
                 data={this.parseData(dataRes)}
                 groupedBars={this.state.groupedBars}
-                height={420}
+                height={380}
                 margin={{top: 20, bottom: 120, left: 40, right: 10}}
                 onDoubleClick={this.doubleClick}
                 tooltipContained="true"

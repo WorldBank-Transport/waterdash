@@ -24,9 +24,8 @@
 
 .secondaryCharts {
   background: $bg-color;
-  border-top: 2px solid $sec-chart-border-color;
   overflow: hidden;
-  padding: $chart-container-padding/4 $chart-container-padding;
+  padding: $chart-container-padding $chart-container-padding;
 
   .col-left {
     float: left;

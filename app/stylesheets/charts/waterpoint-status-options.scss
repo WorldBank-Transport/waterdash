@@ -7,9 +7,10 @@
 
 .waterpoints-chart-options-container {
   @include border-radius(3px);
-  border: 1px solid $grey-light;
+  border-bottom: 2px solid $grey-light;
   height: $waterpoint-options-height;
-  padding: 0 0 $base-unit 0;
+  margin-bottom: $charts-section-space / 2;
+  padding-bottom: $charts-section-space - 7;
 
   .checkbox {
     .t {
@@ -26,7 +27,8 @@
   }
 
   ul {
-    padding-left: $base-unit * 1.5;
+    padding-left: 0;
+
     li {
       float: left;
       list-style: none;
