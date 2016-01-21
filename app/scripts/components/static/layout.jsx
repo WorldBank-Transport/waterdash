@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 
+
 const StaticLayout = React.createClass({
   propTypes: {
     children: PropTypes.node.isRequired,

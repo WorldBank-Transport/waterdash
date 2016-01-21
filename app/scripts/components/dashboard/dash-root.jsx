@@ -36,6 +36,7 @@ import { TileLayer } from 'react-leaflet';
 import Filters from '../filters/filters';
 import Charts from '../charts/charts';
 import SpinnerModal from '../misc/spinner-modal';
+import Footer from '../boilerplate/footer';
 import DrillDownViewer from './drill-down-viewer';
 import SearchPanel from '../filters/search-panel';
 // below map
@@ -183,7 +184,7 @@ const DashRoot = React.createClass({
           </MapNav>
           <OverviewBar {...propsForChildren} />
         </div>
-
+        <Footer />
       </div>
     );
   },
