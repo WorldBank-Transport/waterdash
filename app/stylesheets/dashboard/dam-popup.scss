@@ -26,12 +26,12 @@
   .row {
     box-sizing: border-box;
     display: table;
-    padding: 1em 0;
+    padding: 5px 0;
     width: 100%;
 
     &.bordered {
-      @include bottom-stat-border(3px, $grey-light);
-      margin-bottom: $popup-space;
+      @include bottom-stat-border(2px, $grey-light);
+      margin-bottom: $popup-space / 2;
       padding-bottom: $popup-space;
     }
 
@@ -48,9 +48,12 @@
   }
 
   .popup-stat {
+    display: block;
     font-size: $medium-number;
     font-weight: $title-weight;
     margin-left: $popup-space + 3;
+    margin-top: -6px;
+
     &.polygon-stat {
       margin-left: 0;
     }
@@ -63,7 +66,7 @@
     @include bottom-stat-border(3px, $grey-light);
     margin-bottom: $popup-space / 2;
     overflow: hidden;
-    padding-bottom: $popup-space * 1.5;
+    padding-bottom: $popup-space;
 
     &.polygon-dam-header {
       padding-bottom: $popup-space;
@@ -89,7 +92,6 @@
       margin-top: $base-unit / 3;
       width: $popup-population-width + 6;
     }
-
   }
 
   .popup-stat-container {

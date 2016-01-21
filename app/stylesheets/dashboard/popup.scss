@@ -2,21 +2,20 @@
 @import '../config/dimensions';
 
 .popup-wrapper {
-  left: 55%;
+  bottom: 0;
+  overflow-y: auto;
   position: absolute;
-  right: 10%;
-  top: 2%;
+  right: 0;
+  top: -2px;
+  z-index: 11;  // needs to be specified >=1 to go above the map
 
   .popup {
     background: $background-map-overlay;
-    border: 3px solid $grey-light;
+    border: 2px solid $grey-light;
     box-shadow: $shadow;
-    // height: $popup-width + 50;
-    overflow: hidden;
+    height: 100%;
     padding: $base-unit;
-    position: relative;
     width: $popup-width;
-    z-index: 1;  // needs to be specified >=1 to go above the map
 
     .close-button {
       background: $grey-light;

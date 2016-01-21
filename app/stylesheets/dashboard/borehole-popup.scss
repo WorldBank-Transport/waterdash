@@ -4,33 +4,40 @@
 @import '../config/box';
 
 .borehole-popup {
+  bottom: 0;
   display: table-cell;
   margin: 0;
-  padding: 0 $base-unit;
-  vertical-align: top;
+  // vertical-align: top;
+  padding: 25px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
 
   .popup-header {
-    @include bottom-stat-border(3px, $grey-light);
-    margin-bottom: $popup-space / 2;
+    @include bottom-stat-border(2px, $grey-light);
+    margin-bottom: $popup-space - 6;
     overflow: hidden;
-    padding-bottom: $popup-space / 2;
+    padding-bottom: $popup-space - 6;
 
     h3 {
       float: left;
-      font-size: $popup-default-text;
+      font-size: $popup-default-text - 2;
+      margin-bottom: 0;
       padding-top: $popup-space;
     }
   }
 
   .popup-col {
-    @include bottom-stat-border(3px, $grey-light);
+    @include bottom-stat-border(2px, $grey-light);
     float: left;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    width: 50%;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 43%;
 
     h3 {
-      line-height: 120%;
+      font-size: 12px;
+      line-height: 100%;
       width: 80%;
     }
   }
@@ -76,7 +83,7 @@
     width: 100%;
 
     &.bordered {
-      @include bottom-stat-border(3px, $grey-light);
+      @include bottom-stat-border(2px, $grey-light);
       margin-bottom: $popup-space;
       padding-bottom: $popup-space;
     }

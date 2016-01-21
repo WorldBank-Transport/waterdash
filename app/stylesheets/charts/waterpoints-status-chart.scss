@@ -106,7 +106,8 @@
         }
 
         .waterpoint-tooltip-stat-wrapper {
-          font-size: $big-number - 15;
+          color: $grey-medium;
+          font-size: $big-number - 20;
           line-height: $big-number - 15;
         }
 
@@ -127,7 +128,8 @@
         }
 
         .waterpoint-tooltip-stat-wrapper {
-          font-size: $medium-number - 5;
+          color: $grey-medium;
+          font-size: $medium-number - 8;
           line-height: $medium-number - 5;
         }
 
