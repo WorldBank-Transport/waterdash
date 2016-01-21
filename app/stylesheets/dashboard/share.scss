@@ -11,6 +11,7 @@
   margin: 0;
   text-align: left;
   width: $full-width / 5;
+  z-index: 10002;
 
   .menu-item {
     border-left: 1px solid $tab-expand-bg;
