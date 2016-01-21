@@ -54,7 +54,7 @@ const allTranslations = {
 
     'charts.toggle.closed': 'View Charts',
     'charts.toggle.opened': 'Hide Charts',
-    'chart.doubleClick.help': 'Double Click on any bar to drilldown',
+    'chart.doubleClick.help': 'double click on any bar to drilldown',
     'chart.click.help': 'Click on any bar to drilldown',
     'chart.title.functional': 'Functional',
     'chart.title.non-functional': 'Non Functional',

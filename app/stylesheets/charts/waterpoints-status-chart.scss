@@ -8,6 +8,14 @@
   width: 100%;
 }
 
+.group-option {
+  .selectable {
+    margin-top: $charts-section-space - 7;
+  }
+  span {
+    float: left;
+  }
+}
 .stack-bar-chart {
   margin: 0;
 

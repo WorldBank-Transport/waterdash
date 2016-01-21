@@ -27,7 +27,7 @@
   background: $bg-color;
   border-top: 2px solid $grey-light;
   overflow: hidden;
-  padding: $chart-container-padding/2 $chart-container-padding;
+  padding: $chart-container-padding/4 $chart-container-padding;
 
   .col-left {
     float: left;
@@ -75,6 +75,7 @@ h3 {
     @extend .chart-title;  // lint warning here to use % but it affects the style
     font-size: $main-chart-title;
     font-weight: $title-weight;
+    margin-bottom: 0;
     }
 
   .chart-helptext {
