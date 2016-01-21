@@ -31,10 +31,10 @@ const MetricSummary = React.createClass({
             <T k={`chart.waterpoint.summary.${item.name}`} />
           </div>
           <div className="row">
+          <span className="percent-value">{perc}</span>
             <div className="medium-number padding">
-              <span className="number">{value}</span>
+              <span className="number-value">{value}</span>
             </div>
-            <span className="percent-value">{perc}</span>
           </div>
         </div>);
     });

@@ -4,15 +4,19 @@
 .dash-layout {
 
   .dash-top {
-    height: $map-nav-height;
+    height: $map-nav-height - 3;
+    .map-nav {
+      border-bottom: 2px solid $grey-light;
+    }
+
   }
 
   .map-container {
-    bottom: $map-nav-height + $overview-bar-height;
+    bottom: $map-container-bottom;
     left: 0;
     position: absolute;
     right: 0;
-    top: $map-nav-height;
+    top: $map-nav-height + 2;
 
     // WARNING: These rules reach into child components, which is not nice
     // but since they affect each other, ... oh well

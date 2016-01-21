@@ -19,7 +19,7 @@
   }
 
   a {
-    color: $theme-blue;
+    color: darken($dam-reservoir-text-color, 10%);
     cursor: pointer;
     display: block;
     font-weight: $title-weight;

@@ -106,7 +106,7 @@ const allTranslations = {
     'chart.option.YIELD_METER_CUBED_PER_HOUR': 'Yield cubed',
     'chart.boreholes-stats.x-axis': 'Years',
     'chart.boreholes-stats.y-axis': '#',
-    'chart.boreholes.summary': 'Metrics summary',
+    'chart.boreholes.summary': 'Metrics Summary',
     'chart.title-boreholes-metric.DIAMETER': 'Diameter',
     'chart.title-boreholes-metric-helptext.DIAMETER': 'Average size in Meters',
     'chart.title-boreholes-metric.DEPTH_METER': 'Depth',

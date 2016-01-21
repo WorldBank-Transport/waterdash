@@ -4,7 +4,10 @@
 
 .dams-chart {
   margin: 0;
-
+  h3 {
+    font-size: $main-chart-title;
+    margin-bottom: 20px;
+  }
   .waterpoints-chart-options-container {
     margin-bottom: $general-content-padding;
   }

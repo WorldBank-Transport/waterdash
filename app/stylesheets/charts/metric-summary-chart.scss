@@ -45,31 +45,32 @@
       }
 
       .medium-number {
-        color: $theme-blue;
-        font-size: $medium-number+10;
+        color: $grey-medium;
+        font-size: $medium-number;
+        font-weight: $title-weight;
         line-height: $base-unit;
+        padding-left: $charts-section-space / 2;
+        padding-right: $charts-section-space / 2;
 
-        & > .number {
-          font-weight: bold;
-          clear: both;
+        .number-value {
+          display: block;
+          margin-top: $charts-section-space - 2;
         }
+
       }
 
       .percent-value {
         .medium-number {
-          border-left: 2px solid $grey-light;
           border-right: 2px solid $grey-light;
-          color: $grey-medium;
+          color: $theme-blue;
           font-size: $percent-value;
-          margin-top: $charts-section-space;
-          padding-left: $charts-section-space /2;
-          padding-right: $charts-section-space /2;
         }
       }
       .context {
         color: $text-color;
         font-size: $medium-text - 2;
         font-weight: bold;
+        margin-bottom: $charts-section-space - 9;
         text-transform: uppercase;
       }
     }
