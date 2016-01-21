@@ -12,7 +12,7 @@ const SpeakOut = React.createClass({
           <h2><T k="static.speakout-title" /></h2>
           <p><T k="static.speakout-content" /></p>
           <div className="feedback-form-container">
-            <iframe className="feedback-form" src="https://docs.google.com/forms/d/1Do2Se6uzp_MIQF_K6DIUslzu2MXashHdN0YOGCeRXPk/viewform?embedded=true"></iframe>
+            <iframe className="feedback-form" src="https://docs.google.com/forms/d/1jbbd3jCr97JW5g9lNjHkC-ANf9ZjD-J6cLkIPpyiV14/viewform"></iframe>
           </div>
         </div>
         <FooterStatic/>
