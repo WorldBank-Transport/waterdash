@@ -51,6 +51,28 @@ export const polygon = {  // sync with edudash: https://github.com/WorldBank-Tra
   },
 };
 
+export const point = {
+  normal: colour => {
+    const style = {
+      radius: 4,
+      color: colours.bgColor,
+      opacity: 0.75,
+      weight: 1,
+      fillOpacity: 1,
+      fillColor: colour,
+    };
+    return style;
+  },
+
+  hovered: {
+    // color: colours.bgColor, color is kept from normal
+    fillOpacity: 0.9,
+    // fillColor is kept from normal
+    opacity: 1,
+    weight: 3,
+  },
+};
+
 
 export const Color = {};
 

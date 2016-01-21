@@ -8,6 +8,7 @@ import ViewModes from '../../constants/view-modes';
 
 import ClusteredWaterpoints from '../leaflet/clustered-points';
 import ClusterLegend from './cluster-legend';
+import SimplePoints from '../leaflet/simple-points';
 
 const PointsMap = React.createClass({
   propTypes: {
@@ -28,7 +29,7 @@ const PointsMap = React.createClass({
 
     return (
       <div>
-        <ClusteredWaterpoints
+        <SimplePoints
             dataType={this.props.dataType}
             map={this.props.map}
             points={this.props.data}
