@@ -8,7 +8,6 @@ import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 import HighCharts from 'highcharts';
 
-require('highcharts/modules/exporting')(HighCharts);
 require('stylesheets/charts/total-served-population-chart');
 
 const TotalServedPulationChart = React.createClass({

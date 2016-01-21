@@ -3,14 +3,19 @@ import React, { PropTypes } from 'react';
 import { connect } from 'reflux';
 import HighCharts from 'highcharts';
 import PopulationStore from '../../stores/population';
-import * as func from '../../utils/functional';
+import { Result } from '../../utils/functional';
 import {load} from '../../actions/population';
 import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 
-require('highcharts/modules/drilldown')(HighCharts);
 require('stylesheets/charts/waterpoint-population-serve-chart');
+
+const DRILL_DOWN = {
+  REGION: 'DISTRICT',
+  DISTRICT: 'WARD',
+  WARD: null,
+};
 
 const WaterpointPopulationServeChart = React.createClass({
 
@@ -34,14 +39,18 @@ const WaterpointPopulationServeChart = React.createClass({
 
   getChart() {
     // needs translations
-    const data = this.parseData(this.waterpointsRes, this.popAgg);
-    const chart = new HighCharts.Chart({
+    const data = this.parseData();
+    this.chart = new HighCharts.Chart({
       chart: {
         type: 'column',
         renderTo: 'container-2',
+        events: {
+          drilldown: this.drilldown,
+          //drillup: this.drillup,
+        },
       },
       title: {
-        text: 'National',
+        text: '',
       },
       xAxis: {
         type: 'category',
@@ -69,75 +78,75 @@ const WaterpointPopulationServeChart = React.createClass({
       series: [{
         name: 'National',
         colorByPoint: true,
-        data: data.values,
+        data: data,
       }],
 
-      drilldown: {
-        series: data.level1,
-      },
+      // drilldown: {
+      //   series: data.level1,
+      // },
     });
-    return chart;
+    return this.chart;
+  },
+
+  getDrillDownId(level, levelName) {
+    return `${level}-${levelName}`.replace(/\s/g, '_');
   },
 
 // this is quite messep up refactoring is needed alos perfoance is quite bad takes some time due iterations
-  parseData(waterpoints, population) {
-    const response = {
-      label: 'People Waterpoint Ratio',
-      values: [],
-      level1: [],
-    };
-    const wps = this.props.waterpoints;
+  parseData() {
+    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
+    const waterpoints = Result.countBy(this.props.waterpoints, drillDown);
+    const population = Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
     const comparator = (a, b) => b.y - a.y;
-    response.values = Object.keys(waterpoints)
+    return Object.keys(waterpoints)
                         .filter(key => key !== 'total')
                         .map(key => {
                           const regPopulation = isUndefined(population[key]) ? 0 : population[key][0].TOTAL; // if we don't have the population we show the real number
-                          const districWaterPoints = func.Result.countBy(wps.filter(item => item.REGION === key), 'DISTRICT');
-                          const ditrictPop = func.Result.sumByGroupBy(this.state.population, 'DISTRICT', ['TOTAL']);
-                          const wardPop = func.Result.sumByGroupBy(this.state.population, 'WARD', ['TOTAL']);
-                          const districDrillDownLevel1 = {};
-                          districDrillDownLevel1.id = key;
-                          districDrillDownLevel1.name = key;
-                          districDrillDownLevel1.data = [];
-                          Object.keys(districWaterPoints)
-                              .filter(dstrickey => dstrickey !== 'total')
-                              .map(dstrickey => {
-                                const pop = isUndefined(ditrictPop[dstrickey]) ? 0 : ditrictPop[dstrickey][0].TOTAL;
-                                districDrillDownLevel1.data.push({name: dstrickey, y: parseFloat((pop / districWaterPoints[dstrickey]).toFixed(2)), drilldown: dstrickey});
-
-                                const districDrillDownLevel2 = {};
-                                districDrillDownLevel2.id = dstrickey;
-                                districDrillDownLevel2.name = dstrickey;
-                                districDrillDownLevel2.data = [];
-                                const wardWaterPoints = func.Result.countBy(wps.filter(item => item.DISTRICT === dstrickey), 'WARD');
-                                Object.keys(wardWaterPoints) //eslint-disable-line no-sequences
-                                    .filter(wardkey => wardkey !== 'total')
-                                    .map(wardkey => {
-                                      const popward = isUndefined(wardPop[wardkey]) ? 0 : wardPop[wardkey][0].TOTAL;
-                                      districDrillDownLevel2.data.push([wardkey, parseFloat((popward / wardWaterPoints[wardkey]).toFixed(2))]);
-                                    }),
-                                districDrillDownLevel2.data.sort(function(a, b) {
-                                  return parseFloat(b[1]) - parseFloat(a[1]);
-                                });
-                                response.level1.push(districDrillDownLevel2);
-                              });
-                          districDrillDownLevel1.data.sort(comparator);
-                          response.level1.push(districDrillDownLevel1);
                           return {
                             name: key,
-                            y: parseFloat((regPopulation / waterpoints[key]).toFixed(2)),
-                            drilldown: key,
+                            y: parseFloat((regPopulation / waterpoints[key])),
+                            drilldown: this.getDrillDownId(drillDown, key),
                           };
                         }).sort(comparator);
-    return response;
   },
+
+  drilldown(e) {
+    if (!e.seriesOptions) {
+      this.chart.showLoading('Loading ...');
+      const drilldownName = e.point.drilldown;
+      const [level, levelName] = drilldownName.split('-');
+      const nextLevel = DRILL_DOWN[level];
+      const realName = levelName.replace(/_/g, ' ');
+      let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
+      const waterStats = Result.countBy(data, nextLevel);
+      const population = this.state.population.filter(item => item[level] === realName);
+      const populationStats = Result.sumByGroupBy(population, nextLevel, ['TOTAL']);
+      const series = {
+        name: realName,
+        data: [],
+      };
+      Object.keys(waterStats)
+          .filter(key => key !== 'total')
+          .forEach(key => {
+            const pop = isUndefined(populationStats[key]) ? 0 : populationStats[key][0].TOTAL; // if we don't have the population we show the real number
+            const item = {
+              name: key,
+              y: parseFloat((pop / waterStats[key])),
+            };
+            if (DRILL_DOWN[level] && DRILL_DOWN[level] !== null) {
+              item.drilldown = this.getDrillDownId(DRILL_DOWN[level], key);
+            }
+            series.data.push(item);
+          });
+      this.chart.hideLoading();
+      this.chart.addSeriesAsDrilldown(e.point, series);
+    }
+  },
+
   render() {
     if (isUndefined(this.props.waterpoints.length === 0)) {
       return (<div>empty</div>);
     }
-    this.drillDown = ViewModes.getDrillDown(this.props.viewMode);
-    this.waterpointsRes = func.Result.countBy(this.props.waterpoints, this.drillDown);
-    this.popAgg = func.Result.sumByGroupBy(this.state.population, this.drillDown, ['TOTAL']);
     return (
       <div className="waterpoint-population-serve-chart">
         <h3><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>

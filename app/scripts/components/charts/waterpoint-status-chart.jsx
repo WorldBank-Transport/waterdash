@@ -1,18 +1,29 @@
 import React, { PropTypes } from 'react';
-import ClickBarChart from './react-3d-component/click-bar-chart';
 import * as func from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
 import * as c from '../../utils/colours';
 import T from '../misc/t';
-import WaterpointstatusOptions from './waterpoint-status-options';
-import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
-import { chartDrilldown } from '../../actions/select';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
-import Checkbox from '../misc/checkbox';
+import HighCharts from 'highcharts';
 
 require('stylesheets/charts/waterpoints-status-chart');
+
+const STATUS = {
+  'NON FUNCTIONAL': 'NON_FUNCTIONAL',
+  'FUNCTIONAL NEEDS REPAIR': 'FUNCTIONAL_NEEDS_REPAIR',
+  'FUNCTIONAL': 'FUNCTIONAL',
+};
+const STATUS_REVERSE = {
+  'NON_FUNCTIONAL': 'NON FUNCTIONAL',
+  'FUNCTIONAL_NEEDS_REPAIR': 'FUNCTIONAL NEEDS REPAIR',
+  'FUNCTIONAL': 'FUNCTIONAL',
+};
+const DRILL_DOWN = {
+  REGION: 'DISTRICT',
+  DISTRICT: 'WARD',
+  WARD: null,
+};
 
 const WaterpointStatusChart = React.createClass({
   propTypes: {
@@ -20,17 +31,15 @@ const WaterpointStatusChart = React.createClass({
     waterpoints: PropTypes.array.isRequired,
   },
 
-  mixins: [Resize, ShouldRenderMixin],
+  mixins: [ShouldRenderMixin],
 
-  getInitialState() {
-    return {
-      status: {
-        FUNCTIONAL: true,
-        'FUNCTIONAL NEEDS REPAIR': true,
-        'NON FUNCTIONAL': true,
-      },
-      groupedBars: false,
-    };
+  componentDidMount() {
+    this.preventDrillDown = 0;
+    this.getChart();
+  },
+
+  getDrillDownId(status, level, levelName) {
+    return `${status}-${level}-${levelName}`.replace(/\s/g, '_');
   },
 
   getRegionsOrderByFunctional(data) {
@@ -49,122 +58,159 @@ const WaterpointStatusChart = React.createClass({
     return ordered;
   },
 
-  parseData(data) {
-    const regions = this.getRegionsOrderByFunctional(data);
-    const labelComparator = (a, b) => {
-      if (a.label < b.label) {
-        return -1;
-      } else if (a.label > b.label) {
-        return 1;
-      } else {
-        return 0;
-      }
-    };
-    return Object.keys(this.state.status)
-          .filter(s => this.state.status[s])
-          .map(status => {
-            return {
-              label: status,
-              values: regions.map(region => {
-                let value = 0;
-                if (status === 'NON FUNCTIONAL') { // we need to group all non functional
-                  value = Object.keys(data)
-                            .filter(key => key.startsWith(status))
-                            .reduce((ret, key) => {
-                              ret.value += getNumberOr0(data[key][region]);
-                              return ret;
-                            }, {value: 0})
-                            .value;
-                } else {
-                  value = getNumberOr0(data[status][region]);
-                }
-                return {
-                  x: region,
-                  y: value,
-                };
-              }),
-            };
-          }).sort(labelComparator);
+  sumNonFunctional(data, column) {
+    return Object.keys(data)
+        .filter(key => key.startsWith('NON FUNCTIONAL'))
+        .reduce((ret, key) => {
+          ret.value += getNumberOr0(data[key][column]);
+          return ret;
+        }, {value: 0}).value;
   },
 
-  doubleClick(e, data) {
-    chartDrilldown(data.x);
-  },
-
-  tooltip(x, dataRes, drilldown) {
-    const total = Object.keys(dataRes).reduce((agg, key) => {
-      agg.value += getNumberOr0(dataRes[key][x]);
-      return agg;
-    }, {value: 0}).value;
-    const subItems = Object.keys(dataRes).map(key => {
-      const percentage = (getNumberOr0(dataRes[key][x]) / total * 100).toFixed(2);
-      return (<li>
-                <spam className="metric-title">{{key}}:</spam>
-                <div className="waterpoint-tooltip-stat-wrapper">
-                <span className="percent-value-wrapper"><span className="number">{percentage}</span> %</span>
-                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span>
-                </div>
-              </li>);
+  parseData(data, regions) {
+    return Object.keys(STATUS).map(status => {
+      return {
+        color: c.Color.getWaterpointColor(status),
+        name: status,
+        data: regions.map(region => {
+          let value = 0;
+          if (status === 'NON FUNCTIONAL') { // we need to group all non functional
+            value = this.sumNonFunctional(data, region);
+          } else {
+            value = getNumberOr0(data[status][region]);
+          }
+          return {
+            name: region,
+            y: value,
+            drilldown: this.getDrillDownId(status, 'REGION', region),
+          };
+        }),
+      };
     });
-    return (<div>
-              <h3 className="chart-title row"><T k={`chart.tooltip.title.${drilldown}`} />: {{x}}</h3>
-                <ul className="items">
-                {{subItems}}
-              </ul>
-            </div>);
   },
 
-  toogleStatus(e, s) {
-    const newState = {
-      ...this.state,
-      status: {
-        ...this.state.status,
-        [s]: !this.state.status[s],
+  drilldown(e) {
+    if (!e.seriesOptions && this.preventDrillDown === 0) {
+      const drilldownName = e.point.drilldown;
+      const [status, level, levelName] = drilldownName.split('-');
+      const nextLevel = DRILL_DOWN[level];
+      const realName = levelName.replace(/_/g, ' ');
+      let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
+      let statusList = Object.keys(STATUS);
+      if (!e.points) { // drill down on the status
+        data = data.filter(item => item.STATUS === STATUS_REVERSE[status]);
+        statusList = statusList.filter(item => STATUS[item] === status);
+      }
+      const stats = func.Result.countByGroupBy(data, 'STATUS', nextLevel);
+      const allSeries = {};
+      statusList.forEach(s => {
+        allSeries[STATUS[s]] = {
+          name: s,
+          data: Object.keys(stats[s] ? stats[s] : [])
+            .filter(key => key !== 'total')
+            .map(key => {
+              let value = 0;
+              if (status === 'NON FUNCTIONAL') { // we need to group all non functional
+                value = this.sumNonFunctional(stats, key);
+              } else {
+                value = getNumberOr0(stats[s][key]);
+              }
+              const drillDownObject = {
+                name: key,
+                y: value,
+              };
+              if (DRILL_DOWN[level] && DRILL_DOWN[level] !== null) {
+                drillDownObject.drilldown = this.getDrillDownId(status, DRILL_DOWN[level], key);
+              }
+              return drillDownObject;
+            }),
+        };
+      });
+      if (!e.points) { // drill down on a single state
+        this.chart.addSeriesAsDrilldown(e.point, allSeries[status]);
+      } else { // drill down on all (multiple series)
+        e.points.forEach((item) => {
+          const statusName = item.drilldown.split('-')[0];
+          this.chart.addSingleSeriesAsDrilldown(item, allSeries[statusName]);
+        });
+        this.preventDrillDown += 2; // two levels of drill down
+        this.chart.applyDrilldown();
+      }
+    } else {
+      this.preventDrillDown--;
+    }
+  },
+
+  drillup() {
+
+  },
+
+  getChart() {
+    if (this.props.waterpoints.length === 0) {
+      return false;
+    }
+    const data = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
+    const regions = this.getRegionsOrderByFunctional(data);
+    const stats = this.parseData(data, regions);
+    //const drilldown = this.getDrilldown(data, regions);
+    this.chart = new HighCharts.Chart({
+      chart: {
+        height: 400,
+        type: 'column',
+        renderTo: 'waterpoints-status-chart',
+        events: {
+          drilldown: this.drilldown,
+          drillup: this.drillup,
+        },
       },
-    };
-    this.replaceState(newState);
-  },
 
-  toogleGrouped() {
-    const newState = {
-      ...this.state,
-      groupedBars: !this.state.groupedBars,
-    };
-    this.replaceState(newState);
+      title: {
+        text: '',
+      },
+
+      xAxis: {
+        type: 'category',
+      },
+
+      tooltip: {
+        headerFormat: '<div><h3 class="chart-title row">{point.key}</h3><ul class="items">',
+        pointFormat: '<li>' +
+            '<spam class="metric-title">{series.name}:</spam>' +
+            '<div class="waterpoint-tooltip-stat-wrapper">' +
+              '<span class="number">{point.y}</span> of <span class="number">{point.total}</span>' +
+            '</div>' +
+          '</li>',
+        footerFormat: '</ul></div>',
+        shared: true,
+        useHTML: true,
+        borderWidth: 0,
+      },
+
+      plotOptions: {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            color: (HighCharts.theme && HighCharts.theme.dataLabelsColor) || 'white',
+            style: {
+              textShadow: '0 0 3px black',
+            },
+          },
+        },
+      },
+
+      series: stats,
+    });
+    return this.chart;
   },
 
   render() {
-    if (!this.state.size) {
-      return (<div>empty</div>);
-    }
-    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
-    const dataRes = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', drillDown);
-    if (Object.keys(dataRes).length === 0) {
+    if (this.props.waterpoints.length === 0) {
       return false;
     }
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
-        <WaterpointstatusOptions onclick={this.toogleStatus} state={this.state.status} values={Object.keys(this.state.status)} />
-        <div className="group-option"><span><Checkbox action={this.toogleGrouped} checked={this.state.groupedBars} label="chart.grouped"/></span><span>(<T k="chart.doubleClick.help" />)</span></div>
-        <div className="chart-container">
-          <TSetChildProps>
-            <ClickBarChart
-                colorScale={c.Color.getWaterpointColor}
-                data={this.parseData(dataRes)}
-                groupedBars={this.state.groupedBars}
-                height={380}
-                margin={{top: 20, bottom: 120, left: 40, right: 10}}
-                onDoubleClick={this.doubleClick}
-                tooltipContained="true"
-                tooltipHtml={(x) => this.tooltip(x, dataRes, drillDown)}
-                tooltipMode="mouse"
-                tooltipOffset={{top: -300, left: 0}}
-                width={this.state.size.width * 0.80}
-                xAxis={{innerTickSize: 1, label: {k: `chart.status-waterpoints.x-axis-${drillDown}`}}}
-                yAxis={{innerTickSize: 1, label: {k: 'chart.status-waterpoints.y-axis'}}} />
-            </TSetChildProps>
-        </div>
+        <div className="chart-container" id="waterpoints-status-chart"></div>
       </div>
     );
   },
