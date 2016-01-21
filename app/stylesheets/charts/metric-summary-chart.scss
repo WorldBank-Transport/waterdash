@@ -7,6 +7,11 @@
 .metric-summary {
   @include chart-row();
 
+  .chart-helptext {
+    color: $grey-medium;
+    font-size: 10px;
+    margin-bottom: 20px;
+  }
 
   .padding {
     padding-right: 5px;
@@ -14,6 +19,7 @@
 
   h3.chart-title {
     font-weight: $title-weight;
+    margin-bottom: 0;
   }
   .summary {
     background: $bg-color;
@@ -45,6 +51,19 @@
 
         & > .number {
           font-weight: bold;
+          clear: both;
+        }
+      }
+
+      .percent-value {
+        .medium-number {
+          border-left: 2px solid $grey-light;
+          border-right: 2px solid $grey-light;
+          color: $grey-medium;
+          font-size: $percent-value;
+          margin-top: $charts-section-space;
+          padding-left: $charts-section-space /2;
+          padding-right: $charts-section-space /2;
         }
       }
       .context {

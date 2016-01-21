@@ -47,6 +47,10 @@
       padding-right: $general-content-padding;
       width: 27%;
 
+      svg {
+        padding-top: 0;
+      }
+
       &.right-border {
         border-right: 3px solid $grey-light;
       }
