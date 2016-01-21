@@ -1,12 +1,8 @@
 import React, { PropTypes } from 'react';
 import * as func from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
 import * as c from '../../utils/colours';
 import T from '../misc/t';
-import WaterpointstatusOptions from './waterpoint-status-options';
-import Resize from '../../utils/resize-mixin';
 import ViewModes from '../../constants/view-modes';
-import { chartDrilldown } from '../../actions/select';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import HighCharts from 'highcharts';
@@ -16,12 +12,12 @@ require('stylesheets/charts/waterpoints-status-chart');
 const STATUS = {
   'NON FUNCTIONAL': 'NON_FUNCTIONAL',
   'FUNCTIONAL NEEDS REPAIR': 'FUNCTIONAL_NEEDS_REPAIR',
-  'FUNCTIONAL': 'FUNCTIONAL'
+  'FUNCTIONAL': 'FUNCTIONAL',
 };
 const STATUS_REVERSE = {
   'NON_FUNCTIONAL': 'NON FUNCTIONAL',
   'FUNCTIONAL_NEEDS_REPAIR': 'FUNCTIONAL NEEDS REPAIR',
-  'FUNCTIONAL': 'FUNCTIONAL'
+  'FUNCTIONAL': 'FUNCTIONAL',
 };
 const DRILL_DOWN = {
   REGION: 'DISTRICT',
@@ -38,6 +34,7 @@ const WaterpointStatusChart = React.createClass({
   mixins: [ShouldRenderMixin],
 
   componentDidMount() {
+    this.preventDrillDown = 0;
     this.getChart();
   },
 
@@ -72,29 +69,28 @@ const WaterpointStatusChart = React.createClass({
 
   parseData(data, regions) {
     return Object.keys(STATUS).map(status => {
-            return {
-              color: c.Color.getWaterpointColor(status),
-              name: status,
-              data: regions.map(region => {
-                let value = 0;
-                if (status === 'NON FUNCTIONAL') { // we need to group all non functional
-                  value = this.sumNonFunctional(data, region);
-                } else {
-                  value = getNumberOr0(data[status][region]);
-                }
-                return {
-                  name: region,
-                  y: value,
-                  drilldown: this.getDrillDownId(status, 'REGION', region),
-                };
-              }),
-            };
-          });
+      return {
+        color: c.Color.getWaterpointColor(status),
+        name: status,
+        data: regions.map(region => {
+          let value = 0;
+          if (status === 'NON FUNCTIONAL') { // we need to group all non functional
+            value = this.sumNonFunctional(data, region);
+          } else {
+            value = getNumberOr0(data[status][region]);
+          }
+          return {
+            name: region,
+            y: value,
+            drilldown: this.getDrillDownId(status, 'REGION', region),
+          };
+        }),
+      };
+    });
   },
 
   drilldown(e) {
-    if (!e.seriesOptions) {
-      const name = e.point.name;
+    if (!e.seriesOptions && this.preventDrillDown === 0) {
       const drilldownName = e.point.drilldown;
       const [status, level, levelName] = drilldownName.split('-');
       const nextLevel = DRILL_DOWN[level];
@@ -109,7 +105,7 @@ const WaterpointStatusChart = React.createClass({
       statusList.forEach(s => {
         allSeries[STATUS[s]] = {
           name: s,
-          data: Object.keys(stats[s])
+          data: Object.keys(stats[s] ? stats[s] : [])
             .filter(key => key !== 'total')
             .map(key => {
               let value = 0;
@@ -118,7 +114,14 @@ const WaterpointStatusChart = React.createClass({
               } else {
                 value = getNumberOr0(stats[s][key]);
               }
-              return {name: key, y: value};
+              const drillDownObject = {
+                name: key,
+                y: value,
+              };
+              if (DRILL_DOWN[level] && DRILL_DOWN[level] !== null) {
+                drillDownObject.drilldown = this.getDrillDownId(status, DRILL_DOWN[level], key);
+              }
+              return drillDownObject;
             }),
         };
       });
@@ -129,14 +132,16 @@ const WaterpointStatusChart = React.createClass({
           const statusName = item.drilldown.split('-')[0];
           this.chart.addSingleSeriesAsDrilldown(item, allSeries[statusName]);
         });
+        this.preventDrillDown += 2; // two levels of drill down
         this.chart.applyDrilldown();
       }
+    } else {
+      this.preventDrillDown--;
     }
   },
 
-  drillup(e) {
+  drillup() {
 
-                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span>
   },
 
   getChart() {
@@ -155,7 +160,7 @@ const WaterpointStatusChart = React.createClass({
         events: {
           drilldown: this.drilldown,
           drillup: this.drillup,
-        }
+        },
       },
 
       title: {
@@ -197,12 +202,7 @@ const WaterpointStatusChart = React.createClass({
     return this.chart;
   },
 
-  doubleClick(e, data) {
-    chartDrilldown(data.x);
-  },
-
   render() {
-    const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     if (this.props.waterpoints.length === 0) {
       return false;
     }

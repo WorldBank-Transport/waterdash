@@ -54,7 +54,7 @@ const WaterpointsChart = React.createClass({
             {/*<WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>*/}
           </div>
           <div className="row">
-            {/*<TotalServedPopulationChart viewMode={this.props.viewMode}/>*/}
+            <TotalServedPopulationChart viewMode={this.props.viewMode}/>
           </div>
           <div className="col-all">
             <div className="row-chart-left right-border">
