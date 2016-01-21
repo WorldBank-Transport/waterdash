@@ -51,7 +51,7 @@
 
       .disabled {
         background: $grey-medium;
-        color: $grey-light;
+        color: lighten($grey-medium, 25%);
 
         &:hover {
           cursor: not-allowed;

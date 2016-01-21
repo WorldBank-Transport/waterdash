@@ -3,7 +3,7 @@
 
 html,
 body {
-  height: 100%;
+  height: $full-width;
   margin: 0;
   padding: 0;
   @include up-to($tablet-landscape) {
@@ -23,9 +23,16 @@ body {
   top: $header-height+5;
 
   @include up-to($tablet-portrait) {
-    height: 100%;
+    height: $full-width;
     padding: $content-space-mobile 0;
     top: $content-space-mobile;
+  }
+  &.secondary {
+    clear: both;
+    overflow: hidden;
+    padding: $secondary-wrapper-padding 0;
+    position: relative;
+    top: 0;
   }
 }
 
@@ -34,10 +41,9 @@ body {
     display: none;
   }
 
-  bottom: 0;
+  bottom: $footer-position;
   height: $footer-height;
   left: 0;
-  overflow-y: auto;
   position: absolute;
   right: 0;
 }

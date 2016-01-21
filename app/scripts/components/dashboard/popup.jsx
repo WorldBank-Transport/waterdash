@@ -31,7 +31,7 @@ const Popup = React.createClass({
 
   renderNotFound(id) {
     return (
-      <h3>Could not find data for id '{id}'</h3>
+      <h3>No data for id '{id}'</h3>
     );
   },
 

@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 import Header from './boilerplate/header';
 import Divider from './boilerplate/divider';
-import Footer from './boilerplate/footer';
 
 require('stylesheets/layout.scss');
 
@@ -16,7 +15,6 @@ const Root = React.createClass({
         <Header />
         <Divider />
         {this.props.children}
-        <Footer />
       </div>
     );
   },

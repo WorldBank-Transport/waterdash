@@ -11,7 +11,7 @@
   text-align: right;
   top: $point-name-top-position;
   width: $point-name-width;
-  z-index: 1000;
+  z-index: 10001;
 
   .display-name {
     clear: both;
@@ -19,7 +19,7 @@
   }
 
   a {
-    color: $theme-blue;
+    color: darken($dam-reservoir-text-color, 10%);
     cursor: pointer;
     display: block;
     font-weight: $title-weight;

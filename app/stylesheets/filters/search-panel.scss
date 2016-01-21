@@ -78,7 +78,7 @@
   padding: $search-button-padding;
   position: absolute;  // TODO
   top: $search-icon-top-position;
-  z-index: 10;  // needs to be specified >=1 to go above the map
+  z-index: 1;  // needs to be specified >=1 to go above the map
   &:hover {
     background: $theme-blue;
     border: 2px solid $theme-blue;

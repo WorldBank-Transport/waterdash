@@ -16,6 +16,7 @@ $top-nav-right-mobile: 7px;
 $map-nav-height: 41px;
 $overview-bar-height: 78px;
 $search-button-padding: 5px;
+$map-container-bottom: 119px;
 
 // legend
 $legend-dimensions: 130px;
@@ -48,7 +49,7 @@ $view-charts-icon-size: 15px;
 $view-charts-icon-margin: 10px;
 
 $general-content-padding: 30px;
-$homecontent-margin: 40px;
+$homecontent-margin: 50%;
 $homecontent-padding: 20px;
 
 // footer
@@ -56,6 +57,7 @@ $copy-width-large: 680px;
 $copy-width-med: 450px;
 $divider-height: 6px;
 $footer-height: 50px;
+$footer-position: -50px;
 
 // charts
 $main-chart-width: 70%;
@@ -98,6 +100,7 @@ $point-name-width: 200px;
 $static-content-position: 70px;
 $static-content-width: 80%;
 $home-content-width: 40%;
+$secondary-wrapper-padding: 20px;
 
 // margins and padding
 $logo-top-position: 18px;
@@ -135,8 +138,9 @@ $waterpoint-stat-wide: 35%;
 $waterpoint-stat-narrow: 25%;
 $tooltip-width: 520px;
 $tooltip-height: 230px;
-$waterpoint-options-height: 30px;
+$waterpoint-options-height: 20px;
 $pie-chart-tooltip-height: 50px;
+$charts-section-space: 10px;
 
 //location popup
 $popup-width: 410px;
@@ -174,8 +178,10 @@ $grabby-center-off: 2px;
 
 // share section
 $icon-height: 20px;
-$icon-list-space: 10px;
+$share-icon-space: 10px;
 $icon-bottom-space: 5px;
+$share-icon-size: 20px;
+$share-wrapper-width: 200px;
 
 // screen sizes
 $phone: 480px;

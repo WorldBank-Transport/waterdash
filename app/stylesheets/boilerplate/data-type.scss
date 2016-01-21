@@ -6,7 +6,7 @@
 .data-type {
   display: table-cell;
   vertical-align: top;
-  width: 100%;
+  width: 60%;
 
   & > ul {
     @include list-unstyle();

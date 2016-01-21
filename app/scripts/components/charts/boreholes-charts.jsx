@@ -12,6 +12,8 @@ import { getNumberOr0 } from '../../utils/number';
 import YearStore from '../../stores/year';
 import TSetChildProps from '../misc/t-set-child-props';
 
+require('stylesheets/charts/boreholes-chart');
+
 const BoreholesCharts = React.createClass({
 
   propTypes: {
@@ -67,7 +69,7 @@ const BoreholesCharts = React.createClass({
   render() {
     const metricSumary = this.getMetricsAvg();
     return (
-      <div className="container">
+      <div className="container borehole-chart-container">
         <div className="secondaryCharts">
           <div className="row">
             <div className="mainChart">

@@ -136,6 +136,7 @@ const WaterpointStatusChart = React.createClass({
 
   drillup(e) {
 
+                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span>
   },
 
   getChart() {

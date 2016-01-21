@@ -25,9 +25,8 @@
 }
 .secondaryCharts {
   background: $bg-color;
-  border-top: 2px solid $grey-light;
   overflow: hidden;
-  padding: $chart-container-padding/2 $chart-container-padding;
+  padding: $chart-container-padding/4 $chart-container-padding;
 
   .col-left {
     float: left;
@@ -46,6 +45,10 @@
       padding-left: $general-content-padding;
       padding-right: $general-content-padding;
       width: 27%;
+
+      svg {
+        padding-top: 0;
+      }
 
       &.right-border {
         border-right: 3px solid $grey-light;
@@ -75,6 +78,7 @@ h3 {
     @extend .chart-title;  // lint warning here to use % but it affects the style
     font-size: $main-chart-title;
     font-weight: $title-weight;
+    margin-bottom: 0;
     }
 
   .chart-helptext {
