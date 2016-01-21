@@ -94,7 +94,8 @@ const WaterpointStatusChart = React.createClass({
       const drilldownName = e.point.drilldown;
       const [status, level, levelName] = drilldownName.split('-');
       const nextLevel = DRILL_DOWN[level];
-      let data = this.props.waterpoints.filter(item => item[level] === levelName); // get the portion of data for the drill down
+      const realName = levelName.replace(/_/g, ' ');
+      let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
       let statusList = Object.keys(STATUS);
       if (!e.points) { // drill down on the status
         data = data.filter(item => item.STATUS === STATUS_REVERSE[status]);

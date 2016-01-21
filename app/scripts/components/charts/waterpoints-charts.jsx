@@ -51,7 +51,7 @@ const WaterpointsChart = React.createClass({
             <MetricSummary metric={topProblems} showPercentage={true} title="chart.waterpoint.summary.top-problem" viewMode={this.props.viewMode} />
           </div>
           <div className="row">
-            {/*<WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>*/}
+            <WaterpointPopulationServeChart viewMode={this.props.viewMode} waterpoints={this.props.data}/>
           </div>
           <div className="row">
             <TotalServedPopulationChart viewMode={this.props.viewMode}/>
