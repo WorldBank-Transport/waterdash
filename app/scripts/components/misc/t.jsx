@@ -285,7 +285,7 @@ const allTranslations = {
     'share.print': 'Print',
 
 
-    'footer.copy': 'The source code of this website is published under a under a CC BY NC SA 3.0 license, and the source code is published under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
+    'footer.copy': 'The source code of this website is published under a under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
 
     'loading': 'Loading',
     'loading.waterpoints': 'Loading waterpoints...',
