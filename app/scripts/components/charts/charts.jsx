@@ -6,7 +6,7 @@ import WaterpointsChart from './waterpoints-charts';
 import DamsChart from './dams-chart';
 import BoreholesCharts from './boreholes-charts';
 import HighCharts from 'highcharts';
- 
+
 require('highcharts/modules/drilldown')(HighCharts);
 require('highcharts/modules/exporting')(HighCharts);
 require('stylesheets/charts/charts');
