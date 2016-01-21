@@ -17,6 +17,8 @@ const DRILL_DOWN = {
   WARD: null,
 };
 
+const comparator = (a, b) => b.y - a.y;
+
 const WaterpointPopulationServeChart = React.createClass({
 
   propTypes: {
@@ -97,7 +99,6 @@ const WaterpointPopulationServeChart = React.createClass({
     const drillDown = ViewModes.getDrillDown(this.props.viewMode);
     const waterpoints = Result.countBy(this.props.waterpoints, drillDown);
     const population = Result.sumByGroupBy(this.state.population, drillDown, ['TOTAL']);
-    const comparator = (a, b) => b.y - a.y;
     return Object.keys(waterpoints)
                         .filter(key => key !== 'total')
                         .map(key => {
@@ -138,6 +139,7 @@ const WaterpointPopulationServeChart = React.createClass({
             }
             series.data.push(item);
           });
+      series.data.sort(comparator);
       this.chart.hideLoading();
       this.chart.addSeriesAsDrilldown(e.point, series);
     }
