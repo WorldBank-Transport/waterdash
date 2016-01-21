@@ -102,6 +102,7 @@
         .metric-title {
           font-size: $metric-title-big;
           font-weight: $title-weight;
+          line-height: 110%;
         }
 
         .waterpoint-tooltip-stat-wrapper {
@@ -119,8 +120,10 @@
 
         .metric-title {
           color: $theme-blue;
+          display: block;
           font-size: $metric-title-small;
           font-weight: $title-weight;
+          padding-bottom: $charts-section-space / 2;
         }
 
         .waterpoint-tooltip-stat-wrapper {
@@ -165,6 +168,9 @@
     .percent-value-wrapper {
       display: block;
       width: 100%;
+      .number {
+        font-size: 23px;
+      }
     }
 
     .waterpoint-tooltip-stat-wrapper {
@@ -173,7 +179,7 @@
     }
 
     .row {
-      @include bottom-stat-border(3px, $grey-light);
+      @include bottom-stat-border(2px, $grey-light);
       padding: 0 $base-unit/2 $base-unit/2 0;
     }
   }

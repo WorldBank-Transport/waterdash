@@ -101,7 +101,8 @@ const WaterpointStatusChart = React.createClass({
       return (<li>
                 <spam className="metric-title">{{key}}:</spam>
                 <div className="waterpoint-tooltip-stat-wrapper">
-                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span><span className="percent-value-wrapper">(<span className="number">{percentage}</span> %)</span>
+                <span className="percent-value-wrapper"><span className="number">{percentage}</span> %</span>
+                  <span className="number">{getNumberOr0(dataRes[key][x])}</span> of <span className="number">{total}</span>
                 </div>
               </li>);
     });
