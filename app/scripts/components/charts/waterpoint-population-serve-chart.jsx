@@ -39,8 +39,15 @@ const WaterpointPopulationServeChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   getChart() {
-    // needs translations
+    if (this.props.waterpoints.length === 0) {
+      return false;
+    }
     const data = this.parseData();
     this.chart = new HighCharts.Chart({
       chart: {
@@ -146,8 +153,8 @@ const WaterpointPopulationServeChart = React.createClass({
   },
 
   render() {
-    if (isUndefined(this.props.waterpoints.length === 0)) {
-      return (<div>empty</div>);
+    if (this.props.waterpoints.length === 0) {
+      return false;
     }
     return (
       <div className="waterpoint-population-serve-chart">

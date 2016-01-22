@@ -23,6 +23,11 @@ const BoreholesMetricsChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   getValue(data, region, metric) {
     return data[region].find(item => item.hasOwnProperty(metric));
   },
@@ -46,7 +51,7 @@ const BoreholesMetricsChart = React.createClass({
   },
 
   getChart() {
-    this.chartSize = new HighCharts.Chart({
+    this.chart = new HighCharts.Chart({
       chart: {
         height: 400,
         type: 'column',
@@ -72,6 +77,7 @@ const BoreholesMetricsChart = React.createClass({
 
       series: this.parseData(this.props.stats, this.props.metrics),
     });
+    return this.chart;
   },
 
   render() {

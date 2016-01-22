@@ -30,6 +30,11 @@ const TotalServedPulationChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   parseData(data, type) {
     const response = {
       label: 'Total Population Served',
@@ -55,8 +60,10 @@ const TotalServedPulationChart = React.createClass({
   },
 
   getChart() {
-   // needs translations
-    const chart = new HighCharts.Chart({
+    if (this.state.servedpopulation.length === 0) {
+      return false;
+    }
+    this.chart = new HighCharts.Chart({
       chart: {
         height: 400,
         type: 'spline',
@@ -95,12 +102,12 @@ const TotalServedPulationChart = React.createClass({
         data: this.parseData(this.state.servedpopulation, null).values,
       }],
     });
-    return chart;
+    return this.chart;
   },
 
   render() {
     if (this.state.servedpopulation.length === 0) {
-      return (<div>empty</div>);
+      return false;
     }
     return (
       <div className="total-servedpopulation-chart">

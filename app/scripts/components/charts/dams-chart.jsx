@@ -23,6 +23,11 @@ const DamsChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   parseData(data, metrics) {
     return metrics.map(metric => {
       return {
@@ -47,7 +52,7 @@ const DamsChart = React.createClass({
     const metrics = Object.keys(metricCal);
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
-    return new HighCharts.Chart({
+    this.chart = new HighCharts.Chart({
       chart: {
         height: 400,
         type: 'column',
@@ -73,6 +78,7 @@ const DamsChart = React.createClass({
 
       series: stats,
     });
+    return this.chart;
   },
 
   render() {
