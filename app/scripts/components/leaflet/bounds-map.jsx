@@ -2,10 +2,12 @@
 import Leaflet from 'leaflet';
 import boundsType from 'react-leaflet/lib/types/bounds';
 import LeafletMap from 'react-leaflet/lib/Map';
+import DataTypes from '../../constants/data-types';
 
 const boundsPropTypes = {
   ...LeafletMap.propTypes,
   bounds: boundsType,
+  dataType: DataTypes,
 };
 delete boundsPropTypes.center;
 delete boundsPropTypes.zoom;
@@ -24,20 +26,23 @@ export default class BoundsMap extends LeafletMap {
     this.setState({map: this.leafletElement});
   }
 
-  componentDidUpdate({ bounds: oldBounds }) {
-    const { bounds } = this.props;
-    if (bounds && this.shouldUpdateBounds(bounds, oldBounds)) {
+  componentDidUpdate({ bounds: oldBounds, dataType: oldDataType }) {
+    const { bounds, dataType } = this.props;
+    if (bounds && this.shouldUpdateBounds(bounds, oldBounds, dataType, oldDataType)) {
       this.leafletElement.fitBounds(bounds);
     }
   }
 
-  shouldUpdateBounds(next, prev) {
+  shouldUpdateBounds(next, prev, dataType, oldDataType) {
     if (!prev) {
+      return true;
+    }
+    if (!dataType.equals(oldDataType)) {
       return true;
     }
     const nextLLB = Leaflet.latLngBounds(next);
     const prevLLB = Leaflet.latLngBounds(prev);
-    !nextLLB.equals(prevLLB);
-    return true;
+    return !nextLLB.equals(prevLLB);
+    //return true;
   }
 }
