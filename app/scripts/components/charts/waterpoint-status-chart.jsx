@@ -105,7 +105,7 @@ const WaterpointStatusChart = React.createClass({
       const allSeries = {};
       statusList.forEach(s => {
         allSeries[STATUS[s]] = {
-          name: s,
+          name: `${s} ${realName}`,
           data: Object.keys(stats[s] ? stats[s] : [])
             .filter(key => key !== 'total')
             .map(key => {
@@ -123,7 +123,7 @@ const WaterpointStatusChart = React.createClass({
                 drillDownObject.drilldown = this.getDrillDownId(status, DRILL_DOWN[level], key);
               }
               return drillDownObject;
-            }),
+            }).sort((a, b) => b.y - a.y),
         };
       });
       if (!e.points) { // drill down on a single state
