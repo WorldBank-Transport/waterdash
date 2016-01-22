@@ -26,14 +26,22 @@ const PointsMap = React.createClass({
       [ 'data', 'dataType', 'deselect', 'selected', 'viewMode' ]);
     const popup = this.props.children ?
       React.cloneElement(this.props.children, propsForPopup) : null;
+    const propsForMaps = {
+      dataType: this.props.dataType,
+      map: this.props.map,
+      points: this.props.data,
+      select: this.props.select,
+      deselect: this.props.deselect,
+    };
+    const mapPoints = DataTypes.match(this.props.dataType, {
+      Waterpoints: () => <ClusteredWaterpoints {...propsForMaps}/>,
+      Boreholes: () => (<div style={{display: 'none'}} />),
+      Dams: () => (<SimplePoints {...propsForMaps}/>),
+    });
 
     return (
       <div>
-        <SimplePoints
-            dataType={this.props.dataType}
-            map={this.props.map}
-            points={this.props.data}
-            select={this.props.select} />
+        {mapPoints}
 
         {/* A point popup, if a point is selected */}
         {popup}

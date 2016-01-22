@@ -87,12 +87,10 @@ const ClusteredPoints = React.createClass({
       const zoom = this.props.map.getZoom();
       if (zoom < 8) {
         clusterSize = 21;
-      } else if (zoom < 11) {
-        clusterSize = 8;
-      } else if (zoom < 13) {
-        clusterSize = 3;
+      } else if (zoom < 9) {
+        clusterSize = 19;
       } else {
-        clusterSize = 0.01;
+        clusterSize = 0.00000001;
       }
       this.pruneCluster.Cluster.Size = clusterSize;
       originalProcessView.apply(this.pruneCluster);

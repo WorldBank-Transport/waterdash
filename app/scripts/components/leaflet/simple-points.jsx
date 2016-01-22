@@ -6,14 +6,16 @@
 
 import { Map, CircleMarker, LayerGroup } from 'leaflet';
 import React, { PropTypes } from 'react';
-import { point, Color } from '../../utils/colours';
+import colours, { point } from '../../utils/colours';
 import isNaN from 'lodash/lang/isNaN';
 
 
 const SimplePoints = React.createClass({
   propTypes: {
-    points: PropTypes.array.isRequired,
+    deselect: PropTypes.func,
     map: PropTypes.instanceOf(Map),  // injected by BoundsMap
+    points: PropTypes.array.isRequired,
+    select: PropTypes.func,
   },
 
   componentWillMount() {
@@ -45,7 +47,7 @@ const SimplePoints = React.createClass({
   },
 
   createMarker(item) {
-    const color = Color.getWaterpointColor(item.STATUS);
+    const color = colours.theme;
     const m = new CircleMarker(item.position, point.normal(color));
     m.setOpacity = () => null;  // PruneCluster tries to call this
     m.on('click', this.handleMarkerClickFor(item.POINT_ID));
