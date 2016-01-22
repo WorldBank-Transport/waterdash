@@ -44,7 +44,7 @@ const WaterpointPieChart = React.createClass({
                         name: key,
                         y: data[key],
                       };
-                    });
+                    }).sort((a, b) => b.y - a);
     seriedata.data = values;
     return seriedata;
   },
@@ -56,7 +56,9 @@ const WaterpointPieChart = React.createClass({
       chart: {
         renderTo: this.props.id,
         type: 'pie',
+        width: 400,
       },
+      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
       title: {
         text: this.props.column,
       },

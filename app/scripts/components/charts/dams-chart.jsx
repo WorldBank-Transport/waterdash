@@ -59,6 +59,8 @@ const DamsChart = React.createClass({
         renderTo: 'dams-chart',
       },
 
+      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
+
       title: {
         text: '',
       },

@@ -7,6 +7,7 @@ import Resize from '../../utils/resize-mixin';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 import HighCharts from 'highcharts';
+import colours from '../../utils/colours';
 
 require('stylesheets/charts/total-served-population-chart');
 
@@ -69,6 +70,7 @@ const TotalServedPulationChart = React.createClass({
         type: 'spline',
         renderTo: 'container-1',
       },
+      colors: [colours.theme],
 
       title: {
         text: '',
