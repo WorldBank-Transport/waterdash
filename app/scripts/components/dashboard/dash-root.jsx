@@ -150,6 +150,7 @@ const DashRoot = React.createClass({
 
         <div className="map-container">
           <BoundsMap
+              dataType={this.state.view.dataType}
               bounds={this.state.view.mapBounds}
               className="leaflet-map">
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
