@@ -5,18 +5,18 @@
 
 
 .search-panel {
-  background: $background-map-overlay;
+  background: $bg-color;
   border: 3px solid $grey-light;
   box-shadow: $shadow;
   display: inline-block;
   font-size: $medium-text;
   height: $search-height;
-  left: 4%;
+  left: 2.5%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.8 $base-unit * 1.2;
   position: absolute;  // TODO
   top: 2%;
   width: $search-width;
-  z-index: 10;  // needs to be specified >=1 to go above the map
+  z-index: 12;  // needs to be specified >=1 to go above the map
 
   .search-field {
     .search-form-label {
@@ -70,27 +70,35 @@
     width: $base-unit + 0.3;
 
     &:hover {
-      background: $grey-medium;
+      background: $hover-color;
       color: $text-inverse;
       cursor: pointer;
     }
   }
 }
 
-.search-icon {
-  @include border-radius(4px);
+.search-wrapper {
+  @include border-radius(2px);
   background: $bg-color;
-  border: 2px solid $bg-color;
-  display: inline-block;
+  color: $theme-blue;
+  font-size: $search-text;
+  font-weight: $title-weight;
   left: $search-icon-top-position * 4;
-  padding: $search-button-padding;
   position: absolute;  // TODO
+  text-transform: uppercase;
   top: $search-icon-top-position;
+  width: $search-btn-width;
   z-index: 1;  // needs to be specified >=1 to go above the map
+
   &:hover {
-    background: $theme-blue;
-    border: 2px solid $theme-blue;
-    color: $text-inverse;
+    color: $hover-color;
   }
 
+  .search-icon {
+    @include border-radius(4px);
+    border: 2px solid $bg-color;
+    display: inline-block;
+    left: $search-icon-top-position * 4;
+    padding: $search-button-padding;
+  }
 }

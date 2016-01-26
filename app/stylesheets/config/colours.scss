@@ -2,7 +2,7 @@ $theme-blue: #1da3da;
 $theme-blue-alt: #1595d3;
 $theme-blue-light: #8cd1ed;
 $btn-hover: #0e7aaf;
-
+$hover-color: #82c675;
 $status-good: #82c675;
 $status-medium: #fbc030;
 $status-poor: #f05e55;
@@ -26,6 +26,7 @@ $dam-reservoir-text-color: #3f7086;
 $borehole-color: #3f7086;
 
 $bg-color: #ffffff;
+$bg-color-rbg: 255;
 $background-img-overlay: hsla(0, 0%, 0%, 0.6);
 $background-overlay: hsla(0, 0%, 33%, 0.5);
 $background-overlay-err: hsla(0, 0%, 0%, 0.6);
@@ -33,6 +34,8 @@ $background-overlay-err: hsla(0, 0%, 0%, 0.6);
 $background-map-overlay: transparentize($bg-color, 0.15);
 
 $map-bg: #b5d0d0;
+
+$semi-transparent-bg: 0.5;
 
 $shadow-size: 8px;
 $shadow-color: hsla(0, 0%, 0%, 0.1);

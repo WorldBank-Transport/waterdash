@@ -264,7 +264,7 @@ const allTranslations = {
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',
 
-    'popup.close': 'Close popup',
+    'popup.close': 'Close',
 
     'view-mode.points.waterpoints': 'All Waterpoints',
     'view-mode.points.dams': 'All Dams',
@@ -600,7 +600,7 @@ const allTranslations = {
     'share.feedback': 'Maoni',
     'share.print': 'Chapa',
 
-    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya CC BY NC SA 3.0. Programu imeandikwa na kuchapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana.',
+    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana',
 
     'loading': 'Loading',
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
