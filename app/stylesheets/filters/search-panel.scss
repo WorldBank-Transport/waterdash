@@ -29,6 +29,14 @@
       width: $search-label-widht;
     }
   }
+  .search-field-help {
+    color: #d4d4d4;
+    font-weight: 600;
+    left: 155px;
+    position: absolute;
+    top: 21px;
+    /* z-index: -1; */
+  }
 
   .button {
     float: right;
