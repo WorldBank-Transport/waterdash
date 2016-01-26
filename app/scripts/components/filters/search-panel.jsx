@@ -110,7 +110,7 @@ const SearchPanel = React.createClass({
         </div>
       );
     } else {
-      return (<Icon className="search-icon" onClick={this.toggle} type="search"/>);
+      return (<div className="search-wrapper" onClick={this.toggle}><Icon className="search-icon" type="search"/>Search</div>);
     }
   },
 });

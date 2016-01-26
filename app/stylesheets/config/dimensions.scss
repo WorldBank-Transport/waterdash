@@ -34,7 +34,9 @@ $search-icon-left-position: 30px;
 $search-submit-btn-width: 144px;
 $search-label-widht: 110px;
 $search-input-top: 4px;
+$search-btn-width: 100px;
 
+$drilldown-title-padding: 10px;
 
 //tabs
 $charts-nav-height: 41px;
@@ -91,9 +93,9 @@ $pie-chart-tooltip-width: 250px;
 $pie-chart-checkbox-margin-top: 4px;
 
 // drilldown viewer
-$point-name-top-margin: 10px;
-$point-name-top-position: 145px;
-$point-name-right-position: 13px;
+$point-name-top-margin: 50px;
+$point-name-top-position: 143px;
+$point-name-left-position: 43px;
 $point-name-width: 200px;
 
 // static content
