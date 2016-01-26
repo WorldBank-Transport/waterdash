@@ -55,7 +55,7 @@
     &.dam-cluster {
       border: 3px solid $theme-blue;
     }
-  } 
+  }
 
   .legend-dam-mark {
     background-color: $theme-blue;
@@ -77,6 +77,7 @@
     color: $theme-blue;
     font-size: $legend-title;
     font-weight: $title-weight;
+    line-height: 105%;
     margin-bottom: $legend-margin;
     text-transform: uppercase;
   }

@@ -114,7 +114,7 @@
 
     .context {
       color: $text-color;
-      font-size: $small-text;
+      font-size: $small-text - 1;
       font-weight: bold;
     }
   }

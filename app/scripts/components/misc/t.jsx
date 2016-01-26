@@ -282,7 +282,7 @@ const allTranslations = {
     'overview-bar': 'Overview stuff',
     'share.share': 'Share',
     'share.feedback': 'Feedback',
-    'share.print': 'Print',
+    'share.print': 'PDF',
 
 
     'footer.copy': 'The source code of this website is published under a under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
@@ -579,6 +579,8 @@ const allTranslations = {
     'filters.toggle.closed': 'Kichujio cha Dashibodi',
     'filters.toggle.opened': 'Ficha Kichujio cha Dashibodi',
 
+    'legend.title': 'Vialamishi vya data',
+
     'popup.close': 'Ondoka',
 
     'view-mode.points.waterpoints': 'Vituo vyote vya maji',
@@ -595,9 +597,9 @@ const allTranslations = {
     'data-type.dams': 'Mabwawa',
 
     'overview-bar': 'Maelezo ya joomla',
-    'share.share': 'Shirikisha Mwenzako',
+    'share.share': 'Shirikisha',
     'share.feedback': 'Maoni',
-    'share.print': 'Chapa',
+    'share.print': 'PDF',
 
     'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya CC BY NC SA 3.0. Programu imeandikwa na kuchapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana.',
 
