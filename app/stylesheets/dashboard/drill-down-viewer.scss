@@ -5,7 +5,7 @@
 
 .drill-down-viewer {
   @include border-radius(2px);
-  background: rgba(255, 255, 255, 0.5);
+  @include bg-transparent(rgba($bg-color, 0.5), $bg-color);
   font-size: $medium-text;
   font-weight: $title-weight;
   left: $point-name-left-position;
