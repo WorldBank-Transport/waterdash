@@ -1,17 +1,21 @@
 @import '../config/colours';
 @import '../config/type';
 @import '../config/dimensions';
-
+@import '../config/box';
 
 .drill-down-viewer {
+  @include border-radius(2px);
+  @include bg-transparent(rgba($bg-color, 0.6), $bg-color);
+  font-size: $medium-text;
   font-weight: $title-weight;
+  left: $point-name-left-position;
   margin-top: $point-name-top-margin;
+  padding: $drilldown-title-padding - 3 $drilldown-title-padding;
   position: fixed;
-  right: $point-name-right-position;
-  text-align: right;
+  text-align: left;
   top: $point-name-top-position;
-  width: $point-name-width;
-  z-index: 10001;
+  // width: $point-name-width;
+  z-index: 11;
 
   .display-name {
     clear: both;
@@ -19,20 +23,20 @@
   }
 
   a {
-    color: darken($dam-reservoir-text-color, 10%);
+    color: $theme-blue;
     cursor: pointer;
     display: block;
     font-weight: $title-weight;
     position: relative;
 
     &:hover {
-      color: $status-good;
+      color: $hover-color;
     }
 
-    &:before {
-      content: '\f100';
+    &:after {
+      content: '\f101';
       font-family: FontAwesome;
-      margin-right: 5px;
+      margin-left: 5px;
     }
 
   }

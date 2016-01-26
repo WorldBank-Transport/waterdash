@@ -10,6 +10,14 @@
   opacity: $opacity;
 }
 
+@mixin bg-transparent($color, $background) {
+  $percent: alpha($color) * 100%;
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  background-color: $solid-color;
+  background-color: $color;
+}
+
 @mixin chart-border() {
   border: 1px solid $grey-light;
   border-top: 1px solid transparent;
