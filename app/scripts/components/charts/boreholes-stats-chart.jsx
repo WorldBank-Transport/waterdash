@@ -24,6 +24,11 @@ const BoreholesStatsChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   parseData(metrics, data) {
     return metrics.map(key => {
       return {
@@ -51,12 +56,14 @@ const BoreholesStatsChart = React.createClass({
     }
     const metrics = ['DIAMETER', 'DEPTH_METER', 'STATIC_WATER_LEVEL', 'DYNAMIC_WATER_LEVEL_METER', 'DRAW _DOWN_METER', 'YIELD_METER_CUBED_PER_HOUR'];
     const dataRes = Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', metrics);
-    return new HighCharts.Chart({
+    this.chart = new HighCharts.Chart({
       chart: {
         height: 400,
         type: 'spline',
         renderTo: 'boreholes-time',
       },
+
+      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
 
       title: {
         text: '',
@@ -87,6 +94,7 @@ const BoreholesStatsChart = React.createClass({
 
       series: this.parseData(metrics, dataRes),
     });
+    return this.chart;
   },
 
   render() {

@@ -30,6 +30,11 @@ const WaterpointPieChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   parseData(data) {
     const seriedata = { name: 'Water',  colorByPoint: true, id: 'Water'};
     const values = Object.keys(data)
@@ -39,7 +44,7 @@ const WaterpointPieChart = React.createClass({
                         name: key,
                         y: data[key],
                       };
-                    });
+                    }).sort((a, b) => b.y - a);
     seriedata.data = values;
     return seriedata;
   },
@@ -47,11 +52,13 @@ const WaterpointPieChart = React.createClass({
   getChart() {
    // needs translations
     const data = func.Result.countBy(this.props.data, this.props.column);
-    const chart = new HighCharts.Chart({
+    this.chart = new HighCharts.Chart({
       chart: {
         renderTo: this.props.id,
         type: 'pie',
+        width: 400,
       },
+      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
       title: {
         text: this.props.column,
       },
@@ -70,7 +77,7 @@ const WaterpointPieChart = React.createClass({
       },
       series: [this.parseData(data)],
     });
-    return chart;
+    return this.chart;
   },
 
   render() {

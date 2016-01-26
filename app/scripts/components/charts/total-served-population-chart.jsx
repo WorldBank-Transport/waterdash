@@ -7,6 +7,7 @@ import Resize from '../../utils/resize-mixin';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 import HighCharts from 'highcharts';
+import colours from '../../utils/colours';
 
 require('stylesheets/charts/total-served-population-chart');
 
@@ -28,6 +29,11 @@ const TotalServedPulationChart = React.createClass({
 
   componentDidUpdate() {
     this.getChart();
+  },
+
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
   },
 
   parseData(data, type) {
@@ -55,13 +61,16 @@ const TotalServedPulationChart = React.createClass({
   },
 
   getChart() {
-   // needs translations
-    const chart = new HighCharts.Chart({
+    if (this.state.servedpopulation.length === 0) {
+      return false;
+    }
+    this.chart = new HighCharts.Chart({
       chart: {
         height: 400,
         type: 'spline',
         renderTo: 'container-1',
       },
+      colors: [colours.theme],
 
       title: {
         text: '',
@@ -95,12 +104,12 @@ const TotalServedPulationChart = React.createClass({
         data: this.parseData(this.state.servedpopulation, null).values,
       }],
     });
-    return chart;
+    return this.chart;
   },
 
   render() {
     if (this.state.servedpopulation.length === 0) {
-      return (<div>empty</div>);
+      return false;
     }
     return (
       <div className="total-servedpopulation-chart">

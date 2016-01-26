@@ -38,6 +38,11 @@ const WaterpointStatusChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUnmount() {
+    this.chart.destroy();
+    delete this.chart;
+  },
+
   getDrillDownId(status, level, levelName) {
     return `${status}-${level}-${levelName}`.replace(/\s/g, '_');
   },
