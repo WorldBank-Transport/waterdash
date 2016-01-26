@@ -601,7 +601,7 @@ const allTranslations = {
     'share.feedback': 'Maoni',
     'share.print': 'PDF',
 
-    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana',
+    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana.',
 
     'loading': 'Loading',
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,
