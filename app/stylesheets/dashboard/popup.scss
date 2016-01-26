@@ -1,5 +1,6 @@
 @import '../config/colours';
 @import '../config/dimensions';
+@import '../config/type';
 
 .popup-wrapper {
   bottom: 0;
@@ -17,23 +18,35 @@
     padding: $base-unit;
     width: $popup-width;
 
-    .close-button {
-      background: $grey-light;
+    .close-button-wrapper {
       color: $theme-blue;
-      display: inline-block;
-      font-weight: bold;
-      height: $base-unit + 0.3;
-      line-height: $base-unit + 0.2;
+      font-weight: $title-weight;
       position: absolute;
-      right: $base-unit;
-      text-align: center;
-      top: $base-unit;
-      width: $base-unit + 0.3;
+      right: $base-unit * 2.1;
+      top: $base-unit * 1.2;
 
       &:hover {
-        background: $grey-medium;
-        color: $text-inverse;
-        cursor: pointer;
+        color: $hover-color;
+        .close-button {
+          background: $hover-color;
+          color: $text-inverse;
+        }
+      }
+
+      .close-button {
+        background: $grey-light;
+        color: $theme-blue;
+        display: inline-block;
+        font-weight: bold;
+        height: $base-unit + 0.3;
+        line-height: $base-unit + 0.2;
+        margin-right: $base-unit / 2;
+        text-align: center;
+        width: $base-unit * 1.2;
+
+        .close-text {
+          float: right;
+        }
     }
   }
 

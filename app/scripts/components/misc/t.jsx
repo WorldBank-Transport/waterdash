@@ -264,7 +264,7 @@ const allTranslations = {
     'filters.toggle.closed': 'Dashboard Filters',
     'filters.toggle.opened': 'Hide Filters',
 
-    'popup.close': 'Close popup',
+    'popup.close': 'Close',
 
     'view-mode.points.waterpoints': 'All Waterpoints',
     'view-mode.points.dams': 'All Dams',
