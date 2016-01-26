@@ -10,7 +10,7 @@ import WaterpointPolygonPopup from './waterpoint-polygon-popup';
 import DamPopup from './dam-popup';
 import DamPolygonPopup from './dam-polygon-popup';
 import BoreholePolygonPopup from './borehole-polygon-popup';
-
+import T from '../misc/t';
 
 require('stylesheets/dashboard/popup');
 
@@ -64,10 +64,11 @@ const Popup = React.createClass({
         <div className="popup">
           <TSetChildProps>
             <div
-                className="close-button"
+                className="close-button-wrapper"
                 onClick={this.props.deselect}
                 title={{k: 'popup.close'}}>
-              &times;
+              <div className="close-button">&times;</div>
+              <span className="close-text"><T k="popup.close" /></span>
             </div>
           </TSetChildProps>
           {AsyncState.match(selected.loadState, {
