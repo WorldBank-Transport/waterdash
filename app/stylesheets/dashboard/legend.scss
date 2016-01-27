@@ -82,4 +82,11 @@
     margin-bottom: $legend-margin;
     text-transform: uppercase;
   }
+  .subtitle {
+    color: $theme-blue;
+    font-size: $legend-title - 4;
+    font-weight: $title-weight;
+    line-height: 105%;
+    margin-bottom: $legend-margin;
+  }
 }

@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react';
 import T from '../misc/t';
 import colours from '../../utils/colours';
 import { MAX_VALUE, MIN_VALUE} from '../../stores/polygons-with-data';
+import DataTypes from '../../constants/data-types';
 
 require('../../../stylesheets/dashboard/legend.scss');
 
 const Legend = React.createClass({
 
   propTypes: {
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass),
     ranges: PropTypes.array.isRequired,
   },
 
@@ -21,6 +23,7 @@ const Legend = React.createClass({
     return (
         <div className="legend">
           <div className="title"><T k="legend.title" /></div>
+          <div className="subtitle"><T k={`legend.subtitle.${this.props.dataType.toParam()}`} /></div>
             <div className="row">
               <div className="legend-block" style={{'background': colours.unknown}}></div>
                 <T k="legend.nodata" />
