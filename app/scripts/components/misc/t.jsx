@@ -331,7 +331,7 @@ const allTranslations = {
     'popup.dams-poly.quantity': 'Number of Dams',
     'popup.dams-poly.basin': 'Top Basin',
 
-    'legend.title': 'legend',
+    'legend.title': 'Legend',
     'legend.lessthan50': '< 50',
     'legend.greaterhan50': '> 50',
     'legend.greaterhan75': '> 75',
@@ -380,7 +380,7 @@ const allTranslations = {
     'home.text': 'Dashibodi hii ya maji ni tovuti ya takwimu huria zinazoorodhesha data katika sekta ya maji, ya kitaifa ya hivi karibuni na habari nyingine muhimu kwako. Tumia orodha iliyo juu kutazama takwimu asili na wasiliana nasi kuhusu takwimu zisizokuwepo au zenye makosa',
 
     'nav.home': 'Mwanzo',
-    'nav.data': 'Data',
+    'nav.data': 'Takwimu',
     'nav.speak-out': 'Maoni',
 
     'static.data-title': 'Chunguza data ya dashibodi.',
@@ -390,6 +390,18 @@ const allTranslations = {
 
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
+
+    'legend.title': 'Vialamishi vya data',
+    'legend.lessthan50': '< 50',
+    'legend.greaterhan50': '> 50',
+    'legend.greaterhan75': '> 75',
+    'legend.nodata': 'No Data',
+    'legend.FUNCTIONAL': '% Asilimia ya vituo vinavyofanya kazi',
+    'legend.FUNCTIONAL NEEDS REPAIR': '% Vituo vinavyohitaji marekebisho ',
+    'legend.NON FUNCTIONAL': '% Vituo havifanyi kazi ',
+    'legend.UNKNOWN': '% Haijulikani',
+    'legend.points': 'Number of points',
+    'legend.simple-points': 'Bwawa',
 
     'filters.title': 'Kichujio cha Dashibodi',
     'filters.population-served': 'Idadi ya watu wanaotumikiwa',
@@ -578,8 +590,6 @@ const allTranslations = {
 
     'filters.toggle.closed': 'Kichujio cha Dashibodi',
     'filters.toggle.opened': 'Ficha Kichujio cha Dashibodi',
-
-    'legend.title': 'Vialamishi vya data',
 
     'popup.close': 'Ondoka',
 
