@@ -282,7 +282,7 @@ const allTranslations = {
     'overview-bar': 'Overview stuff',
     'share.share': 'Share',
     'share.feedback': 'Feedback',
-    'share.print': 'Print',
+    'share.print': 'PDF',
 
 
     'footer.copy': 'The source code of this website is published under a under a GPL 3.0 license. Visitors are encouraged to examine and re-use the code as long as they publish it under a similar license.',
@@ -331,7 +331,7 @@ const allTranslations = {
     'popup.dams-poly.quantity': 'Number of Dams',
     'popup.dams-poly.basin': 'Top Basin',
 
-    'legend.title': 'legend',
+    'legend.title': 'Legend',
     'legend.lessthan50': '< 50',
     'legend.greaterhan50': '> 50',
     'legend.greaterhan75': '> 75',
@@ -380,7 +380,7 @@ const allTranslations = {
     'home.text': 'Dashibodi hii ya maji ni tovuti ya takwimu huria zinazoorodhesha data katika sekta ya maji, ya kitaifa ya hivi karibuni na habari nyingine muhimu kwako. Tumia orodha iliyo juu kutazama takwimu asili na wasiliana nasi kuhusu takwimu zisizokuwepo au zenye makosa',
 
     'nav.home': 'Mwanzo',
-    'nav.data': 'Data',
+    'nav.data': 'Takwimu',
     'nav.speak-out': 'Maoni',
 
     'static.data-title': 'Chunguza data ya dashibodi.',
@@ -390,6 +390,18 @@ const allTranslations = {
 
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
+
+    'legend.title': 'Vialamishi vya data',
+    'legend.lessthan50': '< 50',
+    'legend.greaterhan50': '> 50',
+    'legend.greaterhan75': '> 75',
+    'legend.nodata': 'No Data',
+    'legend.FUNCTIONAL': '% Asilimia ya vituo vinavyofanya kazi',
+    'legend.FUNCTIONAL NEEDS REPAIR': '% Vituo vinavyohitaji marekebisho ',
+    'legend.NON FUNCTIONAL': '% Vituo havifanyi kazi ',
+    'legend.UNKNOWN': '% Haijulikani',
+    'legend.points': 'Number of points',
+    'legend.simple-points': 'Bwawa',
 
     'filters.title': 'Kichujio cha Dashibodi',
     'filters.population-served': 'Idadi ya watu wanaotumikiwa',
@@ -595,11 +607,11 @@ const allTranslations = {
     'data-type.dams': 'Mabwawa',
 
     'overview-bar': 'Maelezo ya joomla',
-    'share.share': 'Shirikisha Mwenzako',
+    'share.share': 'Shirikisha',
     'share.feedback': 'Maoni',
-    'share.print': 'Chapa',
+    'share.print': 'PDF',
 
-    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana',
+    'footer.copy': 'Tovuti hii imechapishwa kwa leseni ya GPL 3.0. Wageni wa tovuti wanahamasishwa kuangalia programu kwa makini na kuitumia kama watachapisha programu zao kwa leseni inayolingana.',
 
     'loading': 'Loading',
     'loading.waterpoints': i => `${i[0]} waterpoints loaded...`,

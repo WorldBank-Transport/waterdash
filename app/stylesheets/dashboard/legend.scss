@@ -11,6 +11,7 @@
   font-size: $small-text;
   font-weight: $medium-font-weight;
   left: 2%;
+  line-height: 97%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.5 $base-unit * 1.2;
   position: absolute;
   width: $legend-dimensions;
@@ -55,7 +56,7 @@
     &.dam-cluster {
       border: 3px solid $theme-blue;
     }
-  } 
+  }
 
   .legend-dam-mark {
     background-color: $theme-blue;
@@ -77,6 +78,7 @@
     color: $theme-blue;
     font-size: $legend-title;
     font-weight: $title-weight;
+    line-height: 105%;
     margin-bottom: $legend-margin;
     text-transform: uppercase;
   }

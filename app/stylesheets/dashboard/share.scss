@@ -41,37 +41,31 @@
 
   .floating-div {
     background: $theme-blue;
-    padding-bottom: $share-icon-space /2;
-    padding-top: $share-icon-space /2;
     position: absolute;
+    right: 0;
     top: $map-nav-height;
     vertical-align: top;
-    width: 20%;
+    width: $share-wrapper-width;
     z-index: 10001;
   }
 
   .share-wrapper {
-    margin-left: auto;
-    margin-right: auto;
-    vertical-align: top;
-    width: $share-wrapper-width;
+    margin-left: $share-icon-space * 2;
+    margin-top: $base-unit * 2;
 
     ul {
       @include list-unstyled();
       display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: $base-unit / 3.5;
       overflow: hidden;
-      width: $full-width - 10;
+      width: $full-width;
 
       li {
         @include transparency(1);
         color: $text-inverse;
         display: block;
         float: left;
-        font-size: $small-text;
-        line-height: $small-text;
+        font-size: $small-text + 2;
+        line-height: $small-text + 5;
         margin-right: $share-icon-space + 5;
         padding-left: $share-icon-space;
         text-align: center;
@@ -85,13 +79,15 @@
         }
 
         .fa {
-          clear: both;
           color: $bg-color;
           display: block;
+          float: left;
           font-size: $share-icon-size;
           margin-bottom: $share-icon-space;
+          margin-right: 5px;
 
           &.fa-file-pdf-o {
+            font-size: $pdf-icon-size;
             height: $share-icon-size / 2;
             margin-bottom: $share-icon-space * 2;
           }
