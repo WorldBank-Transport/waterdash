@@ -90,7 +90,7 @@ const PolygonsMap = React.createClass({
 
         {/* popup overlay for polygon */}
         {this.renderPopup()}
-        <Legend ranges={this.props.ranges} />
+        <Legend dataType={this.props.dataType} ranges={this.props.ranges} />
       </div>
     );
   },

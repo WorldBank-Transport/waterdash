@@ -332,6 +332,9 @@ const allTranslations = {
     'popup.dams-poly.basin': 'Top Basin',
 
     'legend.title': 'Legend',
+    'legend.subtitle.waterpoints': 'Number of WaterPoints',
+    'legend.subtitle.boreholes': 'Number of Boreholes',
+    'legend.subtitle.dams': 'Number of Dams',
     'legend.lessthan50': '< 50',
     'legend.greaterhan50': '> 50',
     'legend.greaterhan75': '> 75',
