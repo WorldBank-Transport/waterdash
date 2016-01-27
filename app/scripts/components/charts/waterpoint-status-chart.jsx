@@ -55,7 +55,7 @@ const WaterpointStatusChart = React.createClass({
       .forEach(item => {
         Object.keys(data[item])
           .filter(unique)
-          .forEach(key => returnValue.push({name: key, functional: data.FUNCTIONAL[key] ? data.FUNCTIONAL[key] : 0}));
+          .forEach(key => returnValue.push({name: key, functional: data.FUNCTIONAL && data.FUNCTIONAL[key] ? data.FUNCTIONAL[key] : 0}));
       });
     const ordered = returnValue
       .sort( (a, b) => b.functional - a.functional)
@@ -82,7 +82,7 @@ const WaterpointStatusChart = React.createClass({
           if (status === 'NON FUNCTIONAL') { // we need to group all non functional
             value = this.sumNonFunctional(data, region);
           } else {
-            value = getNumberOr0(data[status][region]);
+            value = data[status] ? getNumberOr0(data[status][region]) : 0;
           }
           return {
             name: region,
