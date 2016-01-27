@@ -350,6 +350,7 @@ const allTranslations = {
     'drilldown.back': 'Back To National',
 
     'search.field.WATER_POINT_CODE': 'Water Point Code',
+    'search.help-field.WATER_POINT_CODE': 'SEARCH WATER POINT',
     'search.field.WATER_POINT_NAME': 'Water Point Name',
     'search.field.BOREHOLE_NO': 'Borehole Number',
     'search.field.DAM_NAME': 'Dam Name',

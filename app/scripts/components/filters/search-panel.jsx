@@ -21,6 +21,7 @@ const SearchPanel = React.createClass({
   getInitialState() {
     return {
       open: false,
+      help: 'block',
       filters: {},
     };
   },
@@ -29,6 +30,7 @@ const SearchPanel = React.createClass({
     this.replaceState({
       ...this.state,
       open: false,
+      help: 'block',
       filters: {},
     });
   },
@@ -62,11 +64,20 @@ const SearchPanel = React.createClass({
       });
     }
   },
+  closeHelp(e) {
+    e.preventDefault();
+    this.replaceState({
+      ...this.state,
+      help: 'none',
+    });
+  },
   renderSearchFields() {
     const allField = getSearchField(this.props.dataType);
     return allField.map(key => {
+      const helpSpan = key === 'WATER_POINT_CODE' ? (<div className="search-field-help" onClick={this.closeHelp} style={{display: this.state.help}}><T k={`search.help-field.${key}`} /></div>) : '';
       return (<div className="search-field">
         <div className="search-form-label"><T k={`search.field.${key}`} /></div>
+        {helpSpan}
         <Autocomplete
             getItemValue={(item) => item[key]}
             items={getSearchItems(this.props.data, key)}
