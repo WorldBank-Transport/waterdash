@@ -4,7 +4,7 @@ import FilterStore from './filters';
 import DataStore from './data';
 import ViewStore from './view';
 
-const items = obj => Object.keys(obj).map(k => [k, obj[k]]);
+const items = obj => Object.keys(obj).map(k => [k, obj[k].f]);
 
 const FilteredDataStore = createStore({
   initialData: [],
@@ -18,8 +18,14 @@ const FilteredDataStore = createStore({
     const { dataType } = ViewStore.get();
     const data = DataStore.getData(dataType);
     const filterItems = items(FilterStore.get());
-    const filteredData = data.filter(record =>
-      filterItems.every(([k, f]) => f(record[k])));
+    const filteredData = data.filter(record => {
+      return filterItems.every(([k, f]) => {
+        const key = k;
+        const value = record[k];
+        const ret = f(record[k]);
+        return f(record[k]);
+      });
+    });
     this.setData(filteredData);
   },
 });

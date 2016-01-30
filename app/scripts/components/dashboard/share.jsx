@@ -2,6 +2,8 @@ import React from 'react';
 import T from '../misc/t';
 import OpenClosed from '../../constants/open-closed';
 import { Icon } from 'react-font-awesome';
+import { share } from '../../actions/share';
+import ShareStore from '../../stores/share';
 
 require('stylesheets/dashboard/share');
 
@@ -37,7 +39,7 @@ const Share = React.createClass({
               <div className="floating-div">
                 <div className="share-wrapper">
                   <ul>
-                    <li className="share"><Icon type={`link`}/><T k="share.share" /></li>
+                    <li className="share" onClick={share}><Icon type={`link`}/><T k="share.share" /></li>
                     <li className="feedback"><Icon type={`comments-o`}/><T k="share.feedback" /></li>
                     <li className="print"><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
