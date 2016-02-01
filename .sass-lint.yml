@@ -18,7 +18,7 @@ rules:
   final-newline: 2
   hex-length: 0
   hex-notation: 2
-  indentation: 2
+  #indentation: 2 - remove this to avoid temporally this error on sass-lint https://github.com/sasstools/sass-lint/issues/389
   leading-zero:
     - 2
     -
