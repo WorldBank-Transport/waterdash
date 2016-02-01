@@ -20,6 +20,12 @@
 .stack-bar-chart {
   margin: 0;
 
+  .chart-helptext {
+    color: $grey-medium;
+    font-size: $normal-text;
+    margin-top: 0;
+  }
+
   .x {
     text-align: left;
     .tick text {

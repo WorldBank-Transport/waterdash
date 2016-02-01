@@ -159,8 +159,8 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     return (
       <div className="waterpoint-population-serve-chart">
-        <h3><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
-        <p><T k="chart.doubleClick.help" /></p>
+        <h3><T k="chart.title-population-served" /></h3>
+        <p className="chart-helptext"><T k="chart.title-title-population-served-helptext" /> <T k="chart.doubleClick.help" /></p>
         <div className="chart-container " id="container-2">
         </div>
       </div>);

@@ -214,8 +214,8 @@ const WaterpointStatusChart = React.createClass({
     }
     return (
       <div className="stack-bar-chart">
-        <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /> - <span className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /></span></h3>
-        <p><T k="chart.doubleClick.help" /></p>
+        <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /></h3>
+        <p className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /><T k="chart.doubleClick.help" /></p>
         <div className="chart-container" id="waterpoints-status-chart"></div>
       </div>
     );
