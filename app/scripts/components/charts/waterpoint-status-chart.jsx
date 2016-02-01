@@ -160,7 +160,7 @@ const WaterpointStatusChart = React.createClass({
     //const drilldown = this.getDrilldown(data, regions);
     this.chart = new HighCharts.Chart({
       chart: {
-        height: 400,
+        height: 360,
         type: 'column',
         renderTo: 'waterpoints-status-chart',
         events: {

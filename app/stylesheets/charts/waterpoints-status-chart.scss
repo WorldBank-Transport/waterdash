@@ -18,7 +18,9 @@
   }
 }
 .stack-bar-chart {
+  @include bottom-stat-border(3px, $grey-light);
   margin: 0;
+  padding-bottom: $base-unit;
 
   .chart-helptext {
     color: $grey-medium;

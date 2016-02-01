@@ -58,7 +58,7 @@ const WaterpointPopulationServeChart = React.createClass({
           //drillup: this.drillup,
         },
       },
-      colors: ['#104459', '#13526b', '#175f7d', '#1b6e8e', '#1e7ba0', '#2189b3', '#2597c5', '#29a4d7', '#31aee1', '#40b5e3', '#50bce6', '#62c3e8', '#73c9ea', '#84cfed', '#95d6f0', '#a7ddf2', '#b8e4f5', '#caebf7', '#c7e0e9', '#c5d6dc', '#c9d3d7', '#d3dde1', '#dcdcdc', '#e8e8e8', '#edf8fd'],
+      colors: ['#1da3da'],
       title: {
         text: '',
       },
