@@ -41,7 +41,7 @@ const DamsChart = React.createClass({
             y: y,
           };
         }),
-        visible: index === 0 ? true : false,
+        visible: index === 0,
       };
     });
   },
@@ -81,20 +81,20 @@ const DamsChart = React.createClass({
       plotOptions: {
         series: {
           events: {
-            legendItemClick: function(event) {
+            legendItemClick: function() {
               const seriesIndex = this.index;
               const series = this.chart.series;
-              for (var i = 0; i < series.length; i++) {
-                if (series[i].index != seriesIndex) {
+              for (let i = 0; i < series.length; i++) {
+                if (series[i].index !== seriesIndex) {
                   series[i].hide();
                 } else {
                   series[i].show();
                 }
               }
               return false;
-            }
-          }
-        }
+            },
+          },
+        },
       },
 
       series: stats,
