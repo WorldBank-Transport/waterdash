@@ -1,38 +1,28 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { connect } from 'reflux';
 import T from '../misc/t';
 import SubCategoryFilter from './sub-category-filter';
 import { Icon } from 'react-font-awesome';
 import OpenClosed from '../../constants/open-closed';
+import { toggleCategories } from '../../actions/layout';
+import LayoutStore from '../../stores/layout';
 
 require('stylesheets/dashboard/category-filter');
 
 const CategoryFilter = React.createClass({
-  propTypes: {
-    parentState: PropTypes.instanceOf(OpenClosed.OptionClass),
-  },
 
-  getInitialState() {
-    return {open: false};
-  },
-
-  toggle() {
-    const newState = {
-      ...this.state,
-      open: !this.state.open,
-    };
-    this.replaceState(newState);
-  },
+  mixins: [
+    connect(LayoutStore, 'layout'),
+  ],
 
   render() {
-    const [openClass, direction] = [ 'open-up', this.state.open ? 'down' : 'up' ];
-    //const [openClass, direction] = this.props.parentState.match({
-    //  Open: () => [ 'open-down', this.state.open ? 'up' : 'down' ],
-    //  Closed: () => [ 'open-up', this.state.open ? 'down' : 'up' ],
-    //});
-    const visibleClass = this.state.open ? 'visible' : 'hidden';
+    const [openClass, direction, visibleClass] = OpenClosed.match(this.state.layout.categories, {
+      Open: () => [ 'open-up', 'down', 'visible' ],
+      Closed: () => [ 'open-up', 'up', 'hidden' ],
+    });
     return (
       <div className="category-filter">
-        <div className="category-filter-toggle" onClick={this.toggle}>
+        <div className="category-filter-toggle" onClick={toggleCategories}>
           <T k="charts.category.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
         </div>
         <div className={`flyout ${openClass} ${visibleClass}`}>
