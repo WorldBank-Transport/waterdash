@@ -91,9 +91,12 @@ const WaterpointPopulationServeChart = React.createClass({
         data: data,
       }],
 
-      // drilldown: {
-      //   series: data.level1,
-      // },
+      drilldown: {
+        activeAxisLabelStyle: {
+          cursor: 'pointer',
+          textDecoration: 'none'     
+        }
+      },
     });
     return this.chart;
   },
