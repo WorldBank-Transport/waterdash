@@ -20,9 +20,6 @@ const FilteredDataStore = createStore({
     const filterItems = items(FilterStore.get());
     const filteredData = data.filter(record => {
       return filterItems.every(([k, f]) => {
-        const key = k;
-        const value = record[k];
-        const ret = f(record[k]);
         return f(record[k]);
       });
     });

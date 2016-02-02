@@ -7,7 +7,7 @@ import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
 import { setView } from './actions/view';
 import { ensureSelect, deselect } from './actions/select';
-import { restoreShare } from './actions/share'
+import { restoreShare } from './actions/share';
 
 // Route components
 import Root from './components/root';
@@ -45,6 +45,10 @@ function setPolysView(nextState) {
   });
 }
 
+/**
+ * @param {object} nextState From react-router
+ * @returns {void}
+ */
 function setShare(nextState) {
   restoreShare(nextState.params.shareId);
 }

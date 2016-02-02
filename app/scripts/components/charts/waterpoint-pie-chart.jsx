@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import * as func from '../../utils/functional';
-import * as c from '../../utils/colours';
+import { Result } from '../../utils/functional';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import T from '../misc/t';
 import HighCharts from 'highcharts';
@@ -15,16 +14,6 @@ const WaterpointPieChart = React.createClass({
   },
 
   mixins: [ShouldRenderMixin],
-
-  getInitialState() {
-    const allValues = Object.keys(c.Color[this.props.column]).reduce((agg, k) => {
-      agg[k] = true;
-      return agg;
-    }, {});
-    return {
-      values: allValues,
-    };
-  },
 
   componentDidMount() {
     this.getChart();
@@ -50,8 +39,8 @@ const WaterpointPieChart = React.createClass({
   },
 
   getChart() {
-   // needs translations
-    const data = func.Result.countBy(this.props.data, this.props.column);
+    // needs translations
+    const data = Result.countBy(this.props.data, this.props.column);
     this.chart = new HighCharts.Chart({
       chart: {
         renderTo: this.props.id,

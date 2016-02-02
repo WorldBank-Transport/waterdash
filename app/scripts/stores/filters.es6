@@ -4,9 +4,7 @@ import SaneStore from '../utils/sane-store-mixin';
 import filtersActions from '../actions/filters';
 import throttleCalls from '../utils/throttle-calls';
 
-
 export const inRange = ([min, max]) => v => (min <= v && v <= max);
-
 
 const withValsAsObjKeys = testFn => arr => {
   const obj = {};
@@ -66,11 +64,12 @@ const FilterStore = createStore({
   deserialize(json) {
     const deserializeFilters = {};
     Object.keys(json).forEach(field => {
+      /* eslint no-eval: 0 */
       const f = eval(json[field].functionName);
       deserializeFilters[field] = {
         f: f(json[field].args),
-        functionName: json[field].functionName, 
-        args: json[field].args
+        functionName: json[field].functionName,
+        args: json[field].args,
       };
     });
     this.setData(deserializeFilters);
