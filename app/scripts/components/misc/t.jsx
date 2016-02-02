@@ -332,7 +332,7 @@ const allTranslations = {
     'popup.dams-poly.basin': 'Top Basin',
 
     'legend.title': 'Legend',
-    'legend.subtitle.waterpoints': 'Number of WaterPoints',
+    'legend.subtitle.waterpoints': 'Number of Waterpoints',
     'legend.subtitle.boreholes': 'Number of Boreholes',
     'legend.subtitle.dams': 'Number of Dams',
     'legend.lessthan50': '< 50',
@@ -396,6 +396,9 @@ const allTranslations = {
     'lang.sw-tz': 'Kiswahili',
 
     'legend.title': 'Vialamishi vya data',
+    'legend.subtitle.waterpoints': 'Idadi ya vituo vya maji',
+    'legend.subtitle.boreholes': 'Idadi ya visima',
+    'legend.subtitle.dams': 'Idadi ya mabwawa',
     'legend.lessthan50': '< 50',
     'legend.greaterhan50': '> 50',
     'legend.greaterhan75': '> 75',
