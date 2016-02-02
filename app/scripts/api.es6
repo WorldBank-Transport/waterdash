@@ -5,7 +5,7 @@ import * as staticData from './utils/api/static-data';
 import securityApi from './utils/api/security-api';
 
 const API_ROOT = '//data.takwimu.org/api';
-const SECURITY_API_ROOT = '//localhost:9080/';
+const SECURITY_API_ROOT = '//api.takwimu.org/';
 
 /**
  * @param {object} record The waterpoint database record
