@@ -204,6 +204,12 @@ const WaterpointStatusChart = React.createClass({
       },
 
       series: stats,
+      drilldown: {
+        activeAxisLabelStyle: {
+          cursor: 'pointer',
+          textDecoration: 'none'     
+        }
+      },
     });
     return this.chart;
   },
