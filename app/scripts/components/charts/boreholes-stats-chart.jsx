@@ -58,7 +58,7 @@ const BoreholesStatsChart = React.createClass({
     const dataRes = Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', metrics);
     this.chart = new HighCharts.Chart({
       chart: {
-        height: 400,
+        height: 330,
         type: 'spline',
         renderTo: 'boreholes-time',
       },
