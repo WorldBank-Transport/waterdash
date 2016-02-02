@@ -2,6 +2,11 @@
 @import '../config/type';
 
 .borehole-chart-container {
+
+  .metric-summary {
+    border-bottom: 0;
+  }
+  
   .number-value {
     color: $theme-blue;
     font-size: $boreholes-stat-value;

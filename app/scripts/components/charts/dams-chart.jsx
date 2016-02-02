@@ -55,7 +55,7 @@ const DamsChart = React.createClass({
     const stats = this.parseData(dataRes, metrics);
     this.chart = new HighCharts.Chart({
       chart: {
-        height: 400,
+        height: 360,
         type: 'column',
         renderTo: 'dams-chart',
       },
@@ -112,8 +112,8 @@ const DamsChart = React.createClass({
           <div className="row">
             <div className="mainChart">
               <div className="dams-chart">
-                <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
-                <h5 className="main-chart-subtitle"><T k="chart.subtitle-dams" /></h5>
+                <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
+                <p className="chart-helptext"><T k="chart.title-dams-status-helptext" /></p>
                 <TSetChildProps>
                   <div className="chart-container" id="dams-chart"></div>
                 </TSetChildProps>

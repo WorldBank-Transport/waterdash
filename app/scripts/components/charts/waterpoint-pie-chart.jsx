@@ -59,9 +59,12 @@ const WaterpointPieChart = React.createClass({
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
-            enabled: true,
+            enabled: false,
             format: '<b>{point.name}</b>: {point.percentage:.1f} %',
           },
+          depth: 45,
+          innerSize: 100,
+          showInLegend: true,
         },
       },
       series: [this.parseData(data)],
