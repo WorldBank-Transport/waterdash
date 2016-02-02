@@ -29,7 +29,7 @@ const DamsChart = React.createClass({
   },
 
   parseData(data, metrics) {
-    return metrics.map(metric => {
+    return metrics.map((metric, index) => {
       return {
         name: metric,
         data: Object.keys(data).map(poly => {
@@ -41,6 +41,7 @@ const DamsChart = React.createClass({
             y: y,
           };
         }),
+        visible: index === 0,
       };
     });
   },
@@ -72,10 +73,28 @@ const DamsChart = React.createClass({
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true,
+      },
+      plotOptions: {
+        series: {
+          events: {
+            legendItemClick: function() {
+              const seriesIndex = this.index;
+              const series = this.chart.series;
+              for (let i = 0; i < series.length; i++) {
+                if (series[i].index !== seriesIndex) {
+                  series[i].hide();
+                } else {
+                  series[i].show();
+                }
+              }
+              return false;
+            },
+          },
+        },
       },
 
       series: stats,
