@@ -5,9 +5,16 @@
 .total-servedpopulation-chart {
   @include chart-row();
 
+  .chart-helptext {
+    color: $grey-medium;
+    font-size: $normal-text;
+    margin-top: 0;
+  }
+
   h3 {
     color: $theme-blue;
     font-weight: $title-weight;
+    margin-bottom: 0;
   }
 
   .x {
@@ -43,4 +50,8 @@
     padding: $base-unit/2 $base-unit 0;
     width: $tooltip-width/3;
   }
+}
+
+.chart-container {
+  margin-top: 20px;
 }

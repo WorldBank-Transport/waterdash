@@ -83,5 +83,17 @@ h3 {
 
   .chart-helptext {
     color: $grey-medium;
+    font-size: $normal-text;
     }
   }
+// chart titles - apply to all 3 charts
+h5 {
+
+  &.main-chart-subtitle {
+    @extend .chart-title;  // lint warning here to use % but it affects the style
+    color: $grey-medium;
+    font-size: $main-chart-title - 10;
+    font-weight: $title-weight - 300;
+    margin-bottom: 0;
+  }
+}

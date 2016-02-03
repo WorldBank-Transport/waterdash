@@ -16,6 +16,16 @@ const OpenClosed = Union({
       Closed: () => 'closed',
     });
   },
+}, { // static
+  fromParam(param) {
+    if (param === 'opened') {
+      return OpenClosed.Open();
+    } else if (param === 'closed') {
+      return OpenClosed.Closed();
+    } else {
+      throw new Error(`Could not get OpenClosed type for param '${param}'`);
+    }
+  },
 });
 
 export default OpenClosed;

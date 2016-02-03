@@ -6,6 +6,8 @@ import { selectYear, selectAllYears} from '../../actions/filters';
 import { Icon } from 'react-font-awesome';
 import OpenClosed from '../../constants/open-closed';
 import YearStore from '../../stores/year';
+import { toggleYear } from '../../actions/layout';
+import LayoutStore from '../../stores/layout';
 
 require('stylesheets/dashboard/year-selector');
 
@@ -16,18 +18,11 @@ const YearSelector = React.createClass({
 
   mixins: [
     connect(YearStore, 'years'),
+    connect(LayoutStore, 'layout'),
   ],
 
   getInitialState() {
-    return {open: false, all: true};
-  },
-
-  toggle() {
-    const newState = {
-      ...this.state,
-      open: !this.state.open,
-    };
-    this.replaceState(newState);
+    return {all: true};
   },
 
   select(e, year) {
@@ -50,11 +45,13 @@ const YearSelector = React.createClass({
       const checked = this.state.years[key];
       return (<li className="year-option" key={key}><Checkbox action={e => this.select(e, key)} checked={checked} label={`charts.years.${key}`} /></li>);
     });
-    const [openClass, direction] = [ 'open-up', this.state.open ? 'down' : 'up' ];
-    const visibleClass = this.state.open ? 'visible' : 'hidden';
+    const [openClass, direction, visibleClass] = OpenClosed.match(this.state.layout.year, {
+      Open: () => [ 'open-up', 'down', 'visible' ],
+      Closed: () => [ 'open-up', 'up', 'hidden' ],
+    });
     return (
       <div className="year-selector">
-        <div className="year-selector-toggle" onClick={this.toggle}>
+        <div className="year-selector-toggle" onClick={toggleYear}>
           <T k="charts.years.filter.title" />&nbsp;<Icon type={`chevron-circle-${direction}`}/>
         </div>
         <div className={`flyout ${openClass} ${visibleClass}`}>

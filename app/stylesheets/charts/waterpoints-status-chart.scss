@@ -18,7 +18,15 @@
   }
 }
 .stack-bar-chart {
+  @include bottom-stat-border(3px, $grey-light);
   margin: 0;
+  padding-bottom: $base-unit;
+
+  .chart-helptext {
+    color: $grey-medium;
+    font-size: $normal-text;
+    margin-top: 0;
+  }
 
   .x {
     text-align: left;
@@ -62,7 +70,10 @@
 
     ul {
       @include list-unstyled();
+      display: block;
+      font-size: $medium-number - 8;
       margin-top: -10px;
+      padding-bottom: $charts-section-space / 2;
 
       li {
         margin-bottom: $base-unit/2;
@@ -112,9 +123,6 @@
         }
 
       }
-          display: block;
-          padding-bottom: $charts-section-space / 2;
-          font-size: $medium-number - 8;
   }
 
     .tooltip-title {
