@@ -10,16 +10,16 @@ describe('filtering functions', () => {
 
   describe('inRange', () => {
     it('should allow values in the range', () => {
-      expect(inRange(0, 2)(1)).toBe(true);
+      expect(inRange([0, 2])(1)).toBe(true);
     });
     it('should reject values outside the range', () => {
-      expect(inRange(1, 2)(0)).toBe(false);
-      expect(inRange(0, 1)(2)).toBe(false);
+      expect(inRange([1, 2])(0)).toBe(false);
+      expect(inRange([0, 1])(2)).toBe(false);
     });
     it('should use inclusive bounds', () => {
-      expect(inRange(1, 1)(1)).toBe(true);
-      expect(inRange(1, 2)(1)).toBe(true);
-      expect(inRange(1, 2)(2)).toBe(true);
+      expect(inRange([1, 1])(1)).toBe(true);
+      expect(inRange([1, 2])(1)).toBe(true);
+      expect(inRange([1, 2])(2)).toBe(true);
     });
   });
 
