@@ -94,8 +94,8 @@ const WaterpointPopulationServeChart = React.createClass({
       drilldown: {
         activeAxisLabelStyle: {
           cursor: 'pointer',
-          textDecoration: 'none'     
-        }
+          textDecoration: 'none',
+        },
       },
     });
     return this.chart;
