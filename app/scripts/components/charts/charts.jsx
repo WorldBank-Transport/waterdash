@@ -6,6 +6,7 @@ import WaterpointsChart from './waterpoints-charts';
 import DamsChart from './dams-chart';
 import BoreholesCharts from './boreholes-charts';
 import HighCharts from 'highcharts';
+import TSetChildProps from '../misc/t-set-child-props';
 
 require('highcharts/modules/drilldown')(HighCharts);
 require('highcharts/modules/exporting')(HighCharts);
@@ -26,7 +27,7 @@ const Charts = React.createClass({
         <div className="charts">
           {DataTypes.match(this.props.dataType, {
             Waterpoints: () => (<WaterpointsChart {...this.props}/>),
-            Dams: () => (<DamsChart {...this.props}/>),
+            Dams: () => (<TSetChildProps><DamsChart {...this.props} subtitle={{k: 'chart.subtitle-dams'}} titleDamHeight={{k: 'chart.title-dams.height'}} titleElevation={{k: 'chart.title-dams.elavation'}} titleReservoir={{k: 'chart.title-dams.reservoir'}}/></TSetChildProps>),
             Boreholes: () => (<BoreholesCharts {...this.props}/>),
           })}
         </div>
