@@ -11,7 +11,7 @@
     "_download": "gulp download",
     "_copy-static": "gulp copy:static",
     "_copy-stuff": "npm run _copy-index && npm run _copy-static",
-    "lint": "npm run lint-scripts",
+    "lint": "npm run lint-scripts && npm run lint-styles",
     "lint-scripts": "eslint 'app/**/*.{es6,js,jsx}'",
     "lint-styles": "gulp lint-styles",
     "_slack_notify": "gulp slack-notify",
