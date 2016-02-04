@@ -1,6 +1,5 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
-import Leaflet from 'leaflet';
 // Stores
 import FilterStore from './filters';
 import LangStore from './lang';
@@ -16,7 +15,7 @@ import { share, restoreShare } from '../actions/share';
 import { loadCompleted } from '../actions/data';
 import { setMapBounds } from '../actions/view';
 
-import { postShare, getShare, urlShortener } from '../api';
+import { postShare, getShare } from '../api';
 import history from '../history';
 import OpenClosed from '../constants/open-closed';
 
