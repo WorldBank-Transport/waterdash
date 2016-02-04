@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Result } from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
-import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import { metricCal } from '../../utils/metrics';
 import HighCharts from 'highcharts';
@@ -11,6 +9,10 @@ require('stylesheets/charts/dams-chart');
 const DamsChart = React.createClass({
   propTypes: {
     data: PropTypes.array,  // injected
+    subtitle: PropTypes.string,
+    titleDamHeight: PropTypes.string,
+    titleElevation: PropTypes.string,
+    titleReservoir: PropTypes.string,
   },
 
   mixins: [ShouldRenderMixin],
@@ -53,6 +55,7 @@ const DamsChart = React.createClass({
     const metrics = Object.keys(metricCal);
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
+    const titles = [this.props.titleReservoir, this.props.titleDamHeight, this.props.titleElevation];
     this.chart = new HighCharts.Chart({
       chart: {
         height: 360,
@@ -60,10 +63,14 @@ const DamsChart = React.createClass({
         renderTo: 'dams-chart',
       },
 
-      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
+      colors: ['#2189b3', '#2597c5', '#31aee1'],
 
       title: {
-        text: '',
+        text: this.props.titleReservoir,
+      },
+
+      subtitle: {
+        text: this.props.subtitle,
       },
 
       xAxis: {
@@ -89,6 +96,7 @@ const DamsChart = React.createClass({
                   series[i].hide();
                 } else {
                   series[i].show();
+                  this.chart.setTitle({ text: titles[i]});
                 }
               }
               return false;
@@ -112,11 +120,11 @@ const DamsChart = React.createClass({
           <div className="row">
             <div className="mainChart">
               <div className="dams-chart">
+                {/*
                 <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
                 <p className="chart-helptext"><T k="chart.title-dams-status-helptext" /></p>
-                <TSetChildProps>
-                  <div className="chart-container" id="dams-chart"></div>
-                </TSetChildProps>
+               */}
+                <div className="chart-container" id="dams-chart"></div>
               </div>
             </div>
           </div>

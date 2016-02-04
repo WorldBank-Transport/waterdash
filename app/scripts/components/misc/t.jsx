@@ -123,6 +123,9 @@ const allTranslations = {
     'chart.borehole-yield.title': 'Boreholes Yield Meter Cubed Per Hour',
 
     'chart.title-dams': 'Dams Metrics',
+    'chart.title-dams.reservoir': 'Dams Reservoir',
+    'chart.title-dams.height': 'Dams Height',
+    'chart.title-dams.elavation': 'Dams Elevation',
     'chart.title-dams-status-helptext': 'by Region',
     'chart.subtitle-dams': 'Click on a metric in the legend to view its statistics',
     'chart.dams.x-axis': 'Regions',
