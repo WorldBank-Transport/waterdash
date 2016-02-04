@@ -1,5 +1,6 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
+import Leaflet from 'leaflet';
 // Stores
 import FilterStore from './filters';
 import LangStore from './lang';
@@ -9,12 +10,13 @@ import CategoriesStore from './categories';
 import WaterpointStatusStore from './waterpoint-status';
 import RangeStore from './range';
 import YearStore from './year';
+import ZoomStore from './zoom';
 // Actions
 import { share, restoreShare } from '../actions/share';
 import { loadCompleted } from '../actions/data';
 import { setMapBounds } from '../actions/view';
 
-import { postShare, getShare } from '../api';
+import { postShare, getShare, urlShortener } from '../api';
 import history from '../history';
 import OpenClosed from '../constants/open-closed';
 
@@ -34,12 +36,13 @@ const ShareStore = createStore({
     }, {});
     const fieldFilters = FilterStore.serialize();
     const view = ViewStore.get();
+    const mapBound = ZoomStore.get();
     const shareData = {
       filters: fieldFilters,
       lang: lang,
       view: {
         dataType: view.dataType.toParam(),
-        mapBounds: view.mapBounds,
+        mapBounds: mapBound,
         viewMode: view.viewMode.toParam(),
       },
       layout: layoutState,
@@ -52,7 +55,12 @@ const ShareStore = createStore({
     };
     postShare(shareData).then(res => {
       if (res.code === 200) {
-        this.setData(`${window.location.origin}/#/share/${res.object.shareId}/`);
+        const url = `${window.location.origin}/#/share/${res.object.shareId}/`;
+        // TODO post to google and then
+        //urlShortener(url).then(res => {
+        //  console.log(res);
+        //});
+        this.setData(url);
       }
     });
   },

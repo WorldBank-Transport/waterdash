@@ -43,6 +43,5 @@ export default class BoundsMap extends LeafletMap {
     const nextLLB = Leaflet.latLngBounds(next);
     const prevLLB = Leaflet.latLngBounds(prev);
     return !nextLLB.equals(prevLLB);
-    //return true;
   }
 }
