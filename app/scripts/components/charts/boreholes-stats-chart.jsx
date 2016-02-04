@@ -58,7 +58,7 @@ const BoreholesStatsChart = React.createClass({
     const dataRes = Result.sumByGroupBy(this.props.boreholes, 'YEAR_FROM', metrics);
     this.chart = new HighCharts.Chart({
       chart: {
-        height: 400,
+        height: 330,
         type: 'spline',
         renderTo: 'boreholes-time',
       },
@@ -103,7 +103,8 @@ const BoreholesStatsChart = React.createClass({
     }
     return (
       <div className="boreholes-stats-chart">
-        <h3><T k="chart.title-boreholes-stats" /> - <span className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></span></h3>
+        <h3><T k="chart.title-boreholes-stats" /></h3>
+        <p className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></p>
         <div className="chart-container" id="boreholes-time"></div>
       </div>
     );

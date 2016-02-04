@@ -8,7 +8,6 @@
     .map-nav {
       border-bottom: 2px solid $grey-light;
     }
-
   }
 
   .map-container {
@@ -38,28 +37,18 @@
 
   .dash-bottom {
     bottom: 0;
-    height: 106px;
+    height: $dash-bottom-height;
     left: 0;
     position: absolute;
     right: 0;
+
+    .map-nav,
+    .view-mode > ul > li a {
+      height: $dash-bottom-nav-height;
+    }
+
+
   }
 
-  // .charts-container {
-  //   $trans: 250ms ease;
-  //   background-clip: content-box;  // don't extend background into spacer border
-  //   border-top: 0 solid transparent;  // create a space behind filters
-  //   bottom: 0;
-  //   box-sizing: border-box;
-  //   height: $charts-above-height;
-  //   left: 0;
-  //   position: absolute;
-  //   right: 0;
-  //   transition: height $trans, border-top $trans;  // open the spacer behind filters
-  //   z-index: 2;
-  //
-  //   &.open {
-  //     border-top-width: $filters-closed-height;  // spacer behind filters
-  //     height: 100%;
-  //   }
-  // }
+
 }

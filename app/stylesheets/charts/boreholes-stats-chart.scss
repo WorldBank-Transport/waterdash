@@ -21,6 +21,7 @@
     color: $theme-blue;
     font-size: $main-chart-title;
     font-weight: $title-weight;
+    margin-bottom: 0;
   }
 
   .x {
@@ -75,4 +76,9 @@ ul.boreholes-options {
     font-size: $chart-axis-text;
     width: 49%;
     }
+}
+.chart-helptext {
+  color: $grey-medium;
+  font-size: $normal-text;
+  margin-top: 0;
 }
