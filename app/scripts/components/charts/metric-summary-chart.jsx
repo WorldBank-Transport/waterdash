@@ -3,6 +3,7 @@ import T from '../misc/t';
 import { Icon } from 'react-font-awesome';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
+import { FormattedNumber } from 'react-intl';
 
 require('stylesheets/charts/metric-summary-chart');
 
@@ -33,7 +34,7 @@ const MetricSummary = React.createClass({
           <div className="row">
           <span className="percent-value">{perc}</span>
             <div className="medium-number padding">
-              <span className="number-value">{value}</span>
+              <span className="number-value"><FormattedNumber value={value} /></span>
             </div>
           </div>
         </div>);
