@@ -18,9 +18,12 @@
   top: 0;
 
   img {
-    flex-shrink: 0;
-    min-height: 100%;
-    min-width: 100%;
+    flex-shrink: 2;
+    height: auto;
+    margin-left: -20%;
+    min-height: $full-width + 30;
+    width: $full-width;
+    width: auto;
 
     @include up-to($tablet-landscape) {
       height: auto;
