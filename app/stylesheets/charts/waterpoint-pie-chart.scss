@@ -8,17 +8,6 @@
   text.highcharts-title {
     display: none;
   }
-  .pie-chart-container {
-    .pie-chart {
-      svg {
-        -moz-transform: translate(-50px, -20px); /* Firefox */
-        -ms-transform: translate(-50px, -20px); /* IE 9 */
-        -o-transform: translate(-50px, -20px); /* Opera */
-        -webkit-transform: translate(-50px, -20px); /* Safari and Chrome */
-        transform: translate(-50px, -20px);
-      }
-    }
-  }
 
   h3 {
     color: $theme-blue-alt;

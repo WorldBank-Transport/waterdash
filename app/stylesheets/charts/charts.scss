@@ -42,16 +42,12 @@
 
     .row-chart-left {
       float: left;
-      padding-left: $general-content-padding;
-      padding-right: $general-content-padding;
-      width: 27%;
+      // padding-left: $general-content-padding;
+      // padding-right: $general-content-padding;
+      width: 33%;
 
       svg {
         padding-top: 0;
-      }
-
-      &.right-border {
-        border-right: 3px solid $grey-light;
       }
     }
   }
@@ -67,6 +63,7 @@
 
 // chart titles - apply to all 3 charts
 h3 {
+  text-align: center;
   &.chart-title {
     color: $theme-blue-alt;
     font-size: $chart-title;
