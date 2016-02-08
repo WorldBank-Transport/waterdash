@@ -3,7 +3,7 @@ import T from '../misc/t';
 import { Icon } from 'react-font-awesome';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
-import { FormattedNumber } from 'react-intl';
+import {FormattedNumber} from 'react-intl';
 
 require('stylesheets/charts/metric-summary-chart');
 

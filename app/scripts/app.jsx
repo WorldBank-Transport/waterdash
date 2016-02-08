@@ -1,6 +1,7 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
 import 'babel-core/polyfill';
+import IntlPolyfill from 'intl';  
 import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
@@ -61,6 +62,14 @@ function ensurePopup(nextState) {
   ensureSelect(nextState.params.id);
 }
 
+function intlPoly() {
+  require.ensure([
+      'intl',
+      'intl/locale-data/jsonp/en.js'], function (require) {
+        require('intl');
+        require('intl/locale-data/jsonp/en.js');
+  });
+}
 
 React.render((
   <Router history={history}>
@@ -73,7 +82,7 @@ React.render((
         <Route path="share/:shareId/" component={Homepage} onEnter={setShare} />
       </Route>
 
-      <Route path="/dash/" component={DashRoot}>
+      <Route path="/dash/" component={DashRoot} onEnter={intlPoly} >
         {/* Redirect invalid paths that we are missing data for */}
         <Redirect from="points/boreholes/" to="/dash/districts/boreholes/" />
         <Redirect from="wards/boreholes/" to="/dash/districts/boreholes/" />
