@@ -261,7 +261,7 @@ const allTranslations = {
     'chart.waterpoint-total-servedpopulation': 'Rural Population Served',
     'chart.waterpoint-total-servedpopulation-sub': 'Percent of rural population served by year',
     'chart.waterpoint-total-servedpopulation.percenatge': 'Percentage',
-    'chart.waterpoint-total-servedpopulation-helptext': 'Percentage Of Population Served By Year',
+    'chart.waterpoint-total-servedpopulation-helptext': ' Percent of rural population served by year',
     'chart.tooltip.totalserved.title': 'Served Population ',
     'chart.tooltip.totalserved.xaxis': 'Population Served in %',
     'filters.toggle.closed': 'Dashboard Filters',
