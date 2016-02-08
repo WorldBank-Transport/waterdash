@@ -1,7 +1,7 @@
 /* eslint react/jsx-sort-props: 0 */  // Routes: path, component order is nicer
 import React from 'react';
 import 'babel-core/polyfill';
-import IntlPolyfill from 'intl';  
+import 'intl';
 import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
@@ -62,13 +62,16 @@ function ensurePopup(nextState) {
   ensureSelect(nextState.params.id);
 }
 
+/**
+ * @returns {void}
+ */
 function intlPoly() {
   require.ensure([
-      'intl',
-      'intl/locale-data/jsonp/en.js'], function (require) {
-        require('intl');
-        require('intl/locale-data/jsonp/en.js');
-  });
+    'intl',
+    'intl/locale-data/jsonp/en.js'], function(require) {
+      require('intl');
+      require('intl/locale-data/jsonp/en');
+    });
 }
 
 React.render((
