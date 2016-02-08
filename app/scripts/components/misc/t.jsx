@@ -363,7 +363,9 @@ const allTranslations = {
     'search.field.DISTRICT': 'District',
     'search.field.WARD': 'Ward',
     'search.field.BASIN': 'Basin',
-    'search.button': 'Search',
+    'search.button.waterpoints': 'Search Waterpoint',
+    'search.button.boreholes': 'Search Borehole',
+    'search.button.dams': 'Search Dam',
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
