@@ -8,43 +8,34 @@
   margin-bottom: $base-unit;
 
   .number {
+    color: $grey-medium;
     display: inline-block;
-    font-size: $medium-number - 4;
+    font-size: $medium-number - 6;
     font-weight: normal;
     margin: 0;
   }
 
   .slider {
-    background: $map-bg;
+    background: $bg-color;
     display: inline-block;
     height: $track-height;
     margin: 0 $general-content-padding/3;
     width: $track-width;
 
     .bar-1 {
-      background: $theme-blue-light;
+      background: $grey-light;
       height: $track-height;
     }
 
     .handle {
       background: $theme-blue;
+      border: 1px solid $theme-blue-light;
       border-radius: $handle-radius;
       cursor: pointer;
       height: $handle-height;
-      margin-top: -($handle-height - $track-height) / 2;
+      margin-top: -($handle-height - $track-height) / 1.5;
       position: relative;
       width: $handle-width;
-
-      &:before,
-      &:after {
-        @include pseudo-position();
-        background: $theme-blue-light;
-        height: $grabby-height;
-        left: 40%;
-        margin-top: -$grabby-height / 2;
-        top: 50%;
-        width: $grabby-width;
-      }
 
       &:before {
         margin-left: -$grabby-center-off;

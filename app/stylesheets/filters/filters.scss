@@ -5,24 +5,28 @@
 @import '../config/box';
 
 .filters {
-  background: $grey-light;
-  border-top: 2px solid $grey-light-alt;
+  background: $bg-color;
+  border-left: 2px solid $grey-light;
+  border-right: 2px solid $grey-light;
+  border-top: 2px solid $grey-light;
   bottom: 0;
   left: 0;
   max-height: 100%;
   overflow-y: auto;
-  padding: $base-unit * 1.2 $base-unit * 2 $base-unit $base-unit * 3;
+  padding: $base-unit / 1.5 0 0 $base-unit * 1.8;
   position: absolute;
   right: 0;
+  width: 55%;
 
   h3 {
     color: $theme-blue-alt;
-    font-size: $chart-title;
+    font-size: $chart-title - 3;
     font-weight: $title-weight;
     margin: 0;
     padding: 0;
   }
   h4 {
+    font-size: $chart-title - 6;
     margin: $base-unit/2 0 $base-unit/3 0;
   }
 
@@ -31,7 +35,7 @@
     .filter {
       float: left;
       padding-right: 0;
-      width: 30%;
+      width: 33%;
     }
   }
 }
