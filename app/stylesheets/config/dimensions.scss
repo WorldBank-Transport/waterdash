@@ -16,7 +16,7 @@ $top-nav-right-mobile: 7px;
 $map-nav-height: 41px;
 $overview-bar-height: 78px;
 $search-button-padding: 5px;
-$map-container-bottom: 119px;
+$map-container-bottom: 100px;
 
 // legend
 $legend-dimensions: 150px;
@@ -40,7 +40,7 @@ $drilldown-title-padding: 10px;
 
 //tabs
 $charts-nav-height: 41px;
-$charts-summary-height: 78px;
+$charts-summary-height: 65px;
 $charts-above-height: $charts-nav-height + $charts-summary-height;
 $filters-closed-height: 48px;
 $filters-title-width: 220px;
@@ -53,6 +53,9 @@ $view-charts-icon-margin: 10px;
 $general-content-padding: 30px;
 $homecontent-margin: 50%;
 $homecontent-padding: 20px;
+
+$dash-bottom-height: 100px;
+$dash-bottom-nav-height: 35px;
 
 // footer
 $copy-width-large: 620px;
@@ -70,13 +73,13 @@ $pie-charts-container-height: 600px;
 $legend-icon-margin: 5px;
 $subcategory-filter-tab: 350px;
 $subcategory-flyout-dimensions: 340px;
-$subcategory-flyout-height: 295px;
+$subcategory-flyout-height: 320px;
 $metric-status-width: 260px;
 $dams-metric-status-width: 25%;
 $dams-metric-number-left: 45px;
 $dam-icon-width: 40px;
 $dams-content-top-space: -10px;
-$filter-category-expand-position: -334px;
+$filter-category-expand-position: -360px;
 $filter-list-left-margin: 20px;
 $subcategory-right-top-bottom: 25px;
 $subcategory-open-down-position: 97px;

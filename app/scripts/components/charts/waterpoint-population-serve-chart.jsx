@@ -58,7 +58,7 @@ const WaterpointPopulationServeChart = React.createClass({
           //drillup: this.drillup,
         },
       },
-      colors: ['#104459', '#13526b', '#175f7d', '#1b6e8e', '#1e7ba0', '#2189b3', '#2597c5', '#29a4d7', '#31aee1', '#40b5e3', '#50bce6', '#62c3e8', '#73c9ea', '#84cfed', '#95d6f0', '#a7ddf2', '#b8e4f5', '#caebf7', '#c7e0e9', '#c5d6dc', '#c9d3d7', '#d3dde1', '#dcdcdc', '#e8e8e8', '#edf8fd'],
+      colors: ['#1da3da'],
       title: {
         text: '',
       },
@@ -91,9 +91,12 @@ const WaterpointPopulationServeChart = React.createClass({
         data: data,
       }],
 
-      // drilldown: {
-      //   series: data.level1,
-      // },
+      drilldown: {
+        activeAxisLabelStyle: {
+          cursor: 'pointer',
+          textDecoration: 'none',
+        },
+      },
     });
     return this.chart;
   },
@@ -159,8 +162,8 @@ const WaterpointPopulationServeChart = React.createClass({
     }
     return (
       <div className="waterpoint-population-serve-chart">
-        <h3><T k="chart.title-population-served" /> - <span className="chart-helptext"><T k="chart.title-title-population-served-helptext" /></span></h3>
-        <p><T k="chart.doubleClick.help" /></p>
+        <h3><T k="chart.title-population-served" /></h3>
+        <p className="chart-helptext"><T k="chart.title-title-population-served-helptext" /> <T k="chart.doubleClick.help" /></p>
         <div className="chart-container " id="container-2">
         </div>
       </div>);

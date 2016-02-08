@@ -2,9 +2,12 @@
 
 import ckan from './utils/api/ckan';
 import * as staticData from './utils/api/static-data';
+import securityApi from './utils/api/security-api';
 
 const API_ROOT = '//data.takwimu.org/api';
-
+const SECURITY_API_ROOT = '//api.takwimu.org/';
+const GOOGLE_API = 'https://www.googleapis.com/';
+const URL_SHORTENER = 'urlshortener/v1/url';
 
 /**
  * @param {object} record The waterpoint database record
@@ -179,3 +182,12 @@ export const getDamsStatic = () =>
 
 export const getPopulationStatic = () =>
   staticData.getWithPostProcess('/data/ckan-population.json', eachRecord(toUppercase));
+
+export const postShare = (shareData) =>
+  securityApi.post(SECURITY_API_ROOT, 'share', shareData);
+
+export const getShare = (shareId) =>
+  securityApi.get(SECURITY_API_ROOT, 'share', {id: shareId});
+
+export const urlShortener = (url) =>
+  securityApi.post(GOOGLE_API, URL_SHORTENER, {longUrl: url});

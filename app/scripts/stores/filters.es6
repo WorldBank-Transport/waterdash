@@ -4,9 +4,7 @@ import SaneStore from '../utils/sane-store-mixin';
 import filtersActions from '../actions/filters';
 import throttleCalls from '../utils/throttle-calls';
 
-
-export const inRange = (min, max) => v => (min <= v && v <= max);
-
+export const inRange = ([min, max]) => v => (min <= v && v <= max);
 
 const withValsAsObjKeys = testFn => arr => {
   const obj = {};
@@ -35,21 +33,47 @@ const FilterStore = createStore({
   clearFilter(key) {
     this.setData(omit(this.get(), key));
   },
-  setFilter(key, to) {
+  setFilter(key, f, functionName, args) {
     const updated = {
       ...this.data,
-      [key]: to,
+      [key]: {
+        f: f,
+        functionName: functionName,
+        args: args,
+      },
     };
     this.setData(updated);
   },
   setRange(key, [min, max]) {
-    this.setFilter(key, inRange(min, max));
+    this.setFilter(key, inRange([min, max]), 'inRange', [min, max]);
   },
   setInclude(key, vals) {
-    this.setFilter(key, include(vals));
+    this.setFilter(key, include(vals), 'include', vals);
   },
   setExclude(key, vals) {
-    this.setFilter(key, exclude(vals));
+    this.setFilter(key, exclude(vals), 'exclude', vals);
+  },
+  serialize() {
+    const filters = this.get();
+    const serializeFilters = {};
+    Object.keys(filters).forEach(field => {
+      serializeFilters[field] = {functionName: filters[field].functionName, args: filters[field].args};
+    });
+    return serializeFilters;
+  },
+  deserialize(json) {
+    const deserializeFilters = {};
+    Object.keys(json).forEach(field => {
+      /* eslint no-eval: 0 */
+      const f = eval(json[field].functionName);
+      deserializeFilters[field] = {
+        f: f(json[field].args),
+        functionName: json[field].functionName,
+        args: json[field].args,
+      };
+    });
+    this.setData(deserializeFilters);
+    return deserializeFilters;
   },
 });
 

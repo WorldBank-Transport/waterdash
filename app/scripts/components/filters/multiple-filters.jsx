@@ -9,8 +9,7 @@ const MultipleFilters = React.createClass({
     clear: PropTypes.func.isRequired,
     dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
     filterData: PropTypes.object.isRequired,
-    setRange: PropTypes.func.isRequired,
-
+    ranges: PropTypes.object.isRequired,
   },
   componentDidUpdate(prevProps) {
     if (!this.props.dataType.equals(prevProps.dataType)) {
@@ -25,10 +24,10 @@ const MultipleFilters = React.createClass({
             <div className="filter">
               <h4><T k={`filters.${key}`} /></h4>
               <Range
-                  defaultValue={filter.defaultValue}
+                  defaultValue={this.props.ranges[key]}
+                  field={key}
                   max={filter.max}
                   min={filter.min}
-                  onChange={range => this.props.setRange(key, range)}
                   step={filter.step}/>
             </div>);
     });

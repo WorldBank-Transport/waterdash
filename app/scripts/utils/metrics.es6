@@ -1,9 +1,9 @@
 const avg = (value, total) => (value / total);
 
 export const metricCal = {
+  'RESERVOIR_': (value) => (value / 1000000),
   'DAM_HEIGHT': avg,
   'ELEVATION_': avg,
-  'RESERVOIR_': (value) => (value / 1000000),
 };
 
 export const metricUnit = {

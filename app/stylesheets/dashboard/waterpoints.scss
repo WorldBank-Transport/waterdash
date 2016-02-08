@@ -5,7 +5,7 @@
 
 .waterpoints {
   .map-container {
-    bottom: $charts-above-height;
+    bottom: 106px;
     left: 0;
     position: absolute;
     right: 0;
@@ -52,7 +52,9 @@ h3 {
     }
 
   .chart-helptext {
-    color: $text-color;
+    color: $grey-medium;
+    font-size: $normal-text;
+    margin-bottom: 20px;
     }
   }
 

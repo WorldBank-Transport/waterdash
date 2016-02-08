@@ -11,10 +11,10 @@
   display: inline-block;
   font-size: $medium-text;
   height: $search-height;
-  left: 2.5%;
+  left: 3%;
   padding: $base-unit $base-unit * 1.2 $base-unit * 1.8 $base-unit * 1.2;
   position: absolute;  // TODO
-  top: 2%;
+  top: 2.3%;
   width: $search-width;
   z-index: 12;  // needs to be specified >=1 to go above the map
 
@@ -30,7 +30,7 @@
     }
   }
   .search-field-help {
-    color: #d4d4d4;
+    color: $filter_search_field_help;
     font-weight: 600;
     left: 155px;
     position: absolute;

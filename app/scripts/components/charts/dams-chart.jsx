@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Result } from '../../utils/functional';
-import TSetChildProps from '../misc/t-set-child-props';
-import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import { metricCal } from '../../utils/metrics';
 import HighCharts from 'highcharts';
@@ -11,6 +9,10 @@ require('stylesheets/charts/dams-chart');
 const DamsChart = React.createClass({
   propTypes: {
     data: PropTypes.array,  // injected
+    subtitle: PropTypes.string,
+    titleDamHeight: PropTypes.string,
+    titleElevation: PropTypes.string,
+    titleReservoir: PropTypes.string,
   },
 
   mixins: [ShouldRenderMixin],
@@ -29,7 +31,7 @@ const DamsChart = React.createClass({
   },
 
   parseData(data, metrics) {
-    return metrics.map(metric => {
+    return metrics.map((metric, index) => {
       return {
         name: metric,
         data: Object.keys(data).map(poly => {
@@ -41,6 +43,7 @@ const DamsChart = React.createClass({
             y: y,
           };
         }),
+        visible: index === 0,
       };
     });
   },
@@ -52,17 +55,22 @@ const DamsChart = React.createClass({
     const metrics = Object.keys(metricCal);
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
+    const titles = [this.props.titleReservoir, this.props.titleDamHeight, this.props.titleElevation];
     this.chart = new HighCharts.Chart({
       chart: {
-        height: 400,
+        height: 360,
         type: 'column',
         renderTo: 'dams-chart',
       },
 
-      colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
+      colors: ['#2189b3', '#2597c5', '#31aee1'],
 
       title: {
-        text: '',
+        text: this.props.titleReservoir,
+      },
+
+      subtitle: {
+        text: this.props.subtitle,
       },
 
       xAxis: {
@@ -72,10 +80,29 @@ const DamsChart = React.createClass({
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true,
+      },
+      plotOptions: {
+        series: {
+          events: {
+            legendItemClick: function() {
+              const seriesIndex = this.index;
+              const series = this.chart.series;
+              for (let i = 0; i < series.length; i++) {
+                if (series[i].index !== seriesIndex) {
+                  series[i].hide();
+                } else {
+                  series[i].show();
+                  this.chart.setTitle({ text: titles[i]});
+                }
+              }
+              return false;
+            },
+          },
+        },
       },
 
       series: stats,
@@ -93,10 +120,11 @@ const DamsChart = React.createClass({
           <div className="row">
             <div className="mainChart">
               <div className="dams-chart">
-                <h3 className="main-chart-title"><T k="chart.title-dams" /> - <span className="chart-helptext"><T k="chart.title-dams-status-helptext" /></span></h3>
-                <TSetChildProps>
-                  <div className="chart-container" id="dams-chart"></div>
-                </TSetChildProps>
+                {/*
+                <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
+                <p className="chart-helptext"><T k="chart.title-dams-status-helptext" /></p>
+               */}
+                <div className="chart-container" id="dams-chart"></div>
               </div>
             </div>
           </div>

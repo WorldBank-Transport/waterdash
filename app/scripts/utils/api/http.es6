@@ -39,3 +39,20 @@ export function fetchAndCheck(url) {
     .catch(makeHTTPErrorNice)
     .then(rejectIfNotHTTPOk);
 }
+
+/**
+ * @param {string} url The url to post
+ * @param {object} body The request body to post
+ * @returns {Promise} The fetch response object
+ */
+export function postAndCheck(url, body) {
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  }).catch(makeHTTPErrorNice)
+    .then(rejectIfNotHTTPOk);
+}

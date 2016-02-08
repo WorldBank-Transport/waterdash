@@ -18,8 +18,9 @@ import ViewStore from '../../stores/view';
 import { load } from '../../actions/data';
 import { select, deselect, mapDrillDown } from '../../actions/select';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
-import { clear, setRange, setInclude } from '../../actions/filters';
+import { clear, setInclude } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
+import { boundsChange } from '../../actions/zoom';
 
 // Components
 import React, { PropTypes } from 'react';
@@ -115,6 +116,10 @@ const DashRoot = React.createClass({
     );
   },
 
+  zoomChange(e) {
+    boundsChange(e.target.getBounds());
+  },
+
   render() {
     const propsForChildren = {
       dataType: this.state.view.dataType,
@@ -152,7 +157,8 @@ const DashRoot = React.createClass({
           <BoundsMap
               bounds={this.state.view.mapBounds}
               className="leaflet-map"
-              dataType={this.state.view.dataType}>
+              dataType={this.state.view.dataType}
+              onLeafletMoveend={this.zoomChange}>
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {mapChild}
           </BoundsMap>
@@ -166,8 +172,6 @@ const DashRoot = React.createClass({
           <Filters
               clear={clear}
               openClosed={this.state.layout.filters}
-              setInclude={setInclude}
-              setRange={setRange}
               {...propsForChildren} />
           {this.renderLoadingOverlay()}
         </div>
