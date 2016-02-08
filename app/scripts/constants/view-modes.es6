@@ -14,6 +14,13 @@ const ViewModes = Union({
       return other.name === this.name;
     }
   },
+  getParent() {
+    return ViewModes.match(this, {
+      Districts: () => 'regions',
+      Wards: () => 'districts',
+      [_]: () => '',
+    });
+  },
   toParam() {
     return this.name.toLowerCase();
   },

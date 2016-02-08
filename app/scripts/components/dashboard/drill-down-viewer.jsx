@@ -19,7 +19,7 @@ const DrillDownViewer = React.createClass({
     return (
       <div className="drill-down-viewer">
         <div className="display-name">
-          <T k={`drilldown.${this.props.viewMode.toParam()}`} />: <span className="name-text">{this.props.drillDown.name}</span>
+          <T k={`drilldown.${this.props.viewMode.getParent()}`} />: <span className="name-text">{this.props.drillDown.name}</span>
         </div>
         <a onClick={disableDrillDown}><T k="drilldown.back" /></a>
       </div>

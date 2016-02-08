@@ -353,6 +353,7 @@ const allTranslations = {
     'drilldown.wards': 'Ward',
     'drilldown.points': 'Point',
     'drilldown.back': 'Back To National',
+    'drilldown.': 'Loading',
 
     'search.field.WATER_POINT_CODE': 'Water Point Code',
     'search.help-field.WATER_POINT_CODE': 'SEARCH WATER POINT',
