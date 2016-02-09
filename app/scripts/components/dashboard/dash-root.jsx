@@ -28,6 +28,8 @@ import T from '../misc/t';
 import TSetChildProps from '../misc/t-set-child-props';
 import MapNavPrimary from '../boilerplate/map-nav-primary';
 import Share from './share';
+import { Icon } from 'react-font-awesome';
+
 // above map:
 import MapNav from '../boilerplate/map-nav';
 import DataType from '../boilerplate/data-type';
@@ -183,6 +185,7 @@ const DashRoot = React.createClass({
                 onToggle={toggleFilters}
                 openClosed={this.state.layout.filters}>
               <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
+              <Icon type={`sort-up`}/>
             </MapNavPrimary>
           )}>
             <ViewMode openClosed={this.state.layout.charts} {...propsForChildren} />
