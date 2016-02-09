@@ -104,6 +104,7 @@
     "results": "0.9.0",
     "topojson": "1.6.19",
     "whatwg-fetch": "0.9.0",
-    "react-intl": "1.2.2 "
+    "react-intl": "1.2.2 ", 
+    "intl": "1.0.1"
   }
 }
