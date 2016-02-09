@@ -264,7 +264,7 @@ const allTranslations = {
     'chart.waterpoint-total-servedpopulation-helptext': ' Percent of rural population served by year',
     'chart.tooltip.totalserved.title': 'Served Population ',
     'chart.tooltip.totalserved.xaxis': 'Population Served in %',
-    'filters.toggle.closed': 'Dashboard Filters',
+    'filters.toggle.closed': 'Filters',
     'filters.toggle.opened': 'Hide Filters',
 
     'popup.close': 'Close',
@@ -597,7 +597,7 @@ const allTranslations = {
     'chart.waterpoint-total-servedpopulation-helptext': 'Asilimia ya idadi ya watu wanaotumikiwa kwa mwaka',
     'chart.tooltip.totalserved.title': 'Idadi ya watu wanaotumikiwa ',
     'chart.tooltip.totalserved.xaxis': 'Population Served in %',
-    'filters.toggle.closed': 'Kichujio cha Dashibodi',
+    'filters.toggle.closed': 'Kichujio cha ramani',
     'filters.toggle.opened': 'Ficha Kichujio cha Dashibodi',
 
     'popup.close': 'Ondoka',

@@ -3,6 +3,7 @@ import { connect } from 'reflux';
 import { _ } from 'results';  // catch-all for match
 import AsyncState from '../../constants/async';
 import ViewModes from '../../constants/view-modes';
+import OpenClosed from  '../../constants/open-closed';
 
 // Stores
 import DrillDownStore from '../../stores/drill-down';
@@ -28,6 +29,8 @@ import T from '../misc/t';
 import TSetChildProps from '../misc/t-set-child-props';
 import MapNavPrimary from '../boilerplate/map-nav-primary';
 import Share from './share';
+import { Icon } from 'react-font-awesome';
+
 // above map:
 import MapNav from '../boilerplate/map-nav';
 import DataType from '../boilerplate/data-type';
@@ -135,7 +138,10 @@ const DashRoot = React.createClass({
       select,
       ranges: ranges(this.state.view.dataType, this.state.view.viewMode),
     });
-
+    const filterArrow = OpenClosed.match(this.state.layout.filters, {
+      Open: () => 'down',
+      Closed: () => 'up',
+    });
     return (
       <div className="main dash-layout">
 
@@ -183,6 +189,7 @@ const DashRoot = React.createClass({
                 onToggle={toggleFilters}
                 openClosed={this.state.layout.filters}>
               <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
+              <Icon type={`sort-${filterArrow}`}/>
             </MapNavPrimary>
           )}>
             <ViewMode openClosed={this.state.layout.charts} {...propsForChildren} />
