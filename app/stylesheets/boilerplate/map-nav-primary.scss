@@ -1,5 +1,6 @@
 @import '../config/buttons';
 @import '../config/colours';
+@import '../config/dimensions';
 @import '../config/type';
 
 .map-nav-primary {
@@ -33,8 +34,7 @@
     color: $text-inverse;
     .fa {
       display: inline-block;
-      margin-left: 5px;
-      margin-top: 5px;
+      margin-left: $view-charts-icon-margin;
     }
   }
 }
