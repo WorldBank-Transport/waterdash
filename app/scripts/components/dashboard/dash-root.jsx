@@ -3,6 +3,7 @@ import { connect } from 'reflux';
 import { _ } from 'results';  // catch-all for match
 import AsyncState from '../../constants/async';
 import ViewModes from '../../constants/view-modes';
+import OpenClosed from  '../../constants/open-closed';
 
 // Stores
 import DrillDownStore from '../../stores/drill-down';
@@ -137,7 +138,10 @@ const DashRoot = React.createClass({
       select,
       ranges: ranges(this.state.view.dataType, this.state.view.viewMode),
     });
-
+    const filterArrow = OpenClosed.match(this.state.layout.filters, {
+      Open: () => 'down',
+      Closed: () => 'up',
+    });
     return (
       <div className="main dash-layout">
 
@@ -185,7 +189,7 @@ const DashRoot = React.createClass({
                 onToggle={toggleFilters}
                 openClosed={this.state.layout.filters}>
               <T k={`filters.toggle.${this.state.layout.filters.getId()}`} />
-              <Icon type={`sort-up`}/>
+              <Icon type={`sort-${filterArrow}`}/>
             </MapNavPrimary>
           )}>
             <ViewMode openClosed={this.state.layout.charts} {...propsForChildren} />
