@@ -22,6 +22,23 @@
     margin-right: $base-unit/2;
     margin-top: -$base-unit/2;
   }
+
+  .chart-close-btn {
+    background: 0;
+    border: 0;
+    color: $theme-blue;
+    font-size: $medium-text;
+    outline: none;
+    position: absolute;
+    right: $close-button-position + 40;
+    top: $close-button-position * 2;
+    &:hover {
+      color: $hover-color;
+    }
+    .fa {
+      margin-right: $close-button-position / 4;
+    }
+  }
 }
 .secondaryCharts {
   background: $bg-color;
