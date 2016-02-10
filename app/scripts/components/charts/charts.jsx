@@ -7,6 +7,8 @@ import DamsChart from './dams-chart';
 import BoreholesCharts from './boreholes-charts';
 import HighCharts from 'highcharts';
 import TSetChildProps from '../misc/t-set-child-props';
+import { Icon } from 'react-font-awesome';
+import T from '../misc/t';
 
 require('highcharts/modules/drilldown')(HighCharts);
 require('highcharts/modules/exporting')(HighCharts);
@@ -17,6 +19,7 @@ const Charts = React.createClass({
     children: PropTypes.node,
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
+    onToggle: PropTypes.func,
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
@@ -30,6 +33,7 @@ const Charts = React.createClass({
             Dams: () => (<TSetChildProps><DamsChart {...this.props} subtitle={{k: 'chart.subtitle-dams'}} titleDamHeight={{k: 'chart.title-dams.height'}} titleElevation={{k: 'chart.title-dams.elavation'}} titleReservoir={{k: 'chart.title-dams.reservoir'}}/></TSetChildProps>),
             Boreholes: () => (<BoreholesCharts {...this.props}/>),
           })}
+          <button className="chart-close-btn" onClick={this.props.onToggle}><Icon type={`times`}/><T k="charts.toggle.opened"/></button>
         </div>
       ),
       Closed: () => <div style={{display: 'none'}}></div>,

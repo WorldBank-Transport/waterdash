@@ -170,7 +170,7 @@ const DashRoot = React.createClass({
           </BoundsMap>
 
           {/* Overlays that can cover the map: */}
-          <Charts openClosed={this.state.layout.charts} {...propsForChildren} />
+          <Charts onToggle={toggleCharts} openClosed={this.state.layout.charts} {...propsForChildren} />
           <DrillDownViewer drillDown={this.state.drillDown}  {...propsForChildren} />
           <SearchPanel clear={clear}
               setInclude={setInclude}
