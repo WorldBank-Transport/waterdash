@@ -77,6 +77,7 @@ const WaterpointStatusChart = React.createClass({
       return {
         color: c.Color.getWaterpointColor(status),
         name: status,
+        level: 'National',
         data: regions.map(region => {
           let value = 0;
           if (status === 'NON FUNCTIONAL') { // we need to group all non functional
@@ -98,6 +99,9 @@ const WaterpointStatusChart = React.createClass({
     if (!e.seriesOptions && this.preventDrillDown === 0) {
       const drilldownName = e.point.drilldown;
       const [status, level, levelName] = drilldownName.split('-');
+      if (DRILL_DOWN[level] === null) {
+        return;
+      }
       const nextLevel = DRILL_DOWN[level];
       const realName = levelName.replace(/_/g, ' ');
       let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
@@ -110,7 +114,8 @@ const WaterpointStatusChart = React.createClass({
       const allSeries = {};
       statusList.forEach(s => {
         allSeries[STATUS[s]] = {
-          name: `${s} ${realName}`,
+          name: `${s}`,
+          level: realName,
           data: Object.keys(stats[s] ? stats[s] : [])
             .filter(key => key !== 'total')
             .map(key => {
@@ -158,6 +163,11 @@ const WaterpointStatusChart = React.createClass({
     const regions = this.getRegionsOrderByFunctional(data);
     const stats = this.parseData(data, regions);
     //const drilldown = this.getDrilldown(data, regions);
+    HighCharts.setOptions({
+      lang: {
+        drillUpText: '<< Back to {series.level}',
+      },
+    });
     this.chart = new HighCharts.Chart({
       chart: {
         height: 360,
