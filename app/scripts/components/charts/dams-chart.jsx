@@ -6,6 +6,12 @@ import HighCharts from 'highcharts';
 
 require('stylesheets/charts/dams-chart');
 
+const DRILL_DOWN = {
+  REGION: 'DISTRICT',
+  DISTRICT: null,
+  WARD: null,
+};
+
 const DamsChart = React.createClass({
   propTypes: {
     data: PropTypes.array,  // injected
@@ -18,6 +24,7 @@ const DamsChart = React.createClass({
   mixins: [ShouldRenderMixin],
 
   componentDidMount() {
+    this.preventDrillDown = 0;
     this.getChart();
   },
 
@@ -30,10 +37,15 @@ const DamsChart = React.createClass({
     delete this.chart;
   },
 
+  getDrillDownId(metric, level, levelName) {
+    return `${metric}-${level}-${levelName}`.replace(/\s/g, '_');
+  },
+
   parseData(data, metrics) {
     return metrics.map((metric, index) => {
       return {
         name: metric,
+        level: 'National',
         data: Object.keys(data).map(poly => {
           const f = metricCal[metric];
           const m = data[poly].filter(item => item.hasOwnProperty(metric));
@@ -41,11 +53,53 @@ const DamsChart = React.createClass({
           return {
             name: poly,
             y: y,
+            drilldown: this.getDrillDownId(metric, 'REGION', poly),
           };
         }),
         visible: index === 0,
       };
     });
+  },
+
+  drilldown(e) {
+    if (!e.seriesOptions) {
+      const drilldownName = e.point.drilldown;
+      const [currentMetric, level, levelName] = drilldownName.split('-');
+      if (DRILL_DOWN[level] === null) {
+        return;
+      }
+      const nextLevel = DRILL_DOWN[level];
+      const realName = levelName.replace(/_/g, ' ');
+      const data = this.props.data.filter(item => item[level] === realName); // get the portion of data for the drill down
+      const metrics = Object.keys(metricCal);
+      const stats = Result.sumByGroupBy(data, nextLevel, metrics);
+      const allSeries = {};
+      metrics.forEach((metric) => {
+        allSeries[metric] = {
+          name: metric,
+          level: realName,
+          data: Object.keys(stats).map(poly => {
+            const f = metricCal[metric];
+            const m = stats[poly].find(item => item.hasOwnProperty(metric));
+            const y = f(m[metric], m.total);
+            return {
+              name: poly,
+              y: y,
+            };
+          }),
+          visible: metric === currentMetric,
+        };
+      });
+      if (e.points) { // drill down on all (multiple series)
+        e.points.forEach((item) => {
+          if (item.drilldown) {
+            const statusName = item.drilldown.split('-')[0];
+            this.chart.addSingleSeriesAsDrilldown(item, allSeries[statusName]);
+          }
+        });
+        this.chart.applyDrilldown();
+      }
+    }
   },
 
   getChart() {
@@ -56,11 +110,19 @@ const DamsChart = React.createClass({
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
     const titles = [this.props.titleReservoir, this.props.titleDamHeight, this.props.titleElevation];
+    HighCharts.setOptions({
+      lang: {
+        drillUpText: '<< Back to {series.level}',
+      },
+    });
     this.chart = new HighCharts.Chart({
       chart: {
         height: 360,
         type: 'column',
         renderTo: 'dams-chart',
+        events: {
+          drilldown: this.drilldown,
+        },
       },
 
       colors: ['#2189b3', '#2597c5', '#31aee1'],
@@ -106,6 +168,12 @@ const DamsChart = React.createClass({
       },
 
       series: stats,
+      drilldown: {
+        activeAxisLabelStyle: {
+          cursor: 'pointer',
+          textDecoration: 'none',
+        },
+      },
     });
     return this.chart;
   },
