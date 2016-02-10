@@ -64,14 +64,12 @@ const SimplePoints = React.createClass({
   handleMouseoutFor(color) {
     return e => {
       e.target.setStyle(point.normal(color));
-      this.props.deselect();
     };
   },
 
-  handleMouseover(id) {
+  handleMouseover() {
     return (e) => {
       e.target.setStyle(point.hovered);
-      this.props.select(id);
     };
   },
 
