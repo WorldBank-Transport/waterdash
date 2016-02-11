@@ -367,6 +367,11 @@ const allTranslations = {
     'search.button.waterpoints': 'Search Waterpoint',
     'search.button.boreholes': 'Search Borehole',
     'search.button.dams': 'Search Dam',
+    'search.button': 'Search',
+    'search.clear': 'Clear',
+    'search.help': 'Type 3 leters to start search on any field',
+    'search.invalid.filters': 'There are not valid filters, please check',
+    'search.no.data': 'There is not data available for the current filters',
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
@@ -413,7 +418,7 @@ const allTranslations = {
     'filters.YIELD_METER_CUBED_PER_HOUR': 'Mapato ya maji katika saa',
     'filters.DAM_HEIGHT': 'Urefu',
     'filters.ELEVATION_': 'Mwinuko',
-    'filters.RESERVOIR_': 'Hifadhi ya maji',
+    'filters.RESERVOIR_': 'Ujazo ya maji',
 
     'dash.waterpoints': 'Vituo vya maji safi na salama',
     'dash.waterpoint': 'Kituo cha maji safi na salama',
@@ -490,7 +495,7 @@ const allTranslations = {
 
     'chart.option.DAM_HEIGHT': 'Urefu',
     'chart.option.ELEVATION_': 'Mwinuko',
-    'chart.option.RESERVOIR_': 'Hifadhi',
+    'chart.option.RESERVOIR_': 'Ujazo',
     'chart.option.FUNCTIONAL': 'Kituo kinachofanya kazi',
     'chart.option.FUNCTIONAL NEEDS REPAIR': 'Kituo kinachohitaji kurekebishwa',
     'chart.option.NON FUNCTIONAL': 'Kituo hakifanyi kazi',
@@ -659,7 +664,7 @@ const allTranslations = {
     'popup.dam.basin': 'Beseni',
     'popup.dam.elevation': 'Mwinuko',
     'popup.dam.height': 'Urefu',
-    'popup.dam.reservoir': 'Hifadhi ya maji',
+    'popup.dam.reservoir': 'Ujazo ya maji',
     'popup.dam.position': 'Lat/Lon',
     'popup.dam.region': 'Mkoa',
     'popup.dam.district': 'Wilaya',
@@ -697,7 +702,14 @@ const allTranslations = {
     'search.field.DISTRICT': 'Wilaya',
     'search.field.WARD': 'Kata',
     'search.field.BASIN': 'Beseni',
+    'search.button.waterpoints': 'Chunguza kituo cha maji',
+    'search.button.boreholes': 'Chunguza kisima',
+    'search.button.dams': 'Chunguza bwawa',
     'search.button': 'Search',
+    'search.clear': 'Safisha',
+    'search.help': 'Weka \'herufi\' 3 za kwanza ili kuchunguza zaidi',
+    'search.invalid.filters': 'Hakuna kichujio sahihi. Rudia tena',
+    'search.no.data': 'Hakuna data inayopatikana kwa kichujio kama ilivyotiwa',
 
 
     'error': 'We\'re sorry',

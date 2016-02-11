@@ -6,12 +6,6 @@ export const metricCal = {
   'ELEVATION_': avg,
 };
 
-export const metricUnit = {
-  'DAM_HEIGHT': 'mts',
-  'ELEVATION_': 'mts',
-  'RESERVOIR_': 'M mts3',
-};
-
 export const boreholesMetricCal = {
   'DIAMETER': avg,
   'DEPTH_METER': avg,
@@ -32,8 +26,4 @@ export const boreholeMetricUnit = {
 
 export const getDamsMetricCalc = (metric) => {
   return metricCal[metric];
-};
-
-export const getDamsMetricUnit = (metric) => {
-  return metricUnit[metric];
 };

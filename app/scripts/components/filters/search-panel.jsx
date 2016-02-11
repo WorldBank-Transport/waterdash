@@ -62,6 +62,15 @@ const SearchPanel = React.createClass({
       filters.forEach(key => {
         this.props.setInclude(key, [this.state.filters[key]]); // TODO validate filters
       });
+      this.replaceState({
+        ...this.state,
+        message: null,
+      });
+    } else {
+      this.replaceState({
+        ...this.state,
+        message: 'search.invalid.filters',
+      });
     }
   },
   closeHelp(e) {
@@ -112,9 +121,16 @@ const SearchPanel = React.createClass({
               &times;
             </div>
           </TSetChildProps>
+          <div className="search-form-title"><T k={`search.button.${this.props.dataType.toParam()}`} /></div>
+          <div className="search-form-help"><T k="search.help" /></div>
           {this.renderSearchFields()}
+          {this.state.message ? (<div className="search-form-message"><T k={this.state.message} /></div>) : ''}
+          {this.props.data.length === 0 ? (<div className="search-form-message"><T k="search.no.data" /></div>) : ''}
           <div className="button" onClick={this.search}>
             <T k="search.button" />
+          </div>
+          <div className="button" onClick={this.props.clear}>
+            <T k="search.clear" />
           </div>
         </div>
       );
