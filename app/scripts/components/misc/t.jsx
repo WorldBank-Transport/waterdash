@@ -702,7 +702,14 @@ const allTranslations = {
     'search.field.DISTRICT': 'Wilaya',
     'search.field.WARD': 'Kata',
     'search.field.BASIN': 'Beseni',
+    'search.button.waterpoints': 'Search Waterpoint',
+    'search.button.boreholes': 'Search Borehole',
+    'search.button.dams': 'Search Dam',
     'search.button': 'Search',
+    'search.clear': 'Safisha',
+    'search.help': 'Weka \'herufi\' 3 za kwanza ili kuchunguza zaidi',
+    'search.invalid.filters': 'There are not valid filters, please check',
+    'search.no.data': 'There is not data available for the current filters',
 
 
     'error': 'We\'re sorry',
