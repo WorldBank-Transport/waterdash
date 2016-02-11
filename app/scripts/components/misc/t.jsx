@@ -29,6 +29,8 @@ const allTranslations = {
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
 
+    'missing.data': 'Missing Data',
+
     'filters.title': 'Filters',
     'filters.population-served': 'Population Served',
     'filters.population-served.unit': 'Number of people',
@@ -404,6 +406,8 @@ const allTranslations = {
 
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
+
+    'missing.data': 'Takwimu Kukosa',
 
     'filters.title': 'Kichujio cha Dashibodi',
     'filters.population-served': 'Idadi ya watu wanaotumikiwa',
