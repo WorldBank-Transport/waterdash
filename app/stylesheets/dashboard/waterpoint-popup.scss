@@ -39,6 +39,12 @@
           font-size: $popup-population-number;
           font-weight: $title-weight;
           margin-right: $popup-space;
+
+          > span {
+            font-size: $popup-default-text;
+            font-weight: $title-weight;
+            margin-right: $popup-space;            
+          }
         }
       }
 

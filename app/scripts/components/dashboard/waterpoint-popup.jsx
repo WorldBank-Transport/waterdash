@@ -26,6 +26,9 @@ const WaterpointPopup = React.createClass({
 
   render() {
     const [className, iconSymbol] = this.getIcon();
+    const population = this.props.waterpoint['POPULATION SERVED'] === this.props.waterpoint['POPULATION SERVED'] ? // check for NaN
+        this.props.waterpoint['POPULATION SERVED'] :
+        (<T k="missing.data" />);
     return (
       <div className="waterpoint-popup">
         <div className="popup-header">
@@ -41,7 +44,7 @@ const WaterpointPopup = React.createClass({
         <div className="row population-ratio">
             <h3><T k="popup.waterpoint.population-served" /></h3>
             <div className="popup-stat-container">
-              <span className="big-number">{this.props.waterpoint['POPULATION SERVED']}</span>
+              <span className="big-number">{population}</span>
               <span className="stat-symbol population-big">
                 <img src="images/population-icon.png"/>
               </span>
