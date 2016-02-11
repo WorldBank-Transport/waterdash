@@ -1,5 +1,3 @@
-import isUndefined from 'lodash/lang/isUndefined';
-
 /**
  * Duplicates the good, medium, poor colour variables from scss styles, since
  * sometimes we need them in javascript.
@@ -29,14 +27,12 @@ export default colours;
 export const polygon = {  // sync with edudash: https://github.com/WorldBank-Transport/edudash/blob/edudash-2.0/app/scripts/services/colors.coffee
   normal: colour => {
     const style = {
+      color: colours.bgColor,
       fillColor: colour,
       fillOpacity: 0.75,
       opacity: 0.6,
       weight: 2,
     };
-    if (!isUndefined(colour)) {
-      style.color = colour;
-    }
     return style;
   },
   hovered: {
