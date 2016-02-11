@@ -18,6 +18,24 @@
   width: $search-width;
   z-index: 12;  // needs to be specified >=1 to go above the map
 
+  .search-form-title {
+    font-size: $medium-text;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .search-form-help {
+    color: $grey-medium;
+    font-size: $popup-label-text - 2;
+    text-align: left;
+  }
+
+  .search-form-message {
+    color: $status-poor;
+    font-size: $popup-label-text - 2;
+    text-align: left; 
+  }
+
   .search-field {
     .search-form-label {
       display: block;
@@ -39,8 +57,7 @@
   }
 
   .button {
-    float: right;
-    margin-right: $search-button-right-margin;
+    float: left;
     width: $search-submit-btn-width;
   }
 

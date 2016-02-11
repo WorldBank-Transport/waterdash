@@ -367,6 +367,11 @@ const allTranslations = {
     'search.button.waterpoints': 'Search Waterpoint',
     'search.button.boreholes': 'Search Borehole',
     'search.button.dams': 'Search Dam',
+    'search.button': 'Search',
+    'search.clear': 'Clear',
+    'search.help': 'Type 3 leters to start search on any field',
+    'search.invalid.filters': 'There are not valid filters, please check',
+    'search.no.data': 'There is not data available for the current filters',
 
     'error': 'We\'re sorry',
     'error.retry': 'Retry',
