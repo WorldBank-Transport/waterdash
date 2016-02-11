@@ -7,6 +7,17 @@ import { getNumberOr0 } from '../../utils/number';
 
 require('stylesheets/charts/dams-overview-bar');
 
+const getDamsMetricUnit = (metric) => {
+  if (metric === 'DAM_HEIGHT') {
+    return 'mts';
+  } else if (metric === 'ELEVATION_') {
+    return 'mts';
+  } else if (metric === 'RESERVOIR_') {
+    return (<span>M mts<sup>3</sup></span>);
+  }
+  return '';
+};
+
 const DamsOverviewBar = React.createClass({
   propTypes: {
     data: PropTypes.array,  // injected
@@ -24,7 +35,7 @@ const DamsOverviewBar = React.createClass({
             <img className="dams-dr" src="images/dams.png"/>
 
             <span className="number">
-              {value.toFixed(2)} <span className="unit">{m.getDamsMetricUnit(metric)}</span></span>
+              {value.toFixed(2)} <span className="unit">{getDamsMetricUnit(metric)}</span></span>
             </div>
             <div className="context">
               <T k={metrics[metric].title} />

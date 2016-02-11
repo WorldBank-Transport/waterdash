@@ -7,6 +7,17 @@ import { getNumberOr0 } from '../../utils/number';
 
 require('stylesheets/dashboard/dam-popup');
 
+const getDamsMetricUnit = (metric) => {
+  if (metric === 'DAM_HEIGHT') {
+    return 'mts';
+  } else if (metric === 'ELEVATION_') {
+    return 'mts';
+  } else if (metric === 'RESERVOIR_') {
+    return (<span>M mts<sup>3</sup></span>);
+  }
+  return '';
+};
+
 const DamPolygonPopup = React.createClass({
 
   propTypes: {
@@ -49,7 +60,7 @@ const DamPolygonPopup = React.createClass({
       return (
         <div className="popup-col-third">
           <h3><T k={metrics[metric].title} /></h3>
-          <span className="popup-stat polygon-stat">{value.toFixed(2)} <span className="metric-unit">{m.getDamsMetricUnit(metric)}</span></span>
+          <span className="popup-stat polygon-stat">{value.toFixed(2)} <span className="metric-unit">{getDamsMetricUnit(metric)}</span></span>
         </div>
         );
     });
