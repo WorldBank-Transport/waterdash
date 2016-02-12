@@ -40,14 +40,21 @@ const WaterpointPopulationServeChart = React.createClass({
   },
 
   componentWillUnmount() {
-    this.chart.destroy();
-    delete this.chart;
+    if (this.chart) {
+      this.chart.destroy();
+      delete this.chart;
+    }
   },
 
   getChart() {
     if (this.props.waterpoints.length === 0) {
       return false;
     }
+    HighCharts.setOptions({
+      lang: {
+        drillUpText: '<< Back to {series.level}',
+      },
+    });
     const data = this.parseData();
     this.chart = new HighCharts.Chart({
       chart: {
@@ -115,6 +122,7 @@ const WaterpointPopulationServeChart = React.createClass({
                         .map(key => {
                           const regPopulation = isUndefined(population[key]) ? 0 : population[key][0].TOTAL; // if we don't have the population we show the real number
                           return {
+                            level: 'National',
                             name: key,
                             y: parseFloat((regPopulation / waterpoints[key])),
                             drilldown: this.getDrillDownId(drillDown, key),
@@ -124,9 +132,12 @@ const WaterpointPopulationServeChart = React.createClass({
 
   drilldown(e) {
     if (!e.seriesOptions) {
-      this.chart.showLoading('Loading ...');
       const drilldownName = e.point.drilldown;
       const [level, levelName] = drilldownName.split('-');
+      if (DRILL_DOWN[level] === null) {
+        return;
+      }
+      this.chart.showLoading('Loading ...');
       const nextLevel = DRILL_DOWN[level];
       const realName = levelName.replace(/_/g, ' ');
       let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
@@ -142,6 +153,7 @@ const WaterpointPopulationServeChart = React.createClass({
           .forEach(key => {
             const pop = isUndefined(populationStats[key]) ? 0 : populationStats[key][0].TOTAL; // if we don't have the population we show the real number
             const item = {
+              level: realName,
               name: key,
               y: parseFloat((pop / waterStats[key])),
             };
