@@ -1,7 +1,7 @@
 import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import { changeRange } from '../actions/range';
-import { setRange } from '../actions/filters';
+import { setRange, clear } from '../actions/filters';
 
 const RangeStore = createStore({
   initialData: {
@@ -19,6 +19,7 @@ const RangeStore = createStore({
   mixins: [SaneStore],
   init() {
     this.listenTo(changeRange, 'update');
+    this.listenTo(clear, 'reset');
   },
   update(field, [ newMin, newMax ]) {
     const newState = {
@@ -27,6 +28,9 @@ const RangeStore = createStore({
     };
     this.setData(newState);
     setRange(field, [ newMin, newMax ]);
+  },
+  reset() {
+    this.setData(this.initialData);
   },
 });
 

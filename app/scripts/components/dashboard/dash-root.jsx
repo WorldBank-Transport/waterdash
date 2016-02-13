@@ -71,15 +71,11 @@ const DashRoot = React.createClass({
 
   // Reset bounds and load any required data
   componentDidMount() {
-    load(this.state.view.dataType);
     this.loadPolygons();
   },
 
   // Reload data if necessary
   componentDidUpdate(prevProps, prevState) {
-    if (!this.state.view.dataType.equals(prevState.view.dataType)) {
-      load(this.state.view.dataType);
-    }
     if (!this.state.view.viewMode.equals(prevState.view.viewMode)) {
       this.loadPolygons();
     }
@@ -103,10 +99,10 @@ const DashRoot = React.createClass({
       [_]: () => ({  // polys are still loading or failed
         loadState: this.state.loadingData,
         message: {
-          k: `loading.${this.state.view.dataType.toParam()}`,
-          i: [this.state.data.length],
+          k: `loading.${this.state.data.dataType.toParam()}`,
+          i: [this.state.data.data.length],
         },
-        retry: () => load(this.state.view.dataType),
+        retry: () => load(this.state.data.dataType),
       }),
     });
     return (
@@ -125,8 +121,8 @@ const DashRoot = React.createClass({
 
   render() {
     const propsForChildren = {
-      dataType: this.state.view.dataType,
-      data: this.state.data,
+      dataType: this.state.data.dataType,
+      data: this.state.data.data,
       viewMode: this.state.view.viewMode,
     };
     const mapChild = React.cloneElement(this.props.children, {
@@ -136,7 +132,7 @@ const DashRoot = React.createClass({
       deselect,
       mapDrillDown,
       select,
-      ranges: ranges(this.state.view.dataType, this.state.view.viewMode),
+      ranges: ranges(this.state.data.dataType, this.state.view.viewMode),
     });
     const filterArrow = OpenClosed.match(this.state.layout.filters, {
       Open: () => 'down',
@@ -163,7 +159,7 @@ const DashRoot = React.createClass({
           <BoundsMap
               bounds={this.state.view.mapBounds}
               className="leaflet-map"
-              dataType={this.state.view.dataType}
+              dataType={this.state.data.dataType}
               onLeafletMoveend={this.zoomChange}>
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {mapChild}

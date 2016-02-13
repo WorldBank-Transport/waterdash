@@ -8,7 +8,7 @@ import colours, { polygon as polyColour } from '../../utils/colours';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
-import { GeoJson } from 'react-leaflet';
+import { GeoJson, FeatureGroup } from 'react-leaflet';
 import Legend from './legend';
 
 const PolygonsMap = React.createClass({
@@ -24,6 +24,11 @@ const PolygonsMap = React.createClass({
     select: PropTypes.func,  // injected
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
+  },
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.polygonsData !== nextProps.polygonsData
+      || this.props.selected !== nextProps.selected;
   },
 
   handleClickFor(feature) {
@@ -47,12 +52,7 @@ const PolygonsMap = React.createClass({
   },
 
   colorize(d) {
-    const found = this.props.ranges.filter(r => d.length >= r.min && d.length <= r.max);
-    if (found.length > 0) {
-      return found[0].color;
-    } else {
-      return colours.unknown;
-    }
+    return this.props.ranges.find(r => d.length >= r.min && d.length <= r.max).color;
   },
 
   getFeatureColor(feature) {
@@ -86,7 +86,9 @@ const PolygonsMap = React.createClass({
   render() {
     return (
       <div>
-        {this.props.polygonsData.map(this.renderFeature)}
+        <FeatureGroup map={this.props.map}>
+          {this.props.polygonsData.map(this.renderFeature)}
+        </FeatureGroup>
 
         {/* popup overlay for polygon */}
         {this.renderPopup()}

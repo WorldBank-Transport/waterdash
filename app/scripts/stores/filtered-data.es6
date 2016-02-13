@@ -2,28 +2,32 @@ import { createStore } from 'reflux';
 import SaneStore from '../utils/sane-store-mixin';
 import FilterStore from './filters';
 import DataStore from './data';
-import ViewStore from './view';
+import DataTypes from '../constants/data-types';
 
 const items = obj => Object.keys(obj).map(k => [k, obj[k].f]);
 
 const FilteredDataStore = createStore({
-  initialData: [],
+  initialData: {
+    data: [],
+    dataType: DataTypes.Waterpoints(),
+  },
   mixins: [SaneStore],
   init() {
     this.listenTo(DataStore, 'recompute');
     this.listenTo(FilterStore, 'recompute');
-    this.listenTo(ViewStore, 'recompute');
   },
   recompute() {
-    const { dataType } = ViewStore.get();
-    const data = DataStore.getData(dataType);
+    const { dataType, data} = DataStore.getData();
     const filterItems = items(FilterStore.get());
-    const filteredData = data.filter(record => {
-      return filterItems.every(([k, f]) => {
-        return f(record[k]);
-      });
+    let tmpData = data;
+    if (filterItems.length > 0) {
+      const filteredData = data.filter(record => filterItems.every(([k, f]) => f(record[k])));
+      tmpData = filteredData;
+    }
+    this.setData({
+      dataType: dataType,
+      data: tmpData,
     });
-    this.setData(filteredData);
   },
 });
 

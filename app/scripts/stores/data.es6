@@ -23,6 +23,7 @@ const DataStore = createStore({
     waterpoints: DUMMY,
     boreholes: DUMMY,
     dams: DUMMY,
+    selected: DataTypes.Waterpoints(),
   },
   mixins: [SaneStore],
   init() {
@@ -31,6 +32,10 @@ const DataStore = createStore({
     this.listenTo(loadCompleted, 'loadData');
   },
   loadIfNeeded(type) {
+    this.setData({
+      ...this.get(),
+      selected: type,
+    });
     if (this.get()[type.toParam()] === DUMMY) {
       this.getDataFromApi(type);
     } else {
@@ -41,11 +46,20 @@ const DataStore = createStore({
     const tmp = {
       ...this.get(),
       [type.toParam()]: data,
+      selected: type,
     };
     this.setData(tmp);
   },
-  getData(type) {
-    return this.get()[type.toParam()];
+  getData() {
+    const dataType = this.get().selected;
+    return {
+      dataType: dataType,
+      data: this.get()[dataType.toParam()],
+    };
+  },
+
+  getType() {
+    return this.get().selected;
   },
 
   getDataFromApi(type) {
