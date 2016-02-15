@@ -32,8 +32,10 @@ const TotalServedPulationChart = React.createClass({
   },
 
   componentWillUnmount() {
-    this.chart.destroy();
-    delete this.chart;
+    if (this.chart) {
+      this.chart.destroy();
+      delete this.chart;
+    }
   },
 
   parseData(data, type) {
