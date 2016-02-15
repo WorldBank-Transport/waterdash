@@ -21,6 +21,12 @@ const PointsMap = React.createClass({
     selected: PropTypes.instanceOf(Maybe.OptionClass),  // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.data !== nextProps.data
+      || this.props.selected !== nextProps.selected;
+  },
+
   render() {
     const propsForPopup = pick(this.props,
       [ 'data', 'dataType', 'deselect', 'selected', 'viewMode' ]);

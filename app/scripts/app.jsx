@@ -6,9 +6,11 @@ import Router, { Redirect, Route } from 'react-router';
 import history from './history';
 import DataTypes from './constants/data-types';
 import ViewModes from './constants/view-modes';
+import { load } from './actions/data';
 import { setView } from './actions/view';
 import { ensureSelect, deselect } from './actions/select';
 import { restoreShare } from './actions/share';
+import { clear } from './actions/filters';
 
 // Route components
 import Root from './components/root';
@@ -29,10 +31,12 @@ import Popup from './components/dashboard/popup';
  * @returns {void}
  */
 function setPointsView(nextState) {
+  load(DataTypes.fromParam(nextState.params.dataType));
   setView({
     viewMode: ViewModes.Points(),
     dataType: DataTypes.fromParam(nextState.params.dataType),
   });
+  clear();
 }
 
 /**
@@ -40,6 +44,8 @@ function setPointsView(nextState) {
  * @returns {void}
  */
 function setPolysView(nextState) {
+  clear();
+  load(DataTypes.fromParam(nextState.params.dataType));
   setView({
     viewMode: ViewModes.fromParam(nextState.params.polyType),
     dataType: DataTypes.fromParam(nextState.params.dataType),

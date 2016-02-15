@@ -68,9 +68,9 @@ const PolygonsDataStore = createStore({
     // don't need to listen to ViewStore: PolygonsStore will update when view changes
   },
   recompute() {
-    const data = FilteredDataStore.get();
+    const { dataType, data } = FilteredDataStore.get();
     const features = PolygonsStore.get();
-    const { viewMode, dataType } = ViewStore.get();
+    const { viewMode } = ViewStore.get();
 
     const dataFeatures = dataType.getLocationProp(viewMode)
       .andThen(groupByLoc(data))
