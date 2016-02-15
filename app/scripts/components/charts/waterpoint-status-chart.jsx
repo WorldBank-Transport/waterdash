@@ -38,6 +38,11 @@ const WaterpointStatusChart = React.createClass({
     this.getChart();
   },
 
+  componentWillUpdate() {
+    this.preventDrillDown = 0;
+    this.getChart();
+  },
+
   componentWillUnmount() {
     if (this.chart) {
       this.chart.destroy();
