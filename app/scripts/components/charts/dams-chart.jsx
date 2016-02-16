@@ -3,6 +3,7 @@ import { Result } from '../../utils/functional';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import { metricCal } from '../../utils/metrics';
 import HighCharts from 'highcharts';
+import T from '../misc/t';
 
 require('stylesheets/charts/dams-chart');
 
@@ -44,9 +45,14 @@ const DamsChart = React.createClass({
   },
 
   parseData(data, metrics) {
+    const titles = {
+      RESERVOIR_: this.props.titleReservoir,
+      DAM_HEIGHT: this.props.titleDamHeight,
+      ELEVATION_: this.props.titleElevation,
+    };
     return metrics.map((metric, index) => {
       return {
-        name: metric,
+        name: titles[metric],
         level: 'National',
         data: Object.keys(data).map(poly => {
           const f = metricCal[metric];
@@ -70,6 +76,11 @@ const DamsChart = React.createClass({
       if (DRILL_DOWN[level] === null) {
         return;
       }
+      const titles = {
+        RESERVOIR_: this.props.titleReservoir,
+        DAM_HEIGHT: this.props.titleDamHeight,
+        ELEVATION_: this.props.titleElevation,
+      };
       const nextLevel = DRILL_DOWN[level];
       const realName = levelName.replace(/_/g, ' ');
       const data = this.props.data.filter(item => item[level] === realName); // get the portion of data for the drill down
@@ -78,7 +89,7 @@ const DamsChart = React.createClass({
       const allSeries = {};
       metrics.forEach((metric) => {
         allSeries[metric] = {
-          name: metric,
+          name: titles[metric],
           level: realName,
           data: Object.keys(stats).map(poly => {
             const f = metricCal[metric];
@@ -100,6 +111,8 @@ const DamsChart = React.createClass({
           }
         });
         this.chart.applyDrilldown();
+      } else {
+        this.chart.addSeriesAsDrilldown(e.point, allSeries[currentMetric]);
       }
     }
   },
@@ -111,7 +124,6 @@ const DamsChart = React.createClass({
     const metrics = Object.keys(metricCal);
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
-    const titles = [this.props.titleReservoir, this.props.titleDamHeight, this.props.titleElevation];
     HighCharts.setOptions({
       lang: {
         drillUpText: '<< Back to {series.level}',
@@ -130,11 +142,7 @@ const DamsChart = React.createClass({
       colors: ['#2189b3', '#2597c5', '#31aee1'],
 
       title: {
-        text: this.props.titleReservoir,
-      },
-
-      subtitle: {
-        text: this.props.subtitle,
+        text: '',
       },
 
       xAxis: {
@@ -160,7 +168,6 @@ const DamsChart = React.createClass({
                   series[i].hide();
                 } else {
                   series[i].show();
-                  this.chart.setTitle({ text: titles[i]});
                 }
               }
               return false;
@@ -190,10 +197,8 @@ const DamsChart = React.createClass({
           <div className="row">
             <div className="mainChart">
               <div className="dams-chart">
-                {/*
                 <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
-                <p className="chart-helptext"><T k="chart.title-dams-status-helptext" /></p>
-               */}
+                <p className="chart-helptext"><T k="chart.subtitle-dams" /></p>
                 <div className="chart-container" id="dams-chart"></div>
               </div>
             </div>
