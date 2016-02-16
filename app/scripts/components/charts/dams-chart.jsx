@@ -33,8 +33,10 @@ const DamsChart = React.createClass({
   },
 
   componentWillUnmount() {
-    this.chart.destroy();
-    delete this.chart;
+    if (this.chart) {
+      this.chart.destroy();
+      delete this.chart;
+    }
   },
 
   getDrillDownId(metric, level, levelName) {

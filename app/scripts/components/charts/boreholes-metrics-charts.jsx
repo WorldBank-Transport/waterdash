@@ -24,8 +24,10 @@ const BoreholesMetricsChart = React.createClass({
   },
 
   componentWillUnmount() {
-    this.chart.destroy();
-    delete this.chart;
+    if (this.chart) {
+      this.chart.destroy();
+      delete this.chart;
+    }
   },
 
   getValue(data, region, metric) {
