@@ -19,7 +19,7 @@ import ViewStore from '../../stores/view';
 import { load } from '../../actions/data';
 import { select, deselect, mapDrillDown } from '../../actions/select';
 import { loadPolygons, clearPolygons } from '../../actions/polygons';
-import { clear, setInclude } from '../../actions/filters';
+import { clear, setInclude, clearFilter } from '../../actions/filters';
 import { toggleCharts, toggleFilters } from '../../actions/layout';
 import { boundsChange } from '../../actions/zoom';
 
@@ -168,7 +168,7 @@ const DashRoot = React.createClass({
           {/* Overlays that can cover the map: */}
           <Charts onToggle={toggleCharts} openClosed={this.state.layout.charts} {...propsForChildren} />
           <DrillDownViewer drillDown={this.state.drillDown}  {...propsForChildren} />
-          <SearchPanel clear={clear}
+          <SearchPanel clearFilter={clearFilter}
               setInclude={setInclude}
               {...propsForChildren} />
           <Filters

@@ -371,7 +371,7 @@ const allTranslations = {
     'search.button.dams': 'Search Dam',
     'search.button': 'Search',
     'search.clear': 'Clear',
-    'search.help': 'Type 3 leters to start search on any field',
+    'search.help': 'Type 3 letters to start the search on any field.',
     'search.invalid.filters': 'There are not valid filters, please check',
     'search.no.data': 'There is not data available for the current filters',
 
@@ -698,8 +698,8 @@ const allTranslations = {
     'drilldown.back': 'Rudi kwa mtazamo wa Taifa',
 
     'search.field.WATER_POINT_CODE': 'Nambari ya kituo cha maji',
-    'search.help-field.WATER_POINT_CODE': 'SEARCH WATER POINT',
-    'search.field.WATER_POINT_NAME': 'Water Point Name',
+    'search.help-field.WATER_POINT_CODE': 'CHUNGUZA KITUO CHA MAJI',
+    'search.field.WATER_POINT_NAME': 'Jina la kituo cha maji',
     'search.field.BOREHOLE_NO': 'Nambari ya kisima',
     'search.field.DAM_NAME': 'Jina la bwawa',
     'search.field.REGION': 'Mkoa',
@@ -709,7 +709,7 @@ const allTranslations = {
     'search.button.waterpoints': 'Chunguza kituo cha maji',
     'search.button.boreholes': 'Chunguza kisima',
     'search.button.dams': 'Chunguza bwawa',
-    'search.button': 'Search',
+    'search.button': 'Chunguza',
     'search.clear': 'Safisha',
     'search.help': 'Weka \'herufi\' 3 za kwanza ili kuchunguza zaidi',
     'search.invalid.filters': 'Hakuna kichujio sahihi. Rudia tena',
