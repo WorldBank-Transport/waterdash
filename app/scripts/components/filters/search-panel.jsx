@@ -10,9 +10,11 @@ import { Icon } from 'react-font-awesome';
 require('stylesheets/filters/search-panel');
 require('stylesheets/boilerplate/button');
 
+const allAutocomplete = {};
+
 const SearchPanel = React.createClass({
   propTypes: {
-    clear: PropTypes.func.isRequired,
+    clearFilter: PropTypes.func.isRequired,
     data: PropTypes.array,  // injected
     dataType: PropTypes.instanceOf(DataTypes.OptionClass),  // injected
     setInclude: PropTypes.func.isRequired,
@@ -26,7 +28,7 @@ const SearchPanel = React.createClass({
     };
   },
   close() {
-    this.props.clear();
+    Object.keys(this.state.filters).forEach(key => this.props.clearFilter(key));
     this.replaceState({
       ...this.state,
       open: false,
@@ -80,6 +82,19 @@ const SearchPanel = React.createClass({
       help: 'none',
     });
   },
+
+  clearSearch() {
+    this.replaceState({
+      ...this.state,
+      open: false,
+      filters: {},
+    });
+    setTimeout(() => this.replaceState({
+      ...this.state,
+      open: true,
+    }), 1);
+  },
+
   renderSearchFields() {
     const allField = getSearchField(this.props.dataType);
     return allField.map(key => {
@@ -129,7 +144,7 @@ const SearchPanel = React.createClass({
           <div className="button" onClick={this.search}>
             <T k="search.button" />
           </div>
-          <div className="button" onClick={this.props.clear}>
+          <div className="button" onClick={this.clearSearch}>
             <T k="search.clear" />
           </div>
         </div>
