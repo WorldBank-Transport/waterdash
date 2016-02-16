@@ -10,8 +10,6 @@ import { Icon } from 'react-font-awesome';
 require('stylesheets/filters/search-panel');
 require('stylesheets/boilerplate/button');
 
-const allAutocomplete = {};
-
 const SearchPanel = React.createClass({
   propTypes: {
     clearFilter: PropTypes.func.isRequired,
