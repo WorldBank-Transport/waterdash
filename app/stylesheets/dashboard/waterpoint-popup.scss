@@ -149,7 +149,7 @@
     .poor > .icon {
       background: $status-poor;
       font-size: $metric-icon-size * 0.9;
-      line-height: $popup-icon-line-height;
+      line-height: $popup-icon-line-height + 8;
     }
   }
   // popup header end
