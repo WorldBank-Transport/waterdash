@@ -82,6 +82,7 @@ const SearchPanel = React.createClass({
   },
 
   clearSearch() {
+    Object.keys(this.state.filters).forEach(key => this.props.clearFilter(key));
     this.replaceState({
       ...this.state,
       open: false,
