@@ -1,5 +1,5 @@
 import pick from 'lodash/object/pick';
-import { Maybe } from 'results';
+import { Maybe, _ } from 'results';
 import React, { PropTypes } from 'react';
 import { Map } from 'leaflet';
 
@@ -9,6 +9,8 @@ import ViewModes from '../../constants/view-modes';
 import ClusteredWaterpoints from '../leaflet/clustered-points';
 import ClusterLegend from './cluster-legend';
 import SimplePoints from '../leaflet/simple-points';
+import { Marker } from 'react-leaflet';
+import AsyncState from '../../constants/async';
 
 const PointsMap = React.createClass({
   propTypes: {
@@ -44,11 +46,25 @@ const PointsMap = React.createClass({
       Boreholes: () => (<div style={{display: 'none'}} />),
       Dams: () => (<SimplePoints {...propsForMaps}/>),
     });
+    const selectedPoint = Maybe.match(this.props.selected, {
+      None: () => (  // no popup selected, render nothing
+        <div style={{display: 'none'}}></div>
+      ),
+      Some: selected => {
+        return AsyncState.match(selected.loadState, {
+          Finished: () => Maybe.match(selected.details, {
+            Some: details => (<Marker map={this.props.map} position={details.position}/>),
+            [_]: () => (<div style={{display: 'none'}}></div>),
+          }),
+          [_]: () => (<div style={{display: 'none'}}></div>),
+        });
+      },
+    });
 
     return (
       <div>
         {mapPoints}
-
+        {selectedPoint}
         {/* A point popup, if a point is selected */}
         {popup}
         <ClusterLegend dataType={this.props.dataType}/>
