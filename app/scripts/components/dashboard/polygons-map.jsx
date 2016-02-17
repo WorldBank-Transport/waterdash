@@ -1,14 +1,13 @@
 import pick from 'lodash/object/pick';
 import { Maybe } from 'results';
 import React, { PropTypes } from 'react';
-import { Map } from 'leaflet';
+import { Map, LayerGroup, geoJson } from 'leaflet';
 import Popup from '../../components/dashboard/popup';
 
 import colours, { polygon as polyColour } from '../../utils/colours';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 
-import { GeoJson, FeatureGroup } from 'react-leaflet';
 import Legend from './legend';
 
 const PolygonsMap = React.createClass({
@@ -26,9 +25,26 @@ const PolygonsMap = React.createClass({
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
 
+  componentWillMount() {
+    this.layerGroup = new LayerGroup(); // create Layer
+  },
+
   shouldComponentUpdate(nextProps) {
     return this.props.polygonsData !== nextProps.polygonsData
       || this.props.selected !== nextProps.selected;
+  },
+
+  componentDidUpdate(nextProps) {
+    if (this.props.polygonsData !== nextProps.polygonsData) {
+      this.updateMap();
+    }
+  },
+
+  componentWillUnmount() {
+    if (this.layerGroup) {
+      this.layerGroup.clearLayers();
+      delete this.layerGroup;
+    }
   },
 
   handleClickFor(feature) {
@@ -61,35 +77,31 @@ const PolygonsMap = React.createClass({
       .unwrapOr(colours.unknown);
   },
 
-  renderFeature(feature) {
-    // prefix the key with the viewMode, since regions districts might have the same name
-    const key = `${this.props.viewMode.toParam()}-${feature.id}`;
-    const pathStyle = polyColour.normal(this.getFeatureColor(feature));
-    return (
-      <GeoJson
-          data={feature}
-          key={key}
-          map={this.props.map}
-          onLeafletClick={this.handleClickFor(feature)}
-          onLeafletMouseout={this.handleMouseoutFor(feature)}
-          onLeafletMouseover={this.handleMouseover(feature)}
-          {...pathStyle} />
-    );
-  },
-
   renderPopup() {
     const propsForPopup = pick(this.props,
       [ 'data', 'dataType', 'deselect', 'selected', 'viewMode']);
     return (<Popup {...propsForPopup}/>);
   },
 
+  onEachFeature(feature, layer) {
+    layer.on('click', this.handleClickFor(feature));
+    layer.on('mouseout', this.handleMouseoutFor(feature));
+    layer.on('mouseover', this.handleMouseover(feature));
+  },
+
+  updateMap() {
+    this.layerGroup.clearLayers();
+    const polygons = new geoJson(this.props.polygonsData, {
+      style: (feature) => polyColour.normal(this.getFeatureColor(feature)),
+      onEachFeature: this.onEachFeature,
+    });
+    this.layerGroup.addLayer(polygons);
+    this.props.map.addLayer(this.layerGroup);
+  },
+
   render() {
     return (
       <div>
-        <FeatureGroup map={this.props.map}>
-          {this.props.polygonsData.map(this.renderFeature)}
-        </FeatureGroup>
-
         {/* popup overlay for polygon */}
         {this.renderPopup()}
         <Legend dataType={this.props.dataType} ranges={this.props.ranges} />
