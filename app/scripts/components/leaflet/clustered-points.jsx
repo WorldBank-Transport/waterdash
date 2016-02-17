@@ -99,7 +99,7 @@ const ClusteredPoints = React.createClass({
       } else if (zoom < 14) {
         clusterSize = 1;
       } else {
-        clusterSize = .0000000000001; //decluster if zoom is greater than 13
+        clusterSize = 0.0000000000001; //decluster if zoom is greater than 13
       }
       this.pruneCluster.Cluster.Size = clusterSize;
       originalProcessView.apply(this.pruneCluster);
