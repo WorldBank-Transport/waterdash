@@ -6,6 +6,7 @@ import ViewModes from '../../constants/view-modes';
 import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import HighCharts from 'highcharts';
+import { filter, unfilter } from '../../actions/filters';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -111,6 +112,7 @@ const WaterpointStatusChart = React.createClass({
       }
       const nextLevel = DRILL_DOWN[level];
       const realName = levelName.replace(/_/g, ' ');
+      filter(level, realName);
       let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
       let statusList = Object.keys(STATUS);
       if (!e.points) { // drill down on the status
@@ -159,7 +161,7 @@ const WaterpointStatusChart = React.createClass({
   },
 
   drillup() {
-
+    unfilter();
   },
 
   getChart() {
