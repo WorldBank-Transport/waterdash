@@ -8,6 +8,7 @@ import {load} from '../../actions/population';
 import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
+import { filter, unfilter } from '../../actions/filters';
 
 require('stylesheets/charts/waterpoint-population-serve-chart');
 
@@ -62,7 +63,7 @@ const WaterpointPopulationServeChart = React.createClass({
         renderTo: 'container-2',
         events: {
           drilldown: this.drilldown,
-          //drillup: this.drillup,
+          drillup: this.drillup,
         },
       },
       colors: ['#1da3da'],
@@ -130,6 +131,11 @@ const WaterpointPopulationServeChart = React.createClass({
                         }).sort(comparator);
   },
 
+  drillup() {
+    unfilter();
+  },
+
+
   drilldown(e) {
     if (!e.seriesOptions) {
       const drilldownName = e.point.drilldown;
@@ -140,6 +146,7 @@ const WaterpointPopulationServeChart = React.createClass({
       this.chart.showLoading('Loading ...');
       const nextLevel = DRILL_DOWN[level];
       const realName = levelName.replace(/_/g, ' ');
+      filter(level, realName);
       let data = this.props.waterpoints.filter(item => item[level] === realName); // get the portion of data for the drill down
       const waterStats = Result.countBy(data, nextLevel);
       const population = this.state.population.filter(item => item[level] === realName);

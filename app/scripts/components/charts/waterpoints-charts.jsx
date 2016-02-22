@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'reflux';
 import DataTypes from '../../constants/data-types';
 import ViewModes from '../../constants/view-modes';
 import OpenClosed from  '../../constants/open-closed';
@@ -8,6 +9,7 @@ import TotalServedPopulationChart from './total-served-population-chart';
 import WaterpointPopulationServeChart from './waterpoint-population-serve-chart';
 import * as func from '../../utils/functional';
 import WaterpointPieChart from './waterpoint-pie-chart';
+import PieChartDataStore from '../../stores/pie-chart';
 
 require('stylesheets/charts/charts');
 
@@ -19,6 +21,10 @@ const WaterpointsChart = React.createClass({
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass), // injected
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),  // injected
   },
+
+  mixins: [
+    connect(PieChartDataStore, 'pieChartData'),
+  ],
 
   getAggregatedValues(field, filter) {
     const data = func.Result.countBy(this.props.data, field);
@@ -58,13 +64,13 @@ const WaterpointsChart = React.createClass({
           </div>
           <div className="col-all">
             <div className="row-chart-left">
-              <WaterpointPieChart column="WATER_QUALITY" data={this.props.data} id= "container-pie-1" />
+              <WaterpointPieChart column="WATER_QUALITY" data={this.state.pieChartData} id= "container-pie-1" />
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart column="WATER_QUANTITY" data={this.props.data} id= "container-pie-2" />
+              <WaterpointPieChart column="WATER_QUANTITY" data={this.state.pieChartData} id= "container-pie-2" />
             </div>
             <div className="row-chart-left">
-              <WaterpointPieChart column="SOURCE_TYPE" data={this.props.data} id= "container-pie-3" />
+              <WaterpointPieChart column="SOURCE_TYPE" data={this.state.pieChartData} id= "container-pie-3" />
             </div>
           </div>
         </div>

@@ -16,7 +16,11 @@ const WaterpointPieChart = React.createClass({
   mixins: [ShouldRenderMixin],
 
   componentDidMount() {
-    this.getChart();
+    this.getChart(this.props.data);
+  },
+
+  componentWillUpdate(nextProps) {
+    this.getChart(nextProps.data);
   },
 
   componentWillUnmount() {
@@ -40,9 +44,9 @@ const WaterpointPieChart = React.createClass({
     return seriedata;
   },
 
-  getChart() {
+  getChart(data) {
     // needs translations
-    const data = Result.countBy(this.props.data, this.props.column);
+    const stats = Result.countBy(data, this.props.column);
     this.chart = new HighCharts.Chart({
       chart: {
         renderTo: this.props.id,
@@ -69,7 +73,7 @@ const WaterpointPieChart = React.createClass({
           showInLegend: true,
         },
       },
-      series: [this.parseData(data)],
+      series: [this.parseData(stats)],
     });
     return this.chart;
   },
