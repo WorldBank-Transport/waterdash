@@ -457,7 +457,7 @@ const allTranslations = {
     'chart.functional-waterpoints.x-axis-WARD': 'Kata',
     'chart.functional-waterpoints.y-axis': '%',
     'chart.status-waterpoints.title': 'Hali ya Kituo cha maji',
-    'chart.title-waterpoints-status-helptext': ' kujifunza Zaidi kuhusu chanzo cha data. ', 
+    'chart.title-waterpoints-status-helptext': ' kujifunza Zaidi kuhusu chanzo cha data. ',
     'chart.title-waterpoints-drill-down.help': 'Au, bonyeza kwenye rangi iliyopo kwa chati kuona aina ya vituo vya maji vinavyolingana. ',
     'chart.status-waterpoints.x-axis-REGION': 'Mikoa',
     'chart.status-waterpoints.x-axis-DISTRICT': 'Wilaya',
