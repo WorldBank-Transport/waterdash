@@ -7,6 +7,7 @@ import { getNumberOr0 } from '../../utils/number';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import HighCharts from 'highcharts';
 import { filter, unfilter } from '../../actions/filters';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/waterpoints-status-chart');
 
@@ -240,7 +241,10 @@ const WaterpointStatusChart = React.createClass({
     return (
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /></h3>
-        <p className="chart-helptext"><T k="chart.title-waterpoints-status-helptext" /><T k="chart.doubleClick.help" /></p>
+        <p className="chart-helptext">
+          <ChartDataLink dataId="a94b3653-55f4-4455-9bed-42b92d5c4370" />
+          <T k="chart.doubleClick.help" />
+          <T k="chart.title-waterpoints-drill-down.help"/></p>
         <div className="chart-container" id="waterpoints-status-chart"></div>
       </div>
     );

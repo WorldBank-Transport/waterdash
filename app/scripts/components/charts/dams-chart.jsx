@@ -4,6 +4,7 @@ import ShouldRenderMixin from '../../utils/should-render-mixin';
 import { metricCal } from '../../utils/metrics';
 import HighCharts from 'highcharts';
 import T from '../misc/t';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/dams-chart');
 
@@ -198,7 +199,7 @@ const DamsChart = React.createClass({
             <div className="mainChart">
               <div className="dams-chart">
                 <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
-                <p className="chart-helptext"><T k="chart.subtitle-dams" /></p>
+                <p className="chart-helptext"><ChartDataLink dataId="5da4eb70-47a0-4694-b735-397bb3732b99" /><T k="chart.subtitle-dams" /></p>
                 <div className="chart-container" id="dams-chart"></div>
               </div>
             </div>
