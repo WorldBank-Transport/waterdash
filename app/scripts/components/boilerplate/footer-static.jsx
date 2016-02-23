@@ -12,7 +12,9 @@ const FooterStatic = React.createClass({
         <div className="footer-nav">
           <OpenDataNav />
         </div>
-        <p className="copy"><T k="footer.copy" /></p>
+        <a href="http://www.gnu.org/licenses/gpl-3.0.en.html">
+          <p className="copy"><T k="footer.copy" /></p>
+        </a>
       </div>
     );
   },
