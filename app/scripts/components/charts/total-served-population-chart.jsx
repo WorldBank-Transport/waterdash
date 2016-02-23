@@ -8,6 +8,7 @@ import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 import HighCharts from 'highcharts';
 import colours from '../../utils/colours';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/total-served-population-chart');
 
@@ -116,7 +117,7 @@ const TotalServedPulationChart = React.createClass({
     return (
       <div className="total-servedpopulation-chart">
         <h3><T k="chart.waterpoint-total-servedpopulation" /></h3>
-        <p className="chart-helptext"><T k="chart.waterpoint-total-servedpopulation-helptext" /></p>
+        <p className="chart-helptext"><ChartDataLink dataId="c267883f-ffcf-4f9c-a7f1-887451236134" /></p>
         <div className="chart-container" id="container-1"></div>
       </div>);
   },

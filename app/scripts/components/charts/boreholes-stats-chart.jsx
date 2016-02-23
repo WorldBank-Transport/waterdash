@@ -3,6 +3,7 @@ import { Result } from '../../utils/functional';
 import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import HighCharts from 'highcharts';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/boreholes-stats-chart');
 
@@ -106,7 +107,10 @@ const BoreholesStatsChart = React.createClass({
     return (
       <div className="boreholes-stats-chart">
         <h3><T k="chart.title-boreholes-stats" /></h3>
-        <p className="chart-helptext"><T k="chart.title-boreholes-stats-helptext" /></p>
+        <p className="chart-helptext">
+          <ChartDataLink dataId="c9843a61-eca6-47bb-971d-70bf9c0fe942" />
+          <T k="chart.title-boreholes-stats-helptext" />
+        </p>
         <div className="chart-container" id="boreholes-time"></div>
       </div>
     );

@@ -3,6 +3,7 @@ import { Result } from '../../utils/functional';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import T from '../misc/t';
 import HighCharts from 'highcharts';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/waterpoint-pie-chart');
 
@@ -82,6 +83,7 @@ const WaterpointPieChart = React.createClass({
     return (
       <div className="waterpoint-pie-chart">
       <h3><T k={`chart.pie.${this.props.column}`} /></h3>
+      <p className="chart-helptext"><ChartDataLink dataId="c267883f-ffcf-4f9c-a7f1-887451236134" /></p>
         <div className="chart-container" id={this.props.id}></div>
       </div>
     );

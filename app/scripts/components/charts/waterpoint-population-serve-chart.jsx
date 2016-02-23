@@ -9,6 +9,7 @@ import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
 import ViewModes from '../../constants/view-modes';
 import { filter, unfilter } from '../../actions/filters';
+import ChartDataLink from '../boilerplate/chart-data-link';
 
 require('stylesheets/charts/waterpoint-population-serve-chart');
 
@@ -182,7 +183,10 @@ const WaterpointPopulationServeChart = React.createClass({
     return (
       <div className="waterpoint-population-serve-chart">
         <h3><T k="chart.title-population-served" /></h3>
-        <p className="chart-helptext"><T k="chart.title-title-population-served-helptext" /> <T k="chart.doubleClick.help" /></p>
+        <p className="chart-helptext">
+          <ChartDataLink dataId="a94b3653-55f4-4455-9bed-42b92d5c4370" />
+          <T k="chart.title-title-population-served-helptext" />
+        </p>
         <div className="chart-container " id="container-2">
         </div>
       </div>);
