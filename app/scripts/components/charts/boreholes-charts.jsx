@@ -43,6 +43,15 @@ const BoreholesCharts = React.createClass({
     };
   },
 
+  renderMainChart() {
+    if (this.props.data.length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length === 1)) {
+      return false;
+    }
+    return (<div className="mainChart">
+              <BoreholesStatsChart boreholes={this.props.data} years={this.state.years}/>
+            </div>);
+  },
+
   renderMetricCharts() {
     if (this.props.data.length === 0 || (Object.keys(this.state.years).filter(year => this.state.years[year]).length !== 1)) {
       return false;
@@ -72,9 +81,7 @@ const BoreholesCharts = React.createClass({
       <div className="container borehole-chart-container">
         <div className="secondaryCharts">
           <div className="row">
-            <div className="mainChart">
-              <BoreholesStatsChart boreholes={this.props.data} years={this.state.years}/>
-            </div>
+            {this.renderMainChart()}
             {this.renderMetricCharts()}
           </div>
           <div className="row">
