@@ -23,6 +23,12 @@ const OpenDataNav = React.createClass({
             <T k="nav.speak-out" />
           </Link>
         </li>
+        <li>
+          <a href="http://elimu.takwimu.org" target="_blank"><T k="nav.edudash" /></a>
+        </li>
+        <li>
+            <a href="http://afya.takwimu.org" target="_blank"><T k="nav.healthdash" /></a>
+        </li>
       </ul>
     );
   },

@@ -20,6 +20,9 @@ const allTranslations = {
     'nav.home': 'Home',
     'nav.data': 'Data',
     'nav.speak-out': 'Speak Out',
+    'nav.edudash': 'Education Dashboard',
+    'nav.healthdash': 'Health Dashboard',
+
 
     'static.data-title': 'Explore the data behind the dashboard.',
     'static.data-content': 'This Water Dashboard was built on open data release by the government of Tanzania. The raw data is published on the Government\'s open data portal in machine-readable format with a license that encourages re-use. The data behind this education dashboard comes from Ministry of Water and the National Bureau of Statistics of Tanzania.',
