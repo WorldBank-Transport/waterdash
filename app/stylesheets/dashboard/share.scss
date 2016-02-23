@@ -49,50 +49,70 @@
     z-index: 10001;
   }
 
+  .copy-url {
+    color: $text-inverse;
+    cursor: copy;
+    float: right;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 8px;
+    vertical-align: middle; 
+  }
+
   .share-wrapper {
     margin-left: $share-icon-space * 2;
     margin-top: $base-unit * 2;
+    input {
+     background-color: $text-inverse;
+     border: 1px solid $theme-blue;
+     float: left;
+     font-size: 10px;
+     height: 18px;
+     margin-bottom: 5px;
+     outline: none;
+     width: 85%;
+   }
 
-    ul {
-      @include list-unstyled();
+  ul {
+    @include list-unstyled();
+    display: block;
+    overflow: hidden;
+    width: $full-width;
+
+    li {
+      @include transparency(1);
+      color: $text-inverse;
       display: block;
-      overflow: hidden;
-      width: $full-width;
+      float: left;
+      font-size: $small-text + 2;
+      line-height: $small-text + 5;
+      margin-right: $share-icon-space + 5;
+      padding-left: $share-icon-space;
+      text-align: center;
 
-      li {
-        @include transparency(1);
-        color: $text-inverse;
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        @include transparency(0.8);
+      }
+
+      .fa {
+        color: $bg-color;
         display: block;
         float: left;
-        font-size: $small-text + 2;
-        line-height: $small-text + 5;
-        margin-right: $share-icon-space + 5;
-        padding-left: $share-icon-space;
-        text-align: center;
+        font-size: $share-icon-size;
+        margin-bottom: $share-icon-space;
+        margin-right: 5px;
 
-        &:last-child {
-          margin-right: 0;
-        }
-
-        &:hover {
-          @include transparency(0.8);
-        }
-
-        .fa {
-          color: $bg-color;
-          display: block;
-          float: left;
-          font-size: $share-icon-size;
-          margin-bottom: $share-icon-space;
-          margin-right: 5px;
-
-          &.fa-file-pdf-o {
-            font-size: $pdf-icon-size;
-            height: $share-icon-size / 2;
-            margin-bottom: $share-icon-space * 2;
-          }
+        &.fa-file-pdf-o {
+          font-size: $pdf-icon-size;
+          height: $share-icon-size / 2;
+          margin-bottom: $share-icon-space * 2;
         }
       }
     }
   }
+}
 }

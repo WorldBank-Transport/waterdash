@@ -5,6 +5,7 @@ import OpenClosed from '../../constants/open-closed';
 import { Icon } from 'react-font-awesome';
 import { share } from '../../actions/share';
 import ShareStore from '../../stores/share';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 require('stylesheets/dashboard/share');
 
@@ -49,6 +50,9 @@ const Share = React.createClass({
                     <li className="print"><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
                   <input style={{'display': this.state.share ? 'block' : 'none'}} value={this.state.share} />
+                  <CopyToClipboard style={{'display': this.state.share ? 'block' : 'none'}} text={this.state.share}>
+                    <span className="copy-url">Copy</span>
+                  </CopyToClipboard>
                 </div>
               </div>),
             Closed: () => <div style={{display: 'none'}}></div>,
