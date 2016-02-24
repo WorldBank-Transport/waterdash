@@ -1,3 +1,6 @@
 npm-debug.log
 node_modules/*
 dist/
+/slackHookURL-1.txt
+/.directory
+*.tar.gz
