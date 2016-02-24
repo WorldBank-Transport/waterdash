@@ -99,8 +99,8 @@ const SelectedStore = createStore({
       },
     });
     if (shouldUpdate) {
-      this.setData(Some(id));
       this.selectRoute(id);
+      this.setData(Some(id));
     }
   },
 
