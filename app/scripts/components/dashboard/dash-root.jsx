@@ -164,8 +164,8 @@ const DashRoot = React.createClass({
               bounds={this.state.view.mapBounds}
               className="leaflet-map"
               dataType={this.state.data.dataType}
-              onLeafletZoomstart={this.zoomStart}
-              onLeafletMoveend={this.zoomChange}>
+              onLeafletMoveend={this.zoomChange}
+              onLeafletZoomstart={this.zoomStart}>
             <TileLayer url="//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {mapChild}
           </BoundsMap>
