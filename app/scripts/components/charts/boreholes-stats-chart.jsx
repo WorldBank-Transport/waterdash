@@ -33,24 +33,22 @@ const BoreholesStatsChart = React.createClass({
   },
 
   parseData(metrics, data) {
-    return metrics.map(key => {
-      return {
-        name: key,
-        data: Object.keys(data)
-          .filter(year => data[year])
-          .map(year => {
-            return {
-              name: year,
-              y: data[year].reduce((res, metric) => {
-                if (metric[key]) {
-                  res.value = metric[key];
-                }
-                return res;
-              }, {value: 0}).value,
-            };
-          }),
-      };
-    });
+    return metrics.map(key => ({
+      name: key.replace(/_/g, ' '),
+      data: Object.keys(data)
+        .filter(year => data[year])
+        .map(year => {
+          return {
+            name: year,
+            y: data[year].reduce((res, metric) => {
+              if (metric[key]) {
+                res.value = metric[key];
+              }
+              return res;
+            }, {value: 0}).value,
+          };
+        }),
+    }));
   },
 
   getChart() {
