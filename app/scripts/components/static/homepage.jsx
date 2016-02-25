@@ -12,7 +12,7 @@ const Homepage = React.createClass({
       <div className="home-page">
         <div className="homebanner">
           <TChildProps>
-            <img title={{k: 'site-name'}} alt={{k: 'site-name'}} src="images/home-img.png"/>
+            <img alt={{k: 'site-name'}} src="images/home-img.png" title={{k: 'site-name'}}/>
           </TChildProps>
         </div>
         <div className="homecontent">
