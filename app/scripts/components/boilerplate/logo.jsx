@@ -11,7 +11,7 @@ const Logo = React.createClass({
       <div className="logo">
         <Link to="/">
           <TChildProps>
-            <img alt={{k: 'site.flag'}} src="images/tz-flag.png"/>
+            <img title={{k: 'site.flag'}} alt={{k: 'site.flag'}} src="images/tz-flag.png"/>
           </TChildProps>
         </Link>
         <h1>
