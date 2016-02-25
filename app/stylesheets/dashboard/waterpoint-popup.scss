@@ -145,6 +145,9 @@
     }
     .medium > .icon {
       background: $status-medium;
+      font-size: $metric-icon-size;
+      font-weight: bold;
+      line-height: $popup-icon-line-height;
     }
     .poor > .icon {
       background: $status-poor;
