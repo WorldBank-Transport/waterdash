@@ -43,7 +43,7 @@
           > span {
             font-size: $popup-default-text;
             font-weight: $title-weight;
-            margin-right: $popup-space;            
+            margin-right: $popup-space;
           }
         }
       }
@@ -145,11 +145,15 @@
     }
     .medium > .icon {
       background: $status-medium;
+      font-size: $metric-icon-size;
+      font-weight: bold;
+      line-height: $popup-icon-line-height;
     }
     .poor > .icon {
       background: $status-poor;
-      font-size: $metric-icon-size * 0.9;
-      line-height: $popup-icon-line-height + 8;
+      font-size: $metric-icon-size;
+      font-weight: bold;
+      line-height: $popup-icon-line-height + 5;
     }
   }
   // popup header end
