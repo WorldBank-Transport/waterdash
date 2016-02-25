@@ -1,5 +1,6 @@
 @import '../config/colours';
 @import '../config/dimensions';
+@import '../config/type';
 
 .dash-layout {
 
@@ -25,6 +26,7 @@
 
       &.leaflet-container {
         background: $map-bg;  // override leaflet's setting
+        font-family: $default-font;
       }
     }
     .charts {
