@@ -172,12 +172,6 @@ const WaterpointStatusChart = React.createClass({
     const data = func.Result.countByGroupBy(this.props.waterpoints, 'STATUS', 'REGION');
     const regions = this.getRegionsOrderByFunctional(data);
     const stats = this.parseData(data, regions);
-    //const drilldown = this.getDrilldown(data, regions);
-    HighCharts.setOptions({
-      lang: {
-        drillUpText: '<< Back to {series.level}',
-      },
-    });
     this.chart = new HighCharts.Chart({
       chart: {
         height: 360,
@@ -202,7 +196,7 @@ const WaterpointStatusChart = React.createClass({
         pointFormat: '<li>' +
             '<spam class="metric-title">{series.name}:</spam>' +
             '<div class="waterpoint-tooltip-stat-wrapper">' +
-              '<span class="number">{point.y}</span> of <span class="number">{point.total}</span>' +
+              '<span class="number">{point.y:,.0f}</span> of <span class="number">{point.total:,.0f}</span>' +
             '</div>' +
           '</li>',
         footerFormat: '</ul></div>',

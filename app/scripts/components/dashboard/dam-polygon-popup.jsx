@@ -4,6 +4,7 @@ import ViewModes from '../../constants/view-modes';
 import * as func from '../../utils/functional';
 import * as m from '../../utils/metrics';
 import { getNumberOr0 } from '../../utils/number';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/dashboard/dam-popup');
 
@@ -24,6 +25,8 @@ const DamPolygonPopup = React.createClass({
     data: PropTypes.array.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
+
+  mixins: [IntlMixin],
 
   getTopBasin() {
     const data = func.Result.countBy(this.props.data, 'BASIN');
@@ -60,7 +63,7 @@ const DamPolygonPopup = React.createClass({
       return (
         <div className="popup-col-third">
           <h3><T k={metrics[metric].title} /></h3>
-          <span className="popup-stat polygon-stat">{value.toFixed(2)} <span className="metric-unit">{getDamsMetricUnit(metric)}</span></span>
+          <span className="popup-stat polygon-stat"><FormattedNumber maximumFractionDigits="2" minimumFractionDigits="2" value={value} /> <span className="metric-unit">{getDamsMetricUnit(metric)}</span></span>
         </div>
         );
     });
@@ -78,7 +81,7 @@ const DamPolygonPopup = React.createClass({
         <div className="row bordered">
           <h3><T k="popup.dams-poly.quantity" /></h3>
           <div className="popup-stat-container">
-            <span className="big-number">{this.props.data.length}</span>
+            <span className="big-number"><FormattedNumber value={this.props.data.length} /></span>
             <span className="stat-symbol dam-big">
               <img src="images/dams.png"/>
             </span>

@@ -3,6 +3,7 @@ import YearSelector from '../dashboard/year-selector';
 import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
 import ShouldRenderMixin from '../../utils/should-render-mixin';
+import {FormattedNumber} from 'react-intl';
 
 require('stylesheets/charts/borehole-overview-bar');
 
@@ -19,7 +20,7 @@ const BoreholeOverviewBar = React.createClass({
       <div className="metric-status boreholes">
         <div className="content">
           <div className="big-number">
-            <span className="number"><div className="icon"><img src="images/borehole.png"/></div>{this.props.data.length}</span>
+            <span className="number"><div className="icon"><img src="images/borehole.png"/></div><FormattedNumber value={this.props.data.length} /></span>
           </div>
           <div className="context">
             <T k="chart.title.number-boreholes" />

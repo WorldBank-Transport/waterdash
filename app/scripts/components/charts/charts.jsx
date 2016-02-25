@@ -25,6 +25,12 @@ const Charts = React.createClass({
   },
 
   render() {
+    HighCharts.setOptions({
+      lang: {
+        drillUpText: '<< Back to {series.level}',
+        thousandsSep: ',',
+      },
+    });
     return OpenClosed.match(this.props.openClosed, {
       Open: () => (
         <div className="charts">

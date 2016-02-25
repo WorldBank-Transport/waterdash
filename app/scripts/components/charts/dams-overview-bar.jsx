@@ -4,6 +4,7 @@ import OpenClosed from '../../constants/open-closed';
 import T from '../misc/t';
 import * as m from '../../utils/metrics';
 import { getNumberOr0 } from '../../utils/number';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/charts/dams-overview-bar');
 
@@ -24,6 +25,8 @@ const DamsOverviewBar = React.createClass({
     openClosed: PropTypes.instanceOf(OpenClosed.OptionClass),
   },
 
+  mixins: [IntlMixin],
+
   renderMetrics(metrics) {
     return Object.keys(metrics).map(metric => {
       const f = m.getDamsMetricCalc(metric);
@@ -35,7 +38,8 @@ const DamsOverviewBar = React.createClass({
             <img className="dams-dr" src="images/dams.png"/>
 
             <span className="number">
-              {value.toFixed(2)} <span className="unit">{getDamsMetricUnit(metric)}</span></span>
+              <FormattedNumber maximumFractionDigits="2" value={value}/>
+              <span className="unit">{getDamsMetricUnit(metric)}</span></span>
             </div>
             <div className="context">
               <T k={metrics[metric].title} />

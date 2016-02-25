@@ -125,11 +125,6 @@ const DamsChart = React.createClass({
     const metrics = Object.keys(metricCal);
     const dataRes = Result.sumByGroupBy(this.props.data, 'REGION', metrics);
     const stats = this.parseData(dataRes, metrics);
-    HighCharts.setOptions({
-      lang: {
-        drillUpText: '<< Back to {series.level}',
-      },
-    });
     this.chart = new HighCharts.Chart({
       chart: {
         height: 360,
@@ -153,7 +148,7 @@ const DamsChart = React.createClass({
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+        '<td style="padding:0"><b>{point.y:,.0f}</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true,
