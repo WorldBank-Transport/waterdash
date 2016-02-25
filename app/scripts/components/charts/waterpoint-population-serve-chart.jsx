@@ -52,11 +52,6 @@ const WaterpointPopulationServeChart = React.createClass({
     if (this.props.waterpoints.length === 0) {
       return false;
     }
-    HighCharts.setOptions({
-      lang: {
-        drillUpText: '<< Back to {series.level}',
-      },
-    });
     const data = this.parseData();
     this.chart = new HighCharts.Chart({
       chart: {
@@ -84,19 +79,18 @@ const WaterpointPopulationServeChart = React.createClass({
           borderWidth: 0,
           dataLabels: {
             enabled: true,
-            format: '{point.y:.0f}',
+            format: '{point.y:,.0f}',
           },
         },
       },
 
       tooltip: {
         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b><br/>',
+        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:,.0f}</b><br/>',
       },
 
       series: [{
         name: 'National',
-        colorByPoint: true,
         data: data,
       }],
 
