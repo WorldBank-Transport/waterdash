@@ -1,5 +1,6 @@
 import React,  { PropTypes } from 'react';
 import T from '../misc/t';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/dashboard/waterpoint-popup');
 
@@ -8,6 +9,8 @@ const WaterpointPopup = React.createClass({
   propTypes: {
     waterpoint: PropTypes.object.require,
   },
+
+  mixins: [IntlMixin],
 
   getIcon() {
     let className, iconSymbol;
@@ -44,7 +47,7 @@ const WaterpointPopup = React.createClass({
         <div className="row population-ratio">
             <h3><T k="popup.waterpoint.population-served" /></h3>
             <div className="popup-stat-container">
-              <span className="big-number">{population}</span>
+              <span className="big-number"><FormattedNumber value={population}/></span>
               <span className="stat-symbol population-big">
                 <img src="images/population-icon.png"/>
               </span>

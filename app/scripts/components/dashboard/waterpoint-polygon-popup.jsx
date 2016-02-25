@@ -6,6 +6,7 @@ import PopulationStore from '../../stores/population';
 import * as func from '../../utils/functional';
 import MetricStatus from '../charts/metric-status';
 import {load} from '../../actions/population';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/dashboard/waterpoint-popup');
 
@@ -17,6 +18,7 @@ const WaterpointPolygonPopup = React.createClass({
   },
   mixins: [
     connect(PopulationStore, 'population'),
+    IntlMixin,
   ],
 
   componentWillMount() {
@@ -26,7 +28,7 @@ const WaterpointPolygonPopup = React.createClass({
   getRatio(polyType, polyName) {
     const popAgg = func.Result.sumByGroupBy(this.state.population, polyType, ['TOTAL']);
     const popPoly = popAgg[polyName] || [{TOTAL: 0}];
-    return (popPoly[0].TOTAL / this.props.data.length).toFixed(2);
+    return (popPoly[0].TOTAL / this.props.data.length);
   },
 
   getTopProblem() {
@@ -59,7 +61,7 @@ const WaterpointPolygonPopup = React.createClass({
         <h3><T k="popup.waterpoint-poly.population-waterpoint-ratio" /></h3>
         <div className="popup-stat-container">
           <span className="big-number">
-            {pwRatio}
+            <FormattedNumber maximumFractionDigits="2" minimumFractionDigits="2" value={pwRatio} />
           </span>
           <span className="stat-symbol population-big">
             <img src="images/population-icon.png"/>
@@ -80,7 +82,7 @@ const WaterpointPolygonPopup = React.createClass({
 
       <div className="row">
         <h3 className="left"><span className="fa fa-tint"></span><T k="popup.waterpoint-poly.waterpoints" /></h3>
-        <span className="popup-stat left">{this.props.data.length}</span>
+        <span className="popup-stat left"><FormattedNumber value={this.props.data.length}/></span>
       </div>
       <div className="row">
         <h3 className="left"><span className="fa fa-wrench"></span><T k="popup.waterpoint-poly.top-problem" /></h3>

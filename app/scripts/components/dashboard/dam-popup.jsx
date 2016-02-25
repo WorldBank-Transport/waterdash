@@ -1,5 +1,6 @@
 import React,  { PropTypes } from 'react';
 import T from '../misc/t';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/dashboard/dam-popup');
 
@@ -8,6 +9,8 @@ const DamPopup = React.createClass({
   propTypes: {
     dam: PropTypes.object.require,
   },
+
+  mixins: [IntlMixin],
 
   render() {
     return (
@@ -20,18 +23,18 @@ const DamPopup = React.createClass({
         <div className="row bordered">
           <div className="popup-col">
             <h3><img className="dam-popup-icon small" src="images/dams-blue.png"/><T k="popup.dam.elevation" /></h3>
-            <span className="popup-stat">{this.props.dam.ELEVATION_}</span>
+            <span className="popup-stat"><FormattedNumber value={this.props.dam.ELEVATION_} /></span>
           </div>
           <div className="popup-col">
             <h3><img className="dam-popup-icon small" src="images/dams-blue.png"/><T k="popup.dam.height" /></h3>
-            <span className="popup-stat">{this.props.dam.DAM_HEIGHT}</span>
+            <span className="popup-stat"><FormattedNumber value={this.props.dam.DAM_HEIGHT} /></span>
           </div>
         </div>
 
         <div className="row bordered">
           <div className="popup-col">
             <h3><span className="fa fa-tint"></span><T k="popup.dam.reservoir" /></h3>
-            <span className="popup-stat">{this.props.dam.RESERVOIR_}</span>
+            <span className="popup-stat"><FormattedNumber value={this.props.dam.RESERVOIR_} /></span>
           </div>
           <div className="popup-col">
             <h3><span className="fa fa-dot-circle-o"></span><T k="popup.dam.position" /></h3>

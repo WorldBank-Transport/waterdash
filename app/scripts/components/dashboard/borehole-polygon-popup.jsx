@@ -4,6 +4,7 @@ import * as func from '../../utils/functional';
 import ViewModes from '../../constants/view-modes';
 import * as m from '../../utils/metrics';
 import { getNumberOr0 } from '../../utils/number';
+import {FormattedNumber, IntlMixin} from 'react-intl';
 
 require('stylesheets/dashboard/borehole-popup');
 
@@ -13,6 +14,8 @@ const BoreholePolygonPopup = React.createClass({
     data: PropTypes.array.isRequired,
     viewMode: PropTypes.instanceOf(ViewModes.OptionClass),
   },
+
+  mixins: [IntlMixin],
 
   metricSummary() {
     const metrics = {
@@ -27,7 +30,7 @@ const BoreholePolygonPopup = React.createClass({
       const f = m.boreholesMetricCal[key];
       return (<div className="popup-col">
             <h3><T k={`popup.borehole.${key}`} /></h3>
-            <span className="popup-stat">{f(getNumberOr0(metrics[key][key]), metrics[key].total).toFixed(2)}</span>
+            <span className="popup-stat"><FormattedNumber maximumFractionDigits="2" minimumFractionDigits="2" value={f(getNumberOr0(metrics[key][key]), metrics[key].total)} /></span>
         </div>);
     });
   },
@@ -43,7 +46,7 @@ const BoreholePolygonPopup = React.createClass({
         <div className="row">
             <h3><T k="popup.borehole.quantity" /></h3>
             <div className="popup-stat-container">
-              <span className="big-number">{this.props.data.length}</span>
+              <span className="big-number"><FormattedNumber value={this.props.data.length}/></span>
               <span className="stat-symbol borehole-big">
                 <img src="images/borehole.png"/>
               </span>
