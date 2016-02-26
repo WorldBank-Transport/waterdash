@@ -19,12 +19,11 @@
 
   .row {
     box-sizing: border-box;
-    display: table;
+    display: flex;
     position: relative;
-    table-layout: fixed;
     width: 100%;
 
-    span {
+    .legend-text {
       position: absolute;
       top: 40%;
     }
