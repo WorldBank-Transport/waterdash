@@ -31,7 +31,7 @@ const BoreholesMetricsChart = React.createClass({
     return metrics.map(metric => {
       const f = m.boreholesMetricCal[metric];
       return {
-        name: metric,
+        name: metric.replace(/_/g, ' '),
         data: Object.keys(data)
                 .filter(k => k !== 'total')
                 .map(region => {
