@@ -1,5 +1,5 @@
 import React from 'react';
-import OpenDataNav from './open-data-nav';
+import OpenDataNav from './open-data-nav-header';
 import LanguageSelector from './language-selector';
 import Logo from './logo';
 
