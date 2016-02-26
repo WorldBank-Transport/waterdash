@@ -21,8 +21,9 @@
   .copy {
     display: inline-block;
     float: right;
-    font-size: $footer-text;
-    margin-top: $footer-text-top-position;
+    font-size: $footer-copy;
+    line-height: 110%;
+    margin-top: $footer-text-top-position + 2;
     text-align: right;
     width: $copy-width-large;
 
