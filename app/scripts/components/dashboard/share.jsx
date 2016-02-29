@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'reflux';
 import T from '../misc/t';
 import OpenClosed from '../../constants/open-closed';
@@ -46,7 +47,7 @@ const Share = React.createClass({
                 <div className="share-wrapper">
                   <ul>
                     <li className="share" onClick={share}><Icon type={`link`}/><T k="share.share" /></li>
-                    <li className="feedback"><Icon type={`comments-o`}/><T k="share.feedback" /></li>
+                    <li className="feedback"><Link to="/speak-out/"><Icon type={`comments-o`}/><T k="share.feedback" /></Link></li>
                     <li className="print"><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
                   <input style={{'display': this.state.share ? 'block' : 'none'}} value={this.state.share} />
