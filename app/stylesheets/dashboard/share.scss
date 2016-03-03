@@ -90,6 +90,10 @@
       padding-left: $share-icon-space;
       text-align: center;
 
+      > a {
+        color: $text-inverse;
+      }
+
       &:last-child {
         margin-right: 0;
       }
