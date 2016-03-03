@@ -191,3 +191,6 @@ export const getShare = (shareId) =>
 
 export const urlShortener = (url) =>
   securityApi.post(GOOGLE_API, URL_SHORTENER, {longUrl: url});
+
+export const postMap2Pdf = (body) =>
+  securityApi.postAndGetFile(SECURITY_API_ROOT, 'pdf', body);
