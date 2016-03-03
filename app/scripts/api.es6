@@ -4,8 +4,9 @@ import ckan from './utils/api/ckan';
 import * as staticData from './utils/api/static-data';
 import securityApi from './utils/api/security-api';
 
-const API_ROOT = '//data.takwimu.org/api';
+// const API_ROOT = '//data.takwimu.org/api';
 const SECURITY_API_ROOT = '//api.takwimu.org/';
+const SECURITY_API_ROOT = '//localhost:9080/';
 const GOOGLE_API = 'https://www.googleapis.com/';
 const URL_SHORTENER = 'urlshortener/v1/url';
 
@@ -191,3 +192,6 @@ export const getShare = (shareId) =>
 
 export const urlShortener = (url) =>
   securityApi.post(GOOGLE_API, URL_SHORTENER, {longUrl: url});
+
+export const postMap2Pdf = (body) =>
+  securityApi.postAndGetFile(SECURITY_API_ROOT, 'pdf', body);

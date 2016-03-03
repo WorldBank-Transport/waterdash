@@ -28,6 +28,17 @@ export function post(root, path, body) {
 /**
  * @param {string} root The SECURITY API root
  * @param {string} path Any path to be applied
+ * @param {object} body Any object to be applied
+ * @returns {Promise<object>} The converted data
+ */
+export function postAndGetFile(root, path, body) {
+  return postAndCheck(root + path, body)
+    .then(resp => resp.blob());
+}
+
+/**
+ * @param {string} root The SECURITY API root
+ * @param {string} path Any path to be applied
  * @param {object} query Any object to be applied
  * @returns {Promise<object>} The converted data
  */
@@ -43,6 +54,7 @@ export function get(root, path, query) {
 const securityApi = {
   get,
   post,
+  postAndGetFile,
 };
 
 export default securityApi;

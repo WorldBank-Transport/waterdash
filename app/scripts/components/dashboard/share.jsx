@@ -3,7 +3,7 @@ import { connect } from 'reflux';
 import T from '../misc/t';
 import OpenClosed from '../../constants/open-closed';
 import { Icon } from 'react-font-awesome';
-import { share } from '../../actions/share';
+import { share, pdf } from '../../actions/share';
 import ShareStore from '../../stores/share';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
@@ -27,6 +27,16 @@ const Share = React.createClass({
     });
   },
 
+  print() {
+    const map = document.getElementById('map1').outerHTML;
+    const finalMap = map.replace(/\/\/a.tile.openstreetmap.org\//g, 'http://a.tile.openstreetmap.org/').replace(/\/\/b.tile.openstreetmap.org\//g, 'http://b.tile.openstreetmap.org/').replace(/\/\/c.tile.openstreetmap.org\//g, 'http://c.tile.openstreetmap.org/');
+    const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
+    const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
+    const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;
+    //console.log(htmlContent);
+    pdf(htmlContent);
+  },
+
   render() {
     const direction = OpenClosed.match(this.state.openClosed, {
       Open: () => 'up',
@@ -47,7 +57,7 @@ const Share = React.createClass({
                   <ul>
                     <li className="share" onClick={share}><Icon type={`link`}/><T k="share.share" /></li>
                     <li className="feedback"><Icon type={`comments-o`}/><T k="share.feedback" /></li>
-                    <li className="print"><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
+                    <li className="print" onClick={this.print}><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
                   <input style={{'display': this.state.share ? 'block' : 'none'}} value={this.state.share} />
                   <CopyToClipboard style={{'display': this.state.share ? 'block' : 'none'}} text={this.state.share}>
