@@ -91,7 +91,7 @@ const ClusteredPoints = React.createClass({
       } else if (zoom < 6) {
         clusterSize = 25;
       } else if (zoom < 8) {
-        clusterSize = 15;
+        clusterSize = 18;
       } else if (zoom < 10) {
         clusterSize = 7;
       } else if (zoom < 12) {
