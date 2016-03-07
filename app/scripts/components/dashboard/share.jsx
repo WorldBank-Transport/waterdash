@@ -33,14 +33,14 @@ const Share = React.createClass({
   },
 
   print() {
-    const mapDom = document.getElementById('map1');
-    const clusters = mapDom.querySelectorAll('.cluster-icon');
-    for(let index = 0; index < clusters.length; index++) {
+    const mapDom = document.getElementById('map1').cloneNode(true);
+    const clusters = document.getElementById('map1').querySelectorAll('.cluster-icon');
+    for (let index = 0; index < clusters.length; index++) {
       const cluster = clusters[index];
       const img = document.createElement('img');
       img.src = cluster.toDataURL('image/png');
       img.style = `position: absolute;left: ${cluster._leaflet_pos.x}px;top:${cluster._leaflet_pos.y}px;margin-left: -19px; margin-top: -19px;z-index:300;`;
-      cluster.parentNode.appendChild(img);
+      mapDom.querySelector(`.${cluster.parentNode.className}`).appendChild(img);
     }
 
     const map = mapDom.outerHTML;
@@ -48,8 +48,7 @@ const Share = React.createClass({
     const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
     const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
     const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;
-    debugger;
-    console.log(htmlContent);
+    //console.log(htmlContent);
     pdf(htmlContent);
   },
 
