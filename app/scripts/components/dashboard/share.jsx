@@ -39,9 +39,7 @@ const Share = React.createClass({
       const cluster = clusters[index];
       const img = document.createElement('img');
       img.src = cluster.toDataURL('image/png');
-      //img.style = cluster.style.cssText.replace(/translate3d/g, 'translate').replace(/\, 0px\)/g, ')'); //`margin-left: ${i}px; margin-top: 19px;z-index: 300;`;
-      img.style.transform = cluster.style.tranform;
-      img.style['z-index'] = 300;
+      img.style = `position: absolute;left: ${cluster._leaflet_pos.x}px;top:${cluster._leaflet_pos.y}px;margin-left: -19px; margin-top: -19px;z-index:300;`;
       cluster.parentNode.appendChild(img);
     }
 
