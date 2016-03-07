@@ -33,12 +33,25 @@ const Share = React.createClass({
   },
 
   print() {
-    const map = document.getElementById('map1').outerHTML;
+    const mapDom = document.getElementById('map1');
+    const clusters = mapDom.querySelectorAll('.cluster-icon');
+    for(let index = 0; index < clusters.length; index++) {
+      const cluster = clusters[index];
+      const img = document.createElement('img');
+      img.src = cluster.toDataURL('image/png');
+      //img.style = cluster.style.cssText.replace(/translate3d/g, 'translate').replace(/\, 0px\)/g, ')'); //`margin-left: ${i}px; margin-top: 19px;z-index: 300;`;
+      img.style.transform = cluster.style.tranform;
+      img.style['z-index'] = 300;
+      cluster.parentNode.appendChild(img);
+    }
+
+    const map = mapDom.outerHTML;
     const finalMap = map.replace(/\/\/a.tile.openstreetmap.org\//g, 'http://a.tile.openstreetmap.org/').replace(/\/\/b.tile.openstreetmap.org\//g, 'http://b.tile.openstreetmap.org/').replace(/\/\/c.tile.openstreetmap.org\//g, 'http://c.tile.openstreetmap.org/');
     const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
     const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
     const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;
-    //console.log(htmlContent);
+    debugger;
+    console.log(htmlContent);
     pdf(htmlContent);
   },
 
