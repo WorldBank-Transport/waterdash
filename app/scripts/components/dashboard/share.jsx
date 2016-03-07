@@ -7,6 +7,9 @@ import { Icon } from 'react-font-awesome';
 import { share, pdf } from '../../actions/share';
 import ShareStore from '../../stores/share';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import PdfLoadingStore from '../../stores/loading-pdf';
+import TSetChildProps from '../misc/t-set-child-props';
+import SpinnerModal from '../misc/spinner-modal';
 
 require('stylesheets/dashboard/share');
 
@@ -14,6 +17,7 @@ const Share = React.createClass({
 
   mixins: [
     connect(ShareStore, 'share'),
+    connect(PdfLoadingStore, 'pdfLoading'),
   ],
 
   getInitialState() {
@@ -55,6 +59,12 @@ const Share = React.createClass({
             Open: () => (
               <div className="floating-div">
                 <div className="share-wrapper">
+                  <TSetChildProps>
+                    <SpinnerModal
+                        message={{k: 'loading.pdf'}}
+                        retry={() => null}
+                        state={this.state.pdfLoading} />
+                  </TSetChildProps>
                   <ul>
                     <li className="share" onClick={share}><Icon type={`link`}/><T k="share.share" /></li>
                     <li className="feedback"><Link to="/speak-out/"><Icon type={`comments-o`}/><T k="share.feedback" /></Link></li>
