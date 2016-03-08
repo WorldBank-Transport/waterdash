@@ -1,6 +1,5 @@
 import React from 'react';
 import { Icon } from 'react-font-awesome';
-import DataSources from '../boilerplate/external-links';
 import Button from '../boilerplate/button';
 import Footer from '../boilerplate/footer';
 import T from '../misc/t';
@@ -8,7 +7,7 @@ import T from '../misc/t';
 require('stylesheets/boilerplate/static-content');
 
 const Data = React.createClass({
-  
+
   getInitialState() {
     return {
       '1': true,
@@ -47,19 +46,19 @@ const Data = React.createClass({
           </Button>
           <div className="content-section" id="FAQ">
             <h3><T k="static.faq.title" /></h3>
-            <div id="accordion" class="faq-list" role="tablist" aria-multiselectable="true">
+            <div className="faq-list" role="tablist">
               {Object.keys(this.state).map(index => (
                 <div>
-                  <div class="panel-heading" role="tab">
-                    <h4 class="panel-title">
+                  <div className="panel-heading" role="tab">
+                    <h4 className="panel-title">
                       <a onClick={this.toogle(index, this)}>
                         <Icon type="chevron-down"/>
                         <T k={`static.faq.q${index}`}/>
                       </a>
                     </h4>
                   </div>
-                  <div class="panel-collapse collapse in" role="tabpanel" style={{display: this.state[index]? 'block': 'none'}}>
-                    {(index == 5) ? (<a href="#/speak-out/"><T k={`static.faq.a${index}`} /></a>) : (<T k={`static.faq.a${index}`} />)}
+                  <div className="panel-collapse collapse in" role="tabpanel" style={{display: this.state[index] ? 'block' : 'none'}}>
+                    {(index === 5) ? (<a href="#/speak-out/"><T k={`static.faq.a${index}`} /></a>) : (<T k={`static.faq.a${index}`} />)}
                   </div>
                 </div>)
               )}
