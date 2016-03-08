@@ -82,15 +82,22 @@
   }
 }
 .static-content {
-  margin: 0 auto;
-  width: $static-content-width;
+  padding: 0px 61px;
+  margin: 0px 15px;
+  
   &.text-center {
     text-align: center;
   }
 
   h2 {
-    color: $theme-blue;
+    color: $text-color;
     font-size: $static-content-title;
+    font-weight: $static-content-weight;
+  }
+
+  h3 {
+    color: $text-color;
+    font-size: 24px;
     font-weight: $static-content-weight;
   }
 
@@ -98,6 +105,38 @@
     color: $text-color;
     font-size: $static-content-text;
     font-weight: $static-content-weight;
+    line-height: 21px;
+    text-align: left;
+  }
+  .faq-list {
+    .panel {
+      border: 1px solid $bg-color;
+      box-shadow: none;
+    }
+    .panel-heading {
+      background: none;
+      padding-left: 0;
+      border-color: $grey-medium;
+      border-bottom: 2px solid $grey-medium;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      line-height: 21px;
+      text-align: left;
+
+      .panel-title {
+        color: $theme-blue;
+        font-weight: normal;
+        font-size: $static-content-text;
+      }
+    }
+    .panel-collapse {
+      color: $text-color;
+      font-weight: $static-content-weight;
+      font-size: $static-content-text;
+      padding-top: 10px;
+
+    }
   }
 }
 
