@@ -53,6 +53,7 @@ gulp.task('copy:static', function() {
   gulp.src(['1.dist/**/*']).pipe(gulp.dest('dist/1.dist'));
  });
 
+
 gulp.task('slack-notify', function() {
   var fs = require('fs');
   try {
