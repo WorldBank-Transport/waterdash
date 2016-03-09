@@ -50,6 +50,7 @@ gulp.task('copy:static', function() {
   gulp.src(['app/favicon.ico']).pipe(gulp.dest('dist'));
   gulp.src(['app/layers/**/*']).pipe(gulp.dest('dist/layers'));
   gulp.src(['app/data/**/*']).pipe(gulp.dest('dist/data'));
+  gulp.src(['1.dist/**/*']).pipe(gulp.dest('dist/1.dist'));
  });
 
 gulp.task('slack-notify', function() {
