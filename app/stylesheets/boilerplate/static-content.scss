@@ -82,9 +82,9 @@
   }
 }
 .static-content {
-  padding: 0px 61px;
-  margin: 0px 15px;
-  
+  margin: 0 15px;
+  padding: 0 61px;
+
   &.text-center {
     text-align: center;
   }
@@ -97,7 +97,7 @@
 
   h3 {
     color: $text-color;
-    font-size: 24px;
+    font-size: $medium-number + 4;
     font-weight: $static-content-weight;
   }
 
@@ -115,26 +115,33 @@
     }
     .panel-heading {
       background: none;
-      padding-left: 0;
-      border-color: $grey-medium;
-      border-bottom: 2px solid $grey-medium;
-      border-top: none;
+      border-bottom: 2px solid $collapsible-panel-border;
+      border-color: $collapsible-panel-border;
       border-left: none;
       border-right: none;
-      line-height: 21px;
+      border-top: none;
+      line-height: $default-line-height - 10;
+      padding-bottom: 0;
       text-align: left;
 
       .panel-title {
         color: $theme-blue;
-        font-weight: normal;
-        font-size: $static-content-text;
+        font-size: $static-content-text - 2;
+        font-weight: $title-weight;
+        &:hover {
+          color: $hover-color;
+          cursor: pointer;
+        }
+        .fa {
+          margin-right: $general-content-padding / 2;
+        }
       }
     }
     .panel-collapse {
       color: $text-color;
-      font-weight: $static-content-weight;
       font-size: $static-content-text;
-      padding-top: 10px;
+      font-weight: $static-content-weight;
+      padding-top: $general-content-padding / 3;
 
     }
   }
@@ -195,5 +202,27 @@
       }
     }
   }
+}
 
+.content-section {
+  h3 {
+    font-weight: $medium-font-weight + 100;
+  }
+}
+
+.dataset-links {
+  @include list-unstyled();
+
+  li {
+    .fa {
+      color: $theme-blue;
+      margin-right: $general-content-padding / 2;
+    }
+    a {
+      color: $theme-blue;
+      &:hover {
+        color: $hover-color;
+      }
+    }
+  }
 }
