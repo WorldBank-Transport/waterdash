@@ -82,15 +82,22 @@
   }
 }
 .static-content {
-  margin: 0 auto;
-  width: $static-content-width;
+  margin: 0 15px;
+  padding: 0 61px;
+
   &.text-center {
     text-align: center;
   }
 
   h2 {
-    color: $theme-blue;
+    color: $text-color;
     font-size: $static-content-title;
+    font-weight: $static-content-weight;
+  }
+
+  h3 {
+    color: $text-color;
+    font-size: $medium-number + 4;
     font-weight: $static-content-weight;
   }
 
@@ -98,6 +105,45 @@
     color: $text-color;
     font-size: $static-content-text;
     font-weight: $static-content-weight;
+    line-height: 21px;
+    text-align: left;
+  }
+  .faq-list {
+    .panel {
+      border: 1px solid $bg-color;
+      box-shadow: none;
+    }
+    .panel-heading {
+      background: none;
+      border-bottom: 2px solid $collapsible-panel-border;
+      border-color: $collapsible-panel-border;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      line-height: $default-line-height - 10;
+      padding-bottom: 0;
+      text-align: left;
+
+      .panel-title {
+        color: $theme-blue;
+        font-size: $static-content-text - 2;
+        font-weight: $title-weight;
+        &:hover {
+          color: $hover-color;
+          cursor: pointer;
+        }
+        .fa {
+          margin-right: $general-content-padding / 2;
+        }
+      }
+    }
+    .panel-collapse {
+      color: $text-color;
+      font-size: $static-content-text;
+      font-weight: $static-content-weight;
+      padding-top: $general-content-padding / 3;
+
+    }
   }
 }
 
@@ -156,5 +202,27 @@
       }
     }
   }
+}
 
+.content-section {
+  h3 {
+    font-weight: $medium-font-weight + 100;
+  }
+}
+
+.dataset-links {
+  @include list-unstyled();
+
+  li {
+    .fa {
+      color: $theme-blue;
+      margin-right: $general-content-padding / 2;
+    }
+    a {
+      color: $theme-blue;
+      &:hover {
+        color: $hover-color;
+      }
+    }
+  }
 }
