@@ -6,6 +6,7 @@ import securityApi from './utils/api/security-api';
 
 const API_ROOT = '//data.takwimu.org/api';
 const SECURITY_API_ROOT = '//api.takwimu.org/';
+//const SECURITY_API_ROOT = '//localhost:9080/';
 const GOOGLE_API = 'https://www.googleapis.com/';
 const URL_SHORTENER = 'urlshortener/v1/url';
 

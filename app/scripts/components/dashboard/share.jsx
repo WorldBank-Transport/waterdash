@@ -44,7 +44,7 @@ const Share = React.createClass({
     }
 
     const map = mapDom.outerHTML;
-    const finalMap = map.replace(/\/\/a.tile.openstreetmap.org\//g, 'http://a.tile.openstreetmap.org/').replace(/\/\/b.tile.openstreetmap.org\//g, 'http://b.tile.openstreetmap.org/').replace(/\/\/c.tile.openstreetmap.org\//g, 'http://c.tile.openstreetmap.org/');
+    const finalMap = map.replace(/\/\//g, 'http://');
     const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
     const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
     const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;

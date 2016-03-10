@@ -7,10 +7,13 @@ export const feedback = createAction();
 export const pdf = createAction();
 export const pdfProgress = createAction();
 export const pdfCompleted = createAction();
+export const pdfFail = createAction();
 
 pdf.listen( (body) => {
   pdfProgress();
-  postMap2Pdf({content: body}).then(pdfCompleted);
+  postMap2Pdf({content: body})
+    .then(pdfCompleted)
+    .catch(pdfFail);
 });
 
 pdfCompleted.listen((file) => {
