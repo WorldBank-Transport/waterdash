@@ -1,10 +1,10 @@
 import React from 'react';
 import { Icon } from 'react-font-awesome';
-import Button from '../boilerplate/button';
 import Footer from '../boilerplate/footer';
 import T from '../misc/t';
 
 require('stylesheets/boilerplate/static-content');
+require('stylesheets/boilerplate/button');
 
 const Data = React.createClass({
 
@@ -27,6 +27,14 @@ const Data = React.createClass({
     };
   },
 
+  scrollTo(id) {
+    return (e) => {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      element.scrollIntoView(true);
+    };
+  },
+
   render() {
     return (
       <div className="data-content">
@@ -35,15 +43,21 @@ const Data = React.createClass({
           <h2><T k="static.data-title" /></h2>
           <p><T k="static.data-content" /></p>
           <p><T k="static.data-content-second" /></p>
-          <Button linkTo="http://www.opendata.go.tz/organization/ministry-of-water">
-            <T k="static.open-data-portal" />
-          </Button>
-          <Button linkTo="#/data/#DataSources">
-            <T k="static.data-souces" />
-          </Button>
-          <Button linkTo="#/data/#FAQ">
-            <T k="static.faq" />
-          </Button>
+          <div className="button">
+            <a href="http://www.opendata.go.tz/organization/ministry-of-water">
+              <T k="static.open-data-portal" />
+            </a>
+          </div>
+          <div className="button">
+            <a onClick={this.scrollTo('DataSources')}>
+              <T k="static.data-souces" />
+            </a>
+          </div>
+          <div className="button">
+            <a onClick={this.scrollTo('FAQ')}>
+              <T k="static.faq" />
+            </a>
+          </div>
           <div className="content-section" id="FAQ">
             <h3><T k="static.faq.title" /></h3>
             <div className="faq-list" role="tablist">
