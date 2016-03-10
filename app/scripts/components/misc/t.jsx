@@ -32,7 +32,7 @@ const allTranslations = {
     'static.open-data-portal': 'Open Data Portal',
     'static.faq': 'FAQ',
     'static.data-souces': 'View direct links to the raw data.',
-    'static.faq.title': 'Frequently asked questions about the data',
+    'static.faq.title': 'Frequently Asked Questions About the Data',
     'static.faq.q1': 'Why do some charts or maps only show data at regional or district level, instead of at lower levels?',
     'static.faq.a1': 'This dashboard shows data at the most disaggregated level based on the data that is available on the open data portal. Some datasets on the open data portal only contain data that is aggregated at the region, district, or ward level.',
     'static.faq.q2': 'Why do some charts or maps only show old data from last year or before?',

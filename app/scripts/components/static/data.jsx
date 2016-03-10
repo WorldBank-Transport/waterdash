@@ -66,7 +66,7 @@ const Data = React.createClass({
           </div>
           <div className="content-section" id="DataSources">
             <h3><T k="static.data-souces.title" /></h3>
-            <ul>
+            <ul className="dataset-links">
               <li><Icon type="link"/><a href="http://opendata.go.tz/sw/dataset/6bd441ca-76b4-44a2-a8cd-a9075d1bf9b6/resource/a23325bd-557b-46b9-b9df-5f38c64e610f/download/Served-population-2005---June-2015-1.csv"><T k="static.dataset.served" /></a></li>
               <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
               <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
