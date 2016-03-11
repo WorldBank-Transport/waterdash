@@ -7,14 +7,16 @@
 ul.open-data-nav {
   @include list-inline();
   @include list-unstyle();
-  margin-right: 30px;
+  margin-right: $general-content-padding;
+
   @include up-to($tablet-landscape) {
     position: absolute;
     right: $top-nav-right-mobile;
     top: $top-nav-vert-pos-mobile;
   }
-  @include up-to($phone) {
-    right: $top-nav-right-mobile;
+  @include up-to($tablet-portrait) {
+    right: -$general-content-padding / 2;
+    top: $top-nav-vert-pos-mobile + 70;
   }
 
   li {
@@ -54,10 +56,22 @@ ul.open-data-nav {
   margin: $footer-text-top-position+3 0;
 
   ul.open-data-nav {
-    @include up-to($tablet-landscape) {
-      left: $header-mobile-space;
+    @include up-to($tablet-alt) {
+      left: $header-mobile-space - 100;
       position: absolute;
-      top: $header-mobile-space;
+      top: $header-mobile-space - 20;
+    }
+
+    @include up-to($tablet-landscape) {
+      left: $header-mobile-space - 100;
+      position: absolute;
+      top: $header-mobile-space - 20;
+    }
+    @include up-to($phone) {
+      left: $header-mobile-space - 100;
+      position: absolute;
+      top: $header-mobile-space - 20;
+      border:2px dotted #f78;
     }
 
     li {

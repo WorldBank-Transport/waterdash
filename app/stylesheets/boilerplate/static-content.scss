@@ -28,7 +28,7 @@
     @include up-to($tablet-landscape) {
       height: auto;
       min-height: 100%;
-      width: auto;
+      width: 300%;
     }
 
     @include up-to($tablet-portrait) {
@@ -107,6 +107,9 @@
     font-weight: $static-content-weight;
     line-height: 21px;
     text-align: left;
+    &.text-center {
+      text-align: center;
+    }
   }
   .faq-list {
     .panel {
