@@ -82,9 +82,9 @@ function intlPoly() {
 
 React.render((
   <Router history={history}>
-    <Route component={Root}>
+    <Route component={Root} onEnter={intlPoly}>
 
-      <Route component={StaticLayout}>
+      <Route component={StaticLayout} >
         <Route path="/" component={Homepage} />
         <Route path="data/" component={Data} />
         <Route path="speak-out/" component={SpeakOut} />
