@@ -414,7 +414,7 @@ const allTranslations = {
     'error.api.static.postprocess': 'An error occurred while the application was procesing boundary data',
   },
   'sw-tz': {
-    'site-name': 'Water Dashboard',
+    'site-name': 'Dashibodi ya maji',
     'site.flag': 'Flag of Tanzania',
     'home.title': 'Chunguza miradi ya maji katika taifa, mikoa, wilaya au kata. Tumia Dashibodi ya Maji kuchunguza ili kuleta mabadiliko katika jamii.',
     'home.waterpoints': 'Vituo vya maji safi na salama',
@@ -423,8 +423,10 @@ const allTranslations = {
     'home.text': 'Dashibodi hii ya maji ni tovuti ya takwimu huria zinazoorodhesha data katika sekta ya maji, ya kitaifa ya hivi karibuni na habari nyingine muhimu kwako. Tumia orodha iliyo juu kutazama takwimu asili na wasiliana nasi kuhusu takwimu zisizokuwepo au zenye makosa',
 
     'nav.home': 'Mwanzo',
-    'nav.data': 'Takwimu',
+    'nav.data': 'Data',
     'nav.speak-out': 'Maoni',
+    'nav.edudash': 'Dashibodi ya elimu',
+    'nav.healthdash': 'Dashibodi ya afya',
 
     'static.data-title': 'Chunguza data ya dashibodi.',
     'static.data-content': 'Dashibodi ya maji  imejengwa juu ya Takwimu Huria zilizoainishwa na Serikali ya Tanzania. Takwimu ghafi zimetangazwa kwa tovuti kuu ya Serikali kwa njia inayosomeka na kompyuta ikitumia leseni inayohamasisha matumizi kwa jumla. Wakati mwingine, dashibodi imetumia data zilziosafishwa au kuunganishwa na data zingine ili kuunda seti mpya zilizo rahisi zaidi kusomeka na mfumo huu. Hata hivyo, data yote inapatikana kwa uhalisi kutoka tovuti kuu ya takwimu huria ya serikali ya Tanzania.',
