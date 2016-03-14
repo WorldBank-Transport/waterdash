@@ -174,6 +174,33 @@ const DamsChart = React.createClass({
 
       series: stats,
       drilldown: {
+        drillUpButton: {
+          relativeTo: 'spacingBox',
+
+          position: {
+            y: 2,
+            x: -30,
+          },
+
+          theme: {
+            style: {
+              color: 'white',
+              fontWeight: 'bold',
+            },
+            fill: '#1da3da',
+            'stroke-width': 2,
+            stroke: '#1da3da',
+            r: 0,
+
+            states: {
+              hover: {
+                fill: '#82c675',
+                stroke: '#82c675',
+              },
+            },
+          },
+
+        },
         activeAxisLabelStyle: {
           cursor: 'pointer',
           textDecoration: 'none',
