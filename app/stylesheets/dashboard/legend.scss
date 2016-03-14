@@ -56,7 +56,9 @@
       border: 3px solid $theme-blue;
     }
   }
-
+  .dam-legend-label {
+    margin-top: $general-content-padding / 6;
+  }
   .legend-dam-mark {
     background-color: $theme-blue;
     border: 1px solid $bg-color;
@@ -64,10 +66,10 @@
     display: block;
     float: left;
     height: $legend-point;
-    line-height: 30px;
-    margin-left: $legend-margin + 5;
+    line-height: $general-content-padding;
+    margin-left: 0;
     margin-right: $legend-margin + 10;
-    margin-top: $legend-margin;
+    margin-top: 0;
     text-align: center;
     vertical-align: middle;
     width: $legend-point;

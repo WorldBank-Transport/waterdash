@@ -26,6 +26,12 @@
     color: $grey-medium;
     font-size: $normal-text;
     margin-top: 0;
+    a {
+      color: $theme-blue;
+    &:hover {
+      color: $hover-color;
+  }
+}
   }
 
   .x {
@@ -155,4 +161,19 @@
     }
   }
 
+}
+
+.items {
+  @include list-unstyled();
+  li {
+    padding-bottom: $general-content-padding / 3;
+    &:last-child {
+      padding-bottom: $general-content-padding / 6;
+    }
+    .number {
+      color: $popup-stat-number;
+      font-size: $medium-text;
+      font-weight: $title-weight;
+    }
+  }
 }

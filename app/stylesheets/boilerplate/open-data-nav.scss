@@ -7,10 +7,11 @@
 ul.open-data-nav {
   @include list-inline();
   @include list-unstyle();
-  margin-right: 30px;
+  margin-right: $general-content-padding;
+
   @include up-to($tablet-landscape) {
     position: absolute;
-    right: $top-nav-right-mobile;
+    right: $top-nav-right-mobile + 200;
     top: $top-nav-vert-pos-mobile;
   }
   @include up-to($phone) {

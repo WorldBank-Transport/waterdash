@@ -9,6 +9,12 @@
     color: $grey-medium;
     font-size: $normal-text;
     margin-top: 0;
+    a {
+      color: $theme-blue;
+    &:hover {
+    color: $hover-color;
+  }
+}
   }
 
   h3 {

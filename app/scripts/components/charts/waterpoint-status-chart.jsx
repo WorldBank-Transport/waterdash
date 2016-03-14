@@ -192,9 +192,9 @@ const WaterpointStatusChart = React.createClass({
       },
 
       tooltip: {
-        headerFormat: '<div><h3 class="chart-title row">{point.key}</h3><ul class="items">',
+        headerFormat: '<div class="tooltip-wrapper"><h3 class="chart-title row">{point.key}</h3><ul class="items">',
         pointFormat: '<li>' +
-            '<spam class="metric-title">{series.name}:</spam>' +
+            '<span class="metric-title">{series.name}:</span>' +
             '<div class="waterpoint-tooltip-stat-wrapper">' +
               '<span class="number">{point.y:,.0f}</span> of <span class="number">{point.total:,.0f}</span>' +
             '</div>' +
@@ -219,6 +219,33 @@ const WaterpointStatusChart = React.createClass({
 
       series: stats,
       drilldown: {
+        drillUpButton: {
+          relativeTo: 'spacingBox',
+
+          position: {
+            y: 2,
+            x: -30,
+          },
+
+          theme: {
+            style: {
+              color: 'white',
+              fontWeight: 'bold',
+            },
+            fill: '#1da3da',
+            'stroke-width': 2,
+            stroke: '#1da3da',
+            r: 0,
+
+            states: {
+              hover: {
+                fill: '#82c675',
+                stroke: '#82c675',
+              },
+            },
+          },
+
+        },
         activeAxisLabelStyle: {
           cursor: 'pointer',
           textDecoration: 'none',
