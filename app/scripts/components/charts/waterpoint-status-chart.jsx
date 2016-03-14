@@ -192,9 +192,9 @@ const WaterpointStatusChart = React.createClass({
       },
 
       tooltip: {
-        headerFormat: '<div><h3 class="chart-title row">{point.key}</h3><ul class="items">',
+        headerFormat: '<div class="tooltip-wrapper"><h3 class="chart-title row">{point.key}</h3><ul class="items">',
         pointFormat: '<li>' +
-            '<spam class="metric-title">{series.name}:</spam>' +
+            '<span class="metric-title">{series.name}:</span>' +
             '<div class="waterpoint-tooltip-stat-wrapper">' +
               '<span class="number">{point.y:,.0f}</span> of <span class="number">{point.total:,.0f}</span>' +
             '</div>' +

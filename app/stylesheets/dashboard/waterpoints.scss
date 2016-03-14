@@ -55,6 +55,12 @@ h3 {
     color: $grey-medium;
     font-size: $normal-text;
     margin-bottom: 20px;
+    a {
+      color: $theme-blue;
+    &:hover {
+      color: $hover-color;
+  }
+}
     }
   }
 
