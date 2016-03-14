@@ -45,7 +45,7 @@ const ClusterLegend = React.createClass({
           <div className="title"><T k="legend.title" /></div>
           <div className="row">
               <div className="legend-dam-mark"></div>
-              <T k="legend.simple-points" />
+              <div className="dam-legend-label"><T k="legend.simple-points" /></div>
           </div>
         </div>
     );
