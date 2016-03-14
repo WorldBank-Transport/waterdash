@@ -9,31 +9,35 @@
   bottom: 0;
   display: flex;
   float: left;
-  height: 100%;
+  height: $full-height;
   left: 0;
   max-width: 45%;
-  min-height: 100%;
+  min-height: $full-height;
   overflow: hidden;
   position: absolute;
   top: 0;
 
+  @include up-to($tablet-landscape) {
+    max-width: $full-width;
+  }
+
   img {
     flex-shrink: 2;
     height: auto;
-    margin-left: -20%;
+    margin-left: -40%;
     min-height: $full-width + 30;
     width: $full-width;
     width: auto;
 
     @include up-to($tablet-landscape) {
       height: auto;
-      min-height: 100%;
+      min-height: $full-height;
       width: auto;
     }
 
     @include up-to($tablet-portrait) {
-      height: 100%;
-      min-height: 100%;
+      height: $full-height;
+      min-height: $full-height;
     }
   }
 }
@@ -47,7 +51,7 @@
 
   @include up-to($tablet-landscape) {
     background-color: $background-img-overlay;
-    height: 100%;
+    height: $full-height;
     margin-left: 0;
     overflow-y: auto;
     padding: 0 $content-padding-horiz;
@@ -165,7 +169,7 @@
 
   iframe {
     border: 0;
-    height: 100%;
+    height: $full-height;
     left: 0;
     position: absolute;
     top: 0;
