@@ -68,7 +68,7 @@
         &.poor > .icon {
           background: $status-poor;
           font-size: $metric-icon-size;
-          line-height: $metric-icon-size - 7;
+          line-height: $metric-icon-size;
         }
       }
       .context {
