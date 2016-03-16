@@ -23,14 +23,14 @@ const ClusterLegend = React.createClass({
           <div className="title"><T k="legend.title" /></div>
           <div className="row">
               <div className="legend-mark">123</div>
-              <T k="legend.points" />
+              <span className="legend-mark-label"><T k="legend.points" /></span>
           </div>
           {
             Object.keys(statusCategory).map(key =>
               (
                 <div className="row">
                   <div className="legend-block" style={{'background': colours[statusCategory[key]]}}></div>
-                  <T k={`legend.${key}`} />
+                  <div className="legend-text"><T k={`legend.${key}`} /></div>
                 </div>
               )
             )

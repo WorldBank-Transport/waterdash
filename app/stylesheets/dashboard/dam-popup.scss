@@ -49,7 +49,7 @@
 
   .popup-stat {
     display: block;
-    font-size: $medium-number;
+    font-size: $medium-number - 4;
     font-weight: $title-weight;
     margin-left: $popup-space + 3;
     margin-top: -6px;

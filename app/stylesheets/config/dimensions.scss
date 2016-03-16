@@ -1,6 +1,7 @@
 $base-unit: 1em;
 $full-width: 100%;
 $full-height: 100%;
+$default-dash-margin: 10px;
 
 // widths and heights
 
@@ -77,6 +78,7 @@ $subcategory-filter-tab: 350px;
 $subcategory-flyout-dimensions: 340px;
 $subcategory-flyout-height: 320px;
 $metric-status-width: 260px;
+$metric-helptext-position: -5px;
 $dams-metric-status-width: 25%;
 $dams-metric-number-left: 45px;
 $dam-icon-width: 40px;
