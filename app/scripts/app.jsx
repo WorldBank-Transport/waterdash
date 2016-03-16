@@ -91,14 +91,14 @@ React.render((
         <Route path="share/:shareId/" component={Homepage} onEnter={setShare} />
       </Route>
 
-      <Route path="/dash/" component={DashRoot} onEnter={intlPoly} >
+      <Route path="/dash/" component={DashRoot} onEnter={intlPoly}>
         {/* Redirect invalid paths that we are missing data for */}
         <Redirect from="points/boreholes/" to="/dash/districts/boreholes/" />
         <Redirect from="wards/boreholes/" to="/dash/districts/boreholes/" />
         <Redirect from="wards/dams/" to="/dash/districts/dams/" />
 
         {/* Normal dashboard routing */}
-        <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
+        <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView, intlPoly}>
           <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
         <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView} />
