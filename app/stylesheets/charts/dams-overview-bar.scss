@@ -15,14 +15,15 @@
 
       .content {
         margin-top: $dams-content-top-space;
-        width: 100%;
+        width: $full-width;
 
         .big-number {
-          margin-top: $base-unit / 8;
+          margin-top: $base-unit / 6;
           position: relative;
 
           .dams-dr {
             position: absolute;
+            top: $metric-helptext-position + 2;
             width: $dam-icon-width;
           }
           .number {
@@ -30,12 +31,14 @@
 
             .unit {
               font-size: $medium-text;
+              margin-top: $metric-helptext-position;
             }
           }
       }
 
         .context {
           clear: both;
+          margin-top: $metric-helptext-position;
         }
 
       }

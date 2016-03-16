@@ -562,7 +562,7 @@ const allTranslations = {
 
     'charts.category.filter.title': 'Chagua kama ilivyo ainishwa',
     'charts.sub-category.HARDWARE_PROBLEM': 'Tatizo la kifaa',
-    'charts.sub-category.WATER_QUALITY': 'Kiwango cha maji',
+    'charts.sub-category.WATER_QUALITY': 'Ubora wa maji',
     'charts.sub-category.WATER_QUANTITY': 'Kiasi cha maji',
     'charts.sub-category.SOURCE_TYPE': 'Chanzo cha maji',
     'charts.sub-category.value.PUMP STOLEN': 'Bomba iliyoibiwa',
@@ -702,7 +702,7 @@ const allTranslations = {
     'popup.waterpoint.hardware-problem': 'Kituo cha maji kilicho shida',
     'popup.waterpoint.quantity': 'Kiasi cha maji',
     'popup.waterpoint.quality': 'Kiwango cha maji',
-    'popup.waterpoint.location': 'Water Point Location',
+    'popup.waterpoint.location': 'Eneo la kituo cha maji',
     'popup.waterpoint.position': 'Latitude Longitude',
     'popup.waterpoint.region': 'Mkoa',
     'popup.waterpoint.district': 'Wilaya',
@@ -729,7 +729,7 @@ const allTranslations = {
     'popup.dam.position': 'Lat/Lon',
     'popup.dam.region': 'Mkoa',
     'popup.dam.district': 'Wilaya',
-    'popup.dams-poly.quantity': 'Number of Dams',
+    'popup.dams-poly.quantity': 'Idadi ya visima',
     'popup.dams-poly.basin': 'Beseni yenye maji zaidi',
 
 
@@ -745,7 +745,7 @@ const allTranslations = {
     'legend.FUNCTIONAL NEEDS REPAIR': '% Vituo vinavyohitaji marekebisho ',
     'legend.NON FUNCTIONAL': '% Vituo havifanyi kazi ',
     'legend.UNKNOWN': '% Haijulikani',
-    'legend.points': 'Number of points',
+    'legend.points': 'Idadi ya vituo',
     'legend.simple-points': 'Bwawa',
 
     'drilldown.regions': 'Mkoa',

@@ -30,7 +30,7 @@ const ClusterLegend = React.createClass({
               (
                 <div className="row">
                   <div className="legend-block" style={{'background': colours[statusCategory[key]]}}></div>
-                  <T k={`legend.${key}`} />
+                  <div className="legend-text"><T k={`legend.${key}`} /></div>
                 </div>
               )
             )
