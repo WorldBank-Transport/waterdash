@@ -98,7 +98,7 @@ React.render((
         <Redirect from="wards/dams/" to="/dash/districts/dams/" />
 
         {/* Normal dashboard routing */}
-        <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView, intlPoly}>
+        <Route path="points/:dataType/" component={PointsMap} onEnter={setPointsView}>
           <Route path=":id" component={Popup} onEnter={ensurePopup} onExit={deselect} />
         </Route>
         <Route path=":polyType/:dataType/" component={PolygonsMap} onEnter={setPolysView} />
