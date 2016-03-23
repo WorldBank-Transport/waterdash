@@ -117,7 +117,7 @@ const TotalServedPulationChart = React.createClass({
     return (
       <div className="total-servedpopulation-chart">
         <h3><T k="chart.waterpoint-total-servedpopulation" /></h3>
-        <p className="chart-helptext"><ChartDataLink dataId="c267883f-ffcf-4f9c-a7f1-887451236134" /></p>
+        <p className="chart-helptext"><ChartDataLink dataId="water" /></p>
         <div className="chart-container" id="container-1"></div>
       </div>);
   },

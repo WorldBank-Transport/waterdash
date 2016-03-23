@@ -83,7 +83,7 @@ const WaterpointPieChart = React.createClass({
     return (
       <div className="waterpoint-pie-chart">
       <h3><T k={`chart.pie.${this.props.column}`} /></h3>
-      <p className="chart-helptext"><ChartDataLink dataId="c267883f-ffcf-4f9c-a7f1-887451236134" /></p>
+      <p className="chart-helptext"><ChartDataLink dataId="water" /></p>
         <div className="chart-container" id={this.props.id}></div>
       </div>
     );

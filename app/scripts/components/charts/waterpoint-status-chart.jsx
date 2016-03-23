@@ -263,7 +263,7 @@ const WaterpointStatusChart = React.createClass({
       <div className="stack-bar-chart">
         <h3 className="main-chart-title"><T k="chart.title-waterpoints-status" /></h3>
         <p className="chart-helptext">
-          <ChartDataLink dataId="a94b3653-55f4-4455-9bed-42b92d5c4370" />
+          <ChartDataLink dataId="water" />
           <T k="chart.doubleClick.help" />
           <T k="chart.title-waterpoints-drill-down.help"/></p>
         <div className="chart-container" id="waterpoints-status-chart"></div>

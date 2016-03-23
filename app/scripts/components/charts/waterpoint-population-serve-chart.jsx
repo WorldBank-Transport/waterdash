@@ -178,7 +178,7 @@ const WaterpointPopulationServeChart = React.createClass({
       <div className="waterpoint-population-serve-chart">
         <h3><T k="chart.title-population-served" /></h3>
         <p className="chart-helptext">
-          <ChartDataLink dataId="a94b3653-55f4-4455-9bed-42b92d5c4370" />
+          <ChartDataLink dataId="population" />
           <T k="chart.title-title-population-served-helptext" />
         </p>
         <div className="chart-container " id="container-2">

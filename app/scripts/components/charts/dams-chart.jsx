@@ -221,7 +221,7 @@ const DamsChart = React.createClass({
             <div className="mainChart">
               <div className="dams-chart">
                 <h3 className="main-chart-title"><T k="chart.title-dams" /></h3>
-                <p className="chart-helptext"><ChartDataLink dataId="5da4eb70-47a0-4694-b735-397bb3732b99" /><T k="chart.subtitle-dams" /></p>
+                <p className="chart-helptext"><ChartDataLink dataId="dams" /><T k="chart.subtitle-dams" /></p>
                 <div className="chart-container" id="dams-chart"></div>
               </div>
             </div>

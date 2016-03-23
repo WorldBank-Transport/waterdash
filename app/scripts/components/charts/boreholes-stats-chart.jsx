@@ -106,7 +106,7 @@ const BoreholesStatsChart = React.createClass({
       <div className="boreholes-stats-chart">
         <h3><T k="chart.title-boreholes-stats" /></h3>
         <p className="chart-helptext">
-          <ChartDataLink dataId="c9843a61-eca6-47bb-971d-70bf9c0fe942" />
+          <ChartDataLink dataId="boreholes" />
           <T k="chart.title-boreholes-stats-helptext" />
         </p>
         <div className="chart-container" id="boreholes-time"></div>

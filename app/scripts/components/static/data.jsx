@@ -18,6 +18,14 @@ const Data = React.createClass({
     };
   },
 
+  componentDidMount() {
+    const id = this.props.params.datasetId;
+    if (id) {
+      const element = document.getElementById(id);
+      element.scrollIntoView(true);
+    }
+  },
+
   toogle(index, _this) {
     return () => {
       _this.replaceState({
@@ -43,19 +51,19 @@ const Data = React.createClass({
           <h2><T k="static.data-title" /></h2>
           <p><T k="static.data-content" /></p>
           <p><T k="static.data-content-second" /></p>
-          <div className="button">
-            <a href="http://www.opendata.go.tz/organization/ministry-of-water">
+          <div className="button data-button">
+            <a href="http://www.opendata.go.tz/organization/ministry-of-water" target="_blank">
               <T k="static.open-data-portal" />
-            </a>
-          </div>
-          <div className="button">
-            <a onClick={this.scrollTo('DataSources')}>
-              <T k="static.data-souces" />
             </a>
           </div>
           <div className="button">
             <a onClick={this.scrollTo('FAQ')}>
               <T k="static.faq" />
+            </a>
+          </div>
+          <div className="button">
+            <a onClick={this.scrollTo('DataSources')}>
+              <T k="static.data-souces" />
             </a>
           </div>
           <div className="content-section" id="FAQ">
@@ -81,10 +89,10 @@ const Data = React.createClass({
           <div className="content-section" id="DataSources">
             <h3><T k="static.data-souces.title" /></h3>
             <ul className="dataset-links">
-              <li><Icon type="link"/><a href="http://opendata.go.tz/sw/dataset/6bd441ca-76b4-44a2-a8cd-a9075d1bf9b6/resource/a23325bd-557b-46b9-b9df-5f38c64e610f/download/Served-population-2005---June-2015-1.csv"><T k="static.dataset.served" /></a></li>
-              <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
-              <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
-              <li><Icon type="link"/><a href="http://www.opendata.go.tz/en/dataset/visima-vilivyochimbwa-na-ddca-kwa-mwaka"><T k="static.dataset.boreholes" /></a></li>
+              <li id="population"><Icon type="link"/><a href="http://opendata.go.tz/sw/dataset/6bd441ca-76b4-44a2-a8cd-a9075d1bf9b6/resource/a23325bd-557b-46b9-b9df-5f38c64e610f/download/Served-population-2005---June-2015-1.csv"><T k="static.dataset.served" /></a></li>
+              <li id="water"><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
+              <li id="dams"><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
+              <li id="boreholes"><Icon type="link"/><a href="http://www.opendata.go.tz/en/dataset/visima-vilivyochimbwa-na-ddca-kwa-mwaka"><T k="static.dataset.boreholes" /></a></li>
             </ul>
           </div>
           </div>
