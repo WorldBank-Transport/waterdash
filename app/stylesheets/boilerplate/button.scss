@@ -3,6 +3,15 @@
 @import '../config/dimensions';
 @import '../config/box';
 
+.button-wrapper-outer {
+  text-align:center;
+  width:$full-width;
+}
+
+.button-wrapper-inner {
+  display:block;
+}
+
 .button {
   @include border-radius(3px);
   background: $theme-blue;
