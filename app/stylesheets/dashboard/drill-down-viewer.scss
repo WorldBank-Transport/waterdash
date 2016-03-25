@@ -9,8 +9,8 @@
   font-size: $medium-text;
   font-weight: $title-weight;
   left: $point-name-left-position;
-  margin-top: $point-name-top-margin;
-  padding: $drilldown-title-padding - 3 $drilldown-title-padding;
+  margin-top: $point-name-top-margin - 30;
+  padding: $drilldown-title-padding - 3 $drilldown-title-padding * 2.6;
   position: fixed;
   text-align: left;
   top: $point-name-top-position;

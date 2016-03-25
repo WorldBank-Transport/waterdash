@@ -53,17 +53,17 @@ const Data = React.createClass({
           <p><T k="static.data-content-second" /></p>
           <div className="button-wrapper-outer">
             <div className="button-wrapper-inner">
-              <div className="button">
+              <div className="button data-btn">
                 <a href="http://www.opendata.go.tz/organization/ministry-of-water" target="_blank">
                   <T k="static.open-data-portal" />
                 </a>
               </div>
-              <div className="button">
+              <div className="button data-btn">
                 <a onClick={this.scrollTo('FAQ')}>
                   <T k="static.faq" />
                 </a>
               </div>
-              <div className="button">
+              <div className="button data-btn">
                 <a onClick={this.scrollTo('DataSources')}>
                   <T k="static.data-souces" />
                 </a>

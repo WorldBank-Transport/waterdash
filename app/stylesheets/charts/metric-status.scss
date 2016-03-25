@@ -36,7 +36,7 @@
 
   &.good > .icon {
     background: $status-good;
-    font-size: $good-status-font-size;
+    font-size: $good-status-font-size - 4;
   }
 
   &.medium > .icon {

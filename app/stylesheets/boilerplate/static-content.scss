@@ -15,7 +15,11 @@
   min-height: $full-height;
   overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 76px;
+
+  @include up-to($laptop) {
+    top: 75px;
+  }
 
   @include up-to($tablet-landscape) {
     max-width: $full-width;
@@ -28,6 +32,10 @@
     min-height: $full-width + 30;
     width: $full-width;
     width: auto;
+
+    @include up-to($laptop) {
+      margin-top: 0;
+    }
 
     @include up-to($tablet-landscape) {
       height: auto;
@@ -45,6 +53,7 @@
 .homecontent  {
   float: left;
   margin-left: $homecontent-margin;
+  margin-top: -1px;
   overflow: auto;
   padding: $content-padding-vert;
   width: $home-content-width;
@@ -86,8 +95,13 @@
   }
 }
 .static-content {
-  margin: 0 15px;
-  padding: 0 61px;
+  margin: 0 $general-content-padding / 2;
+  padding: 0 $general-content-padding * 2;
+
+  @include up-to($tablet-portrait) {
+    margin: 0 auto;
+    padding: 0 $general-content-padding - 5;
+  }
 
   &.text-center {
     text-align: center;
@@ -108,9 +122,12 @@
   p {
     color: $text-color;
     font-size: $static-content-text;
-    font-weight: $static-content-weight;
-    line-height: 21px;
+    font-weight: $static-content-weight - 100;
+    line-height: $default-line-height +10;
     text-align: left;
+    &.text-center {
+      text-align: center;
+    }
   }
   .faq-list {
     .panel {

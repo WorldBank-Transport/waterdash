@@ -4,12 +4,12 @@
 @import '../config/box';
 
 .button-wrapper-outer {
-  text-align:center;
-  width:$full-width;
+  text-align: center;
+  width: $full-width;
 }
 
 .button-wrapper-inner {
-  display:block;
+  display: block;
 }
 
 .button {
@@ -51,6 +51,25 @@
 
   @include up-to($phone) {
     width: $dashboard-btn-width-mobile/2;
+  }
+
+  &.data-btn {
+    width: 20%;
+    @include up-to($laptop) {
+      margin-left: auto;
+      margin-right: auto;
+      margin-right: $button-link-vert;
+      margin-right: $button-link-vert;
+      width: 30%;
+    }
+    @include up-to($tablet-landscape) {
+      display: inline-block;
+      width: 50%;
+    }
+    @include up-to($tablet-portrait) {
+      display: inline-block;
+      width: 90%;
+    }
   }
 
   a {

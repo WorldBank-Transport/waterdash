@@ -33,7 +33,7 @@
   .search-form-message {
     color: $status-poor;
     font-size: $popup-label-text - 2;
-    text-align: left; 
+    text-align: left;
   }
 
   .search-field {
@@ -106,7 +106,7 @@
   text-align: center;
   text-transform: uppercase;
   top: $search-icon-top-position;
-  width: $search-btn-width;
+  width: $search-btn-width * 1.2;
   z-index: 1;  // needs to be specified >=1 to go above the map
 
   &:hover {
@@ -117,7 +117,7 @@
     @include border-radius(4px);
     border: 2px solid $bg-color;
     display: inline-block;
-    left: $search-icon-top-position * 4;
+    margin-left: -$search-button-padding * 2;
     padding: $search-button-padding;
   }
 }

@@ -22,7 +22,7 @@
     display: inline-block;
     float: right;
     font-size: $footer-copy;
-    line-height: 110%;
+    line-height: $default-line-height;
     margin-top: $footer-text-top-position + 2;
     text-align: right;
     width: $copy-width-large;
@@ -31,17 +31,17 @@
       width: $copy-width-med;
     }
     @include up-to($tablet-alt) {
-      width: 60%;
+      width: $full-width - 40;
     }
     @include up-to($phone) {
       text-align: center;
-      width: 100%;
+      width: $full-width;
     }
   }
 }
 
 .footer-logo {
   float: left;
-  height: 30px;
-  margin: 10px 30px auto 10px;
+  height: $general-content-padding;
+  margin: $general-content-padding /3 $general-content-padding auto $general-content-padding / 3;
 }

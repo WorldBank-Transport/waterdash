@@ -14,14 +14,16 @@ ul.open-data-nav {
     right: $top-nav-right-mobile + 200;
     top: $top-nav-vert-pos-mobile;
   }
-  @include up-to($phone) {
-    right: $top-nav-right-mobile;
+  @include up-to($tablet-portrait) {
+    right: $top-nav-right-mobile - 20;
+    top: $top-nav-vert-pos-mobile + 62;
+    z-index: 1;
   }
 
   li {
     @include up-to($tablet-portrait) {
-      padding-left: $nav-padding;
-      padding-right: $nav-padding;
+      padding-left: $nav-padding - 3;
+      padding-right: $nav-padding - 3;
     }
 
     border-right: 1px solid $navigation-border;
@@ -56,9 +58,8 @@ ul.open-data-nav {
 
   ul.open-data-nav {
     @include up-to($tablet-landscape) {
-      left: $header-mobile-space;
-      position: absolute;
-      top: $header-mobile-space;
+      margin-top: $general-content-padding + 20;
+      padding-bottom: $general-content-padding;
     }
 
     li {
@@ -72,6 +73,10 @@ ul.open-data-nav {
       a {
         color: $text-inverse;
         font-size: $footer-text + 1;
+
+        @include up-to($tablet-landscape) {
+          color: $text-color;
+        }
 
         &:hover {
           color: $text-color;

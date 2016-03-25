@@ -146,9 +146,9 @@
     }
     .poor > .icon {
       background: $status-poor;
-      font-size: $metric-icon-size;
-      font-weight: bold;
-      line-height: $popup-icon-line-height + 5;
+      font-size: $metric-icon-size + 3;
+      font-weight: bolder;
+      line-height: $popup-icon-line-height + 7;
     }
   }
   // popup header end

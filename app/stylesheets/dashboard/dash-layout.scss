@@ -16,12 +16,16 @@
     left: 0;
     position: absolute;
     right: 0;
-    top: $map-nav-height + 2;
+    top: $map-nav-height +77;
+
+    @include up-to($tablet-landscape) {
+      bottom: $map-container-bottom + 100;
+    }
 
     // WARNING: These rules reach into child components, which is not nice
     // but since they affect each other, ... oh well
     & > .leaflet-map {
-      height: 100%;
+      height: $full-height;
       z-index: 1;
 
       &.leaflet-container {
@@ -43,6 +47,10 @@
     left: 0;
     position: absolute;
     right: 0;
+
+    @include up-to($tablet-landscape) {
+      bottom: 100px;
+    }
 
     .map-nav,
     .view-mode > ul > li a {

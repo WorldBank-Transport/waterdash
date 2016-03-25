@@ -13,8 +13,8 @@ body {
 
 .header {
   height: $header-height;
-  padding: 0 15px;
-}
+  padding: 0 $general-content-padding / 2;
+}s
 
 .main {
   bottom: $footer-height;
@@ -38,11 +38,14 @@ body {
 }
 
 .footer {
+  @include up-to($tablet-landscape) {
+    bottom: $general-content-padding / 2.6;
+  }
   @include up-to($tablet-portrait) {
-    display: none;
+    // display: none;
   }
 
-  bottom: $footer-position;
+  bottom: $footer-position - 30;
   height: $footer-height;
   left: 0;
   position: absolute;
