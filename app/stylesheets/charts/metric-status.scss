@@ -5,7 +5,6 @@
 
 
 .metric-status {
-
   border-right: 1px solid $grey-light-detail;
   display: table-cell;
   margin: 0;
@@ -61,7 +60,7 @@
     float: left;
     height: $metric-stat-height;
     margin-left: $metric-stat-flyout-left;
-    margin-top: $metric-stat-flyout-top;
+    margin-top: $metric-stat-flyout-top + 7;
     position: absolute;
     text-align: center;
     vertical-align: top;

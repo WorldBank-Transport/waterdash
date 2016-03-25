@@ -20,10 +20,14 @@
     @include link-transition(450ms, ease);
     @include border-radius(4px);
     background-color: $bg-color;
-    margin-top: $button-link-vert/2;
+    margin-top: $button-link-vert/2.2;
     padding: $button-link-vert $general-content-padding/2;
     text-align: left;
     width: $subcategory-flyout-dimensions;
+
+    @include up-to($laptop) {
+      margin-top: $button-link-vert/3;
+    }
 
     &:hover {
       background: $theme-blue;

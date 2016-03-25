@@ -16,7 +16,7 @@
     left: 0;
     position: absolute;
     right: 0;
-    top: $map-nav-height +77;
+    top: $map-nav-height + 2;
 
     @include up-to($tablet-landscape) {
       bottom: $map-container-bottom + 100;

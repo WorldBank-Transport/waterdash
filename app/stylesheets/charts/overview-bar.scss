@@ -21,7 +21,8 @@
   table-layout: fixed;
   width: $full-width;
 
-  @include up-to($tablet-landscape) {
+  @include up-to($laptop) {
     height: $charts-summary-height + 30;
+    padding-top: $general-content-padding / 2.5;
   }
 }

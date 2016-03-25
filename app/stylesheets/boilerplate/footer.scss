@@ -9,6 +9,10 @@
   padding-left: $header-common-margin;
   padding-right: $header-common-margin;
 
+  @include up-to($tablet-portrait) {
+    background: none;
+  }
+
   &.footer-static {
     clear: both;
     position: relative;
@@ -33,9 +37,8 @@
     @include up-to($tablet-alt) {
       width: $full-width - 40;
     }
-    @include up-to($phone) {
-      text-align: center;
-      width: $full-width;
+    @include up-to($tablet-portrait) {
+      display: none;
     }
   }
 }
@@ -44,4 +47,7 @@
   float: left;
   height: $general-content-padding;
   margin: $general-content-padding /3 $general-content-padding auto $general-content-padding / 3;
+  @include up-to($tablet-portrait) {
+    display: none;
+  }
 }

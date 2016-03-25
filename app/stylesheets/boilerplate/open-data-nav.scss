@@ -15,8 +15,12 @@ ul.open-data-nav {
     top: $top-nav-vert-pos-mobile;
   }
   @include up-to($tablet-portrait) {
+    @include border-radius(3px);
+    background: $theme-blue;
+    line-height: $default-line-height -10;
+    padding: $nav-padding / 2;
     right: $top-nav-right-mobile - 20;
-    top: $top-nav-vert-pos-mobile + 62;
+    top: $top-nav-vert-pos-mobile + 65;
     z-index: 1;
   }
 
@@ -40,6 +44,10 @@ ul.open-data-nav {
       color: $text-color;
       font-size: $nav-links;
 
+      @include up-to($tablet-portrait) {
+        color: $text-inverse;
+      }
+
       &:hover {
         color: $theme-blue;
           }
@@ -60,6 +68,11 @@ ul.open-data-nav {
     @include up-to($tablet-landscape) {
       margin-top: $general-content-padding + 20;
       padding-bottom: $general-content-padding;
+
+      @include up-to($tablet-portrait) {
+        background: none;
+      }
+
     }
 
     li {
