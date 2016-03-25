@@ -121,6 +121,14 @@
     font-weight: $static-content-weight;
   }
 
+  h5 {
+    color: $text-color;
+    font-size: 18px;
+    font-weight: $title-weight;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   p {
     color: $text-color;
     font-size: $static-content-text;
@@ -129,6 +137,10 @@
     text-align: left;
     &.text-center {
       text-align: center;
+    }
+
+    &.small {
+      font-size: 12px;
     }
   }
   .faq-list {
