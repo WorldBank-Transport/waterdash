@@ -97,6 +97,7 @@ const Data = React.createClass({
               <li id="water"><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
               <li id="dams"><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
               <li id="boreholes"><Icon type="link"/><a href="http://www.opendata.go.tz/en/dataset/visima-vilivyochimbwa-na-ddca-kwa-mwaka" target="_blank"><T k="static.dataset.boreholes" /></a></li>
+              <li id="tz-population"><Icon type="link"/><a href="https://data.hdx.rwlabs.org/dataset/2012-census-tanzania-wards-shapefiles" target="_blank"><T k="static.dataset.tz-population" /></a></li>
             </ul>
           </div>
           </div>

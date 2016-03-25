@@ -48,6 +48,7 @@ const allTranslations = {
     'static.dataset.waterpoints': 'Water Points Location in Rural Water Supply – July 2015',
     'static.dataset.dams': 'Dams Constructed by Water Basin Boards 2010-2013',
     'static.dataset.boreholes': 'Boreholes constructed by DDCA per year',
+    'static.dataset.tz-population': '2012 Census Tanzania Ward Shape files',
 
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
@@ -452,6 +453,7 @@ const allTranslations = {
     'static.dataset.waterpoints': 'Maeneo ya vituo vya maji katika vijiji – Julai 2015',
     'static.dataset.dams': 'Mabwawa yaliyojengwa na Mabonde Tisa ya Maji 2010 – 2013',
     'static.dataset.boreholes': 'Visima vilivyochimbwa na DDCA kwa mwaka',
+    'static.dataset.tz-population': 'Data ya sensa ya 2012 (Ward shapefiles)',
 
     'lang.en': 'English',
     'lang.sw-tz': 'Kiswahili',
