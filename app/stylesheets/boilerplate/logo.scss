@@ -12,9 +12,9 @@
     }
 
     float: left;
-    height: $logo-height;
+    height: $logo-height - 4;
     margin-right: $header-common-margin;
-    margin-top: $logo-top-position;
+    margin-top: $logo-top-position + 2;
     }
 
   h1 {

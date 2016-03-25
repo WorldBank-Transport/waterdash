@@ -40,7 +40,7 @@ ul.language-selector {
 
     a {
       color: $language-selector-inactive;
-      font-size: 13px;
+      font-size: $nav-links;
     }
     &.active a,
     a:hover {

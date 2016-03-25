@@ -9,13 +9,13 @@
   bottom: 0;
   display: flex;
   float: left;
-  height: $full-height;
+  height: $full-height + 10%;
   left: 0;
   max-width: 45%;
   min-height: $full-height;
   overflow: hidden;
   position: absolute;
-  top: 0;
+  top: 1px;
 
   @include up-to($tablet-landscape) {
     max-width: $full-width;
@@ -29,15 +29,22 @@
     width: $full-width;
     width: auto;
 
+    @include up-to($laptop) {
+      margin-top: 0;
+      min-height: $full-width - 10;
+    }
+
     @include up-to($tablet-landscape) {
       height: auto;
-      min-height: $full-height;
+      min-height: $full-height - 11;
       width: auto;
     }
 
     @include up-to($tablet-portrait) {
       height: $full-height;
+      margin-left: 0;
       min-height: $full-height;
+      width: $full-width;
     }
   }
 }
@@ -45,14 +52,16 @@
 .homecontent  {
   float: left;
   margin-left: $homecontent-margin;
+  margin-top: -1px;
   overflow: auto;
   padding: $content-padding-vert;
   width: $home-content-width;
 
   @include up-to($tablet-landscape) {
     background-color: $background-img-overlay;
-    height: $full-height;
+    height: $full-height - 5;
     margin-left: 0;
+    margin-top: 0;
     overflow-y: auto;
     padding: 0 $content-padding-horiz;
     position: absolute;
@@ -60,6 +69,7 @@
   }
 
   @include up-to($tablet-portrait) {
+    height: $full-height;
     padding: 0 $homecontent-padding;
   }
 
@@ -74,6 +84,7 @@
     @include up-to($tablet-portrait) {
       font-size: $dashboard-intro-mobile;
       font-weight: $title-weight;
+      padding-top: $general-content-padding;
     }
 
    }
@@ -86,8 +97,13 @@
   }
 }
 .static-content {
-  margin: 0 15px;
-  padding: 0 61px;
+  margin: 0 $general-content-padding / 2;
+  padding: 0 $general-content-padding * 2;
+
+  @include up-to($tablet-portrait) {
+    margin: 0 auto;
+    padding: 0 $general-content-padding - 5;
+  }
 
   &.text-center {
     text-align: center;
@@ -116,9 +132,12 @@
   p {
     color: $text-color;
     font-size: $static-content-text;
-    font-weight: $static-content-weight;
-    line-height: 21px;
+    font-weight: $static-content-weight - 100;
+    line-height: $default-line-height +10;
     text-align: left;
+    &.text-center {
+      text-align: center;
+    }
 
     &.small {
       font-size: 12px;

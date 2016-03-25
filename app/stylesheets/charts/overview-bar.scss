@@ -19,5 +19,10 @@
   height: $charts-summary-height;
   padding: $base-unit/1.8 0 $base-unit/3 0;
   table-layout: fixed;
-  width: 100%;
+  width: $full-width;
+
+  @include up-to($laptop) {
+    height: $charts-summary-height + 30;
+    padding-top: $general-content-padding / 2.5;
+  }
 }

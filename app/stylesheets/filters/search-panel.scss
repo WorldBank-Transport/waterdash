@@ -20,8 +20,7 @@
 
   .search-form-title {
     font-size: $medium-text;
-    font-weight: 700;
-    text-align: center;
+    font-weight: $title-weight;
   }
 
   .search-form-help {
@@ -33,7 +32,7 @@
   .search-form-message {
     color: $status-poor;
     font-size: $popup-label-text - 2;
-    text-align: left; 
+    text-align: left;
   }
 
   .search-field {
@@ -41,16 +40,16 @@
       display: block;
       float: left;
       font-size: $popup-label-text;
+      height: 0;
       margin-right: $base-unit * 1.7;
       padding-top: $search-button-padding+1;
       text-align: right;
       width: $search-label-widht;
-      height: 0px;
     }
   }
   .search-field-help {
     color: $filter_search_field_help;
-    font-weight: 600;
+    font-weight: $title-weight - 100;
     left: 155px;
     position: absolute;
     top: 21px;
@@ -68,7 +67,7 @@
     margin-top: $search-input-top;
     outline: none;
     padding: $search-button-padding;
-    width: 100%;
+    width: $full-width;
     &:hover {
       border: 1px solid $theme-blue;
     }
@@ -106,7 +105,7 @@
   text-align: center;
   text-transform: uppercase;
   top: $search-icon-top-position;
-  width: $search-btn-width;
+  width: $search-btn-width * 1.2;
   z-index: 1;  // needs to be specified >=1 to go above the map
 
   &:hover {
@@ -117,7 +116,7 @@
     @include border-radius(4px);
     border: 2px solid $bg-color;
     display: inline-block;
-    left: $search-icon-top-position * 4;
+    margin-left: -$search-button-padding * 2;
     padding: $search-button-padding;
   }
 }
