@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Icon } from 'react-font-awesome';
 import Footer from '../boilerplate/footer';
 import T from '../misc/t';
@@ -7,6 +7,10 @@ require('stylesheets/boilerplate/static-content');
 require('stylesheets/boilerplate/button');
 
 const Data = React.createClass({
+
+  propTypes: {
+    params: PropTypes.object,
+  },
 
   getInitialState() {
     return {
@@ -92,12 +96,27 @@ const Data = React.createClass({
           </div>
           <div className="content-section" id="DataSources">
             <h3><T k="static.data-souces.title" /></h3>
+            <h5 id="rural"><T k="static.data-type.rural" /></h5>
             <ul className="dataset-links">
-              <li id="population"><Icon type="link"/><a href="http://opendata.go.tz/sw/dataset/6bd441ca-76b4-44a2-a8cd-a9075d1bf9b6/resource/a23325bd-557b-46b9-b9df-5f38c64e610f/download/Served-population-2005---June-2015-1.csv"><T k="static.dataset.served" /></a></li>
-              <li id="water"><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
-              <li id="dams"><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
-              <li id="boreholes"><Icon type="link"/><a href="http://www.opendata.go.tz/en/dataset/visima-vilivyochimbwa-na-ddca-kwa-mwaka" target="_blank"><T k="static.dataset.boreholes" /></a></li>
-              <li id="tz-population"><Icon type="link"/><a href="https://data.hdx.rwlabs.org/dataset/2012-census-tanzania-wards-shapefiles" target="_blank"><T k="static.dataset.tz-population" /></a></li>
+              <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/idadi-ya-watu-wanaopata-huduma-ya-maji-vijijini/resource/a23325bd-557b-46b9-b9df-5f38c64e610f"><T k="static.dataset.waterpoints" /></a></li>
+            </ul>
+            <h5 id="water"><T k="static.data-type.water" /></h5>
+            <ul className="dataset-links">
+              <li><Icon type="link"/><a href="http://opendata.go.tz/dataset/1f98a80f-f2fe-4980-91db-db683199a2d9/resource/e41299a9-d085-45e6-845e-f2af3be6dea5/download/Tanzania-All-Waterpoints-July-2015.csv "><T k="static.dataset.waterpoints" /></a></li>
+            </ul>
+            <h5 id="dams"><T k="static.data-type.dams" /></h5>
+            <ul className="dataset-links">
+              <li id=""><Icon type="link"/><a href="http://opendata.go.tz/dataset/e13b6140-abf7-4249-853e-c334da8b1d22/resource/a51ca5a1-25db-4361-a2a9-539c97a61610/download/Dams-constructed-by-nine-water-basins-board.csv "><T k="static.dataset.dams" /></a></li>
+            </ul>
+            <h5 id="boreholes"><T k="static.data-type.boreholes" /></h5>
+            <ul className="dataset-links">
+              <li><Icon type="link"/><a href="http://www.opendata.go.tz/en/dataset/visima-vilivyochimbwa-na-ddca-kwa-mwaka" target="_blank"><T k="static.dataset.boreholes" /></a></li>
+            </ul>
+            <h5 id="population"><T k="static.data-type.population" /></h5>
+            <ul className="dataset-links">
+              <p className="small"><T k="static.population.text" /></p>
+              <li><Icon type="link"/><a href="http://opendata.go.tz/sw/dataset/6bd441ca-76b4-44a2-a8cd-a9075d1bf9b6/resource/a23325bd-557b-46b9-b9df-5f38c64e610f/download/Served-population-2005---June-2015-1.csv"><T k="static.dataset.served" /></a></li>
+              <li><Icon type="link"/><a href="https://data.hdx.rwlabs.org/dataset/2012-census-tanzania-wards-shapefiles" target="_blank"><T k="static.dataset.tz-population" /></a></li>
             </ul>
           </div>
           </div>

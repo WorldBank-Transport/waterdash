@@ -105,12 +105,24 @@
     font-weight: $static-content-weight;
   }
 
+  h5 {
+    color: $text-color;
+    font-size: 18px;
+    font-weight: $title-weight;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
   p {
     color: $text-color;
     font-size: $static-content-text;
     font-weight: $static-content-weight;
     line-height: 21px;
     text-align: left;
+
+    &.small {
+      font-size: 12px;
+    }
   }
   .faq-list {
     .panel {
