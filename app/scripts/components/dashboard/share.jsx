@@ -42,9 +42,16 @@ const Share = React.createClass({
       img.style = `position: absolute;left: ${cluster._leaflet_pos.x}px;top:${cluster._leaflet_pos.y}px;margin-left: -19px; margin-top: -19px;z-index:300;`;
       mapDom.querySelector(`.${cluster.parentNode.className}`).appendChild(img);
     }
+    const marks = mapDom.getElementsByClassName("leaflet-zoom-animated");
+    const originalMarks = document.getElementsByClassName("leaflet-zoom-animated");
+    for(let i = 0; i < marks.length; i++) {
+      if (marks[i].localName == "svg" && originalMarks[i]._leaflet_pos) {
+        marks[i].style = `position: absolute;left: ${originalMarks[i]._leaflet_pos.x}px;top:${originalMarks[i]._leaflet_pos.y};z-index:1000;`;
+      }
+    }
 
     const map = mapDom.outerHTML;
-    const finalMap = map.replace(/\/\//g, 'http://').replace(/src="images\//g, 'src="http://maji.takwimu.org/images/');
+    const finalMap = map.replace(/="\/\//g, '="http://').replace(/src="images\//g, 'src="http://maji.takwimu.org/images/');
     const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
     const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
     const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;
