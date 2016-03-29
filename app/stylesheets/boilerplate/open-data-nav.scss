@@ -66,11 +66,11 @@ ul.open-data-nav {
 
   ul.open-data-nav {
     @include up-to($tablet-landscape) {
-      margin-top: $general-content-padding + 20;
-      padding-bottom: $general-content-padding;
+      margin-top: $general-content-padding;
 
       @include up-to($tablet-portrait) {
         background: none;
+        margin-top: -$general-content-padding;
       }
 
     }
@@ -92,7 +92,9 @@ ul.open-data-nav {
         }
 
         &:hover {
-          color: $text-color;
+          @include up-to($tablet-landscape) {
+            color: $hover-color;
+          }
         }
       }
 

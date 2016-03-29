@@ -24,7 +24,8 @@ body {
   top: $header-height+5;
 
   @include up-to($tablet-portrait) {
-    height: $full-width;
+    // height: $full-width;
+    height: $full-width / 2;
     padding: $content-space-mobile 0;
     top: $content-space-mobile;
   }
