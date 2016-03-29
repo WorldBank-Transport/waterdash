@@ -59,5 +59,19 @@
 }
 
 .chart-container {
-  margin-top: 20px;
+  margin-top: 0;
+  @include up-to($tablet-landscape) {
+    margin-left: -5%;
+    width: 110%;
+  }
+}
+
+.chart-container svg {
+  @include up-to($tablet-landscape) {
+    margin-left: -20px;
+    width: 105%;
+  }
+}
+.highcharts-legend {
+  border: 1px dotted #800;
 }
