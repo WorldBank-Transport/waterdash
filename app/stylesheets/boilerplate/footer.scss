@@ -10,7 +10,7 @@
   padding-right: $header-common-margin;
 
   @include up-to($tablet-portrait) {
-    background: none;
+    background: $theme-blue;
   }
 
   &.footer-static {
@@ -37,8 +37,8 @@
     @include up-to($tablet-alt) {
       width: $full-width - 40;
     }
-    @include up-to($tablet-portrait) {
-      display: none;
+    @include up-to($tablet-landscape) {
+      width: $copy-width-med + 20;
     }
   }
 }
@@ -47,7 +47,4 @@
   float: left;
   height: $general-content-padding;
   margin: $general-content-padding /3 $general-content-padding auto $general-content-padding / 3;
-  @include up-to($tablet-portrait) {
-    display: none;
-  }
 }

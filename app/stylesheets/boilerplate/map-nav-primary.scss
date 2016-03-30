@@ -8,7 +8,7 @@
   color: $text-color;
   display: block;
   font-size: $tab-text;
-  width: 20%;
+  width: $full-width/5;
 
   &:focus {
     outline: none;
@@ -16,8 +16,6 @@
   &:hover {
     cursor: pointer;
   }
-
-
 
   // customized styles through extraClasses props
   &.charts-toggle {

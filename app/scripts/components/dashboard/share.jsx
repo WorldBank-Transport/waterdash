@@ -42,10 +42,10 @@ const Share = React.createClass({
       img.style = `position: absolute;left: ${cluster._leaflet_pos.x}px;top:${cluster._leaflet_pos.y}px;margin-left: -19px; margin-top: -19px;z-index:300;`;
       mapDom.querySelector(`.${cluster.parentNode.className}`).appendChild(img);
     }
-    const marks = mapDom.getElementsByClassName("leaflet-zoom-animated");
-    const originalMarks = document.getElementsByClassName("leaflet-zoom-animated");
-    for(let i = 0; i < marks.length; i++) {
-      if (marks[i].localName == "svg" && originalMarks[i]._leaflet_pos) {
+    const marks = mapDom.getElementsByClassName('leaflet-zoom-animated');
+    const originalMarks = document.getElementsByClassName('leaflet-zoom-animated');
+    for (let i = 0; i < marks.length; i++) {
+      if (marks[i].localName === 'svg' && originalMarks[i]._leaflet_pos) {
         marks[i].style = `position: absolute;left: ${originalMarks[i]._leaflet_pos.x}px;top:${originalMarks[i]._leaflet_pos.y};z-index:1000;`;
       }
     }

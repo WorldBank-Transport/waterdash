@@ -9,7 +9,7 @@
   bottom: 0;
   display: flex;
   float: left;
-  height: $full-height + 10%;
+  height: $full-height;
   left: 0;
   max-width: 45%;
   min-height: $full-height;
@@ -17,26 +17,38 @@
   position: absolute;
   top: 1px;
 
+  @include up-to($laptop) {
+    height: $full-width - 10;
+    max-width: $full-width;
+    min-height: $full-width - 10;
+    width: $full-width;
+  }
+
   @include up-to($tablet-landscape) {
     max-width: $full-width;
+    top: $general-margin - 10;
+  }
+  @include up-to($tablet-portrait) {
+    top: $general-margin + 15;
   }
 
   img {
     flex-shrink: 2;
     height: auto;
     margin-left: -40%;
-    min-height: $full-width + 30;
+    min-height: $full-height - 30;
     width: $full-width;
     width: auto;
 
     @include up-to($laptop) {
+      margin-left: 0;
       margin-top: 0;
-      min-height: $full-width - 10;
+      min-height: $full-height/3;
     }
 
     @include up-to($tablet-landscape) {
-      height: auto;
-      min-height: $full-height - 11;
+      height: $full-height;
+      min-height: $full-height;
       width: auto;
     }
 
@@ -69,8 +81,10 @@
   }
 
   @include up-to($tablet-portrait) {
-    height: $full-height;
+    // height: $full-height;
+    height: $full-height - 10;
     padding: 0 $homecontent-padding;
+    top: $general-margin + 15;
   }
 
   h2 {
@@ -123,10 +137,10 @@
 
   h5 {
     color: $text-color;
-    font-size: 18px;
+    font-size: $medium-text + 3;
     font-weight: $title-weight;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: $general-content-padding / 3;
+    margin-top: $general-content-padding / 3;
   }
 
   p {
@@ -140,7 +154,7 @@
     }
 
     &.small {
-      font-size: 12px;
+      font-size: $normal-text;
     }
   }
   .faq-list {

@@ -52,7 +52,10 @@ const WaterpointPieChart = React.createClass({
       chart: {
         renderTo: this.props.id,
         type: 'pie',
-        width: 350,
+        height: '360',
+        marginBottom: '-95',
+        marginTop: '-170',
+        width: '290',
       },
       colors: ['#2189b3', '#2597c5', '#31aee1', '#4fbfea', '#71cff4', '#8cdfff', '#abe7ff', '#c9efff', '#def5fe', '#ecf9ff'],
       title: {
@@ -70,8 +73,19 @@ const WaterpointPieChart = React.createClass({
             format: '<b>{point.name}</b>: {point.percentage:.1f} %',
           },
           depth: 45,
-          innerSize: 100,
+          innerSize: 70,
           showInLegend: true,
+        },
+      },
+      legend: {
+        align: 'left',
+        floating: true,
+        verticalAlign: 'bottom',
+        symbolHeight: '9',
+        itemStyle: {
+          fontSize: '10',
+          fontWeight: 'normal',
+          lineHeight: '11',
         },
       },
       series: [this.parseData(stats)],
