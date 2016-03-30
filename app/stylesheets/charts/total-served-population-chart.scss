@@ -29,7 +29,7 @@
       direction: rtl;
       fill: $text-color;
       font-size: $chart-axis-text;
-      font-weight: 600;
+      font-weight: $title-weight - 100;
       text-anchor: inherit;
       transform: rotate(-75deg);
     }
@@ -62,16 +62,13 @@
   margin-top: 0;
   @include up-to($tablet-landscape) {
     margin-left: -5%;
-    width: 110%;
+    width: $full-width + 10;
   }
 }
 
 .chart-container svg {
   @include up-to($tablet-landscape) {
-    margin-left: -20px;
-    width: 105%;
+    margin-left: -$general-margin*2;
+    width: $full-width + 5;
   }
-}
-.highcharts-legend {
-  border: 1px dotted #800;
 }
