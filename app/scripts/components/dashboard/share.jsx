@@ -49,6 +49,13 @@ const Share = React.createClass({
         marks[i].style = `position: absolute;left: ${originalMarks[i]._leaflet_pos.x}px;top:${originalMarks[i]._leaflet_pos.y};z-index:1000;`;
       }
     }
+    const selected = mapDom.getElementsByClassName('leaflet-marker-icon leaflet-zoom-animated leaflet-clickable');
+    const originalSelected = document.getElementsByClassName('leaflet-marker-icon leaflet-zoom-animated leaflet-clickable');
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i].localName === 'img' && originalSelected[i]._leaflet_pos) {
+        selected[i].style = `margin-left: ${originalSelected[i].style['margin-left']}; margin-top: ${originalSelected[i].style['margin-top']}; width: 25px; height: 41px; left: ${originalSelected[i]._leaflet_pos.x}px; top: ${originalSelected[i]._leaflet_pos.y}px; z-index: 440; position: absolute;`;
+      }
+    }
 
     const map = mapDom.outerHTML;
     const finalMap = map.replace(/="\/\//g, '="http://').replace(/src="images\//g, 'src="http://maji.takwimu.org/images/');
