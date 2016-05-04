@@ -139,9 +139,7 @@ const WaterpointStatusChart = React.createClass({
                 name: key,
                 y: value,
               };
-              if (DRILL_DOWN[level] && DRILL_DOWN[level] !== null) {
-                drillDownObject.drilldown = this.getDrillDownId(status, DRILL_DOWN[level], key);
-              }
+              drillDownObject.drilldown = this.getDrillDownId(s, DRILL_DOWN[level], key);
               return drillDownObject;
             }).sort((a, b) => b.y - a.y),
         };
