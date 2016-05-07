@@ -121,13 +121,21 @@ const WaterpointStatusChart = React.createClass({
         statusList = statusList.filter(item => STATUS[item] === status);
       }
       const stats = func.Result.countByGroupBy(data, 'STATUS', nextLevel);
+      const allLocation = {};
+      statusList.forEach(s => {
+        Object.keys(stats[s] ? stats[s] : {})
+          .filter(key => key !== 'total')
+          .map(key => {
+            allLocation[key] = true;
+          })
+      });
+
       const allSeries = {};
       statusList.forEach(s => {
         allSeries[STATUS[s]] = {
           name: `${s}`,
           level: realName,
-          data: Object.keys(stats[s] ? stats[s] : [])
-            .filter(key => key !== 'total')
+          data: Object.keys(allLocation)
             .map(key => {
               let value = 0;
               if (status === 'NON FUNCTIONAL') { // we need to group all non functional
@@ -141,7 +149,7 @@ const WaterpointStatusChart = React.createClass({
               };
               drillDownObject.drilldown = this.getDrillDownId(s, DRILL_DOWN[level], key);
               return drillDownObject;
-            }).sort((a, b) => b.y - a.y),
+            }).sort((a, b) => b.name - a.name),
         };
       });
       if (!e.points) { // drill down on a single state

@@ -164,7 +164,7 @@ const WaterpointPopulationServeChart = React.createClass({
             }
             series.data.push(item);
           });
-      series.data.sort(comparator);
+      series.data.sort((a, b) => b.name - a.name);
       this.chart.hideLoading();
       this.chart.addSeriesAsDrilldown(e.point, series);
     }
