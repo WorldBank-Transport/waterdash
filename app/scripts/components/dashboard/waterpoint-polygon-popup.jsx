@@ -52,7 +52,7 @@ const WaterpointPolygonPopup = React.createClass({
     const status = func.Result.countBy(this.props.data, 'STATUS');
     const topProblem = this.getTopProblem();
     return (
-      <div className="waterpoint-popup polygon">
+      <div className="waterpoint-popup polygon" id="info-window-popup">
       <div className="popup-header">
         <h3 className="main-header"><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
       </div>

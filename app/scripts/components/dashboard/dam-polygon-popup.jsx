@@ -74,7 +74,7 @@ const DamPolygonPopup = React.createClass({
     const polyName = this.props.data[0][polyType];
     const basin = this.getTopBasin();
     return (
-      <div className="dam-popup">
+      <div className="dam-popup" id="info-window-popup">
         <div className="popup-header polygon-dam-header">
           <h3><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
         </div>

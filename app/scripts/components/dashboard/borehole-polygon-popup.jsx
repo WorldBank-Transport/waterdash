@@ -39,7 +39,7 @@ const BoreholePolygonPopup = React.createClass({
     const polyType = ViewModes.getDrillDown(this.props.viewMode);
     const polyName = this.props.data[0][polyType];
     return (
-      <div className="borehole-popup">
+      <div className="borehole-popup" id="info-window-popup">
         <div className="popup-header">
           <h3><T k={`popup.poly.${polyType}`} />: {polyName}</h3>
         </div>

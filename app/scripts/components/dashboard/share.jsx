@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'reflux';
 import T from '../misc/t';
@@ -10,10 +10,17 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import PdfLoadingStore from '../../stores/loading-pdf';
 import TSetChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
+import DataTypes from '../../constants/data-types';
+import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/dashboard/share');
 
 const Share = React.createClass({
+
+  propTypes: {
+    dataType: PropTypes.instanceOf(DataTypes.OptionClass).isRequired,
+    viewMode: PropTypes.instanceOf(DataTypes.ViewModes).isRequired,
+  },
 
   mixins: [
     connect(ShareStore, 'share'),
@@ -56,12 +63,15 @@ const Share = React.createClass({
         selected[i].style = `margin-left: ${originalSelected[i].style['margin-left']}; margin-top: ${originalSelected[i].style['margin-top']}; width: 25px; height: 41px; left: ${originalSelected[i]._leaflet_pos.x}px; top: ${originalSelected[i]._leaflet_pos.y}px; z-index: 440; position: absolute;`;
       }
     }
-
     const map = mapDom.outerHTML;
-    const finalMap = map.replace(/="\/\//g, '="http://').replace(/src="images\//g, 'src="http://maji.takwimu.org/images/');
-    const links = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">';
-    const styles = '<style>#map1 {bottom: 0px;left: 0px;position: absolute;right: 0px;top: 0px;width: 100%;height:100%;}</style><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
-    const htmlContent = `<html><header>${styles}</header><body id="pdf-body">${finalMap}${links}</body></html>`;
+    const finalMap = map.replace(/="\/\//g, '="http://').replace(/src="images\//g, `src="${location.origin}/images/`);
+    const documentHead = '<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><link rel="stylesheet" href="http://maji.takwimu.org/style.css">';
+    const header = document.getElementsByClassName('logo')[0];
+    const viewName = document.getElementById('current-view').cloneNode(true);
+    viewName.style = 'display: block';
+    const headerHtml = header.outerHTML.replace(/src="images\//g, `src="${location.origin}/images/`) + viewName.outerHTML;
+    const styles = '<style>#map1 {bottom: 0px;left: -120px;position: absolute;right: 0px;top: -10px;width: 90%;height:90%;} .logo {z-index:10;left: 50px;position: absolute;top: 10px;} .legend {z-index:10;left: 150px;position: absolute;bottom: 120px;} .legend .row {display: table;} .legend .row .legend-text {left: 30%;} .legend-mark-label {top: 15px;position: relative;} #info-window-popup {top: 0px;bottom: 0px;right: 0px} #current-view {color: #1595d3;font-size: 14px; font-weight: 700; line-height: 18px;z-index:10;left: 50px;position: absolute;top: 9%;}</style>';
+    const htmlContent = `<html><head>${documentHead}${styles}</head><body id="pdf-body">${finalMap}${headerHtml}</body></html>`;
     //console.log(htmlContent);
     pdf(htmlContent);
   },
@@ -98,6 +108,9 @@ const Share = React.createClass({
                   <CopyToClipboard style={{'display': this.state.share ? 'block' : 'none'}} text={this.state.share}>
                     <span className="copy-url">Copy</span>
                   </CopyToClipboard>
+                  <div id="current-view" style={{display: 'none'}}>
+                    <T k={`share.view.${this.props.dataType.toParam()}.${this.props.viewMode.toParam()}`}/>
+                  </div>
                 </div>
               </div>),
             Closed: () => <div style={{display: 'none'}}></div>,

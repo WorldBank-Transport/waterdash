@@ -155,7 +155,7 @@ const DashRoot = React.createClass({
             </MapNavPrimary>
           )}>
             <DataType {...propsForChildren} />
-            <Share />
+            <Share {...propsForChildren} />
           </MapNav>
         </div>
 

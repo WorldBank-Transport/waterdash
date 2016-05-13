@@ -60,7 +60,7 @@ const Popup = React.createClass({
         <div style={{display: 'none'}}></div>
       ),
       Some: selected => (
-      <div className="popup-wrapper">
+      <div className="popup-wrapper" id="info-window-popup">
         <div className="popup">
           <TSetChildProps>
             <div
