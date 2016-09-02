@@ -127,7 +127,7 @@ const WaterpointStatusChart = React.createClass({
           .filter(key => key !== 'total')
           .map(key => {
             allLocation[key] = true;
-          })
+          });
       });
 
       const allSeries = {};
