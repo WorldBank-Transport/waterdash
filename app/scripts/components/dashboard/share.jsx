@@ -11,7 +11,7 @@ import PdfLoadingStore from '../../stores/loading-pdf';
 import TSetChildProps from '../misc/t-set-child-props';
 import SpinnerModal from '../misc/spinner-modal';
 import DataTypes from '../../constants/data-types';
-import ViewModes from '../../constants/view-modes';
+//import ViewModes from '../../constants/view-modes';
 
 require('stylesheets/dashboard/share');
 
