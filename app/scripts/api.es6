@@ -10,6 +10,15 @@ const SECURITY_API_ROOT = '//api.takwimu.org/';
 const GOOGLE_API = 'https://www.googleapis.com/';
 const URL_SHORTENER = 'urlshortener/v1/url';
 
+const OPENDATA_API_ROOT = '//opendata.go.tz/api'
+
+const WATERPOINT_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=58edfa63-b329-45b5-b17f-27603420cd10&limit=100000'
+
+const BOREHOLES_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=55a55904-7cfe-4ee0-80a6-f22fb0e54159&limit=100000'
+
+const DAMS_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=8a98765a-ec4f-44c0-9c77-fe12f28d13f8&limit=100000'
+
+
 /**
  * @param {object} record The waterpoint database record
  * @returns {object} The record with a `position` prop with lat/lng array
@@ -173,13 +182,13 @@ export const getWards = () =>
   staticData.getPolygons('layers/tz_wards.json', 'TzWards');
 
 export const getWaterPointsStatic = () =>
-  staticData.getWithPostProcess('/data/ckan-waterpoints.json', eachRecord(waterpointProcess));
+  staticData.getWithPostProcess(WATERPOINT_DATA_URL, eachRecord(waterpointProcess));
 
 export const getBoreholesStatic = () =>
-  staticData.getWithPostProcess('/data/ckan-boreholes.json');
+  staticData.getWithPostProcess(BOREHOLES_DATA_URL);
 
 export const getDamsStatic = () =>
-  staticData.getWithPostProcess('/data/ckan-dams.json', eachRecord(damProcess));
+  staticData.getWithPostProcess(DAMS_DATA_URL, eachRecord(damProcess));
 
 export const getPopulationStatic = () =>
   staticData.getWithPostProcess('/data/ckan-population.json', eachRecord(toUppercase));
