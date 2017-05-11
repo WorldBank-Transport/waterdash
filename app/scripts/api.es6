@@ -10,13 +10,11 @@ const SECURITY_API_ROOT = '//api.takwimu.org/';
 const GOOGLE_API = 'https://www.googleapis.com/';
 const URL_SHORTENER = 'urlshortener/v1/url';
 
-const OPENDATA_API_ROOT = '//opendata.go.tz/api'
+const WATERPOINT_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=58edfa63-b329-45b5-b17f-27603420cd10&limit=100000';
 
-const WATERPOINT_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=58edfa63-b329-45b5-b17f-27603420cd10&limit=100000'
+const BOREHOLES_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=55a55904-7cfe-4ee0-80a6-f22fb0e54159&limit=100000';
 
-const BOREHOLES_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=55a55904-7cfe-4ee0-80a6-f22fb0e54159&limit=100000'
-
-const DAMS_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=8a98765a-ec4f-44c0-9c77-fe12f28d13f8&limit=100000'
+const DAMS_DATA_URL = 'http://opendata.go.tz/api/action/datastore_search?resource_id=8a98765a-ec4f-44c0-9c77-fe12f28d13f8&limit=100000';
 
 
 /**
