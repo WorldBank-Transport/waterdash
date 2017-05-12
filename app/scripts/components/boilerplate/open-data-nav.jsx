@@ -9,25 +9,19 @@ const OpenDataNav = React.createClass({
     return (
       <ul className="open-data-nav">
         <li>
-          <Link activeClassName="active" to="/">
-            <T k="nav.home" />
-          </Link>
+          <a href="http://opendata.go.tz">
+            <T k="data.external.govopendataportal" />
+          </a>
         </li>
         <li>
-          <Link activeClassName="active" to="/data/">
-            <T k="nav.data" />
-          </Link>
+          <a href="http://education.opendata.go.tz" target="_blank">
+            <T k="nav.edudash" />
+          </a>
         </li>
         <li>
-          <Link activeClassName="active" to="/speak-out/">
-            <T k="nav.speak-out" />
-          </Link>
-        </li>
-        <li>
-          <a href="http://elimu.takwimu.org" target="_blank"><T k="nav.edudash" /></a>
-        </li>
-        <li>
-            <a href="http://afya.takwimu.org" target="_blank"><T k="nav.healthdash" /></a>
+        <a href="http://health.opendata.go.tz" target="_blank">
+          <T k="nav.healthdash" />
+        </a>
         </li>
       </ul>
     );

@@ -22,6 +22,7 @@ const allTranslations = {
     'nav.speak-out': 'Speak Out',
     'nav.edudash': 'Education Dashboard',
     'nav.healthdash': 'Health Dashboard',
+    'data.external.govopendataportal': 'Government Open Data Portal',
 
 
     'static.data-title': 'Explore the data behind the dashboard.',
@@ -443,6 +444,7 @@ const allTranslations = {
     'nav.speak-out': 'Maoni',
     'nav.edudash': 'Dashibodi ya elimu',
     'nav.healthdash': 'Dashibodi ya afya',
+    'data.external.govopendataportal': 'Government Open Data Portal',
 
     'static.data-title': 'Chunguza data ya dashibodi.',
     'static.data-content': 'Dashibodi ya maji  imejengwa juu ya Takwimu Huria zilizoainishwa na Serikali ya Tanzania. Takwimu ghafi zimetangazwa kwa tovuti kuu ya Serikali kwa njia inayosomeka na kompyuta ikitumia leseni inayohamasisha matumizi kwa jumla. Wakati mwingine, dashibodi imetumia data zilziosafishwa au kuunganishwa na data zingine ili kuunda seti mpya zilizo rahisi zaidi kusomeka na mfumo huu. Hata hivyo, data yote inapatikana kwa uhalisi kutoka tovuti kuu ya takwimu huria ya serikali ya Tanzania.',
