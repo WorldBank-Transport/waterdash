@@ -19,7 +19,7 @@ const OpenDataNav = React.createClass({
           </Link>
         </li>
         <li>
-           <a href="http://suggest.opendata.go.tz">
+           <a href="http://suggest.opendata.go.tz/feedback/" target="_blank">
             <T k="nav.speak-out" />
           </a>
         </li>
