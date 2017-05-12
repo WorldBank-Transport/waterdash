@@ -19,7 +19,7 @@ const allTranslations = {
 
     'nav.home': 'Home',
     'nav.data': 'Data',
-    'nav.speak-out': 'Speak Out',
+    'nav.speak-out': 'Feedback',
     'nav.edudash': 'Education Dashboard',
     'nav.healthdash': 'Health Dashboard',
     'data.external.govopendataportal': 'Government Open Data Portal',

@@ -101,7 +101,7 @@ const Share = React.createClass({
                   </TSetChildProps>
                   <ul>
                     <li className="share" onClick={share}><Icon type={`link`}/><T k="share.share" /></li>
-                    <li className="feedback"><Link to="/speak-out/"><Icon type={`comments-o`}/><T k="share.feedback" /></Link></li>
+                    <li className="feedback"><a href="http://suggest.opendata.go.tz"><Icon type={`comments-o`}/><T k="share.feedback" /></a></li>
                     <li className="print" onClick={this.print}><Icon type={`file-pdf-o`}/><T k="share.print" /></li>
                   </ul>
                   <input style={{'display': this.state.share ? 'block' : 'none'}} value={this.state.share} />
