@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router';
 import T from '../misc/t';
 
 require('stylesheets/boilerplate/open-data-nav');
