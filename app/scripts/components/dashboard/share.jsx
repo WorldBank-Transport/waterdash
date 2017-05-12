@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'reflux';
 import T from '../misc/t';
 import OpenClosed from '../../constants/open-closed';
